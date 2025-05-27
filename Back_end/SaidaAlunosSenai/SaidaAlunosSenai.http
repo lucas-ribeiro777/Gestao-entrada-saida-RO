@@ -1,0 +1,6 @@
+@SaidaAlunosSenai_HostAddress = http://localhost:5116
+
+GET {{SaidaAlunosSenai_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

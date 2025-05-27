@@ -31,3 +31,4 @@ C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\Saida
 C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\SaidaAlunosSenai\obj\Debug\net8.0\SaidaAlunosSenai.pdb
 C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\SaidaAlunosSenai\obj\Debug\net8.0\SaidaAlunosSenai.genruntimeconfig.cache
 C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\SaidaAlunosSenai\obj\Debug\net8.0\ref\SaidaAlunosSenai.dll
+C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\SaidaAlunosSenai\obj\Debug\net8.0\SaidaAlunosSenai.sourcelink.json

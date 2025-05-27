@@ -1,0 +1,47 @@
+Problema: dispensar alunos mais cedo acaba sendo confuso, já que
+precisa da assinatura do professor, do aluno, do coordenador e,
+caso for de menor, autorização dos pais.
+
+possibilidade --> email, sms, assinatura digital
+
+ideia --> é enviado um token para os pais e para autorizar deve
+colocar esse token no site (impede do próprio aluno autorizar pelo
+login do responsavel)
+
+ex: “Seu filho Lucas solicitou saída antecipada hoje às 14h30. 
+Se concordar, acesse o link abaixo e insira o código: 498231”
+
+"Fluxo": aluno solicita saída informando motivo e horario, PRIMEIRA
+autorização do professor OU PAIS, caso autorize, vai pro coordenador
+caso autorize, gerará o documento/qr/confirmação de saída
+
+
+
+
+Problema 2:  RO (?)
+
+Usuário preenche um formulário com os campos:
+
+Aluno(s) envolvidos
+
+Data e hora da ocorrência
+
+Turma
+
+Categoria da ocorrência (ex: atraso, desrespeito, briga, uso de celular, falta de uniforme...)
+
+Descrição detalhada
+
+Testemunhas (opcional)
+
+Ação tomada no momento (ex: advertência verbal, conversa, nenhuma)
+
+Tipo de recomendação (encaminhar à coordenação, aguardar pais, etc.)
+
+
+3. Revisão e validação (coordenação)
+O coordenador recebe a notificação de novo RO.
+
+Pode aprovar, editar ou solicitar complemento.
+
+Quando aprovado, o RO vira parte do histórico do aluno.

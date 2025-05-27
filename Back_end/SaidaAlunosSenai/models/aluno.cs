@@ -1,4 +1,6 @@
 using System;
+using SaidaAlunosSenai.Data;
+
 namespace SaidaAlunosSenai.Models
 {
     public class Aluno

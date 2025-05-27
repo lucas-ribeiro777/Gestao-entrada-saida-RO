@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SaidaAlunosSenai")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36be8d489ae40e9dc9c0aa4bd5f9061d4c92913d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06b06db9734b9588977fb4beed74551e7177e008")]
 [assembly: System.Reflection.AssemblyProductAttribute("SaidaAlunosSenai")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SaidaAlunosSenai")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

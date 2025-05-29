@@ -1,5 +1,5 @@
 using Microsoft.OpenApi.Models;
-using RO.models; // Deve vir antes de tudo
+using ApiRO.Models; // Deve vir antes de tudo
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

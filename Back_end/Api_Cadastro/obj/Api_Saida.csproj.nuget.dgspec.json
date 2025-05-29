@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\back-and\\Api_Saida\\Api_Saida.csproj": {}
+    "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Saida\\Api_Saida.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\back-and\\Api_Saida\\Api_Saida.csproj": {
+    "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Saida\\Api_Saida.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\back-and\\Api_Saida\\Api_Saida.csproj",
+        "projectUniqueName": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Saida\\Api_Saida.csproj",
         "projectName": "Api_Saida",
-        "projectPath": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\back-and\\Api_Saida\\Api_Saida.csproj",
+        "projectPath": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Saida\\Api_Saida.csproj",
         "packagesPath": "C:\\Users\\Ana Santos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\back-and\\Api_Saida\\obj\\",
+        "outputPath": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Saida\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ana Santos\\AppData\\Roaming\\NuGet\\NuGet.Config"

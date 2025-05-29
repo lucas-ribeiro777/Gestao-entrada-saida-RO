@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9EczfYVgL72Kt6gN7KnF3A03AMjzfRg/yXyhdoAdrbPeIinE3nb7293Jr+0eOY4sh3PSMkthnMYb45FS4IVbsg==",
+  "dgSpecHash": "5lfAxWUO+UrPreAosdM4ySbnw3z76fVMh4vPob9LHsN7Fs3e6B5P5dnjPT1ZsSXGTYtXf6jobKvB1P294WZVXA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\back-and\\Api_Saida\\Api_Saida.csproj",
+  "projectFilePath": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Saida\\Api_Saida.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ana Santos\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Ana Santos\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",

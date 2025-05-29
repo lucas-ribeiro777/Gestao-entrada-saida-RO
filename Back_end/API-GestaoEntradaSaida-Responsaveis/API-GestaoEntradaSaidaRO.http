@@ -1,6 +1,0 @@
-@API_GestaoEntradaSaidaRO_HostAddress = http://localhost:5228
-
-GET {{API_GestaoEntradaSaidaRO_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

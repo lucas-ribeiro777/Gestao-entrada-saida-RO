@@ -1,0 +1,38 @@
+.container{
+    width: 360px;
+    height: 420px;
+    background-color: #1F5592;
+    margin: 160px 0 160px 84px;
+    border-radius: 25px;
+    text-align: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+.imagem{
+    margin-top: 10%;
+}
+
+.imagem img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+h2{
+    font-family: 'inter', sans-serif;
+    color: white;
+    font-weight: 200;
+}
+
+.botao {
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'inter', sans-serif;
+  font-size: 20px;
+  text-decoration: underline;
+}

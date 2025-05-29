@@ -1,6 +1,0 @@
-@GestaoResponsaveisAPI_HostAddress = http://localhost:5103
-
-GET {{GestaoResponsaveisAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

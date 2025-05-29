@@ -31,7 +31,7 @@ export default function FormCadastro({ tipo, campos, onSubmit }) {
                     id={campo.name}
                     type={campo.type || 'text'}
                     name={campo.name}
-                    placeholder={campo.placeholder || ''}
+                    placeholder={campo.placeholder || '' }
                     value={formData[campo.name]}
                     onChange={handleChange}
                     required={campo.required}
@@ -42,8 +42,8 @@ export default function FormCadastro({ tipo, campos, onSubmit }) {
 
             {tipo === 'aluno' && (
                 <div className="termos">
-                <p>🔵 Você entende que está assegurado(a) pelas normas da <strong>LGPD</strong></p>
-                <p>🔴 Você concorda com nossos <a href="#">termos de uso</a></p>
+                <div className='termo1'><input type="radio" /><p> Você entende que está assegurado(a) pelas normas da <a href="">LGPD</a></p></div>
+                <div className='termo1'><input type="radio" /><p> Você concorda com nossos <a href="#">termos de uso</a></p></div>
                 </div>
             )}
 

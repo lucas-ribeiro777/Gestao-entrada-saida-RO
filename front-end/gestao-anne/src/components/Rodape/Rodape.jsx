@@ -4,7 +4,7 @@ function Rodape() {
   return (
   <footer className="rodape">
     <div className="pt1">
-      <p className="titulo">DÚVIDAS? ENTRE EM CONTATO!</p>
+      <p className="titulo-duvidas">DÚVIDAS? ENTRE EM CONTATO!</p>
       <div className="infos">
         <div className="contato">
           <img src="./images/whatsapp.png" alt="Ícone do WhatsApp" />

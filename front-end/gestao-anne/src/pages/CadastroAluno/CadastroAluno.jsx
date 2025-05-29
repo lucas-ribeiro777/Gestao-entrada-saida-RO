@@ -6,14 +6,13 @@ import './CadastroAluno.css';
 
 function CadastroAluno() {
   const camposAluno = [
-    { name: 'nome', label: 'Nome Completo', required: true },
-    { name: 'email', label: 'E-mail', type: 'email', required: true },
-    { name: 'data_nasc', label: 'Data de Nascimento', type: 'date' },
-    { name: 'telefone', label: 'Telefone', type: 'tel' },
-    { name: 'senha', label: 'Senha', type: 'password', required: true },
-    { name: 'confirmarSenha', label: 'Confirmar Senha', type: 'password', required: true },
+    { name: 'nome', label: 'Nome Completo', required: true, placeholder: 'Digite algo...' },
+    { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'Digite algo...' },
+    { name: 'data_nasc', label: 'Data de Nascimento', type: 'text', placeholder: '__/__/__' },
+    { name: 'telefone', label: 'Telefone', type: 'tel', placeholder: '+55 ( )' },
+    { name: 'senha', label: 'Senha', type: 'password', required: true, placeholder: 'Digite sua senha' },
+    { name: 'confirmarSenha', label: 'Confirmar Senha', type: 'password', required: true, placeholder: 'Repita a senha' },
   ];
-
   return (
     <>
       <MenuCadastro/>

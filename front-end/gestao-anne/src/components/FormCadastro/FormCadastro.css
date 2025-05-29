@@ -2,12 +2,12 @@
   background-color: #144e8c;
   padding: 30px;
   border-radius: 25px;
-  color: white;
-  max-width: 817px;
+  color: rgb(255, 255, 255);
+  width: 817px;
   height: 500px;
   margin: 0 auto;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-  font-family: sans-serif;
+  font-family: 'inter', sans-serif;
   margin-top: 10%;
 }
 
@@ -50,6 +50,10 @@
 .termos {
   margin-top: 25px;
   font-size: 0.85rem;
+  width: 60%;
+  text-align: left;
+  margin: 0 auto;
+  margin-top: 6%;
 }
 
 .termos p {
@@ -89,3 +93,21 @@
   background-color: #e03d00;
 }
 
+.termo1{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.termo1 input {
+  width: 12px;
+  height: 12px;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+.grid-form input {
+  /* A FAZER TERMINAR OS STYLES  */
+}

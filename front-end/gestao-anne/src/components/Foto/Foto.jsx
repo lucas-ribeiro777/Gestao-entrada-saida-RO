@@ -28,7 +28,7 @@ function Foto() {
         onChange={handleImagemChange} 
         hidden 
       />
-      <label htmlFor="foto" className="botao">
+      <label htmlFor="foto" className="botao1">
         Clique para adicionar <br /> uma foto de perfil
       </label>
     </div>

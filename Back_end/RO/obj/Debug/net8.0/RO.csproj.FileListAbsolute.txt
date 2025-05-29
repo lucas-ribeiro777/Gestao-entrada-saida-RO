@@ -32,3 +32,11 @@ C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\Saida
 C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\SaidaAlunosSenai\RO\obj\Debug\net8.0\RO.pdb
 C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\SaidaAlunosSenai\RO\obj\Debug\net8.0\RO.genruntimeconfig.cache
 C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\SaidaAlunosSenai\RO\obj\Debug\net8.0\ref\RO.dll
+C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\RO\obj\Debug\net8.0\RO.csproj.AssemblyReference.cache
+C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\RO\obj\Debug\net8.0\RO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\RO\obj\Debug\net8.0\RO.AssemblyInfoInputs.cache
+C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\RO\obj\Debug\net8.0\RO.AssemblyInfo.cs
+C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\RO\obj\Debug\net8.0\RO.csproj.CoreCompileInputs.cache
+C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\RO\obj\Debug\net8.0\RO.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\RO\obj\Debug\net8.0\RO.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\RO\obj\Debug\net8.0\RO.sourcelink.json

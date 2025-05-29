@@ -1,56 +1,69 @@
 using Microsoft.AspNetCore.Mvc;
-using ApiRO.Models;
+using ApiRO.Models;  // Namespace correto da classe Ocorrencia
+using System.Linq;
 
-namespace ApiRO.Controllers
+[ApiController]
+[Route("[controller]")]
+public class OcorrenciasController : ControllerBase
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class OcorrenciasController : ControllerBase
+    private readonly AppDbContext _context;
+
+    public OcorrenciasController(AppDbContext context)
     {
-        private static readonly List<Ocorrencia> ocorrencias = new();
-        private static int nextId = 1;
+        _context = context;
+    }
 
-        // POST /ocorrencias
-        [HttpPost]
-        public IActionResult RegistrarOcorrencia([FromBody] Ocorrencia novaOcorrencia)
-        {
-            if (novaOcorrencia == null ||
-                novaOcorrencia.AlunoId <= 0 ||
-                string.IsNullOrEmpty(novaOcorrencia.Descricao) ||
-                string.IsNullOrEmpty(novaOcorrencia.Professor))
-            {
-                return BadRequest("Dados inválidos.");
-            }
+    [HttpGet]
+    public IActionResult Get()
+    {
+        var lista = _context.Ocorrencias.ToList();
+        return Ok(lista);
+    }
 
-            novaOcorrencia.Id = nextId++;
-            ocorrencias.Add(novaOcorrencia);
-            return CreatedAtAction(nameof(ObterOcorrenciaPorId), new { id = novaOcorrencia.Id }, novaOcorrencia);
-        }
+    [HttpGet("{id}")]
+    public IActionResult GetById(int id)
+    {
+        var ocorrencia = _context.Ocorrencias.Find(id);
+        if (ocorrencia == null)
+            return NotFound();
 
-        // GET /ocorrencias
-        [HttpGet]
-        public ActionResult<List<Ocorrencia>> ListarTodas()
-        {
-            return ocorrencias;
-        }
+        return Ok(ocorrencia);
+    }
 
-        // GET /ocorrencias/{id}
-        [HttpGet("{id}")]
-        public ActionResult<Ocorrencia> ObterOcorrenciaPorId(int id)
-        {
-            var ocorrencia = ocorrencias.FirstOrDefault(o => o.Id == id);
-            if (ocorrencia == null) return NotFound();
-            return ocorrencia;
-        }
+    [HttpPost]
+    public IActionResult Post(Ocorrencia novaOcorrencia)
+    {
+        _context.Ocorrencias.Add(novaOcorrencia);
+        _context.SaveChanges();
+        return CreatedAtAction(nameof(GetById), new { id = novaOcorrencia.Id }, novaOcorrencia);
+    }
 
-        // GET /ocorrencias/responsavel/{idFilho}
-        [HttpGet("responsavel/{idFilho}")]
-        public ActionResult<List<Ocorrencia>> ListarPorFilho(int idFilho)
-        {
-            if (idFilho <= 0) return BadRequest("idFilho inválido.");
+    [HttpPut("{id}")]
+    public IActionResult Put(int id, Ocorrencia ocorrenciaAtualizada)
+    {
+        var ocorrencia = _context.Ocorrencias.Find(id);
+        if (ocorrencia == null)
+            return NotFound();
 
-            var resultado = ocorrencias.Where(o => o.AlunoId == idFilho).ToList();
-            return resultado;
-        }
+        ocorrencia.AlunoId = ocorrenciaAtualizada.AlunoId;
+        ocorrencia.Descricao = ocorrenciaAtualizada.Descricao;
+        ocorrencia.Data = ocorrenciaAtualizada.Data;
+        ocorrencia.Professor = ocorrenciaAtualizada.Professor;
+
+        _context.SaveChanges();
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        var ocorrencia = _context.Ocorrencias.Find(id);
+        if (ocorrencia == null)
+            return NotFound();
+
+        _context.Ocorrencias.Remove(ocorrencia);
+        _context.SaveChanges();
+        return NoContent();
     }
 }
+    

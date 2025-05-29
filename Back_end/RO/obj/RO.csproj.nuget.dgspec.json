@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\SaidaAlunosSenai\\RO\\RO.csproj": {}
+    "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\RO\\RO.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\SaidaAlunosSenai\\RO\\RO.csproj": {
+    "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\RO\\RO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\SaidaAlunosSenai\\RO\\RO.csproj",
+        "projectUniqueName": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\RO\\RO.csproj",
         "projectName": "RO",
-        "projectPath": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\SaidaAlunosSenai\\RO\\RO.csproj",
+        "projectPath": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\RO\\RO.csproj",
         "packagesPath": "C:\\Users\\Joaquim Rafael\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\SaidaAlunosSenai\\RO\\obj\\",
+        "outputPath": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\RO\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Joaquim Rafael\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -46,6 +46,14 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.5, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

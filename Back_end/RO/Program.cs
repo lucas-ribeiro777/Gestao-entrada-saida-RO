@@ -1,9 +1,14 @@
 using Microsoft.OpenApi.Models;
+using RO.models; // Deve vir antes de tudo
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Adiciona serviços
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BancoDeDados")));
 
 // Configura Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -18,7 +23,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c => 
+    app.UseSwaggerUI(c =>
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Registro de Ocorrências (RO) v1"));
 }
 

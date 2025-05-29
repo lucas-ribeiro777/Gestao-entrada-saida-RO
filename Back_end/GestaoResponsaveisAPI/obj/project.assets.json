@@ -482,19 +482,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Caique\\.nuget\\packages\\": {}
+    "C:\\Users\\Joaquim Rafael\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\caique\\projetos\\Estrutura escolar\\GestaoResponsaveisAPI\\GestaoResponsaveisAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\GestaoResponsaveisAPI\\GestaoResponsaveisAPI.csproj",
       "projectName": "GestaoResponsaveisAPI",
-      "projectPath": "C:\\caique\\projetos\\Estrutura escolar\\GestaoResponsaveisAPI\\GestaoResponsaveisAPI.csproj",
-      "packagesPath": "C:\\Users\\Caique\\.nuget\\packages\\",
-      "outputPath": "C:\\caique\\projetos\\Estrutura escolar\\GestaoResponsaveisAPI\\obj\\",
+      "projectPath": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\GestaoResponsaveisAPI\\GestaoResponsaveisAPI.csproj",
+      "packagesPath": "C:\\Users\\Joaquim Rafael\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\GestaoResponsaveisAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Caique\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Joaquim Rafael\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

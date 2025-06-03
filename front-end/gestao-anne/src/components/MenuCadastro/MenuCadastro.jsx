@@ -1,4 +1,5 @@
 import './MenuCadastro.css';
+import { Link } from 'react-router-dom';
 
 function MenuCadastro() {
   return (
@@ -8,13 +9,13 @@ function MenuCadastro() {
       </div>
       <div className="menu">
         <ul>
-          <li><a href="/CadastroAluno">SOU ALUNO</a></li>
+          <li><Link to="/aluno">SOU ALUNO</Link></li>
           <li>|</li>
-          <li><a href="/CadastroDocente">SOU DOCENTE</a></li>
+          <li><Link to="/docente">SOU DOCENTE</Link></li>
           <li>|</li>
-          <li><a href="/CadastroResponsavel">SOU RESPONSÁVEL</a></li>
+          <li><Link to="/responsavel">SOU RESPONSÁVEL</Link></li>
           <li>|</li>
-          <li><a href="/coordenacao">SOU COORDENAÇÃO</a></li>
+          <li><Link to="/coordenacao">SOU COORDENAÇÃO</Link></li>
         </ul>
       </div>
     </>

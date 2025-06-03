@@ -10,7 +10,6 @@ function App() {
   return (
     <>
       <Router>
-        <MenuCadastro />
         <Routes>
           <Route path="/aluno" element={<CadastroAluno />} />
           <Route path="/docente" element={<CadastroDocente />} />
@@ -18,7 +17,6 @@ function App() {
           <Route path="/coordenacao" element={<CadastroCoordenador />} />
         </Routes>
       </Router>
-      <Rodape />
     </>
   );
 }

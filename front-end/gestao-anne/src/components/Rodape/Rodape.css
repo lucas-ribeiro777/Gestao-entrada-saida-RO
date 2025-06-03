@@ -27,13 +27,13 @@
 }
 
 footer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: #1F5592;
-    text-align: center;
-    height: 115px;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #1F5592;
+  text-align: center;
+  height: 115px;
+  align-items: center;
 }
 
 footer p{

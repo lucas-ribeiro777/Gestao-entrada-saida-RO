@@ -22,4 +22,10 @@
     color: #fff;
     font-size: 22px;
     font-family: 'Inter', sans-serif;
+    text-decoration: none;
+}
+
+.menu a{
+    color: #fff;
+    text-decoration: none;
 }

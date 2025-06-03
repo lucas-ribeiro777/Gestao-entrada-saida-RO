@@ -3,7 +3,6 @@ import CadastroAluno from './pages/CadastroAluno/CadastroAluno';
 import CadastroDocente from './pages/CadastroDocente/CadastroDocente';
 import CadastroResponsavel from './pages/CadastroResponsavel/CadastroResponsavel';
 import CadastroCoordenador from './pages/CadastroCoordenador/CadastroCoordenador';
-import Login from './components/Login/Login';
 
 function App() {
   return (

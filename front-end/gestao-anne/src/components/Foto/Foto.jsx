@@ -14,8 +14,8 @@ function Foto({ onFotoSelecionada }) {
   };
 
   return (
-    <div className="container">
-      <h2>Foto de Perfil</h2>
+    <div className="container-foto">
+      <h2 id='h2'>Foto de Perfil</h2>
 
       <div className="imagem">
         <img src={imagemPreview} alt="Foto de Perfil" />

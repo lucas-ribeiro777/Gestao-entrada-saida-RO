@@ -1,17 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-<<<<<<< Updated upstream
 import CadastroAluno from './pages/CadastroAluno/CadastroAluno';
 import CadastroDocente from './pages/CadastroDocente/CadastroDocente';
 import CadastroResponsavel from './pages/CadastroResponsavel/CadastroResponsavel';
 import CadastroCoordenador from './pages/CadastroCoordenador/CadastroCoordenador';
 import LoginGeral from './pages/LoginGeral/LoginGeral';
-=======
-import CadastroAluno from './pages/CadastroAluno/CadastroAluno.jsx';
-import CadastroDocente from './pages/CadastroDocente/CadastroDocente.jsx';
-import CadastroResponsavel from './pages/CadastroResponsavel/CadastroResponsavel.jsx';
-import CadastroCoordenador from './pages/CadastroCoordenador/CadastroCoordenador.jsx';
-import Login from './pages/LoginGeral/LoginGeral.jsx';
->>>>>>> Stashed changes
+import EsqueciMinhaSenha from './pages/EsqueciMinhaSenha/EsqueciMinhaSenha';
 
 function App() {
   return (
@@ -19,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<CadastroAluno />} />
         <Route path="/login" element={<LoginGeral />} />
+        <Route path='/esqueciminhasenha' element={<EsqueciMinhaSenha />} />
         <Route path="/docente" element={<CadastroDocente />} />
         <Route path="/responsavel" element={<CadastroResponsavel />} />
         <Route path="/coordenacao" element={<CadastroCoordenador />} />

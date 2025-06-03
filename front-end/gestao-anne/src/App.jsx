@@ -1,8 +1,7 @@
 
 import React from 'react';
-import Cabecalho from "./componentes/Cabecalho";
-import Rodape from "./componentes/Rodape";
-import './App.css'; // Arquivo com os estilos globais
+import Cabecalho from "./components/Cabecalho/Cabecalho";
+import Rodape from "./components/Rodape/Rodape";
 import './App.css'
 import CadastroAluno from './pages/CadastroAluno/CadastroAluno'
 

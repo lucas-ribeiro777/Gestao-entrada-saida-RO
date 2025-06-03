@@ -6,6 +6,7 @@ import CadastroCoordenador from './pages/CadastroCoordenador/CadastroCoordenador
 import LoginGeral from './pages/LoginGeral/LoginGeral';
 import EsqueciMinhaSenha from './pages/EsqueciMinhaSenha/EsqueciMinhaSenha';
 
+
 function App() {
   return (
     <Router>
@@ -16,6 +17,7 @@ function App() {
         <Route path="/docente" element={<CadastroDocente />} />
         <Route path="/responsavel" element={<CadastroResponsavel />} />
         <Route path="/coordenacao" element={<CadastroCoordenador />} />
+        <Route path="/TrocarSenha" element={<EsqueciMinhaSenha />} />
       </Routes>
     </Router>
   );

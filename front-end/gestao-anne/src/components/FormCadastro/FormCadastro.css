@@ -1,14 +1,15 @@
 .formulario {
   background-color: #144e8c;
-  padding: 30px;
+  padding: 40px;
   border-radius: 25px;
   color: rgb(255, 255, 255);
   width: 817px;
-  height: 500px;
+  height: 600px;
   margin: 0 auto;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
   font-family: 'inter', sans-serif;
-  margin-top: 10%;
+  margin-top: 5%;
+  margin-bottom: 10%;
 }
 
 .titulo {
@@ -28,6 +29,8 @@
 .campo {
   display: flex;
   flex-direction: column;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .full-width {
@@ -67,7 +70,7 @@
 
 .login-link {
   font-size: 0.9rem;
-  margin-top: 25px;
+  margin-top: 0px;
   text-align: center;
 }
 
@@ -76,7 +79,7 @@
   text-decoration: underline;
 }
 
-.botao {
+.botao-concluir-cadastro {
   width: 100%;
   background-color: #ff4a00;
   color: white;
@@ -85,18 +88,19 @@
   padding: 12px;
   border-radius: 25px;
   cursor: pointer;
-  margin-top: 25px;
   transition: background-color 0.2s ease-in-out;
 }
 
-.botao:hover {
+.botao-concluir-cadastro:hover {
   background-color: #e03d00;
 }
 
 .termo1{
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
 }
 
 .termo1 input {

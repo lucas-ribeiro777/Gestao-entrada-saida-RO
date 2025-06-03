@@ -2,7 +2,7 @@ import './Rodape.css';
 
 function Rodape() {
   return (
-  <footer className="rodape">
+  <footer className="rodape-geral">
     <div className="pt1">
       <p className="titulo-duvidas">DÚVIDAS? ENTRE EM CONTATO!</p>
       <div className="infos">

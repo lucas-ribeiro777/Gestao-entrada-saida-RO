@@ -85,7 +85,7 @@ function FormCadastro({ tipo, campos }) {
         Já possui uma conta? <a href="/login">Faça login</a>.
       </p>
 
-      <button type="submit" className="botao">
+      <button type="submit" className="botao-concluir-cadastro">
         Concluir Cadastro
       </button>
     </form>

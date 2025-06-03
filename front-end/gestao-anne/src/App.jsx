@@ -1,11 +1,16 @@
+
 import React from 'react';
 import Cabecalho from "./componentes/Cabecalho";
 import Rodape from "./componentes/Rodape";
 import './App.css'; // Arquivo com os estilos globais
+import './App.css'
+import CadastroAluno from './pages/CadastroAluno/CadastroAluno'
+
 
 
 function App() {
   return (
+
     <div className="container-geral">
       <Cabecalho />
       
@@ -16,6 +21,10 @@ function App() {
       <Rodape />
     </div>
   );
+    <>
+      <CadastroAluno/>
+    </>
+  
 }
 
 export default App;

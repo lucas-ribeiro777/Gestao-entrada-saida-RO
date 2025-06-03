@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -21,5 +22,10 @@ html, body, #root {
 .conteudo-principal {
   flex: 1;
   padding: 20px; /* ou o espaçamento que desejar */
+}
+
+*{
+    padding: 0;
+    margin: 0;
 }
 

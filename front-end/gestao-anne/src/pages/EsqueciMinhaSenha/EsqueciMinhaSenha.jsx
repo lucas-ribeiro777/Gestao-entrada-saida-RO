@@ -1,4 +1,4 @@
-import Rodape from '../Rodape/Rodape';
+import Rodape from '../../components/Rodape/Rodape';
 import './EsqueciMinhaSenha.css';
 import { useState } from 'react';
 

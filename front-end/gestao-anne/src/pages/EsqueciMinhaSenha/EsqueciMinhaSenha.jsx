@@ -1,3 +1,4 @@
+import Rodape from '../Rodape/Rodape';
 import './EsqueciMinhaSenha.css';
 import { useState } from 'react';
 
@@ -49,11 +50,7 @@ const EsqueciMinhaSenha = () => {
           Enviaremos um código de verificação para redefinição de senha ao e-mail cadastrado.
         </p>
       </div>
-      <footer>
-        <div>DÚVIDAS? ENTRE EM CONTATO:</div>
-        <div>(XX) XXXXX-XXXX | (XX) XXXXX-XXXX</div>
-        <div>VENHA NOS VISITAR: R. Aristeu Rodrigues Sampaio, 271 - Jardim das Nacoes, Lençóis Paulista - SP, 18685-730</div>
-      </footer>
+    <Rodape />
     </div>
   );
 };

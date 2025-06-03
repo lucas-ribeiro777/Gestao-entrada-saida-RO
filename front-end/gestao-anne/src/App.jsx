@@ -4,7 +4,6 @@ import CadastroResponsavel from "./pages/CadastroResponsavel/CadastroResponsavel
 import './App.css'
 
 
-
 function App() {
   return (
     <Router>

@@ -1,7 +1,4 @@
-.centro {
-    display: flex;
-    flex-direction: row;
-}
+<<<<<<< Updated upstream
 
 .form-wrapper {
     text-align: center;
@@ -72,3 +69,13 @@
     color: #ffffff;
     text-decoration: underline;
   }
+=======
+.centro {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+  }
+  
+>>>>>>> Stashed changes

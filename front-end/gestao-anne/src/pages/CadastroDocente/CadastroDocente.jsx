@@ -1,4 +1,3 @@
-import FormCadastro from '../../components/FormCadastro/FormCadastro';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 import Rodape from '../../components/Rodape/Rodape';
 import './CadastroDocente.css';

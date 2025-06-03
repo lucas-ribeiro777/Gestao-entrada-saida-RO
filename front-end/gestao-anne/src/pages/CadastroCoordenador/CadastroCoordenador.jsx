@@ -2,30 +2,27 @@ import FormCadastro from '../../components/FormCadastro/FormCadastro';
 import Foto from '../../components/Foto/Foto';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 import Rodape from '../../components/Rodape/Rodape';
-import './CadastroAluno.css';
+import './CadastroCoordenador.css';
 
-function CadastroAluno() {
-  const camposAluno = [
+function CadastroCoordenador() {
+  const camposCoordenador = [
     { name: 'nome', label: 'Nome Completo', required: true, placeholder: 'Digite algo...' },
     { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'Digite algo...' },
-    { name: 'data_nasc', label: 'Data de Nascimento', type: 'text', placeholder: '__/__/__' },
-    { name: 'telefone', label: 'Telefone', type: 'tel', placeholder: '+55 ( )' },
     { name: 'senha', label: 'Senha', type: 'password', required: true, placeholder: 'Digite sua senha' },
-    { name: 'confirmarSenha', label: 'Confirmar Senha', type: 'password', required: true, placeholder: 'Repita a senha' },
+    { name: 'confirmarSenha', label: 'Confirmar Senha', type: 'password', required: true, placeholder: 'Digite sua senha' },
+    { name: 'telefone', label: 'Telefone', type: 'tel', placeholder: '+55 ()' },
   ];
+
   return (
     <>
-      <MenuCadastro/>
-      
+      <MenuCadastro />
       <div className='centro'>
-        <Foto/>
-        <FormCadastro tipo="aluno" campos={camposAluno} onSubmit={(data) => console.log(data)} />
+        <Foto />
+        <FormCadastro tipo="coordenador" campos={camposCoordenador} onSubmit={(data) => console.log(data)} />
       </div>
-
-      <Rodape/>
+      <Rodape />
     </>
-
   );
 }
 
-export default CadastroAluno;
+export default CadastroCoordenador;

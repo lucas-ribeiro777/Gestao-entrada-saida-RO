@@ -1,7 +1,7 @@
-import './Foto.css'
+import './Foto.css';
 import { useState } from 'react';
 
-function Foto() {
+function Foto({ onFotoSelecionada }) {
   const [imagemPreview, setImagemPreview] = useState('./images/perfil.png');
 
   const handleImagemChange = (event) => {
@@ -9,6 +9,7 @@ function Foto() {
     if (file) {
       const previewURL = URL.createObjectURL(file);
       setImagemPreview(previewURL);
+      onFotoSelecionada(file);
     }
   };
 

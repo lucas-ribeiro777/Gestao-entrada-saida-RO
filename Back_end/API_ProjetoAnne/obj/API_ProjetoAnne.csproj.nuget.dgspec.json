@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj": {}
+    "C:\\Projetos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj": {
+    "C:\\Projetos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
+        "projectUniqueName": "C:\\Projetos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
         "projectName": "API_ProjetoAnne",
-        "projectPath": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
-        "packagesPath": "C:\\Users\\Ana Santos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\obj\\",
+        "projectPath": "C:\\Projetos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
+        "packagesPath": "C:\\Users\\João Henrique B\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ana Santos\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\João Henrique B\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -71,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

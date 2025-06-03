@@ -1,26 +1,82 @@
-import FormCadastro from '../../components/FormCadastro/FormCadastro';
+import React from 'react';
+import './CadastroCoordenador.css'; 
+
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 import Rodape from '../../components/Rodape/Rodape';
-import './CadastroCoordenador.Css';
 
-function CadastroCoordenador() {
-  const camposCoordenador = [
-    { name: 'nome', label: 'Nome Completo', required: true, placeholder: 'Digite algo...' },
-    { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'Digite algo...' },
-    { name: 'senha', label: 'Senha', type: 'password', required: true, placeholder: 'Digite sua senha' },
-    { name: 'confirmarSenha', label: 'Confirmar Senha', type: 'password', required: true, placeholder: 'Digite sua senha' },
-    { name: 'telefone', label: 'Telefone', type: 'tel', placeholder: '+55 ()' },
-  ];
-
+const CadastroCoordenador = () => {
   return (
     <>
+      {/* Cabeçalho */}
       <MenuCadastro />
-      <div className='centro'>
-        <FormCadastro tipo="coordenador" campos={camposCoordenador} onSubmit={(data) => console.log(data)} />
+
+      {/* Conteúdo do formulário */}
+      <div className="form-wrapper">
+        <h3 className="form-title">Preencha os dados para se cadastrar</h3>
+
+        <div className="form-container">
+          <div className="form-row">
+            {/* Nome completo */}
+            <input
+              type="text"
+              placeholder="Digite algo..."
+              className="input-full"
+            />
+          </div>
+
+          <div className="form-row">
+            {/* E-mail */}
+            <input
+              type="email"
+              placeholder="Digite algo..."
+              className="input-full"
+            />
+          </div>
+
+          <div className="form-row">
+            {/* Nome do dependente */}
+            <input
+              type="text"
+              placeholder="Digite algo..."
+              className="input-half"
+            />
+            {/* Telefone */}
+            <input
+              type="tel"
+              placeholder="+55 ( )"
+              className="input-half"
+            />
+          </div>
+
+          <div className="form-row">
+            {/* Senha */}
+            <input
+              type="password"
+              placeholder="Digite sua senha..."
+              className="input-half"
+            />
+            {/* Confirmar senha */}
+            <input
+              type="password"
+              placeholder="Digite sua senha..."
+              className="input-half"
+            />
+          </div>
+
+          <div className="form-login">
+            <span>
+              Já possui uma conta? <a href="#">Faça login.</a>
+            </span>
+          </div>
+
+          <button className="btn-submit">CONCLUIR CADASTRO</button>
+        </div>
       </div>
+
+      {/* Rodapé */}
       <Rodape />
     </>
   );
-}
+};
 
 export default CadastroCoordenador;

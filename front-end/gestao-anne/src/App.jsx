@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MenuCadastro from './components/MenuCadastro/MenuCadastro';
-import CadastroAluno from '../src/pages/CadastroAluno/CadastroAluno';
-import CadastroDocente from '../src/pages/CadastroDocente/CadastroDocente';
-import CadastroResponsavel from '../src/pages/CadastroResponsavel/CadastroResponsavel';  // corrigido aqui
-import CadastroCoordenador from '../src/pages/CadastroCoordenador/CadastroCoordenador';
-import Rodape from '../src/components/Rodape/Rodape';
+import CadastroAluno from './pages/CadastroAluno/CadastroAluno';
+import CadastroDocente from './pages/CadastroDocente/CadastroDocente';
+import CadastroResponsavel from './pages/CadastroResponsavel/CadastroResponsavel';  // corrigido aqui
+import CadastroCoordenador from './pages/CadastroCoordenador/CadastroCoordenador';
+import Rodape from './components/Rodape/Rodape';
 
 function App() {
   return (

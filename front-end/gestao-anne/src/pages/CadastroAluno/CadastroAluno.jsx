@@ -16,6 +16,7 @@ function CadastroAluno() {
   return (
     <>
       <MenuCadastro/>
+      
       <div className='centro'>
         <Foto/>
         <FormCadastro tipo="aluno" campos={camposAluno} onSubmit={(data) => console.log(data)} />

@@ -1,14 +1,23 @@
 import React from 'react';
-<<<<<<< Updated upstream
-import './CadastroCoordenador.css'; 
-
-import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
-import Rodape from '../../components/Rodape/Rodape';
-=======
+import './CadastroCoordenador.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './cadastrocoordenador.css';
 
-// Componentes simulados (devem existir na pasta indicada)
+function MenuCadastro() {
+  return (
+    <header>
+      <h1>Menu de Cadastro</h1>
+    </header>
+  );
+}
+
+function Rodape() {
+  return (
+    <footer>
+      <p>Rodapé do sistema</p>
+    </footer>
+  );
+}
+
 function FormCadastro({ tipo, campos, onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,22 +49,6 @@ function FormCadastro({ tipo, campos, onSubmit }) {
   );
 }
 
-function MenuCadastro() {
-  return (
-    <header>
-      <h1>Menu de Cadastro</h1>
-    </header>
-  );
-}
-
-function Rodape() {
-  return (
-    <footer>
-      <p>Rodapé do sistema</p>
-    </footer>
-  );
-}
-
 function CadastroCoordenador() {
   const camposCoordenador = [
     { name: 'nome', label: 'Nome Completo', required: true, placeholder: 'Digite algo...' },
@@ -64,58 +57,31 @@ function CadastroCoordenador() {
     { name: 'confirmarSenha', label: 'Confirmar Senha', type: 'password', required: true, placeholder: 'Digite sua senha' },
     { name: 'telefone', label: 'Telefone', type: 'tel', placeholder: '+55 ()' },
   ];
->>>>>>> Stashed changes
 
-const CadastroCoordenador = () => {
   return (
     <>
       <MenuCadastro />
-<<<<<<< Updated upstream
 
       <div className="form-wrapper">
         <h3 className="form-title">Preencha os dados para se cadastrar</h3>
 
         <div className="form-container">
           <div className="form-row">
-            <input
-              type="text"
-              placeholder="Digite algo..."
-              className="input-full"
-            />
+            <input type="text" placeholder="Digite algo..." className="input-full" />
           </div>
 
           <div className="form-row">
-            <input
-              type="email"
-              placeholder="Digite algo..."
-              className="input-full"
-            />
+            <input type="email" placeholder="Digite algo..." className="input-full" />
           </div>
 
           <div className="form-row">
-            <input
-              type="text"
-              placeholder="Digite algo..."
-              className="input-half"
-            />
-            <input
-              type="tel"
-              placeholder="+55 ( )"
-              className="input-half"
-            />
+            <input type="text" placeholder="Digite algo..." className="input-half" />
+            <input type="tel" placeholder="+55 ( )" className="input-half" />
           </div>
 
           <div className="form-row">
-            <input
-              type="password"
-              placeholder="Digite sua senha..."
-              className="input-half"
-            />
-            <input
-              type="password"
-              placeholder="Digite sua senha..."
-              className="input-half"
-            />
+            <input type="password" placeholder="Digite sua senha..." className="input-half" />
+            <input type="password" placeholder="Digite sua senha..." className="input-half" />
           </div>
 
           <div className="form-login">
@@ -126,20 +92,20 @@ const CadastroCoordenador = () => {
 
           <button className="btn-submit">CONCLUIR CADASTRO</button>
         </div>
-=======
-      <div className="centro">
-        <FormCadastro
-          tipo="coordenador"
-          campos={camposCoordenador}
-          onSubmit={(data) => console.log(data)}
-        />
->>>>>>> Stashed changes
+
+        <div className="centro">
+          <FormCadastro
+            tipo="coordenador"
+            campos={camposCoordenador}
+            onSubmit={(data) => console.log(data)}
+          />
+        </div>
       </div>
-      
+
       <Rodape />
     </>
   );
-};
+}
 
 function App() {
   return (
@@ -151,4 +117,4 @@ function App() {
   );
 }
 
-export default CadastroCoordenador;
+export default App;

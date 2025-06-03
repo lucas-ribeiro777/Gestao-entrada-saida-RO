@@ -1,19 +1,25 @@
 
+import React from 'react';
 import MenuCadastro from "./components/MenuCadastro/MenuCadastro";
 import Rodape from "./components/Rodape/Rodape";
 import './App.css'
-import CadastroAluno from './pages/CadastroAluno/CadastroAluno'
 import CadastroResponsavel from './pages/CadastroResponsavel/CadastroResponsavel';
-
-
 
 function App() {
   return (
-    <>
-      <CadastroAluno/>
-    </>
-  );
 
+    <div className="container-geral">
+      <MenuCadastro />
+      
+      <main className="conteudo-principal">
+        < CadastroResponsavel />
+      </main>
+
+     <Rodape />
+    </div>
+     
+  );
+  
 }
 
 export default App;

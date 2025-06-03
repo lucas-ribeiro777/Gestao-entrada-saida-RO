@@ -9,7 +9,7 @@ function MenuCadastro() {
       </div>
       <div className="menu">
         <ul>
-          <li><Link to="/aluno">SOU ALUNO</Link></li>
+          <li><Link to="/">SOU ALUNO</Link></li>
           <li>|</li>
           <li><Link to="/docente">SOU DOCENTE</Link></li>
           <li>|</li>

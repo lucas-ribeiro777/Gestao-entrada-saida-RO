@@ -2,14 +2,14 @@ import React from 'react';
 import './CadastroResponsavel.css'; // estilos específicos do formulário
 
 // ajuste os caminhos conforme a estrutura do seu projeto
-import Cabecalho from '../../components/Cabecalho/Cabecalho';
+import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 import Rodape from '../../components/Rodape/Rodape';
 
 const CadastroResponsavel = () => {
   return (
     <>
       {/* Cabeçalho */}
-      <Cabecalho />
+      <MenuCadastro />
 
       {/* Conteúdo do formulário */}
       <div className="form-wrapper">

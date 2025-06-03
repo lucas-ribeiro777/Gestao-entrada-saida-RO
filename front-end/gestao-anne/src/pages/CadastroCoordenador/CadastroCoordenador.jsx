@@ -1,8 +1,7 @@
 import FormCadastro from '../../components/FormCadastro/FormCadastro';
-import Foto from '../../components/Foto/Foto';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 import Rodape from '../../components/Rodape/Rodape';
-import './CadastroCoordenador.css';
+import './CadastroCoordenador.Css';
 
 function CadastroCoordenador() {
   const camposCoordenador = [
@@ -17,7 +16,6 @@ function CadastroCoordenador() {
     <>
       <MenuCadastro />
       <div className='centro'>
-        <Foto />
         <FormCadastro tipo="coordenador" campos={camposCoordenador} onSubmit={(data) => console.log(data)} />
       </div>
       <Rodape />

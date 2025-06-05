@@ -26,6 +26,13 @@
 }
 
 .menu a{
-    color: #fff;
     text-decoration: none;
+}
+
+.nativo{
+    color: #fff;
+}
+
+.ativo {
+  color: #E8490F;
 }

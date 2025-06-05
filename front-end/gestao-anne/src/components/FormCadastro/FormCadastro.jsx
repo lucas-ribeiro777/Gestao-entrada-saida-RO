@@ -1,3 +1,4 @@
+import CriarAssinatura from '../CriarAssinatura/CriarAssinatura';
 import './FormCadastro.css';
 import React, { useState } from 'react';
 
@@ -17,8 +18,7 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
     e.preventDefault();
 
     try {
-      // 1. Envia o cadastro do aluno
-      const responseAluno = await fetch('http://localhost:3001/alunos', {
+      const responseAluno = await fetch('http://10.90.146.27:5121/api/Alunos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -33,10 +33,8 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
 
       const alunoCriado = await responseAluno.json();
 
-      // Supondo que a resposta contenha o id do aluno criado
       const idAluno = alunoCriado.id;
 
-      // 2. Envia os dados de autorização para a outra tabela
       const responseAutorizacao = await fetch('http://localhost:3001/autorizacao', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -83,6 +81,8 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
           </div>
         ))}
       </div>
+
+      <CriarAssinatura/>
 
       {tipo === 'aluno' && (
         <div className="termos">

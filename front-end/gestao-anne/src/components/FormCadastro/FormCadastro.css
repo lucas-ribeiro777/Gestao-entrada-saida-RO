@@ -126,3 +126,31 @@ input::placeholder {
 .grid-form input {
   box-shadow: 0 5px 10px rgba(0,0,0,0.4);
 }
+
+.botao-assinar{
+  width: 40%;
+  background-color: #ff4a00;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 12px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin: 0 auto;
+}
+
+.container-botao-assinar{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.container-assinatura{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<CadastroAluno />} />
         <Route path="/login" element={<LoginGeral />} />
+        <Route path="/esqueciminhasenha" element={<EsqueciMinhaSenha />} />
         <Route path="/docente" element={<CadastroDocente />} />
         <Route path="/responsavel" element={<CadastroResponsavel />} />
         <Route path="/coordenacao" element={<CadastroCoordenador />} />

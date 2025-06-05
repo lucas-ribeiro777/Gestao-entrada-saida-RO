@@ -36,47 +36,52 @@ function CadastroDocente() {
       <MenuCadastro />
 
       <h2 className="titulo-cadastro">Preencha os dados para se cadastrar</h2>
-      <div className="cadastro-box">
-        <form onSubmit={handleSubmit}>
-          <label>Nome Completo</label>
-          <input type="text" name="nome" placeholder="Digite algo..." value={formData.nome} onChange={handleChange} />
+      
+      <form onSubmit={handleSubmit}>
+  <div className="cadastro-box">
+    {/* campos do formulário (nome, email, senha, etc) */}
+    <label>Nome Completo</label>
+    <input type="text" name="nome" placeholder="Digite algo..." value={formData.nome} onChange={handleChange} />
 
-          <label>E-mail</label>
-          <input type="email" name="email" placeholder="Digite algo..." value={formData.email} onChange={handleChange} />
+    <label>E-mail</label>
+    <input type="email" name="email" placeholder="Digite algo..." value={formData.email} onChange={handleChange} />
 
-          <div className="senha-container">
-            <div className="campo">
-              <label>Senha</label>
-              <input type="password" name="senha" placeholder="Digite sua senha" value={formData.senha} onChange={handleChange} />
-            </div>
-            <div className="campo">
-              <label>Confirmar Senha</label>
-              <input type="password" name="confirmarSenha" placeholder="Digite sua senha..." value={formData.confirmarSenha} onChange={handleChange} />
-            </div>
-          </div>
-
-          <label>Telefone</label>
-          <input type="tel" name="telefone" placeholder="+55 ( )" value={formData.telefone} onChange={handleChange} />
-
-          <div className="checkbox-container">
-            <label className="checkbox-item">
-              <input type="checkbox" name="lgpd" checked={formData.lgpd} onChange={handleChange} />
-              Você entende que está assegurado pelas normas da <a href="#">LGPD</a>
-            </label>
-
-            <label className="checkbox-item">
-              <input type="checkbox" name="termos" checked={formData.termos} onChange={handleChange} />
-              Você concorda com nossos <a href="#">termos de uso</a>
-            </label>
-          </div>
-
-          <p className="login-link">
-            Já possui uma conta? <a href="/login">Faça login.</a>
-          </p>
-
-          <button type="submit" className="botao-cadastro">CONCLUIR CADASTRO</button>
-        </form>
+    <div className="senha-container">
+      <div className="campo">
+        <label>Senha</label>
+        <input type="password" name="senha" placeholder="Digite sua senha" value={formData.senha} onChange={handleChange} />
       </div>
+      <div className="campo">
+        <label>Confirmar Senha</label>
+        <input type="password" name="confirmarSenha" placeholder="Digite sua senha..." value={formData.confirmarSenha} onChange={handleChange} />
+      </div>
+    </div>
+
+    <label>Telefone</label>
+    <input type="tel" name="telefone" placeholder="+55 ( )" value={formData.telefone} onChange={handleChange} />
+
+    <div className="checkbox-container">
+      <label className="checkbox-item">
+        <input type="checkbox" name="lgpd" checked={formData.lgpd} onChange={handleChange} />
+        Você entende que está assegurado pelas normas da <a href="#">LGPD</a>
+      </label>
+
+      <label className="checkbox-item">
+        <input type="checkbox" name="termos" checked={formData.termos} onChange={handleChange} />
+        Você concorda com nossos <a href="#">termos de uso</a>
+      </label>
+    </div>
+
+    <p className="login-link">
+      Já possui uma conta? <a href="/login">Faça login.</a>
+    </p>
+  </div>
+
+  {/* botão separado com pouca margem */}
+  <div className="botao-wrapper">
+    <button type="submit" className="botao-cadastro">CONCLUIR CADASTRO</button>
+  </div>
+</form>
 
       <Rodape />
     </>

@@ -14,8 +14,12 @@
   font-family: 'Inter', sans-serif;
 }
 
+.login-content {
+  margin-top: 60px;
+}
+
 .login-container {
-  background-color: #174c88;
+  background-color: #1F5592;
   padding: 30px;
   border-radius: 25px;
   max-width: 800px;
@@ -111,5 +115,5 @@
   margin-top: 10px;
   font-size: 15px;
   font-weight: bold;
-  color: #f1c40f;
+  color: red;
 }

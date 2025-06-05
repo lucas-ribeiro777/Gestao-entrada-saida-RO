@@ -1,70 +1,38 @@
 import React from 'react';
 import './CadastroResponsavel.css';
-
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
+import FormCadastro from '../../components/FormCadastro/FormCadastro';
 import Rodape from '../../components/Rodape/Rodape';
 
-const CadastroResponsavel = () => {
+function CadastroResponsavel() {
+  const camposResponsavel = [
+    { name: 'nome', label: 'Nome Completo', required: true, placeholder: 'Digite algo...' },
+    { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'Digite algo...' },
+    { name: 'nomeDependente', label: 'Nome do Dependente', required: true, placeholder: 'Digite algo...' },
+    { name: 'telefone', label: 'Telefone', type: 'tel', placeholder: '+55 ()' },
+    { name: 'senha', label: 'Senha', type: 'password', required: true, placeholder: 'Digite sua senha...' },
+    { name: 'confirmarSenha', label: 'Confirmar Senha', type: 'password', required: true, placeholder: 'Digite sua senha...' },
+  ];
+
   return (
     <>
       <MenuCadastro />
 
-      <div className="form-wrapper">
-        <h3 className="form-title">Preencha os dados para se cadastrar</h3>
+      <div className="form-wrapper-responsavel">
+      
 
-        <div className="form-container">
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="nome">Nome Completo</label>
-              <input type="text" id="nome" placeholder="Digite algo..." className="input-full" />
-            </div>
-          </div>
-
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="email">E-mail</label>
-              <input type="email" id="email" placeholder="Digite algo..." className="input-full" />
-            </div>
-          </div>
-
-          <div className="form-row form-row-spacing">
-            <div className="form-group">
-              <label htmlFor="dependente">Nome do Dependente</label>
-              <input type="text" id="dependente" placeholder="Digite algo..." className="input-half" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="telefone">Telefone</label>
-              <input type="tel" id="telefone" placeholder="+55 ( )" className="input-half" />
-            </div>
-          </div>
-
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="senha">Senha</label>
-              <input type="password" id="senha" placeholder="Digite sua senha..." className="input-half" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="confirmar-senha">Confirmar Senha</label>
-              <input type="password" id="confirmar-senha" placeholder="Digite sua senha..." className="input-half" />
-            </div>
-          </div>
-
-          <div className="form-login">
-            <span>
-              Já possui uma conta? <a href="/login">Faça login.</a>
-            </span>
-          </div>
-        </div>
-
-        {/* Botão fora do container azul */}
-        <div className="submit-wrapper">
-          <button className="btn-submit-outside">CONCLUIR CADASTRO</button>
+        <div className="centro-responsavel">
+          <FormCadastro
+            tipo="responsavel"
+            campos={camposResponsavel}
+            onSubmit={(data) => console.log(data)}
+          />
         </div>
       </div>
 
       <Rodape />
     </>
   );
-};
+}
 
 export default CadastroResponsavel;

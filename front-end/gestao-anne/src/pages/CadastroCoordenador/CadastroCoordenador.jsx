@@ -34,6 +34,8 @@ function CadastroCoordenador() {
     }
   };
 
+
+const CadastroCoordenador = () => {
   return (
     <>
       <MenuCadastro />
@@ -46,4 +48,3 @@ function CadastroCoordenador() {
 }
 
 export default CadastroCoordenador;
-

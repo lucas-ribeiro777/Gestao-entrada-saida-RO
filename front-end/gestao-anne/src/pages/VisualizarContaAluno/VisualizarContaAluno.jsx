@@ -1,18 +1,10 @@
-import React from 'react';
-import { FaUser, FaBirthdayCake, FaEnvelope, FaPhone, FaMale } from 'react-icons/fa';
 import './VisualizarContaAluno.css';
 import Rodape from '../../components/Rodape/Rodape';
 
-function SenaiConta() {
-  const dados = {
-    nome: 'Giovanna Santos Silva',
-    nascimento: '29/10/2006',
-    email: 'giovanna.santos@gmail.com',
-    telefone: '(14) 99849-2576',
-    responsavel: 'José Antônio Silva'
-  };
 
+const VisualizarContaAluno = () => {
   return (
+<<<<<<< HEAD
     <div className="container">
       <header className="header">
         <nav>
@@ -36,7 +28,12 @@ function SenaiConta() {
       </main>
     </div>
 
+=======
+    <div>
+      <h1>Visualizar Conta do Aluno</h1>
+    </div>
+>>>>>>> 3c7e9041d9904949114e3eb679f6647add2620de
   );
-}
+};
 
 export default VisualizarContaAluno;

@@ -52,7 +52,7 @@ CREATE TABLE solicitacoes (
 CREATE TABLE ocorrencias (
     id INT PRIMARY KEY AUTO_INCREMENT,
     aluno_id INT NOT NULL,
-    professor_id INT, -- Removido o NOT NULL para permitir SET NULL
+    professor_id INT, 
     descricao TEXT NOT NULL,
     data_ocorrencia DATE NOT NULL,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

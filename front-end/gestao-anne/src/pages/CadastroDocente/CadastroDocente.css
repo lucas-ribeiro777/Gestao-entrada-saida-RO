@@ -13,7 +13,7 @@ body {
   text-align: center;
   color: orangered;
   margin: 2rem auto 1rem auto;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .cadastro-box {
@@ -104,8 +104,6 @@ input[type="tel"] {
   display: flex;
   justify-content: center;
 }
-
-
 
 .botao-cadastro {
   width: 100%;

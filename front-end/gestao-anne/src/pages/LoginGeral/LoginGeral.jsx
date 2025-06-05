@@ -30,8 +30,9 @@ const LoginGeral = () => {
   };
 
   const irParaEsqueciSenha = () => {
-    navigate('/esqueciminhasenha');
+  navigate('/esqueciminhasenha');
   };
+
 
   return (
     <>
@@ -50,7 +51,7 @@ const LoginGeral = () => {
             <label htmlFor="senha" className="login-label">Senha</label>
             <input id="senha" type="password" placeholder="Digite sua senha..." className="input-half-login" value={senha} onChange={(e) => setSenha(e.target.value)} />
             <div className="link-esqueci-senha">
-              <a href="#" onClick={(e) => { e.preventDefault(); irParaEsqueciSenha(); }}>Esqueci Minha Senha!</a>
+              <a href="#" onClick={irParaEsqueciSenha}>Esqueci Minha Senha!</a>
             </div>
           </div>
 

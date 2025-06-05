@@ -1,40 +1,75 @@
-import './LoginGeral.css'
+import './LoginGeral.css';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importa o hook
 import Rodape from '../../components/Rodape/Rodape';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
+import EsqueciMinhaSenha from '../EsqueciMinhaSenha/EsqueciMinhaSenha';
 
-const LoginGeral= () => {
+const LoginGeral = () => {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [mensagem, setMensagem] = useState('');
+  const navigate = useNavigate();
+
+  const usuarioMock = {
+    email: 'usuario@teste.com',
+    senha: '123456'
+  };
+
+  const handleLogin = () => {
+    if (email === usuarioMock.email && senha === usuarioMock.senha) {
+      setMensagem('Login realizado com sucesso!');
+      // navigate('/dashboard');
+    } else {
+      setMensagem('Email ou senha incorretos.');
+    }
+  };
+
+  const irParaCadastro = () => {
+    navigate('/#');
+  };
+
+  const irParaEsqueciSenha = () => {
+  navigate('/esqueciminhasenha');
+  };
+
+
   return (
     <>
-        <MenuCadastro />
+      <MenuCadastro />
 
-        <div className="login-wrapper">
+      <div className="login-wrapper">
         <h3 className="login-title">Preencha os dados para fazer login</h3>
 
         <div className="login-container">
           <div className="login-row">
-            <input 
-              type="email"
-              placeholder="Digite algo..."
-              className="input-full"
-            />
+            <label htmlFor="email" className="login-label">E-mail</label>
+            <input id="email" type="email" placeholder="Digite seu e-mail..." className="input-full-login" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
 
           <div className="login-row">
-            <input
-              type="password"
-              placeholder="Digite sua senha..."
-              className="input-half"
-            />
+            <label htmlFor="senha" className="login-label">Senha</label>
+            <input id="senha" type="password" placeholder="Digite sua senha..." className="input-half-login" value={senha} onChange={(e) => setSenha(e.target.value)} />
+            <div className="link-esqueci-senha">
+              <a href="#" onClick={irParaEsqueciSenha}>Esqueci Minha Senha!</a>
+            </div>
           </div>
+
+          {mensagem && (
+            <div className="mensagem-login">
+              {mensagem}
+            </div>
+          )}
 
           <div className="form-cadastro">
             <span>
-              Não possui uma conta? <a href="#">Faça seu Cadastro.</a>
+              Não possui uma conta?{' '}
+              <a href="#" onClick={irParaCadastro}>Faça seu Cadastro.</a>
             </span>
           </div>
-
-          <button className="btn-submit">ENTRAR</button>
         </div>
+
+        <button className="btn-submit-login" onClick={handleLogin}>ENTRAR</button>
       </div>
 
       <Rodape />

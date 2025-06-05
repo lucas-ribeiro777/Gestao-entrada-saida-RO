@@ -15,7 +15,7 @@ function CadastroAluno() {
     { name: 'telefone', label: 'Telefone', type: 'tel', placeholder: '+55 ( )' },
     { name: 'senha', label: 'Senha', type: 'password', required: true, placeholder: 'Digite sua senha' },
     { name: 'confirmarSenha', label: 'Confirmar Senha', type: 'password', required: true, placeholder: 'Repita a senha' },
-  ];
+    ];
 
   return (
     <>

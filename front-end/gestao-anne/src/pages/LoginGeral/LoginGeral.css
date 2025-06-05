@@ -19,10 +19,10 @@
 }
 
 .login-container {
-  background-color: #1F5592;
-  padding: 30px;
+  background-color: #144e8c;
+  padding: 50px;
   border-radius: 25px;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 20px;
@@ -50,16 +50,16 @@
   border-radius: 20px;
   border: none;
   font-size: 16px;
-  width: 97%;
+  width: 95%;
   align-items: center;
 }
 
 .input-half-login {
-  padding: 10px;
+  padding: 20px;
   border-radius: 20px;
   border: none;
   font-size: 16px;
-  width: 97%;
+  width: 95%;
   align-items: center;
 }
 
@@ -83,14 +83,14 @@
   display: block;
   background-color: #e74c3c;
   color: white;
-  padding: 12px 25px;
+  padding: 20px 40px;
   border: none;
   border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
   font-weight: bold;
   max-width: 200px;
-  margin-bottom: 200px;
+  margin-bottom: 190px;
   font-family: 'Inter', sans-serif;
 }
 

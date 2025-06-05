@@ -39,22 +39,22 @@ const LoginGeral = () => {
 
       <div className="login-wrapper">
   
-  <div className="login-content">
-    <h3 className="login-title">Preencha os dados para fazer login</h3>
+      <div className="login-content">
+        <h3 className="login-title">Preencha os dados para fazer login</h3>
 
-    <div className="login-container">
-      <div className="login-row">
-        <label htmlFor="email" className="login-label">E-mail</label>
-        <input id="email" type="email" placeholder="Digite seu e-mail..." className="input-full-login" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </div>
+        <div className="login-container">
+          <div className="login-row">
+            <label htmlFor="email" className="login-label">E-mail</label>
+            <input id="email" type="email" placeholder="Digite seu e-mail..." className="input-full-login" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </div>
 
-      <div className="login-row">
-        <label htmlFor="senha" className="login-label">Senha</label>
-        <input id="senha" type="password" placeholder="Digite sua senha..." className="input-half-login" value={senha} onChange={(e) => setSenha(e.target.value)} />
-        <div className="link-esqueci-senha">
-          <a href="#" onClick={irParaEsqueciSenha}>Esqueci Minha Senha!</a>
-        </div>
-      </div>
+          <div className="login-row">
+            <label htmlFor="senha" className="login-label">Senha</label>
+            <input id="senha" type="password" placeholder="Digite sua senha..." className="input-half-login" value={senha} onChange={(e) => setSenha(e.target.value)} />
+              <div className="link-esqueci-senha">
+                  <a href="#" onClick={irParaEsqueciSenha}>Esqueci Minha Senha!</a>
+              </div>
+         </div>
 
       {mensagem && (
         <div className="mensagem-login">

@@ -117,7 +117,7 @@ function CadastroDocente() {
 
 
           <p className="login-link">
-            Já possui uma conta? <a href="#">Faça login.</a>
+            Já possui uma conta? <a href="/login">Faça login.</a>
           </p>
 
           <button type="submit" className="botao-cadastro">CONCLUIR CADASTRO</button>

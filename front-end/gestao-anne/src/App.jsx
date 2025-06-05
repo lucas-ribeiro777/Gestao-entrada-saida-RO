@@ -5,8 +5,8 @@ import CadastroResponsavel from './pages/CadastroResponsavel/CadastroResponsavel
 import CadastroCoordenador from './pages/CadastroCoordenador/CadastroCoordenador';
 import LoginGeral from './pages/LoginGeral/LoginGeral';
 import EsqueciMinhaSenha from './pages/EsqueciMinhaSenha/EsqueciMinhaSenha';
-import VisualizarContaAluno from './pages/VisualizarContaAluno/VisualizarContaAluno'
 import VisualizarOcorrenciasAluno from './pages/VisualizarOcorrenciasAluno/VisualizarOcorrenciasAluno';
+import VisualizarContaAluno from './pages/VisualizarContaAluno/VisualizarContaAluno';
 
 
 function App() {

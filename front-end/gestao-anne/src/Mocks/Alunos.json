@@ -1,47 +1,43 @@
 {
   "alunos": [
     {
-      "id_alunos": 1,
+      "id": "1",
       "nome": "Lucas Andrade",
       "email": "lucas.andrade@email.com",
       "data_nasc": "2007-04-15",
       "id_responsavel": 101,
       "telefone": "11987654321",
-      "senha": "$2b$10$abcde12345senhaCriptografada",
-      "id": "7253"
+      "senha": "12345"
     },
     {
-      "id_alunos": 2,
+      "id": "2",
       "nome": "Mariana Oliveira",
       "email": "mariana.oliveira@email.com",
       "data_nasc": "2006-09-22",
       "id_responsavel": 102,
       "telefone": "11999887766",
-      "senha": "$2b$10$fghij67890senhaCriptografada",
-      "id": "ec71"
+      "senha": "$2b$10$fghij67890senhaCriptografada"
     },
     {
-      "id_alunos": 3,
+      "id": "3",
       "nome": "Rafael Costa",
       "email": "rafael.costa@email.com",
       "data_nasc": "2005-01-10",
       "id_responsavel": 103,
       "telefone": "11988776655",
-      "senha": "$2b$10$klmno13579senhaCriptografada",
-      "id": "65f1"
+      "senha": "$2b$10$klmno13579senhaCriptografada"
     },
     {
-      "id_alunos": 4,
+      "id": "4",
       "nome": "Ana Souza",
       "email": "ana.souza@email.com",
       "data_nasc": "2008-12-05",
       "id_responsavel": 104,
       "telefone": "11977665544",
-      "senha": "$2b$10$pqrst24680senhaCriptografada",
-      "id": "73d1"
+      "senha": "$2b$10$pqrst24680senhaCriptografada"
     },
     {
-      "id": "1e52",
+      "id": "52",
       "nome": "Lucas Morales Ribeiro",
       "email": "lucasmoraribeiro@gmail.com",
       "telefone": "14998492576",
@@ -114,7 +110,8 @@
     {
       "id_autorizacao": 1,
       "uso_dados": 1,
-      "lgpd": 1
+      "lgpd": 1,
+      "id": "b7d9"
     },
     {
       "id": "c994",

@@ -1,0 +1,73 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_0dc54824-2fb9-436a-879e-5c7e63c349b5.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_0dc54824-2fb9-436a-879e-5c7e63c349b5.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_7f06af3f-9f55-4028-9300-9879c3476613.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_7f06af3f-9f55-4028-9300-9879c3476613.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_a5c6db0a-5015-4821-9634-238f9d8c7f84.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_a5c6db0a-5015-4821-9634-238f9d8c7f84.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_a9bbe3fd-47cd-4826-b0db-f371af6a2232.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_a9bbe3fd-47cd-4826-b0db-f371af6a2232.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_ab5ea615-deb8-408f-9864-6812f4c21948.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_ab5ea615-deb8-408f-9864-6812f4c21948.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_c62ef55d-a266-4fa3-b6ed-9da82739502f.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_c62ef55d-a266-4fa3-b6ed-9da82739502f.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_professor_70716724-4b1a-4af1-a26a-b6fc96dd9490.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_professor_70716724-4b1a-4af1-a26a-b6fc96dd9490.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_professor_ae7d8ecc-9870-4bcc-88af-a1dc76e2f785.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_professor_ae7d8ecc-9870-4bcc-88af-a1dc76e2f785.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_professor_e9fb359c-6d2a-42eb-b3d4-88e37e139d0e.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_professor_e9fb359c-6d2a-42eb-b3d4-88e37e139d0e.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_responsavel_cc8fb032-a258-4322-a529-136686c5a3fe.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_responsavel_cc8fb032-a258-4322-a529-136686c5a3fe.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_316c1101-659f-4491-a82f-39c0bc875118.png",
+      "PackagePath": "staticwebassets\\images\\imagem_316c1101-659f-4491-a82f-39c0bc875118.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_3e566369-0bb3-4f9c-8752-c0c7aff5aa70.png",
+      "PackagePath": "staticwebassets\\images\\imagem_3e566369-0bb3-4f9c-8752-c0c7aff5aa70.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_8d0e9ce9-0528-45ec-9595-c7c567e8cc22.png",
+      "PackagePath": "staticwebassets\\images\\imagem_8d0e9ce9-0528-45ec-9595-c7c567e8cc22.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Api_Projeto.Annne.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Api_Projeto.Annne.props",
+      "PackagePath": "build\\Api_Projeto.Annne.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Api_Projeto.Annne.props",
+      "PackagePath": "buildMultiTargeting\\Api_Projeto.Annne.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Api_Projeto.Annne.props",
+      "PackagePath": "buildTransitive\\Api_Projeto.Annne.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

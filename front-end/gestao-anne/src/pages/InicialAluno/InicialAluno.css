@@ -1,0 +1,137 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #a0bee3;
+}
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* LOGO */
+.logo-container {
+  background-color: #fcfcfd;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.logo-container img {
+  height: 100px;
+}
+
+/* QUERO ME MATAR */
+.novo-container {
+  background-color: #1e4f91;
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  align-items: center;
+  padding: 55px 10px;
+}
+
+.novo-container p {
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+  cursor: pointer;
+}
+
+.novo-container p.inicio {
+  color: orangered;
+}
+
+/* CONTAINER CAIXAS */
+.caixas {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin: 40px auto;
+  flex-wrap: wrap;
+}
+
+/* CAXAIS ISGUASI*/
+.caixa {
+  background-color: #194885;
+  border-radius: 15px;
+  width: 500px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.titulo-caixa {
+  background-color: #182a70;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  font-size: 20px;
+}
+
+.item {
+  background-color: #1f5aa8;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.linha {
+  height: 1px;
+  background-color: black;
+}
+
+/* NEGOCIO ESPACO */
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* RODAPE */
+footer {
+  background-color: #1f5592;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 115px;
+  flex-wrap: wrap;
+}
+
+.footer-coluna {
+  text-align: center;
+  width: 50%;
+}
+
+.titulo-duvidas {
+  font-weight: 700;
+  font-style: italic;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.infos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.contato {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.venha {
+  font-weight: 700;
+  font-style: italic;
+  margin-bottom: 8px;
+}

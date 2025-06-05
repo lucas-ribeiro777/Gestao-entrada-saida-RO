@@ -1,49 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 .login-wrapper {
   text-align: center;
   padding: 20px;
+  font-family: 'Inter', sans-serif;
 }
 
-.login-title {
+.login-wrapper .login-title {
   color: #e74c3c;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-family: 'Inter', sans-serif;
 }
 
 .login-container {
-  background-color: #174c88;
+  background-color: #144e8c;
   padding: 30px;
-  border-radius: 15px;
+  border-radius: 25px;
   max-width: 800px;
   margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 20px;
   color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .login-row {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
   margin-bottom: 15px;
-  flex-wrap: wrap;
+  font-family: 'Inter', sans-serif;
 }
 
-.input-full {
-  flex: 1 1 100%;
+.login-label {
+  margin-bottom: 5px;
+  text-align: left;
+  color: #ffffff;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+}
+
+.input-full-login {
   padding: 10px;
   border-radius: 20px;
   border: none;
   font-size: 16px;
+  width: 97%;
+  align-items: center;
 }
 
-.input-half {
-  flex: 1 1 45%;
+.input-half-login {
   padding: 10px;
   border-radius: 20px;
   border: none;
   font-size: 16px;
+  width: 97%;
+  align-items: center;
 }
 
-.btn-submit {
-  margin-top: 20px;
+.link-esqueci-senha {
+  text-align: left;
+  margin-top: 5px;
+  color: #ED9170;
+  font-family: 'Inter', sans-serif;
+}
+
+.link-esqueci-senha a {
+  color: #ED9170;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-submit-login {
+  margin: 0 auto;
+  display: block;
   background-color: #e74c3c;
   color: white;
   padding: 12px 25px;
@@ -52,18 +85,31 @@
   font-size: 16px;
   cursor: pointer;
   font-weight: bold;
+  max-width: 200px;
+  margin-bottom: 200px;
+  font-family: 'Inter', sans-serif;
 }
 
-.btn-submit:hover {
+.btn-submit-login:hover {
   background-color: #c0392b;
 }
 
 .form-cadastro {
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 15px;
+  text-align: center;
 }
 
 .form-cadastro a {
   color: #ffffff;
   text-decoration: underline;
+  cursor: pointer;
+  text-align: center;
+}
+
+.mensagem-login {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #f1c40f;
 }

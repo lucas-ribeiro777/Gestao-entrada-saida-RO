@@ -1,83 +1,36 @@
 import React from 'react';
-import './CadastroResponsavel.css'; // estilos específicos do formulário
-
-// ajuste os caminhos conforme a estrutura do seu projeto
+import './CadastroResponsavel.css';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
+import FormCadastro from '../../components/FormCadastro/FormCadastro';
 import Rodape from '../../components/Rodape/Rodape';
 
-const CadastroResponsavel = () => {
+function CadastroResponsavel() {
+  const camposResponsavel = [
+    { name: 'nome', label: 'Nome Completo', required: true, placeholder: 'Digite algo...' },
+    { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'Digite algo...' },
+    { name: 'nomeDependente', label: 'Nome do Dependente', required: true, placeholder: 'Digite algo...' },
+    { name: 'telefone', label: 'Telefone', type: 'tel', placeholder: '+55 ()' },
+    { name: 'senha', label: 'Senha', type: 'password', required: true, placeholder: 'Digite sua senha...' },
+    { name: 'confirmarSenha', label: 'Confirmar Senha', type: 'password', required: true, placeholder: 'Digite sua senha...' },
+  ];
+
   return (
     <>
-      {/* Cabeçalho */}
       <MenuCadastro />
 
-      {/* Conteúdo do formulário */}
-      <div className="form-wrapper">
-        <h3 className="form-title">Preencha os dados para se cadastrar</h3>
-
-        <div className="form-container">
-          <div className="form-row">
-            {/* Nome completo */}
-            <input
-              type="text"
-              placeholder="Digite algo..."
-              className="input-full"
-            />
-          </div>
-
-          <div className="form-row">
-            {/* E-mail */}
-            <input
-              type="email"
-              placeholder="Digite algo..."
-              className="input-full"
-            />
-          </div>
-
-          <div className="form-row">
-            {/* Nome do dependente */}
-            <input
-              type="text"
-              placeholder="Digite algo..."
-              className="input-half"
-            />
-            {/* Telefone */}
-            <input
-              type="tel"
-              placeholder="+55 ( )"
-              className="input-half"
-            />
-          </div>
-
-          <div className="form-row">
-            {/* Senha */}
-            <input
-              type="password"
-              placeholder="Digite sua senha..."
-              className="input-half"
-            />
-            {/* Confirmar senha */}
-            <input
-              type="password"
-              placeholder="Digite sua senha..."
-              className="input-half"
-            />
-          </div>
-
-          <div className="form-login">
-            <span>
-              Já possui uma conta? <a href="#">Faça login.</a>
-            </span>
-          </div>
-
-          <button className="btn-submit">CONCLUIR CADASTRO</button>
+      <div className="form-wrapper-responsavel">
+        <div className="centro-responsavel">
+          <FormCadastro
+            tipo="responsavel"
+            campos={camposResponsavel}
+            onSubmit={(data) => console.log(data)}
+          />
         </div>
       </div>
 
-      {/* Rodapé */}
       <Rodape />
     </>
   );
-};
+}
 
 export default CadastroResponsavel;

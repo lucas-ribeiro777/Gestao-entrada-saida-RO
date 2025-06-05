@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaUser, FaBirthdayCake, FaEnvelope, FaPhone, FaMale } from 'react-icons/fa';
 import './VisualizarContaAluno.css';
+import Rodape from '../../components/Rodape/Rodape';
 
 function SenaiConta() {
   const dados = {
@@ -33,11 +34,7 @@ function SenaiConta() {
           <div className="item"><FaMale /> {dados.responsavel}</div>
         </div>
       </main>
-
-    <Rodape />
-
     </div>
-
 
   );
 }

@@ -3,6 +3,7 @@ import './CadastroCoordenador.css';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 import Rodape from '../../components/Rodape/Rodape';
 
+
 const CadastroCoordenador = () => {
   return (
     <>

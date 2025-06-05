@@ -12,7 +12,7 @@
 }
 
 .esqueci-container {
-  background-color: #174c88;
+  background-color: #1F5592;
   padding: 30px;
   border-radius: 25px;
   max-width: 800px;
@@ -38,7 +38,7 @@
   font-family: 'Inter', sans-serif;
 }
 
-.input-full {
+.input-full-esqueci {
   padding: 10px;
   border-radius: 20px;
   border: none;
@@ -47,7 +47,7 @@
   align-items: center;
 }
 
-.input-half {
+.input-half-esqueci {
   padding: 10px;
   border-radius: 20px;
   border: none;
@@ -56,7 +56,7 @@
   align-items: center;
 }
 
-.input-head {
+.input-head-esqueci {
   padding: 10px;
   border-radius: 20px;
   border: none;
@@ -65,7 +65,7 @@
   align-items: center;
 }
 
-.btn-submit {
+.btn-submit-esqueci {
   margin: 8px auto 0 auto;
   display: block;
   background-color: #e74c3c;

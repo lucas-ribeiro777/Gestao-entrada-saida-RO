@@ -1,57 +1,62 @@
-import Rodape from '../../components/Rodape/Rodape';
 import './EsqueciMinhaSenha.css';
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom'; // Importa o hook
+import Rodape from '../../components/Rodape/Rodape';
+import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 
 const EsqueciMinhaSenha = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [senha, setSenha] = useState('');
+  const [confirmar, setConfirmar] = useState('');
+  const navigate = useNavigate(); 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      alert('As senhas não coincidem!');
-      return;
+  const usuarioMock = {
+    email: 'usuario@teste.com',
+    senha: '12345678',
+    confirmar: '12345678'
+  };
+
+  const handleLogin = () => {
+    if (email === usuarioMock.email && senha === usuarioMock.senha && confirmar === usuarioMock.confirmar) {
+      setMensagem('Sua senha foi redefinida!');
+      // Redirecionar para outra página, se quiser
+      // navigate('/dashboard');
+    } else {
+      setMensagem('Dados errados.');
     }
-    // Lógica de envio aqui
-    alert('Código enviado para o e-mail informado.');
   };
 
   return (
-    <div className="container_senha">
-      <div className="form-box">
-        <h2>Preencha os dados para redefinir sua senha</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="E-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Nova senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Confirmar nova senha"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-          <button type="submit">ENVIAR CÓDIGO</button>
-        </form>
-        <p className="note">
-          Enviaremos um código de verificação para redefinição de senha ao e-mail cadastrado.
-        </p>
+    <>
+      <MenuCadastro />
+
+  <div className="esqueci-wrapper">
+        <h3 className="esqueci-title">Preencha os dados para redefinir sua senha</h3>
+
+        <div className="esqueci-container">
+          <div className="esqueci-row">
+            <label htmlFor="email" className="esqueci-label">E-mail</label>
+            <input id="email" type="email" placeholder="Digite seu e-mail..." className="input-full" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </div>
+
+          <div className="esqueci-row">
+            <label htmlFor="senha" className="esqueci-label">Senha</label>
+            <input id="senha" type="password" placeholder="Digite sua senha..." className="input-half" value={senha} onChange={(e) => setSenha(e.target.value)} />
+          </div>
+
+	        <div className="esqueci-row">
+            <label htmlFor="confirmar" className="esqueci-label">Confirmar Senha</label>
+            <input id="confirmarSenha" type="password" placeholder="Confirme sua senha..." className="input-head" value={confirmar} onChange={(e) => setConfirmar(e.target.value)} />
+            <p>Enviaremos um código de verificação para redefinição de senha ao e-mail cadastrado em sua conta.</p>
+          </div>
+
+        </div>
+
+        <button className="btn-submit" onClick={handleLogin}>ENVIAR CÓDIGO</button>
       </div>
-    <Rodape />
-    </div>
+
+      <Rodape />
+    </>
   );
 };
 

@@ -59,3 +59,10 @@
 .botao-cadastro:hover {
   background-color: #e64a19;
 }
+.campo label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: #ffffff;
+  text-align: left; /* alinha à esquerda */
+}

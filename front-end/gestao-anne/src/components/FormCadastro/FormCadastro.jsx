@@ -2,13 +2,11 @@ import CriarAssinatura from '../CriarAssinatura/CriarAssinatura';
 import './FormCadastro.css';
 import React, { useState } from 'react';
 
-
-
 function FormCadastro({ tipo, campos, fotoSelecionada }) {
   const [formData, setFormData] = useState({});
   const [usoDados, setUsoDados] = useState(false);
   const [lgpd, setLgpd] = useState(false);
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -32,7 +30,6 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
       }
 
       const alunoCriado = await responseAluno.json();
-
       const idAluno = alunoCriado.id;
 
       const responseAutorizacao = await fetch('http://localhost:3001/autorizacao', {
@@ -49,8 +46,6 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
         throw new Error('Erro ao enviar os dados de autorização');
       }
 
-      const autorizacaoCriada = await responseAutorizacao.json();
-
       alert('Cadastro e autorizações enviados com sucesso!');
     } catch (erro) {
       console.error('Erro ao cadastrar:', erro.message);
@@ -58,8 +53,8 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
     }
   };
 
-
-  return (
+ return (
+  <>
     <form onSubmit={handleSubmit} className="formulario">
       <h2 className="titulo">Preencha os dados para se cadastrar</h2>
       <div className="grid-form">
@@ -82,7 +77,7 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
         ))}
       </div>
 
-      <CriarAssinatura/>
+      <CriarAssinatura />
 
       {tipo === 'aluno' && (
         <div className="termos">
@@ -119,13 +114,16 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
       <p className="login-link">
         Já possui uma conta? <a href="/login">Faça login</a>.
       </p>
-
-      <button type="submit" className="botao-concluir-cadastro">
-        Concluir Cadastro
-      </button>
     </form>
-  );
+
+    <div className="container-botao">
+      <button onClick={handleSubmit} className="botao-concluir-cadastro">
+        CONCLUIR CADASTRO
+      </button>
+    </div>
+  </>
+);
+
 }
 
 export default FormCadastro;
-

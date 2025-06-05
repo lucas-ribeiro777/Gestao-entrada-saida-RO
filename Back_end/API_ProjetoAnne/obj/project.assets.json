@@ -498,19 +498,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Caique\\.nuget\\packages\\": {}
+    "C:\\Users\\Joaquim Rafael\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
+      "projectUniqueName": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
       "projectName": "API_ProjetoAnne",
-      "projectPath": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
-      "packagesPath": "C:\\Users\\Caique\\.nuget\\packages\\",
-      "outputPath": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\obj\\",
+      "projectPath": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
+      "packagesPath": "C:\\Users\\Joaquim Rafael\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Caique\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Joaquim Rafael\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

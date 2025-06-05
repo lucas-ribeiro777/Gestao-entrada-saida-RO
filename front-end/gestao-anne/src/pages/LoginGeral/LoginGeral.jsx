@@ -30,8 +30,9 @@ const LoginGeral = () => {
   };
 
   const irParaEsqueciSenha = () => {
-    navigate('/esqueciminhasenha');
+  navigate('/esqueciminhasenha');
   };
+
 
   return (
     <>
@@ -43,14 +44,14 @@ const LoginGeral = () => {
         <div className="login-container">
           <div className="login-row">
             <label htmlFor="email" className="login-label">E-mail</label>
-            <input id="email" type="email" placeholder="Digite seu e-mail..." className="input-full" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input id="email" type="email" placeholder="Digite seu e-mail..." className="input-full-login" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
 
           <div className="login-row">
             <label htmlFor="senha" className="login-label">Senha</label>
-            <input id="senha" type="password" placeholder="Digite sua senha..." className="input-half" value={senha} onChange={(e) => setSenha(e.target.value)} />
+            <input id="senha" type="password" placeholder="Digite sua senha..." className="input-half-login" value={senha} onChange={(e) => setSenha(e.target.value)} />
             <div className="link-esqueci-senha">
-              <a href="#" onClick={(e) => { e.preventDefault(); irParaEsqueciSenha(); }}>Esqueci Minha Senha!</a>
+              <a href="#" onClick={irParaEsqueciSenha}>Esqueci Minha Senha!</a>
             </div>
           </div>
 
@@ -68,7 +69,7 @@ const LoginGeral = () => {
           </div>
         </div>
 
-        <button className="btn-submit" onClick={handleLogin}>ENTRAR</button>
+        <button className="btn-submit-login" onClick={handleLogin}>ENTRAR</button>
       </div>
 
       <Rodape />

@@ -37,7 +37,7 @@
   font-family: 'Inter', sans-serif;
 }
 
-.input-full {
+.input-full-login {
   padding: 10px;
   border-radius: 20px;
   border: none;
@@ -46,7 +46,7 @@
   align-items: center;
 }
 
-.input-half {
+.input-half-login {
   padding: 10px;
   border-radius: 20px;
   border: none;
@@ -68,7 +68,7 @@
   font-size: 14px;
 }
 
-.btn-submit {
+.btn-submit-login {
   margin: 0 auto;
   display: block;
   background-color: #e74c3c;
@@ -83,7 +83,7 @@
   margin-bottom: 100px;
 }
 
-.btn-submit:hover {
+.btn-submit-login:hover {
   background-color: #c0392b;
 }
 

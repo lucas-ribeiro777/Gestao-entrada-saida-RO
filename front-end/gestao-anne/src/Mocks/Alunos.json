@@ -1,38 +1,132 @@
-[
-  {
-    "id_alunos": 1,
-    "nome": "Lucas Andrade",
-    "email": "lucas.andrade@email.com",
-    "data_nasc": "2007-04-15",
-    "id_responsavel": 101,
-    "telefone": "11987654321",
-    "senha": "$2b$10$abcde12345senhaCriptografada"
-  },
-  {
-    "id_alunos": 2,
-    "nome": "Mariana Oliveira",
-    "email": "mariana.oliveira@email.com",
-    "data_nasc": "2006-09-22",
-    "id_responsavel": 102,
-    "telefone": "11999887766",
-    "senha": "$2b$10$fghij67890senhaCriptografada"
-  },
-  {
-    "id_alunos": 3,
-    "nome": "Rafael Costa",
-    "email": "rafael.costa@email.com",
-    "data_nasc": "2005-01-10",
-    "id_responsavel": 103,
-    "telefone": "11988776655",
-    "senha": "$2b$10$klmno13579senhaCriptografada"
-  },
-  {
-    "id_alunos": 4,
-    "nome": "Ana Souza",
-    "email": "ana.souza@email.com",
-    "data_nasc": "2008-12-05",
-    "id_responsavel": 104,
-    "telefone": "11977665544",
-    "senha": "$2b$10$pqrst24680senhaCriptografada"
-  }
-]
+{
+  "alunos": [
+    {
+      "id_alunos": 1,
+      "nome": "Lucas Andrade",
+      "email": "lucas.andrade@email.com",
+      "data_nasc": "2007-04-15",
+      "id_responsavel": 101,
+      "telefone": "11987654321",
+      "senha": "$2b$10$abcde12345senhaCriptografada",
+      "id": "7253"
+    },
+    {
+      "id_alunos": 2,
+      "nome": "Mariana Oliveira",
+      "email": "mariana.oliveira@email.com",
+      "data_nasc": "2006-09-22",
+      "id_responsavel": 102,
+      "telefone": "11999887766",
+      "senha": "$2b$10$fghij67890senhaCriptografada",
+      "id": "ec71"
+    },
+    {
+      "id_alunos": 3,
+      "nome": "Rafael Costa",
+      "email": "rafael.costa@email.com",
+      "data_nasc": "2005-01-10",
+      "id_responsavel": 103,
+      "telefone": "11988776655",
+      "senha": "$2b$10$klmno13579senhaCriptografada",
+      "id": "65f1"
+    },
+    {
+      "id_alunos": 4,
+      "nome": "Ana Souza",
+      "email": "ana.souza@email.com",
+      "data_nasc": "2008-12-05",
+      "id_responsavel": 104,
+      "telefone": "11977665544",
+      "senha": "$2b$10$pqrst24680senhaCriptografada",
+      "id": "73d1"
+    },
+    {
+      "id": "1e52",
+      "nome": "Lucas Morales Ribeiro",
+      "email": "lucasmoraribeiro@gmail.com",
+      "telefone": "14998492576",
+      "data_nasc": "29/10/2007",
+      "senha": "SENHATESTE",
+      "confirmarSenha": "SENHATESTE"
+    },
+    {
+      "id": "33e7",
+      "nome": "CLAUDINEI RIBEIRO",
+      "email": "lucasmoraribeiro@gmail.com",
+      "telefone": "+5514998492576",
+      "data_nasc": "29/10/2007",
+      "senha": "TESTEPINTO",
+      "confirmarSenha": "TESTEPINTO",
+      "foto": {}
+    },
+    {
+      "id": "8abd",
+      "nome": "teste",
+      "email": "teste@gmail.com",
+      "data_nasc": "29/10/2007",
+      "telefone": "14998492576",
+      "senha": "teste",
+      "confirmarSenha": "teste",
+      "foto": "data:image/png;base64,"
+    },
+    {
+      "id": "fe19",
+      "nome": "teteetetetettet",
+      "email": "tetetetetetettte@gmail.com",
+      "data_nasc": "29/10/2007",
+      "telefone": "14998492576",
+      "senha": "teste",
+      "confirmarSenha": "teste",
+      "foto": "Captura de tela 2024-12-05 091519.png"
+    },
+    {
+      "id": "203f",
+      "nome": "CLAUDINEI RIBEIRO",
+      "email": "lucasmoraribeiro@gmail.com",
+      "telefone": "+5514998492576",
+      "data_nasc": "29/10/2007",
+      "senha": "123123",
+      "confirmarSenha": "123123",
+      "foto": "Captura de tela 2024-12-05 091519.png"
+    },
+    {
+      "id": "b391",
+      "nome": "teste",
+      "email": "teste@gmail.com",
+      "data_nasc": "29/10/2007",
+      "telefone": "14998492576",
+      "senha": "resre",
+      "confirmarSenha": "resre",
+      "foto": "Captura de tela 2024-12-05 091519.png"
+    },
+    {
+      "id": "655d",
+      "nome": "Lucas Morales Ribeiro",
+      "email": "lucasmoraribeiro@gmail.com",
+      "telefone": "14998492576",
+      "data_nasc": "29/10/2007",
+      "senha": "1213121",
+      "confirmarSenha": "12123",
+      "foto": null
+    }
+  ],
+  "autorizacao": [
+    {
+      "id_autorizacao": 1,
+      "uso_dados": 1,
+      "lgpd": 1
+    },
+    {
+      "id": "c994",
+      "id_aluno": "b391",
+      "uso_dados": 1,
+      "lgpd": 0
+    },
+    {
+      "id": "2490",
+      "id_aluno": "655d",
+      "uso_dados": 1,
+      "lgpd": 1
+    }
+  ]
+}

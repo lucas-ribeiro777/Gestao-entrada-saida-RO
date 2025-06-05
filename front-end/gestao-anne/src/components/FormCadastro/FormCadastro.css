@@ -43,7 +43,7 @@
 }
 
 .campo input {
-  padding: 10px 15px;
+  margin: 0;
   border-radius: 20px;
   border: none;
   font-size: 1rem;
@@ -59,8 +59,12 @@
   margin-top: 6%;
 }
 
+.termos input {
+  margin: 0;
+}
+
 .termos p {
-  margin-bottom: 5px;
+  margin: 0 ;
 }
 
 .termos a {
@@ -101,11 +105,13 @@
   gap: 5px;
   align-items: center;
   justify-content: center;
+  margin-top: 10px;
 }
 
 .termo1 input {
   width: 12px;
   height: 12px;
+  border-radius: 25px;
 }
 
 input::placeholder {

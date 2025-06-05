@@ -23,6 +23,7 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
   const [modalAberto, setModalAberto] = useState(false);
   const [assinaturaImg, setAssinaturaImg] = useState(null);
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -61,7 +62,6 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
       }
 
       const alunoCriado = await response.json();
-
       const idAluno = alunoCriado.id;
 
       // envia autorizações separadamente
@@ -86,12 +86,13 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
     }
   };
 
+
+
   return (
     <>
 
     <form onSubmit={handleSubmit} className="formulario">
         <h2 className="titulo">Preencha os dados para se cadastrar</h2>
-
       <div className="grid-form">
         {campos.map((campo, index) => (
           <div
@@ -118,7 +119,6 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
         </button>
       </div>
 
-
       <div className="container-assinatura">
         {assinaturaImg && (
           <img src={assinaturaImg} alt="Assinatura" className='img-assinatura' style={{ width: '200px', marginTop: '10px' }} />
@@ -131,7 +131,6 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
         aoFechar={() => setModalAberto(false)}
         aoSalvar={(img) => setAssinaturaImg(img)}
       />
-
 
       {tipo === 'aluno' && (
         <div className="termos">
@@ -168,16 +167,14 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
       <p className="login-link">
         Já possui uma conta? <a href="/login">Faça login</a>.
       </p>
-    </form>
 
-    <div className="container-botao">
-      <button onClick={handleSubmit} className="botao-concluir-cadastro">
-        CONCLUIR CADASTRO
+      <button type="submit" className="botao-concluir-cadastro">
+        Concluir Cadastro
       </button>
-    </div>
-  </>
-);
-
+    </form>
+    </>
+  );
 }
 
 export default FormCadastro;
+

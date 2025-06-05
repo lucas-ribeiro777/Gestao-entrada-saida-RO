@@ -1,8 +1,9 @@
 import './LoginGeral.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Importa o hook
 import Rodape from '../../components/Rodape/Rodape';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
+import EsqueciMinhaSenha from '../EsqueciMinhaSenha/EsqueciMinhaSenha';
 
 const LoginGeral = () => {
   const [email, setEmail] = useState('');
@@ -38,8 +39,6 @@ const LoginGeral = () => {
       <MenuCadastro />
 
       <div className="login-wrapper">
-  
-      <div className="login-content">
         <h3 className="login-title">Preencha os dados para fazer login</h3>
 
         <div className="login-container">
@@ -51,29 +50,27 @@ const LoginGeral = () => {
           <div className="login-row">
             <label htmlFor="senha" className="login-label">Senha</label>
             <input id="senha" type="password" placeholder="Digite sua senha..." className="input-half-login" value={senha} onChange={(e) => setSenha(e.target.value)} />
-              <div className="link-esqueci-senha">
-                  <a href="#" onClick={irParaEsqueciSenha}>Esqueci Minha Senha!</a>
-              </div>
-         </div>
+            <div className="link-esqueci-senha">
+              <a href="#" onClick={irParaEsqueciSenha}>Esqueci Minha Senha!</a>
+            </div>
+          </div>
 
-      {mensagem && (
-        <div className="mensagem-login">
-          {mensagem}
+          {mensagem && (
+            <div className="mensagem-login">
+              {mensagem}
+            </div>
+          )}
+
+          <div className="form-cadastro">
+            <span>
+              Não possui uma conta?{' '}
+              <a href="#" onClick={irParaCadastro}>Faça seu Cadastro.</a>
+            </span>
+          </div>
         </div>
-      )}
 
-      <div className="form-cadastro">
-        <span>
-          Não possui uma conta?{' '}
-          <a href="#" onClick={irParaCadastro}>Faça seu Cadastro.</a>
-        </span>
+        <button className="btn-submit-login" onClick={handleLogin}>ENTRAR</button>
       </div>
-    </div>
-  </div>
-
-  <button className="btn-submit-login" onClick={handleLogin}>ENTRAR</button>
-</div>
-
 
       <Rodape />
     </>

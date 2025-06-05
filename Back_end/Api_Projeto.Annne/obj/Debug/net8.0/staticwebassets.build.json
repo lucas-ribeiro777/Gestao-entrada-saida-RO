@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "t8VeDjjO3ZwIjVuod7xs2C9aRQ2A88Ii/c309/ZJBog=",
+  "Hash": "bc8LoGPew4ZtNlvB72H1BEcrgLPBf/6pEFEa94XhXPw=",
   "Source": "Api_Projeto.Annne",
   "BasePath": "_content/Api_Projeto.Annne",
   "Mode": "Default",
@@ -36,6 +36,25 @@
       "OriginalItemSpec": "wwwroot\\assinaturas\\assinatura_0dc54824-2fb9-436a-879e-5c7e63c349b5.png"
     },
     {
+      "Identity": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_7f06af3f-9f55-4028-9300-9879c3476613.png",
+      "SourceId": "Api_Projeto.Annne",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\",
+      "BasePath": "_content/Api_Projeto.Annne",
+      "RelativePath": "assinaturas/assinatura_7f06af3f-9f55-4028-9300-9879c3476613.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assinaturas\\assinatura_7f06af3f-9f55-4028-9300-9879c3476613.png"
+    },
+    {
       "Identity": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_a5c6db0a-5015-4821-9634-238f9d8c7f84.png",
       "SourceId": "Api_Projeto.Annne",
       "SourceType": "Discovered",
@@ -53,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assinaturas\\assinatura_a5c6db0a-5015-4821-9634-238f9d8c7f84.png"
+    },
+    {
+      "Identity": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_a9bbe3fd-47cd-4826-b0db-f371af6a2232.png",
+      "SourceId": "Api_Projeto.Annne",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\",
+      "BasePath": "_content/Api_Projeto.Annne",
+      "RelativePath": "assinaturas/assinatura_a9bbe3fd-47cd-4826-b0db-f371af6a2232.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assinaturas\\assinatura_a9bbe3fd-47cd-4826-b0db-f371af6a2232.png"
     },
     {
       "Identity": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_ab5ea615-deb8-408f-9864-6812f4c21948.png",
@@ -93,6 +131,25 @@
       "OriginalItemSpec": "wwwroot\\assinaturas\\assinatura_c62ef55d-a266-4fa3-b6ed-9da82739502f.png"
     },
     {
+      "Identity": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_professor_70716724-4b1a-4af1-a26a-b6fc96dd9490.png",
+      "SourceId": "Api_Projeto.Annne",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\",
+      "BasePath": "_content/Api_Projeto.Annne",
+      "RelativePath": "assinaturas/assinatura_professor_70716724-4b1a-4af1-a26a-b6fc96dd9490.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assinaturas\\assinatura_professor_70716724-4b1a-4af1-a26a-b6fc96dd9490.png"
+    },
+    {
       "Identity": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_professor_ae7d8ecc-9870-4bcc-88af-a1dc76e2f785.png",
       "SourceId": "Api_Projeto.Annne",
       "SourceType": "Discovered",
@@ -131,6 +188,25 @@
       "OriginalItemSpec": "wwwroot\\assinaturas\\assinatura_professor_e9fb359c-6d2a-42eb-b3d4-88e37e139d0e.png"
     },
     {
+      "Identity": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_responsavel_cc8fb032-a258-4322-a529-136686c5a3fe.png",
+      "SourceId": "Api_Projeto.Annne",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\",
+      "BasePath": "_content/Api_Projeto.Annne",
+      "RelativePath": "assinaturas/assinatura_responsavel_cc8fb032-a258-4322-a529-136686c5a3fe.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assinaturas\\assinatura_responsavel_cc8fb032-a258-4322-a529-136686c5a3fe.png"
+    },
+    {
       "Identity": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_316c1101-659f-4491-a82f-39c0bc875118.png",
       "SourceId": "Api_Projeto.Annne",
       "SourceType": "Discovered",
@@ -148,6 +224,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\imagem_316c1101-659f-4491-a82f-39c0bc875118.png"
+    },
+    {
+      "Identity": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_3e566369-0bb3-4f9c-8752-c0c7aff5aa70.png",
+      "SourceId": "Api_Projeto.Annne",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\",
+      "BasePath": "_content/Api_Projeto.Annne",
+      "RelativePath": "images/imagem_3e566369-0bb3-4f9c-8752-c0c7aff5aa70.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\imagem_3e566369-0bb3-4f9c-8752-c0c7aff5aa70.png"
+    },
+    {
+      "Identity": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_8d0e9ce9-0528-45ec-9595-c7c567e8cc22.png",
+      "SourceId": "Api_Projeto.Annne",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\",
+      "BasePath": "_content/Api_Projeto.Annne",
+      "RelativePath": "images/imagem_8d0e9ce9-0528-45ec-9595-c7c567e8cc22.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\imagem_8d0e9ce9-0528-45ec-9595-c7c567e8cc22.png"
     }
   ]
 }

@@ -1,88 +1,45 @@
+import React from 'react';
 import './CadastroDocente.css';
-import React, { useState } from 'react';
-import Rodape from '../../components/Rodape/Rodape';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
+import Rodape from '../../components/Rodape/Rodape';
+import FormCadastro from '../../components/FormCadastro/FormCadastro';
 
 function CadastroDocente() {
-  const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    senha: '',
-    confirmarSenha: '',
-    telefone: '',
-    lgpd: false,
-    termos: false,
-  });
+  const camposDocente = [
+    { name: 'nome', label: 'Nome Completo', required: true, placeholder: 'Digite algo...' },
+    { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'Digite algo...' },
+    { name: 'senha', label: 'Senha', type: 'password', required: true, placeholder: 'Digite sua senha' },
+    { name: 'confirmarSenha', label: 'Confirmar Senha', type: 'password', required: true, placeholder: 'Repita a senha' },
+    { name: 'telefone', label: 'Telefone', type: 'tel', placeholder: '+55 ( )' },
+  ];
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
+  const handleSubmit = async (data) => {
+    try {
+      const response = await fetch('http://localhost:3000/api/docente', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.lgpd || !formData.termos) {
-      alert('Você deve aceitar a LGPD e os termos de uso.');
-      return;
+      if (response.ok) {
+        alert('Cadastro realizado com sucesso!');
+      } else {
+        alert('Erro ao cadastrar. Verifique os dados e tente novamente.');
+      }
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+      alert('Erro de conexão com o servidor.');
     }
-    console.log('Dados enviados:', formData);
   };
 
   return (
     <>
       <MenuCadastro />
-
-      <h2 className="titulo-cadastro">Preencha os dados para se cadastrar</h2>
-      
-      <form onSubmit={handleSubmit}>
-  <div className="cadastro-box">
-    {/* campos do formulário (nome, email, senha, etc) */}
-    <label>Nome Completo</label>
-    <input type="text" name="nome" placeholder="Digite algo..." value={formData.nome} onChange={handleChange} />
-
-    <label>E-mail</label>
-    <input type="email" name="email" placeholder="Digite algo..." value={formData.email} onChange={handleChange} />
-
-    <div className="senha-container">
-      <div className="campo">
-        <label>Senha</label>
-        <input type="password" name="senha" placeholder="Digite sua senha" value={formData.senha} onChange={handleChange} />
+      <div className='centro'>
+        <FormCadastro tipo="docente" campos={camposDocente} onSubmit={handleSubmit} />
       </div>
-      <div className="campo">
-        <label>Confirmar Senha</label>
-        <input type="password" name="confirmarSenha" placeholder="Digite sua senha..." value={formData.confirmarSenha} onChange={handleChange} />
-      </div>
-    </div>
-
-    <label>Telefone</label>
-    <input type="tel" name="telefone" placeholder="+55 ( )" value={formData.telefone} onChange={handleChange} />
-
-    <div className="checkbox-container">
-      <label className="checkbox-item">
-        <input type="checkbox" name="lgpd" checked={formData.lgpd} onChange={handleChange} />
-        Você entende que está assegurado pelas normas da <a href="#">LGPD</a>
-      </label>
-
-      <label className="checkbox-item">
-        <input type="checkbox" name="termos" checked={formData.termos} onChange={handleChange} />
-        Você concorda com nossos <a href="#">termos de uso</a>
-      </label>
-    </div>
-
-    <p className="login-link">
-      Já possui uma conta? <a href="/login">Faça login.</a>
-    </p>
-  </div>
-
-  {/* botão separado com pouca margem */}
-  <div className="botao-wrapper">
-    <button type="submit" className="botao-cadastro">CONCLUIR CADASTRO</button>
-  </div>
-</form>
-
       <Rodape />
     </>
   );

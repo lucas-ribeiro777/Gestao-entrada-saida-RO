@@ -36,23 +36,23 @@ const EsqueciMinhaSenha = () => {
         <div className="esqueci-container">
           <div className="esqueci-row">
             <label htmlFor="email" className="esqueci-label">E-mail</label>
-            <input id="email" type="email" placeholder="Digite seu e-mail..." className="input-full" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input id="email" type="email" placeholder="Digite seu e-mail..." className="input-full-esqueci" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
 
           <div className="esqueci-row">
             <label htmlFor="senha" className="esqueci-label">Senha</label>
-            <input id="senha" type="password" placeholder="Digite sua senha..." className="input-half" value={senha} onChange={(e) => setSenha(e.target.value)} />
+            <input id="senha" type="password" placeholder="Digite sua senha..." className="input-half-esqueci" value={senha} onChange={(e) => setSenha(e.target.value)} />
           </div>
 
 	        <div className="esqueci-row">
             <label htmlFor="confirmar" className="esqueci-label">Confirmar Senha</label>
-            <input id="confirmarSenha" type="password" placeholder="Confirme sua senha..." className="input-head" value={confirmar} onChange={(e) => setConfirmar(e.target.value)} />
+            <input id="confirmarSenha" type="password" placeholder="Confirme sua senha..." className="input-head-esqueci" value={confirmar} onChange={(e) => setConfirmar(e.target.value)} />
             <p>Enviaremos um código de verificação para redefinição de senha ao e-mail cadastrado em sua conta.</p>
           </div>
 
         </div>
 
-        <button className="btn-submit" onClick={handleLogin}>ENVIAR CÓDIGO</button>
+        <button className="btn-submit-esqueci" onClick={handleLogin}>ENVIAR CÓDIGO</button>
       </div>
 
       <Rodape />

@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import FormCadastro from '../../components/FormCadastro/FormCadastro';
 import Foto from '../../components/Foto/Foto';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
@@ -5,6 +6,8 @@ import Rodape from '../../components/Rodape/Rodape';
 import './CadastroAluno.css';
 
 function CadastroAluno() {
+  const [fotoSelecionada, setFotoSelecionada] = useState(null);
+
   const camposAluno = [
     { name: 'nome', label: 'Nome Completo', required: true, placeholder: 'Digite algo...' },
     { name: 'email', label: 'E-mail', type: 'email', required: true, placeholder: 'Digite algo...' },
@@ -13,17 +16,20 @@ function CadastroAluno() {
     { name: 'senha', label: 'Senha', type: 'password', required: true, placeholder: 'Digite sua senha' },
     { name: 'confirmarSenha', label: 'Confirmar Senha', type: 'password', required: true, placeholder: 'Repita a senha' },
   ];
+
   return (
     <>
-      <MenuCadastro/>
+      <MenuCadastro />
       <div className='centro'>
-        <Foto/>
-        <FormCadastro tipo="aluno" campos={camposAluno} onSubmit={(data) => console.log(data)} />
+        <Foto onFotoSelecionada={setFotoSelecionada} />
+        <FormCadastro 
+          tipo="aluno" 
+          campos={camposAluno} 
+          fotoSelecionada={fotoSelecionada} 
+        />
       </div>
-
-      <Rodape/>
+      <Rodape />
     </>
-
   );
 }
 

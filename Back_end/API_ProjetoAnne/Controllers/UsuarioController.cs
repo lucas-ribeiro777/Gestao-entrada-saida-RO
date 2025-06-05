@@ -10,9 +10,8 @@ namespace ProjetoAPI.Controllers
         private static List<Usuario> _usuarios = new();
         private static int _nextId = 1;
 
-        /// <summary>
+    
         /// Cadastrar novo usuário (aluno, responsável, professor, coordenador).
-        /// </summary>
         [HttpPost]
         public IActionResult Cadastrar([FromBody] Usuario novo)
         {
@@ -21,9 +20,9 @@ namespace ProjetoAPI.Controllers
             return CreatedAtAction(nameof(ConsultarAluno), new { id = novo.Id }, novo);
         }
 
-        /// <summary>
-        /// Consultar um aluno específico pelo ID.
-        /// </summary>
+       
+        // Consultar um aluno específico pelo ID.
+        
         [HttpGet("aluno/{id}")]
         public IActionResult ConsultarAluno(int id)
         {
@@ -33,9 +32,9 @@ namespace ProjetoAPI.Controllers
             return Ok(aluno);
         }
 
-        /// <summary>
-        /// Listar todos os alunos cadastrados.
-        /// </summary>
+        
+        // Listar todos os alunos cadastrados.
+        
         [HttpGet("alunos")]
         public IActionResult ListarAlunos()
         {

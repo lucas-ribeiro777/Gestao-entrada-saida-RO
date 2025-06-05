@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Api_Projeto.Annne.Models
 {
@@ -24,12 +21,9 @@ namespace Api_Projeto.Annne.Models
         [Column("email")]
         public string Email { get; set; } = null!;
 
-        // Melhor usar DateTime? para data em vez de string
+        [Required(ErrorMessage = "A data de nascimento é obrigatória.")]
         [Column("data_nasc", TypeName = "date")]
-        public DateTime? DataNascimento { get; set; }
-
-        [Column("id_responsavel")]
-        public int? IdResponsavel { get; set; }
+        public DateTime DataNascimento { get; set; }
 
         [RegularExpression(@"^\(?\d{2}\)?[\s\-]?\d{4,5}[\s\-]?\d{4}$", ErrorMessage = "Telefone inválido. Ex: (11) 91234-5678")]
         [Column("telefone")]
@@ -45,5 +39,13 @@ namespace Api_Projeto.Annne.Models
 
         [Column("assinatura")]
         public string Assinatura { get; set; } = string.Empty;
+
+        // FK para Responsavel
+        [Column("id_responsavel")]
+        public int? IdResponsavel { get; set; }
+
+        // Navigation property para Responsavel
+        [ForeignKey("IdResponsavel")]
+        public Responsavel? Responsavel { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
 using Api_Projeto.Annne.DTOs;
 using Api_Projeto.Annne.Models;
@@ -21,12 +21,9 @@ namespace Api_Projeto.Annne.Controllers
         public AlunosController(DbGestaoAnneContext context)
         {
             _context = context;
-
-            // Caminhos separados para imagens e assinaturas
             _imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
             _assinaturaPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assinaturas");
 
-            // Criar pastas se não existirem
             if (!Directory.Exists(_imagePath))
                 Directory.CreateDirectory(_imagePath);
 
@@ -47,36 +44,39 @@ namespace Api_Projeto.Annne.Controllers
                 Email = dto.Email,
                 Telefone = dto.Telefone,
                 DataNascimento = dto.DataNascimento,
-                IdResponsavel = dto.IdResponsavel,
                 Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha)
             };
 
-            // Salvar imagem (foto do aluno)
+            // Salvar imagem
             if (dto.Imagem != null && dto.Imagem.Length > 0)
             {
-                var extensao = Path.GetExtension(dto.Imagem.FileName);
+                var extensao = Path.GetExtension(dto.Imagem.FileName).ToLowerInvariant();
+                var extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png" };
+                if (!Array.Exists(extensoesPermitidas, e => e == extensao))
+                    return BadRequest("Extensão de imagem não permitida.");
+
                 var nomeUnico = $"imagem_{Guid.NewGuid()}{extensao}";
                 var caminhoCompleto = Path.Combine(_imagePath, nomeUnico);
 
-                using (var stream = new FileStream(caminhoCompleto, FileMode.Create))
-                {
-                    await dto.Imagem.CopyToAsync(stream);
-                }
+                using var stream = new FileStream(caminhoCompleto, FileMode.Create);
+                await dto.Imagem.CopyToAsync(stream);
 
                 aluno.Imagem = $"/images/{nomeUnico}";
             }
 
-            // Salvar assinatura (arquivo)
+            // Salvar assinatura
             if (dto.Assinatura != null && dto.Assinatura.Length > 0)
             {
-                var extensao = Path.GetExtension(dto.Assinatura.FileName);
+                var extensao = Path.GetExtension(dto.Assinatura.FileName).ToLowerInvariant();
+                var extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png" };
+                if (!Array.Exists(extensoesPermitidas, e => e == extensao))
+                    return BadRequest("Extensão de assinatura não permitida.");
+
                 var nomeUnico = $"assinatura_{Guid.NewGuid()}{extensao}";
                 var caminhoCompleto = Path.Combine(_assinaturaPath, nomeUnico);
 
-                using (var stream = new FileStream(caminhoCompleto, FileMode.Create))
-                {
-                    await dto.Assinatura.CopyToAsync(stream);
-                }
+                using var stream = new FileStream(caminhoCompleto, FileMode.Create);
+                await dto.Assinatura.CopyToAsync(stream);
 
                 aluno.Assinatura = $"/assinaturas/{nomeUnico}";
             }
@@ -99,5 +99,12 @@ namespace Api_Projeto.Annne.Controllers
             return aluno;
         }
 
+        // GET api/alunos
+        [HttpGet]
+        public async Task<ActionResult<List<Aluno>>> GetAlunos()
+        {
+            var alunos = await _context.Alunos.ToListAsync();
+            return alunos;
+        }
     }
 }

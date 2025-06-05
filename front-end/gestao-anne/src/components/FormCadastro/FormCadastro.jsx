@@ -2,10 +2,27 @@ import CriarAssinatura from '../CriarAssinatura/CriarAssinatura';
 import './FormCadastro.css';
 import React, { useState } from 'react';
 
+function dataURLtoFile(dataurl, filename) {
+  const arr = dataurl.split(',');
+  const mime = arr[0].match(/:(.*?);/)[1];
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+
+  return new File([u8arr], filename, { type: mime });
+}
+
 function FormCadastro({ tipo, campos, fotoSelecionada }) {
   const [formData, setFormData] = useState({});
   const [usoDados, setUsoDados] = useState(false);
   const [lgpd, setLgpd] = useState(false);
+  const [modalAberto, setModalAberto] = useState(false);
+  const [assinaturaImg, setAssinaturaImg] = useState(null);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,22 +33,38 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
     e.preventDefault();
 
     try {
-      const responseAluno = await fetch('http://10.90.146.27:5121/api/Alunos', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          foto: fotoSelecionada ? fotoSelecionada.name : null,
-        }),
+      const formDataToSend = new FormData();
+
+      // adiciona os dados do formulário
+      Object.entries(formData).forEach(([chave, valor]) => {
+        formDataToSend.append(chave, valor);
       });
 
-      if (!responseAluno.ok) {
+      // adiciona a foto do aluno
+      if (fotoSelecionada) {
+        formDataToSend.append('foto', fotoSelecionada);
+      }
+
+      // adiciona a assinatura convertida
+      if (assinaturaImg) {
+        const assinaturaFile = dataURLtoFile(assinaturaImg, 'assinatura.png');
+        formDataToSend.append('assinatura', assinaturaFile);
+      }
+
+      // envia para o backend
+      const response = await fetch('http://10.90.146.27:5121/api/Alunos', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+
+      if (!response.ok) {
         throw new Error('Erro ao enviar os dados do aluno');
       }
 
-      const alunoCriado = await responseAluno.json();
+      const alunoCriado = await response.json();
       const idAluno = alunoCriado.id;
 
+      // envia autorizações separadamente
       const responseAutorizacao = await fetch('http://localhost:3001/autorizacao', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -53,10 +86,13 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
     }
   };
 
- return (
-  <>
+
+
+  return (
+    <>
+
     <form onSubmit={handleSubmit} className="formulario">
-      <h2 className="titulo">Preencha os dados para se cadastrar</h2>
+        <h2 className="titulo">Preencha os dados para se cadastrar</h2>
       <div className="grid-form">
         {campos.map((campo, index) => (
           <div
@@ -76,8 +112,25 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
           </div>
         ))}
       </div>
+      
+      <div className="container-botao-assinar">
+        <button type="button" onClick={() => setModalAberto(true)} className='botao-assinar'>
+          Criar uma assinatura
+        </button>
+      </div>
 
-      <CriarAssinatura />
+      <div className="container-assinatura">
+        {assinaturaImg && (
+          <img src={assinaturaImg} alt="Assinatura" className='img-assinatura' style={{ width: '200px', marginTop: '10px' }} />
+        )}
+      </div>
+
+
+      <CriarAssinatura
+        aberto={modalAberto}
+        aoFechar={() => setModalAberto(false)}
+        aoSalvar={(img) => setAssinaturaImg(img)}
+      />
 
       {tipo === 'aluno' && (
         <div className="termos">
@@ -114,16 +167,14 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
       <p className="login-link">
         Já possui uma conta? <a href="/login">Faça login</a>.
       </p>
-    </form>
 
-    <div className="container-botao">
-      <button onClick={handleSubmit} className="botao-concluir-cadastro">
-        CONCLUIR CADASTRO
+      <button type="submit" className="botao-concluir-cadastro">
+        Concluir Cadastro
       </button>
-    </div>
-  </>
-);
-
+    </form>
+    </>
+  );
 }
 
 export default FormCadastro;
+

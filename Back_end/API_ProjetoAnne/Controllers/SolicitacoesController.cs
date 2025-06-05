@@ -13,9 +13,9 @@ namespace SolicitacoesAPI.Controllers
         private static List<Solicitacao> _solicitacoes = new();
         private static int _nextId = 1;
 
-        /// <summary>
-        /// Envia uma nova solicitação de entrada ou saída.
-        /// </summary>
+       
+        // Envia uma nova solicitação de entrada ou saída.
+        
         [HttpPost]
         [SwaggerOperation(Summary = "Enviar Solicitação")]
         public IActionResult EnviarSolicitacao([FromBody] Solicitacao nova)
@@ -27,9 +27,9 @@ namespace SolicitacoesAPI.Controllers
             return CreatedAtAction(nameof(ConsultarStatus), new { id = nova.Id }, nova);
         }
 
-        /// <summary>
-        /// Consulta o status de uma solicitação.
-        /// </summary>
+      
+        // Consulta o status de uma solicitação.
+       
         [HttpGet("{id}/status")]
         [SwaggerOperation(Summary = "Consultar Status")]
         public IActionResult ConsultarStatus(int id)
@@ -41,9 +41,10 @@ namespace SolicitacoesAPI.Controllers
             return Ok(new { solicitacao.Id, solicitacao.Status });
         }
 
-        /// <summary>
-        /// Retorna o histórico de todas as solicitações.
-        /// </summary>
+       
+       
+        // Retorna o histórico de todas as solicitações.
+
         [HttpGet]
         [SwaggerOperation(Summary = "Visualizar Histórico")]
         public IActionResult VisualizarHistorico()

@@ -1,0 +1,117 @@
+.formulario {
+  background-color: #144e8c;
+  padding: 40px;
+  border-radius: 25px;
+  color: rgb(255, 255, 255);
+  width: 817px;
+  height: 600px;
+  margin: 0 auto;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+  font-family: 'inter', sans-serif;
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
+.titulo {
+  text-align: center;
+  color: #ff4a00;
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  margin-top: -60px;
+}
+
+.grid-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.campo label {
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+}
+
+.campo input {
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+}
+
+.termos {
+  margin-top: 25px;
+  font-size: 0.85rem;
+  width: 60%;
+  text-align: left;
+  margin: 0 auto;
+  margin-top: 6%;
+}
+
+.termos p {
+  margin-bottom: 5px;
+}
+
+.termos a {
+  color: #ff4a00;
+  text-decoration: underline;
+}
+
+.login-link {
+  font-size: 0.9rem;
+  margin-top: 0px;
+  text-align: center;
+}
+
+.login-link a {
+  color: white;
+  text-decoration: underline;
+}
+
+.botao-concluir-cadastro {
+  width: 100%;
+  background-color: #ff4a00;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 12px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.botao-concluir-cadastro:hover {
+  background-color: #e03d00;
+}
+
+.termo1{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.termo1 input {
+  width: 12px;
+  height: 12px;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+.grid-form input {
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+}

@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SolicitacoesAPI.Models;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SolicitacoesAPI.Controllers
 {
@@ -14,6 +17,7 @@ namespace SolicitacoesAPI.Controllers
         // Envia uma nova solicitação de entrada ou saída.
         
         [HttpPost]
+        [SwaggerOperation(Summary = "Enviar Solicitação")]
         public IActionResult EnviarSolicitacao([FromBody] Solicitacao nova)
         {
             nova.Id = _nextId++;
@@ -27,6 +31,7 @@ namespace SolicitacoesAPI.Controllers
         // Consulta o status de uma solicitação.
        
         [HttpGet("{id}/status")]
+        [SwaggerOperation(Summary = "Consultar Status")]
         public IActionResult ConsultarStatus(int id)
         {
             var solicitacao = _solicitacoes.FirstOrDefault(s => s.Id == id);
@@ -41,9 +46,24 @@ namespace SolicitacoesAPI.Controllers
         // Retorna o histórico de todas as solicitações.
 
         [HttpGet]
+        [SwaggerOperation(Summary = "Visualizar Histórico")]
         public IActionResult VisualizarHistorico()
         {
             return Ok(_solicitacoes.OrderByDescending(s => s.DataHora).ToList());
+        }
+
+        /// <summary>
+        /// Consulta os dados completos de uma solicitação pelo ID.
+        /// </summary>
+        [HttpGet("{id}")]
+        [SwaggerOperation(Summary = "Consultar Solicitação Completa")]
+        public IActionResult ConsultarSolicitacao(int id)
+        {
+            var solicitacao = _solicitacoes.FirstOrDefault(s => s.Id == id);
+            if (solicitacao == null)
+                return NotFound("Solicitação não encontrada.");
+
+            return Ok(solicitacao);
         }
     }
 }

@@ -1,0 +1,14 @@
+.linha-inteira {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.linha-inteira label {
+  margin-bottom: 0.5rem;
+}
+
+.linha-inteira input {
+  width: 100%;
+}

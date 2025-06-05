@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj": {}
+    "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj": {
+    "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
+        "projectUniqueName": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
         "projectName": "API_ProjetoAnne",
-        "projectPath": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
-        "packagesPath": "C:\\Users\\Ana Santos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\obj\\",
+        "projectPath": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
+        "packagesPath": "C:\\Users\\Joaquim Rafael\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Joaquim Rafael\\Desktop\\Trabalhos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ana Santos\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Joaquim Rafael\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -65,7 +65,11 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.6.2, )"
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.Annotations": {
+              "target": "Package",
+              "version": "[8.1.4, )"
             }
           },
           "imports": [
@@ -87,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

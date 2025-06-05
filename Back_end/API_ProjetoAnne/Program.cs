@@ -1,41 +1,34 @@
-
-using Microsoft.EntityFrameworkCore;
-using Api_Saida.Repository; // Certifique-se de importar o namespace correto do seu DbContext
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Serviços
+// Adiciona controladores
 builder.Services.AddControllers();
+
+// Ativa documentação e anotações do Swagger
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-
-// DbContext (corrigido)
-builder.Services.AddDbContext<DbGestaoAnneContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// CORS
-builder.Services.AddCors(options =>
+builder.Services.AddSwaggerGen(c =>
 {
-    options.AddDefaultPolicy(policyBuilder =>
+    c.SwaggerDoc("v1", new OpenApiInfo
     {
-        policyBuilder.AllowAnyOrigin()
-                     .AllowAnyMethod()
-                     .AllowAnyHeader();
+        Title = "API_ProjetoAnne",
+        Version = "v1",
+        Description = "API de controle de solicitações de entrada e saída."
     });
+
+    c.EnableAnnotations(); // Suporte às anotações SwaggerOperation
 });
 
 var app = builder.Build();
 
-// Swagger
-if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
+// Middleware do Swagger
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "API_ProjetoAnne v1");
+    c.RoutePrefix = string.Empty; // Deixa o Swagger disponível em http://localhost:5282/
+});
 
-// Middlewares
-app.UseCors();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

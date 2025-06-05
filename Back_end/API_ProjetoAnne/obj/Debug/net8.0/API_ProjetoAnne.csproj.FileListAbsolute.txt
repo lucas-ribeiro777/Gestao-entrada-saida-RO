@@ -7,6 +7,7 @@ C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\API_P
 C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\bin\Debug\net8.0\API_ProjetoAnne.pdb
 C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll
 C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Joaquim Rafael\Desktop\Trabalhos\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll

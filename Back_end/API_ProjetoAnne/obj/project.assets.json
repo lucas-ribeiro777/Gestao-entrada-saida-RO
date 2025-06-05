@@ -482,19 +482,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\João Henrique B\\.nuget\\packages\\": {}
+    "C:\\Users\\Caique\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projetos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
+      "projectUniqueName": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
       "projectName": "API_ProjetoAnne",
-      "projectPath": "C:\\Projetos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
-      "packagesPath": "C:\\Users\\João Henrique B\\.nuget\\packages\\",
-      "outputPath": "C:\\Projetos\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\obj\\",
+      "projectPath": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
+      "packagesPath": "C:\\Users\\Caique\\.nuget\\packages\\",
+      "outputPath": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\João Henrique B\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Caique\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -554,13 +554,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }

@@ -1,15 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 .formulario {
-  background-color: #174b91;
+  background-color: #1f5592;
   padding: 40px;
   border-radius: 20px;
   color: #ffffff;
   width: 80%;
   max-width: 900px;
-  margin: 40px auto;
+  margin: 20px auto; /* Reduzido de 40px para 20px para aproximar do menu */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   font-family: 'Inter', sans-serif;
 }
-
 .titulo {
   text-align: center;
   color: #ff4a00;
@@ -107,4 +108,13 @@ input::placeholder {
 
 .botao-concluir-cadastro:hover {
   background-color: #e03d00;
+}
+
+h2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700; /* Corrigido: peso não precisa de px */
+  font-size: 22px !important; /* Corrigido: tamanho não precisa de px */
+  color: #ffffff;
+  margin: 15px 0 20px; 
+  text-align: center;
 }

@@ -55,8 +55,8 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
 
  return (
   <>
+    <h2 className="titulo">Preencha os dados para se cadastrar</h2>
     <form onSubmit={handleSubmit} className="formulario">
-      <h2 className="titulo">Preencha os dados para se cadastrar</h2>
       <div className="grid-form">
         {campos.map((campo, index) => (
           <div

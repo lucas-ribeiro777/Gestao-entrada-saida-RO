@@ -5,6 +5,8 @@ import CadastroResponsavel from './pages/CadastroResponsavel/CadastroResponsavel
 import CadastroCoordenador from './pages/CadastroCoordenador/CadastroCoordenador';
 import LoginGeral from './pages/LoginGeral/LoginGeral';
 import EsqueciMinhaSenha from './pages/EsqueciMinhaSenha/EsqueciMinhaSenha';
+import VisualizarContaAluno from './pages/VisualizarContaAluno/VisualizarContaAluno'
+import VisualizarOcorrenciasAluno from './pages/VisualizarOcorrenciasAluno/VisualizarOcorrenciasAluno';
 
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
         <Route path="/docente" element={<CadastroDocente />} />
         <Route path="/responsavel" element={<CadastroResponsavel />} />
         <Route path="/coordenacao" element={<CadastroCoordenador />} />
+        <Route path="/visualizarocorrenciasaluno" element={<VisualizarOcorrenciasAluno />} />
+        <Route path="/visualizarcontaaluno" element={<VisualizarContaAluno />} />
       </Routes>
     </Router>
   );

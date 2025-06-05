@@ -37,8 +37,8 @@ function CadastroCoordenador() {
   return (
     <>
       <MenuCadastro />
-      <div className='centro'>
-        <FormCadastro tipo="docente" campos={camposDocente} onSubmit={handleSubmit} />
+      <div className='centro-coordenador'>
+        <FormCadastro tipo="coordenador" campos={camposCoordenador} onSubmit={handleSubmit} />
       </div>
       <Rodape />
     </>

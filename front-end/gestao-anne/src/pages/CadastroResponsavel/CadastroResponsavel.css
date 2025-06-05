@@ -1,118 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  padding: 0;
-
+.form-wrapper-responsavel {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
   flex-direction: column;
-  min-height: 100vh;
-}
-/* Título */
-.form-title {
-  color: #E94F1D;
-  font-weight: 700;
-  font-size: 18px;
-  margin: 30px auto 20px;
+  padding: 20px;
   text-align: center;
 }
 
-/* Wrapper principal */
-.form-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
+.form-title-responsavel {
+  color: #e74c3c;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 1.25rem;
 }
 
-/* Container do formulário */
-.form-container {
-  background-color: #1F5592;
+.centro-responsavel {
+  width: 100%;
+  max-width: 900px;
+}
+
+.form-container-responsavel {
+  background-color: #174c88;
   padding: 30px;
   border-radius: 15px;
-  max-width: 900px;
+  max-width: 800px;
   width: 100%;
+  margin: 0 auto;
   color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  font-size: 15px;
-  font-family: 'Inter', sans-serif;
-  /* align-items só funciona em flex containers, removido daqui */
 }
 
-/* Espaçamento entre linhas */
-.form-row {
-  display: flex;
-  gap: 60px; /* espaço horizontal entre inputs */
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  align-items: flex-start; /* alinha labels e inputs no topo da linha */
+/* NOVO: layout em grid para campos */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-/* Grupos de inputs */
-.form-group {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+/* campo que ocupa a largura toda */
+.full-width {
+  grid-column: span 2;
 }
 
-/* Labels */
-label {
-  font-weight: 600; /* corrigido para número, sem px */
-  margin-bottom: 6px;
+/* botão alinhado no centro */
+.botao-cadastro {
+  margin-top: 30px;
+  background-color: #f4511e;
   color: white;
-}
-
-
-/* Inputs */
-.input-full,
-.input-half {
-  padding: 10px 15px;
-  border-radius: 25px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-  font-family: 'Inter', sans-serif;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-  outline: none;
-}
-
-.input-full,
-.input-half {
-  width: 100%;
-}
-
-/* Link de login */
-.form-login {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-.form-login a {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
-/* Botão fora da caixa azul */
-.submit-wrapper {
-  width: 100%;
-  max-width: 300px;
-  margin: 25px auto 0;
-  padding: 0;
-}
-
-.btn-submit-outside {
-  width: 100%;
-  background-color: #e8490f;
-  color: white;
-  padding: 15px 0;
+  padding: 12px 30px;
   border: none;
   border-radius: 25px;
-  font-size: 16px;
-  cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.5s ease;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
-.btn-submit-outside:hover {
-  background-color: #cc3c00;
+.botao-cadastro:hover {
+  background-color: #e64a19;
 }

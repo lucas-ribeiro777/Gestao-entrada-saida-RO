@@ -4,26 +4,31 @@ body {
   background-color: #a0bee3;
 }
 
-header {
-  background-color: white;
-  text-align: center;
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* LOGO */
+.logo-container {
+  background-color: #fcfcfd;
   padding: 10px 0;
+  text-align: center;
 }
 
-.logo {
-  width: 120px;
+.logo-container img {
+  height: 100px;
 }
 
-/* Navbar */
-nav {
-  background-color: #1e4f91;
-}
-
+/* QUERO ME MATAR */
 .novo-container {
+  background-color: #1e4f91;
   display: flex;
   justify-content: center;
   gap: 100px;
   align-items: center;
+  padding: 55px 10px;
 }
 
 .novo-container p {
@@ -38,65 +43,56 @@ nav {
   color: orangered;
 }
 
-/* Conteúdo Principal */
-main {
-  padding: 40px 20px;
-  text-align: center;
-  flex: 1;
-}
-
-.profile-section {
+/* CONTAINER CAIXAS */
+.caixas {
   display: flex;
-  align-items: flex-start;
   justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-.profile-pic {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-h2 {
-  color: white;
-  margin-top: 10px;
-}
-
-/* Cards */
-.info-cards {
-  display: flex;
-  gap: 30px;
+  gap: 60px;
+  margin: 40px auto;
   flex-wrap: wrap;
 }
 
-.card {
-  background-color: #21579e;
-  border-radius: 16px;
+/* CAXAIS ISGUASI*/
+.caixa {
+  background-color: #194885;
+  border-radius: 15px;
+  width: 500px;
+  padding: 0;
   overflow: hidden;
+}
+
+.titulo-caixa {
+  background-color: #182a70;
   color: white;
-  width: 260px;
-}
-
-.card-title {
-  background-color: #1d2d80;
-  padding: 10px;
-  font-weight: bold;
-}
-
-.card-content {
   padding: 15px;
-  text-align: left;
+  text-align: center;
+  font-weight: bold;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  font-size: 20px;
 }
 
-.card-content p {
-  margin: 12px 0;
-  border-bottom: 1px solid #11346d;
-  padding-bottom: 6px;
+.item {
+  background-color: #1f5aa8;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
 }
 
-/* Rodapé */
+.linha {
+  height: 1px;
+  background-color: black;
+}
+
+/* NEGOCIO ESPACO */
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* RODAPE */
 footer {
   background-color: #1f5592;
   color: white;
@@ -138,11 +134,4 @@ footer {
   font-weight: 700;
   font-style: italic;
   margin-bottom: 8px;
-}
-
-/* Layout para ocupar a tela inteira */
-html, body {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 }

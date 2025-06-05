@@ -14,15 +14,11 @@
   font-family: 'Inter', sans-serif;
 }
 
-.login-content {
-  margin-top: 60px;
-}
-
 .login-container {
   background-color: #144e8c;
-  padding: 50px;
+  padding: 30px;
   border-radius: 25px;
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 20px;
@@ -50,16 +46,16 @@
   border-radius: 20px;
   border: none;
   font-size: 16px;
-  width: 95%;
+  width: 97%;
   align-items: center;
 }
 
 .input-half-login {
-  padding: 20px;
+  padding: 10px;
   border-radius: 20px;
   border: none;
   font-size: 16px;
-  width: 95%;
+  width: 97%;
   align-items: center;
 }
 
@@ -83,14 +79,14 @@
   display: block;
   background-color: #e74c3c;
   color: white;
-  padding: 20px 40px;
+  padding: 12px 25px;
   border: none;
   border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
   font-weight: bold;
   max-width: 200px;
-  margin-bottom: 190px;
+  margin-bottom: 200px;
   font-family: 'Inter', sans-serif;
 }
 
@@ -115,5 +111,5 @@
   margin-top: 10px;
   font-size: 15px;
   font-weight: bold;
-  color: red;
+  color: #f1c40f;
 }

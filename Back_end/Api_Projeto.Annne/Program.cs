@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Api_Projeto.Annne.Repository;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +10,13 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<DbGestaoAnneContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-// ADICIONE ESTA LINHA:
-builder.Services.AddControllers();
+// Configura o controlador e adiciona suporte a ReferenceHandler.Preserve para evitar ciclos JSON
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+        options.JsonSerializerOptions.MaxDepth = 64; // opcional, para permitir profundidade maior se necessário
+    });
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -25,7 +31,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// ADICIONE ESTA LINHA:
 app.MapControllers();
 
 app.Run();

@@ -1,23 +1,21 @@
-.formulario {
-  background-color: #144e8c;
-  padding: 40px;
-  border-radius: 25px;
-  color: rgb(255, 255, 255);
-  width: 817px;
-  height: 100%;
-  margin: 0 auto;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-  font-family: 'inter', sans-serif;
-  margin-top: 5%;
-  margin-bottom: 10%;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+.formulario {
+  background-color: #1f5592;
+  padding: 40px;
+  border-radius: 20px;
+  color: #ffffff;
+  width: 80%;
+  max-width: 900px;
+  margin: 20px auto; /* Reduzido de 40px para 20px para aproximar do menu */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-family: 'Inter', sans-serif;
+}
 .titulo {
   text-align: center;
   color: #ff4a00;
-  font-size: 1.2rem;
-  margin-bottom: 25px;
-  margin-top: -70px;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
 }
 
 .grid-form {
@@ -26,76 +24,85 @@
   gap: 20px;
 }
 
-.campo {
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
 .full-width {
   grid-column: span 2;
 }
 
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
 .campo label {
-  font-size: 0.95rem;
+  font-weight: bold;
   margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: #ffffff;
 }
 
 .campo input {
-  margin: 0;
+  padding: 10px 15px;
   border-radius: 20px;
   border: none;
   font-size: 1rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
   outline: none;
-  height: 40px;
 }
 
+input::placeholder {
+  color: #999;
+}
 
 .termos {
   margin-top: 25px;
   font-size: 0.85rem;
   width: 70%;
   text-align: left;
-  margin: 0 auto;
-  margin-top: 6%;
+  margin: 6% auto 0 auto;
 }
 
-.termos input {
+.termo1 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.termo1 p {
   margin: 0;
+  color: #ffffff;
 }
 
-.termos p {
-  margin: 0 ;
-}
-
-.termos a {
+.termo1 a {
   color: #ff4a00;
   text-decoration: underline;
 }
 
 .login-link {
-  font-size: 0.9rem;
-  margin-top: 0px;
   text-align: center;
-  margin-top: 40px;
-  margin-bottom: 10px;
+  margin: 30px 0 10px;
+  font-size: 0.9rem;
 }
 
 .login-link a {
-  color: white;
+  color: #ffffff;
   text-decoration: underline;
 }
 
+.container-botao {
+  text-align: center;
+  margin: 40px 0;
+}
+
 .botao-concluir-cadastro {
-  width: 100%;
   background-color: #ff4a00;
   color: white;
   font-weight: bold;
   border: none;
-  padding: 12px;
+  padding: 12px 40px;
   border-radius: 25px;
   cursor: pointer;
+  font-size: 1rem;
   transition: background-color 0.2s ease-in-out;
 }
 

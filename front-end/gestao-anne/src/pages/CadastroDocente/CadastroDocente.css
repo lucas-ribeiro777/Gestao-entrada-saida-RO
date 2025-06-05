@@ -1,14 +1,118 @@
-.linha-inteira {
-  width: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+}
+
+.titulo-cadastro {
+  text-align: center;
+  color: orangered;
+  margin: 2rem auto 1rem auto;
+  font-size: 1.2rem;
+}
+
+.cadastro-box {
+  background-color: #1F5592;
+  padding: 2rem;
+  border-radius: 25px;
+  width: 80%;
+  max-width: 800px;
+  margin: 2rem auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.75rem; /* ajuste aqui para deixar mais fino */
+  border-radius: 10px;
+  border: none;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+
+.senha-container {
+  display: flex;
+  gap: 1rem;
   margin-bottom: 1rem;
 }
 
-.linha-inteira label {
-  margin-bottom: 0.5rem;
+.campo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.linha-inteira input {
+.checkbox-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 14px;
+  color: white;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-item a {
+  color: orangered;
+  text-decoration: underline;
+}
+
+.botao-cadastro {
   width: 100%;
+  background-color: orangered;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1.5rem;
+}
+
+.login-link {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.login-link a {
+  color: white;
+  text-decoration: underline;
+}
+
+.botao-wrapper {
+  width: 80%;
+  max-width: 800px;
+  margin: -1.5rem auto 2rem auto;
+  display: flex;
+  justify-content: center;
+}
+
+.botao-cadastro {
+  width: 100%;
+  max-width: 300px;
+  background-color: orangered;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
 }

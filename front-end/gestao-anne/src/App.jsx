@@ -2,11 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CadastroAluno from './pages/CadastroAluno/CadastroAluno';
 import CadastroDocente from './pages/CadastroDocente/CadastroDocente';
 import CadastroResponsavel from './pages/CadastroResponsavel/CadastroResponsavel';
-import CadastroCoordenador from './pages/CadastroCoordenador/CadastroCoordenador';
 import LoginGeral from './pages/LoginGeral/LoginGeral';
 import EsqueciMinhaSenha from './pages/EsqueciMinhaSenha/EsqueciMinhaSenha';
 import VisualizarOcorrenciasAluno from './pages/VisualizarOcorrenciasAluno/VisualizarOcorrenciasAluno';
 import VisualizarContaAluno from './pages/VisualizarContaAluno/VisualizarContaAluno';
+import CadastroCoordenador from './pages/CadastroCoordenador/CadastroCoordenador';
 
 
 function App() {

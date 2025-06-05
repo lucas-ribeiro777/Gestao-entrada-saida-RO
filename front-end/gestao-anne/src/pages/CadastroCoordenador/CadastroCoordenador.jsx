@@ -34,17 +34,16 @@ function CadastroCoordenador() {
     }
   };
 
-
-const CadastroCoordenador = () => {
   return (
     <>
       <MenuCadastro />
-      <div className='centro-coordenador'>
-        <FormCadastro tipo="Coordenador" campos={camposCoordenador} onSubmit={handleSubmit} />
+      <div className='centro'>
+        <FormCadastro tipo="docente" campos={camposDocente} onSubmit={handleSubmit} />
       </div>
       <Rodape />
     </>
   );
 }
+
 
 export default CadastroCoordenador;

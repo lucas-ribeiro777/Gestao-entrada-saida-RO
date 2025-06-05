@@ -4,27 +4,32 @@ import './CriarAssinatura.css';
 
 function CriarAssinatura({ aberto, aoFechar, aoSalvar }) {
   const canvasRef = useRef(null);
-  const [signaturePad, setSignaturePad] = useState(null);
+  const signaturePadRef = useRef(null);
 
   useEffect(() => {
     if (aberto && canvasRef.current) {
-      const pad = new SignaturePad(canvasRef.current);
-      setSignaturePad(pad);
+      const pad = new SignaturePad(canvasRef.current, {
+        backgroundColor: 'rgb(255,255,255)',
+        penColor: 'black',
+      });
+      signaturePadRef.current = pad;
     }
   }, [aberto]);
 
-  const salvarAssinatura = () => {
-    if (signaturePad && !signaturePad.isEmpty()) {
-      const imagem = signaturePad.toDataURL();
-      aoSalvar(imagem);
-      aoFechar();
-    } else {
-      alert('Assine antes de salvar!');
+  const limpar = () => {
+    if (signaturePadRef.current) {
+      signaturePadRef.current.clear();
     }
   };
 
-  const limpar = () => {
-    signaturePad.clear();
+  const salvar = () => {
+    if (signaturePadRef.current && !signaturePadRef.current.isEmpty()) {
+      const imagem = signaturePadRef.current.toDataURL('image/png');
+      aoSalvar(imagem);
+      aoFechar();
+    } else {
+      alert('Por favor, assine antes de salvar.');
+    }
   };
 
   if (!aberto) return null;
@@ -36,7 +41,7 @@ function CriarAssinatura({ aberto, aoFechar, aoSalvar }) {
         <canvas ref={canvasRef} width={400} height={200} className="canvas" />
         <div className="botoes">
           <button onClick={limpar}>Limpar</button>
-          <button onClick={salvarAssinatura}>Salvar</button>
+          <button onClick={salvar}>Salvar</button>
           <button onClick={aoFechar}>Fechar</button>
         </div>
       </div>

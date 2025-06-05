@@ -1,9 +1,13 @@
 import './FormCadastro.css';
 import React, { useState } from 'react';
 
-function FormCadastro({ tipo, campos }) {
-  const [formData, setFormData] = useState({});
 
+
+function FormCadastro({ tipo, campos, fotoSelecionada }) {
+  const [formData, setFormData] = useState({});
+  const [usoDados, setUsoDados] = useState(false);
+  const [lgpd, setLgpd] = useState(false);
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -13,26 +17,49 @@ function FormCadastro({ tipo, campos }) {
     e.preventDefault();
 
     try {
-      const response = await fetch('COLOCAR O CAMINHO DA API', {
+      // 1. Envia o cadastro do aluno
+      const responseAluno = await fetch('http://localhost:3001/alunos', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          foto: fotoSelecionada ? fotoSelecionada.name : null,
+        }),
       });
 
-      if (!response.ok) {
-        throw new Error('Erro ao enviar os dados');
+      if (!responseAluno.ok) {
+        throw new Error('Erro ao enviar os dados do aluno');
       }
 
-      const resultado = await response.json();
-      console.log('Cadastro enviado com sucesso:', resultado);
-      alert('Cadastro concluído com sucesso!');
+      const alunoCriado = await responseAluno.json();
+
+      // Supondo que a resposta contenha o id do aluno criado
+      const idAluno = alunoCriado.id;
+
+      // 2. Envia os dados de autorização para a outra tabela
+      const responseAutorizacao = await fetch('http://localhost:3001/autorizacao', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id_aluno: idAluno,
+          uso_dados: usoDados ? 1 : 0,
+          lgpd: lgpd ? 1 : 0,
+        }),
+      });
+
+      if (!responseAutorizacao.ok) {
+        throw new Error('Erro ao enviar os dados de autorização');
+      }
+
+      const autorizacaoCriada = await responseAutorizacao.json();
+
+      alert('Cadastro e autorizações enviados com sucesso!');
     } catch (erro) {
       console.error('Erro ao cadastrar:', erro.message);
       alert('Erro ao cadastrar. Tente novamente.');
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit} className="formulario">
@@ -60,7 +87,11 @@ function FormCadastro({ tipo, campos }) {
       {tipo === 'aluno' && (
         <div className="termos">
           <div className="termo1">
-            <input type="radio" />
+            <input
+              type="checkbox"
+              checked={lgpd}
+              onChange={(e) => setLgpd(e.target.checked)}
+            />
             <p>
               Você entende que está assegurado(a) pelas normas da{' '}
               <a
@@ -73,7 +104,11 @@ function FormCadastro({ tipo, campos }) {
             </p>
           </div>
           <div className="termo1">
-            <input type="radio" />
+            <input
+              type="checkbox"
+              checked={usoDados}
+              onChange={(e) => setUsoDados(e.target.checked)}
+            />
             <p>
               Você concorda com nossos <a href="#">termos de uso</a>
             </p>
@@ -93,3 +128,4 @@ function FormCadastro({ tipo, campos }) {
 }
 
 export default FormCadastro;
+

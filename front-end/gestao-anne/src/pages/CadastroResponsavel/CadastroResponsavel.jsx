@@ -19,8 +19,6 @@ function CadastroResponsavel() {
       <MenuCadastro />
 
       <div className="form-wrapper-responsavel">
-      
-
         <div className="centro-responsavel">
           <FormCadastro
             tipo="responsavel"

@@ -1,67 +1,64 @@
-import './InicialAluno.css';
+import React from "react";
+import "./inicioAluno.css";
 
 function InicialAluno() {
   return (
-    <>
-      <header>
-        <img src="logo.png" alt="Logo" className="logo" />
-      </header>
+    <div className="pagina-inicial">
+      {/* LOGO */}
+      <div className="logo-container">
+        <img src="./images/LogoSenaiSemAsEscritaDoLado.png" alt="Logo" />
+      </div>
 
-      <nav>
-        <div className="novo-container">
-          <p className="inicio">Início</p>
-          <p>Ocorrências</p>
-          <p>Solicitações</p>
-          <p>Conta</p>
+      {/* CU */}
+      <div className="novo-container">
+        <p className="inicio">Início</p>
+        <p>Ocorrências</p>
+        <p>Solicitações</p>
+        <p>Conta</p>
+      </div>
+
+      {/* CAIXAS MODAL SEI LA */}
+      <div className="caixas">
+        {/* CAIXA HISTORICO */}
+        <div className="caixa">
+          <div className="titulo-caixa">HISTÓRICO DO DIA</div>
+          <div className="item">07:50 - Entrada Autorizada</div>
+          <div className="linha"></div>
+          <div className="item">09:51 - Saída Autorizada</div>
         </div>
-      </nav>
 
+        {/* CAIXA RESPONSAVEIS */}
+        <div className="caixa">
+          <div className="titulo-caixa">RESPONSÁVEIS DO ALUNO</div>
+          <div className="item">Antônio Carlos Marçal</div>
+          <div className="linha"></div>
+          <div className="item">Maria De Lurdes</div>
+        </div>
+      </div>
+
+      {/* MAIN */}
       <main>
-        <div className="profile-section">
-          <div>
-            <img src="perfil.png" alt="Foto" className="profile-pic" />
-            <h2>Giovanna Santos</h2>
-          </div>
-
-          <div className="info-cards">
-            <div className="card">
-              <div className="card-title">HISTÓRICO DO DIA</div>
-              <div className="card-content">
-                <p>07:50 - Entrada Autorizada</p>
-                <p>09:51 - Saída Autorizada</p>
-              </div>
-            </div>
-
-            <div className="card">
-              <div className="card-title">RESPONSÁVEIS DO ALUNO</div>
-              <div className="card-content">
-                <p>Antônio Carlos Marçal</p>
-                <p>Maria De Lurdes</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <h1></h1>
       </main>
 
-            <footer>
+      {/* RODAPE */}
+      <footer>
         <div className="footer-coluna">
-          <div className="titulo-duvidas">DÚVIDAS? ENTRE EM CONTATO!</div>
+          <p className="titulo-duvidas">DÚVIDAS? ENTRE EM CONTATO!</p>
           <div className="infos">
             <div className="contato">(XX) XXXXX-XXXX</div>
             <div className="contato">📞 (XX) XXXX-XXXX</div>
-            <div className="contato">(XX) XXXX-XXXX</div>
           </div>
         </div>
         <div className="footer-coluna">
-          <div className="venha">VENHA NOS VISITAR!</div>
-          <div className="infos">
-            <div>
-              R. Aristeu Rodrigues Sampaio, 271 - Jardim das Nações, Lençóis Paulista - SP, 18685-730
-            </div>
-          </div>
+          <p className="venha">VENHA NOS VISITAR!</p>
+          <p>
+            <strong>R. Aristeu Rodrigues Sampaio, 271 - Jardim das</strong>
+          </p>
+          <p>Nacoes, Lençóis Paulista - SP, 18685-730</p>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
 

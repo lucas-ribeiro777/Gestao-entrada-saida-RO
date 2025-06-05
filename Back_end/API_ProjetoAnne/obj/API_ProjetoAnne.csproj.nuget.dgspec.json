@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gabriel Tamborim\\Desktop\\Gestao-entrada-saida-RO\\Back_end\\Api_ProjetoAnne\\API_ProjetoAnne.csproj": {}
+    "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gabriel Tamborim\\Desktop\\Gestao-entrada-saida-RO\\Back_end\\Api_ProjetoAnne\\API_ProjetoAnne.csproj": {
+    "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gabriel Tamborim\\Desktop\\Gestao-entrada-saida-RO\\Back_end\\Api_ProjetoAnne\\API_ProjetoAnne.csproj",
+        "projectUniqueName": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
         "projectName": "API_ProjetoAnne",
-        "projectPath": "C:\\Users\\Gabriel Tamborim\\Desktop\\Gestao-entrada-saida-RO\\Back_end\\Api_ProjetoAnne\\API_ProjetoAnne.csproj",
-        "packagesPath": "C:\\Users\\Gabriel Tamborim\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gabriel Tamborim\\Desktop\\Gestao-entrada-saida-RO\\Back_end\\Api_ProjetoAnne\\obj\\",
+        "projectPath": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
+        "packagesPath": "C:\\Users\\Caique\\.nuget\\packages\\",
+        "outputPath": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Gabriel Tamborim\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Caique\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

@@ -1,61 +1,55 @@
 import React, { useEffect, useState } from "react";
-import { FaUser, FaBirthdayCake, FaAt, FaPhone, FaUsers, FaPen } from "react-icons/fa";
-import CabecalhoPages from "../../components/CabecalhoPages/CabecalhoPages";
 import Rodape from "../../components/Rodape/Rodape";
+import { FaUser, FaBirthdayCake, FaAt, FaPhone, FaUserFriends, FaEdit } from "react-icons/fa";
 import "./VisualizacaoResponsavel.css";
-import { Link } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
 
-const Conta = () => {
+const VisualizacaoResponsavel = () => {
   const [dados, setDados] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3001/alunos") 
+    fetch("http://localhost:3001/alunos")
       .then((res) => res.json())
       .then((data) =>
         setDados({
           nome: data.name,
-          nascimento: "22/05/1970", // Mock (não tem no jsonplaceholder)
+          nascimento: "22/05/1970", // mock
           email: data.email,
           telefone: data.phone,
-          responsavel: "Giovana Santos Silva", // Mock
+          responsavel: "Giovana Santos Silva", // mock
         })
       );
   }, []);
 
   if (!dados) {
-    return <div className="text-center mt-10 text-gray-600">Carregando dados...</div>;
+    return <div className="loading">Carregando dados...</div>;
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <CabecalhoPages />
-
-      <main className="flex-1 flex justify-center items-center py-10 bg-white">
-        <div className="space-y-4 w-full max-w-md px-4">
-          <Item bg="bg-[#1b4e8a]" icon={<FaUser />} text={dados.nome} />
-          <Item bg="bg-[#87a9d6]" icon={<FaBirthdayCake />} text={dados.nascimento} />
-          <Item bg="bg-[#1b4e8a]" icon={<FaAt />} text={dados.email} />
-          <Item bg="bg-[#87a9d6]" icon={<FaPhone />} text={dados.telefone} />
-          <Item bg="bg-[#1b4e8a]" icon={<FaUsers />} text={dados.responsavel} />
+    <div className="container">
+      <main className="content">
+        <div className="card">
+          <Item icon={<FaUser />} text={dados.nome} bg="blue" />
+          <Item icon={<FaBirthdayCake />} text={dados.nascimento} bg="light-blue" />
+          <Item icon={<FaAt />} text={dados.email} bg="blue" />
+          <Item icon={<FaPhone />} text={dados.telefone} bg="light-blue" />
+          <Item icon={<FaUserFriends />} text={dados.responsavel} bg="blue" />
         </div>
       </main>
-
       <Rodape />
     </div>
   );
 };
 
 const Item = ({ icon, text, bg }) => (
-  <div className={`flex items-center justify-between p-4 rounded-lg shadow-md ${bg}`}>
-    <div className="flex items-center space-x-4">
-      <div className="text-white text-2xl">{icon}</div>
-      <span className="text-white font-semibold">{text}</span>
+  <div className={`item ${bg}`}>
+    <div className="flex items-center gap-2">
+      <span className="icon">{icon}</span>
+      <span className="text">{text}</span>
     </div>
-    <button className="text-white hover:underline">
-      <FaPen />
+    <button className="edit">
+      <FaEdit />
     </button>
   </div>
 );
 
-export default Conta;
+export default VisualizacaoResponsavel;

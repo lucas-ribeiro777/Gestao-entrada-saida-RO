@@ -21,10 +21,10 @@ function CadastroResponsavel() {
       <div className="form-wrapper-responsavel">
         <div className="centro-responsavel">
           <FormCadastro
-            tipo="responsavel"
-            campos={camposResponsavel}
-            onSubmit={(data) => console.log(data)}
-          />
+          tipo="responsavel"
+          campos={camposResponsavel}
+          onSubmit={handleSubmit}
+/>
         </div>
       </div>
 

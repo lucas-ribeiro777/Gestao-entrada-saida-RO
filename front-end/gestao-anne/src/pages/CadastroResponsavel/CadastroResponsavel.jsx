@@ -1,7 +1,7 @@
 import React from 'react';
 import './CadastroResponsavel.css';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
-import FormCadastro from '../../components/FormCadastro/FormCadastro';
+import FormCadastroResponsavel from '../../components/FormCadastroResponsavel/FormCadastroResponsavel';
 import Rodape from '../../components/Rodape/Rodape';
 
 function CadastroResponsavel() {
@@ -20,7 +20,7 @@ function CadastroResponsavel() {
 
       <div className="form-wrapper-responsavel">
         <div className="centro-responsavel">
-          <FormCadastro
+          <FormCadastroResponsavel
             tipo="responsavel"
             campos={camposResponsavel}
             onSubmit={(data) => console.log(data)}

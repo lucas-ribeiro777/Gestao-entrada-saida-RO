@@ -2,7 +2,7 @@ import React from 'react';
 import './CadastroDocente.css';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 import Rodape from '../../components/Rodape/Rodape';
-import FormCadastro from '../../components/FormCadastro/FormCadastro';
+import FormCadastroDocente from '../../components/FormCadastroDocente/FormCadastroDocente';
 
 function CadastroDocente() {
   const camposDocente = [
@@ -46,7 +46,7 @@ function CadastroDocente() {
     <>
       <MenuCadastro />
       <div className='centro'>
-        <FormCadastro tipo="docente" campos={camposDocente} onSubmit={handleSubmit} />
+        <FormCadastroDocente tipo="docente" campos={camposDocente} onSubmit={handleSubmit} />
       </div>
       <Rodape />
     </>

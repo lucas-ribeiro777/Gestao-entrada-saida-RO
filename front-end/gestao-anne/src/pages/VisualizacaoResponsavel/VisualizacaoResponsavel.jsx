@@ -1,61 +1,163 @@
 import React, { useEffect, useState } from "react";
-import { FaUser, FaBirthdayCake, FaAt, FaPhone, FaUsers, FaPen } from "react-icons/fa";
-import CabecalhoPages from "../../components/CabecalhoPages/CabecalhoPages";
 import Rodape from "../../components/Rodape/Rodape";
 import "./VisualizacaoResponsavel.css";
-import { Link } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import CabecalhoPages from "../../components/CabecalhoPages/CabecalhoPages";
 
-const Conta = () => {
+const VisualizacaoResponsavel = () => {
   const [dados, setDados] = useState(null);
+  const [editando, setEditando] = useState(false);
+  const [formData, setFormData] = useState({});
+  const [responsavelId, setResponsavelId] = useState(null); // para o PUT
 
   useEffect(() => {
-    fetch("http://localhost:3001/alunos") 
-      .then((res) => res.json())
-      .then((data) =>
-        setDados({
-          nome: data.name,
-          nascimento: "22/05/1970", // Mock (não tem no jsonplaceholder)
-          email: data.email,
-          telefone: data.phone,
-          responsavel: "Giovana Santos Silva", // Mock
-        })
-      );
-  }, []);
+  fetch("/Mocks/Responsaveis.json")
+    .then((res) => res.json())
+    .then((data) => {
+      const responsavel = data.responsaveis[0];
+      if (responsavel) {
+        setResponsavelId(responsavel.id);
 
-  if (!dados) {
-    return <div className="text-center mt-10 text-gray-600">Carregando dados...</div>;
-  }
+        const aluno = data.alunos.find((a) => a.id_filho === responsavel.id_filho);
+        const nomeAluno = aluno ? aluno.nome : "Filho não encontrado";
+
+        const dadosFormatados = {
+          nome: responsavel.nome,
+          nascimento: formatarData(responsavel.data_nasc),
+          email: responsavel.email,
+          telefone: responsavel.telefone,
+          aluno: nomeAluno
+        };
+
+        setDados(dadosFormatados);
+        setFormData(dadosFormatados);
+      }
+    })
+    .catch((err) => console.error("Erro ao buscar dados:", err));
+}, []);
+
+
+  const formatarData = (dataStr) => {
+    if (!dataStr) return "";
+    if (dataStr.includes("/")) return dataStr;
+    const data = new Date(dataStr);
+    return data.toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    });
+  };
+
+  const handleEditar = () => setEditando(true);
+
+  const handleSalvar = () => {
+    const dadosParaEnviar = {
+      nome: formData.nome,
+      email: formData.email,
+      telefone: formData.telefone,
+      data_nasc: formData.nascimento.split("/").reverse().join("-"),
+      filho_nome: formData.aluno
+    };
+
+    fetch(`http://localhost:3001/Responsaveis/${responsavelId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dadosParaEnviar)
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setDados(formData);
+        setEditando(false);
+      })
+      .catch((err) => console.error("Erro ao salvar dados:", err));
+  };
+
+  const handleChange = (campo, valor) => {
+    setFormData((prev) => ({ ...prev, [campo]: valor }));
+  };
+
+  if (!dados) return <div className="loading">Carregando dados...</div>;
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <CabecalhoPages />
-
-      <main className="flex-1 flex justify-center items-center py-10 bg-white">
-        <div className="space-y-4 w-full max-w-md px-4">
-          <Item bg="bg-[#1b4e8a]" icon={<FaUser />} text={dados.nome} />
-          <Item bg="bg-[#87a9d6]" icon={<FaBirthdayCake />} text={dados.nascimento} />
-          <Item bg="bg-[#1b4e8a]" icon={<FaAt />} text={dados.email} />
-          <Item bg="bg-[#87a9d6]" icon={<FaPhone />} text={dados.telefone} />
-          <Item bg="bg-[#1b4e8a]" icon={<FaUsers />} text={dados.responsavel} />
+    
+    <div className="container">
+      < CabecalhoPages />
+      <main className="content">
+        <div className="card">
+          <Item
+            icone="🧾"
+            valor={formData.nome}
+            campo="nome"
+            editando={editando}
+            onChange={handleChange}
+            bg="azul"
+          />
+          <Item
+            icone="📅"
+            valor={formData.nascimento}
+            campo="nascimento"
+            editando={editando}
+            onChange={handleChange}
+            bg="azul-claro"
+          />
+          <Item
+            icone="📧"
+            valor={formData.email}
+            campo="email"
+            editando={editando}
+            onChange={handleChange}
+            bg="azul"
+          />
+          <Item
+            icone="📞"
+            valor={formData.telefone}
+            campo="telefone"
+            editando={editando}
+            onChange={handleChange}
+            bg="azul-claro"
+          />
+          <Item
+            icone="👨‍👧"
+            valor={formData.aluno}
+            campo="aluno"
+            editando={false}
+            onChange={handleChange}
+            bg="azul"
+          />
         </div>
-      </main>
 
+        <button className="botao-editar" onClick={editando ? handleSalvar : handleEditar}>
+          {editando ? (
+            <>
+              💾 <span className="texto-botao">Salvar</span>
+            </>
+          ) : (
+            <>
+              <span className="texto-botao">Editar</span> ✏️
+            </>
+          )}
+        </button>
+      </main>
       <Rodape />
     </div>
   );
 };
 
-const Item = ({ icon, text, bg }) => (
-  <div className={`flex items-center justify-between p-4 rounded-lg shadow-md ${bg}`}>
-    <div className="flex items-center space-x-4">
-      <div className="text-white text-2xl">{icon}</div>
-      <span className="text-white font-semibold">{text}</span>
-    </div>
-    <button className="text-white hover:underline">
-      <FaPen />
-    </button>
+const Item = ({ icone, valor, campo, editando, onChange, bg }) => (
+  <div className={`item ${bg}`}>
+    <span className="icone">{icone}</span>
+    {editando ? (
+      <input
+        className="input-edicao"
+        type="text"
+        value={valor}
+        onChange={(e) => onChange(campo, e.target.value)}
+      />
+    ) : (
+      <span className="text">{valor}</span>
+    )}
   </div>
 );
 
-export default Conta;
+export default VisualizacaoResponsavel;

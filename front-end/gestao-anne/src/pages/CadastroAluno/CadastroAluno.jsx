@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FormCadastro from '../../components/FormCadastro/FormCadastro';
+import FormCadastroAluno from '../../components/FormCadastroAluno/FormCadastroAluno';
 import Foto from '../../components/Foto/Foto';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 import Rodape from '../../components/Rodape/Rodape';
@@ -22,7 +22,7 @@ function CadastroAluno() {
       <MenuCadastro />
       <div className='centro'>
         <Foto onFotoSelecionada={setFotoSelecionada} />
-        <FormCadastro 
+        <FormCadastroAluno 
           tipo="aluno" 
           campos={camposAluno} 
           fotoSelecionada={fotoSelecionada} 

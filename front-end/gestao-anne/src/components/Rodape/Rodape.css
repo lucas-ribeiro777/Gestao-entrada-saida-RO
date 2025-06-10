@@ -26,6 +26,20 @@
   gap: 10px;
 }
 
+.link-contato {
+  color: white;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Mantém a cor branca ao focar, passar o mouse e ao clicar */
+.link-contato:hover,
+.link-contato:focus,
+.link-contato:active {
+  color: white;
+  text-decoration: none;
+}
+
 footer{
   display: flex;
   flex-direction: row;

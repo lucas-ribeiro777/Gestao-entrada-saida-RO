@@ -23,11 +23,3 @@
   margin: 0 auto;
   max-width: 300px; /* opcional: limita largura */
 } 
-
-.centro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; /* Mantém os elementos empilhados */
-  width: 100%;
-}

@@ -13,32 +13,12 @@ function CadastroCoordenador() {
     { name: 'telefone', label: 'Telefone', type: 'tel', placeholder: '+55 ( )' },
   ];
 
-  const handleSubmit = async (data) => {
-    try {
-      const response = await fetch('http://localhost:3000/api/Coordenador', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
-
-      if (response.ok) {
-        alert('Cadastro realizado com sucesso!');
-      } else {
-        alert('Erro ao cadastrar. Verifique os dados e tente novamente.');
-      }
-    } catch (error) {
-      console.error('Erro na requisição:', error);
-      alert('Erro de conexão com o servidor.');
-    }
-  };
 
   return (
     <>
       <MenuCadastro />
       <div className='centro-coordenador'>
-        <FormCadastroCoordenador tipo="coordenador" campos={camposCoordenador} onSubmit={handleSubmit} />
+        <FormCadastroCoordenador tipo="coordenador" campos={camposCoordenador}/>
       </div>
       <Rodape />
     </>

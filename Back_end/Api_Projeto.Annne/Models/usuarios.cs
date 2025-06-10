@@ -10,10 +10,9 @@ namespace Api_Projeto.Annne.Models
     [Table("usuarios")]
     public class Usuarios
     {
-
         public string? Email { get; set; }
         public string? Senha { get; set; }
-
+        public string? Id { get; internal set; }
     }
 }
 

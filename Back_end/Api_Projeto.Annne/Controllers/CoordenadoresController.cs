@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Api_Projeto.Annne.DTOs;
-using System.Security.Cryptography;
-using System.Text;
+using Api_Projeto.Annne.Models;
+using Api_Projeto.Annne.Repository; // para DbGestaoAnneContext
+using System;
 
 namespace Api_Projeto.Annne.Controllers
 {
@@ -9,13 +11,17 @@ namespace Api_Projeto.Annne.Controllers
     [Route("api/[controller]")]
     public class CoordenadoresController : ControllerBase
     {
+        private readonly DbGestaoAnneContext _context;
+        private readonly IPasswordHasher<Coordenador> _passwordHasher;
         private readonly string _assinaturaPath;
 
-        public CoordenadoresController()
+        public CoordenadoresController(DbGestaoAnneContext context, IPasswordHasher<Coordenador> passwordHasher)
         {
+            _context = context;
+            _passwordHasher = passwordHasher;
+
             _assinaturaPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assinaturas");
 
-            // Garante que a pasta de assinaturas existe
             if (!Directory.Exists(_assinaturaPath))
                 Directory.CreateDirectory(_assinaturaPath);
         }
@@ -26,63 +32,73 @@ namespace Api_Projeto.Annne.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            // Verifica se a assinatura foi enviada
             if (dto.Assinatura == null || dto.Assinatura.Length == 0)
                 return BadRequest("Arquivo de assinatura inválido.");
 
-            // Gera nome único para a imagem da assinatura
-            var extensao = Path.GetExtension(dto.Assinatura.FileName);
+            var extensao = Path.GetExtension(dto.Assinatura.FileName).ToLowerInvariant();
+            var extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png" };
+            if (!extensoesPermitidas.Contains(extensao))
+                return BadRequest("Formato de arquivo não permitido. Use jpg ou png.");
+
             var nomeUnico = $"assinatura_{Guid.NewGuid()}{extensao}";
             var caminhoCompleto = Path.Combine(_assinaturaPath, nomeUnico);
 
-            // Salva o arquivo da assinatura no disco
-            using (var stream = new FileStream(caminhoCompleto, FileMode.Create))
+            try
             {
+                using var stream = new FileStream(caminhoCompleto, FileMode.Create);
                 await dto.Assinatura.CopyToAsync(stream);
+            }
+            catch
+            {
+                return StatusCode(500, "Erro ao salvar o arquivo da assinatura.");
             }
 
             var caminhoRelativo = $"/assinaturas/{nomeUnico}";
 
-            // Criptografa a senha usando SHA256
-            string senhaCriptografada = GerarHashSHA256(dto.Senha);
-
-            // TODO: Criar e salvar o objeto Coordenador no banco de dados
-            /*
             var coordenador = new Coordenador
             {
                 Nome = dto.Nome,
                 Email = dto.Email,
-                Telefone = dto.Telefone,  // <-- adicionado telefone
-                Senha = senhaCriptografada,
-                CaminhoAssinatura = caminhoRelativo
+                Telefone = dto.Telefone,
+                Assinatura = caminhoRelativo
             };
 
-            _context.Coordenadores.Add(coordenador);
-            await _context.SaveChangesAsync();
-            */
+            coordenador.Senha = _passwordHasher.HashPassword(coordenador, dto.Senha);
+
+            try
+            {
+                _context.Coordenadores.Add(coordenador);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                if (System.IO.File.Exists(caminhoCompleto))
+                    System.IO.File.Delete(caminhoCompleto);
+
+                var mensagemErro = ex.Message;
+                if (ex.InnerException != null)
+                    mensagemErro += " | Inner Exception: " + ex.InnerException.Message;
+
+                return StatusCode(500, new
+                {
+                    mensagem = "Erro ao salvar o coordenador no banco de dados.",
+                    erro = mensagemErro,
+                    stackTrace = ex.StackTrace
+                });
+            }
 
             return Ok(new
             {
                 mensagem = "Coordenador criado com sucesso!",
                 dados = new
                 {
-                    dto.Nome,
-                    dto.Email,
-                    dto.Telefone,  // <-- incluído no retorno
-                    SenhaCriptografada = senhaCriptografada,
+                    coordenador.Id,
+                    coordenador.Nome,
+                    coordenador.Email,
+                    coordenador.Telefone,
                     AssinaturaUrl = caminhoRelativo
                 }
             });
-        }
-
-        private static string GerarHashSHA256(string input)
-        {
-            using (var sha256 = SHA256.Create())
-            {
-                var bytes = Encoding.UTF8.GetBytes(input);
-                var hash = sha256.ComputeHash(bytes);
-                return Convert.ToBase64String(hash);
-            }
         }
     }
 }

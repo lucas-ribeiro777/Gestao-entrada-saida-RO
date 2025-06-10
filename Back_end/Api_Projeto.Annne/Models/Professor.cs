@@ -17,8 +17,7 @@ namespace Api_Projeto.Annne.Models
         [Column("nome")]
         public string Nome { get; set; } = null!;
 
-        [RegularExpression(@"^\(?\d{2}\)?[\s\-]?\d{4,5}[\s\-]?\d{4}$", ErrorMessage = "Telefone inválido. Ex: (11) 91234-5678")]
-        [StringLength(15, ErrorMessage = "O telefone pode ter no máximo 15 caracteres.")]
+       [RegularExpression(@"^\(?\d{2}\)?[\s\-]?\d{4,5}[\s\-]?\d{4}$", ErrorMessage = "Telefone inválido. Ex: (11) 91234-5678")]
         [Column("telefone")]
         public string? Telefone { get; set; }
 

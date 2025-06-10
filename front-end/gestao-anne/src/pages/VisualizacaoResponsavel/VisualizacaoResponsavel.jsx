@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Rodape from "../../components/Rodape/Rodape";
-import { FaUser, FaBirthdayCake, FaAt, FaPhone, FaUserFriends, FaEdit } from "react-icons/fa";
 import "./VisualizacaoResponsavel.css";
 
 const VisualizacaoResponsavel = () => {
@@ -9,16 +8,28 @@ const VisualizacaoResponsavel = () => {
   useEffect(() => {
     fetch("http://localhost:3001/alunos")
       .then((res) => res.json())
-      .then((data) =>
-        setDados({
-          nome: data.name,
-          nascimento: "22/05/1970", // mock
-          email: data.email,
-          telefone: data.phone,
-          responsavel: "Giovana Santos Silva", // mock
-        })
-      );
+      .then((data) => {
+        const alunos = data.alunos || data;
+        const aluno = alunos?.[0];
+        if (aluno) {
+          setDados({
+            nome: aluno.nome,
+            email: aluno.email,
+            telefone: aluno.telefone,
+            nascimento: formatarData(aluno.data_nasc)
+          });
+        }
+      })
+      .catch((err) => console.error("Erro ao buscar dados:", err));
   }, []);
+
+  const formatarData = (dataStr) => {
+    if (!dataStr) return "";
+    if (dataStr.includes("/")) return dataStr;
+    const [ano, mes, dia] = dataStr.split("-");
+    if (!ano || !mes || !dia) return "";
+    return `${dia}/${mes}/${ano}`;
+  };
 
   if (!dados) {
     return <div className="loading">Carregando dados...</div>;
@@ -28,11 +39,10 @@ const VisualizacaoResponsavel = () => {
     <div className="container">
       <main className="content">
         <div className="card">
-          <Item icon={<FaUser />} text={dados.nome} bg="blue" />
-          <Item icon={<FaBirthdayCake />} text={dados.nascimento} bg="light-blue" />
-          <Item icon={<FaAt />} text={dados.email} bg="blue" />
-          <Item icon={<FaPhone />} text={dados.telefone} bg="light-blue" />
-          <Item icon={<FaUserFriends />} text={dados.responsavel} bg="blue" />
+          <Item text={dados.nome} bg="blue" />
+          <Item text={dados.nascimento} bg="light-blue" />
+          <Item text={dados.email} bg="blue" />
+          <Item text={dados.telefone} bg="light-blue" />
         </div>
       </main>
       <Rodape />
@@ -40,15 +50,9 @@ const VisualizacaoResponsavel = () => {
   );
 };
 
-const Item = ({ icon, text, bg }) => (
+const Item = ({ text, bg }) => (
   <div className={`item ${bg}`}>
-    <div className="flex items-center gap-2">
-      <span className="icon">{icon}</span>
-      <span className="text">{text}</span>
-    </div>
-    <button className="edit">
-      <FaEdit />
-    </button>
+    <span className="text">{text}</span>
   </div>
 );
 

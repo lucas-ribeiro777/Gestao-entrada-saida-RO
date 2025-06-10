@@ -34,6 +34,6 @@ namespace Api_Projeto.Annne.Models
 
         [StringLength(255)]
         [Column("assinatura")]
-        public string? Assinatura { get; set; }  // Caminho do arquivo da assinatura no servidor
+        public string? Assinatura { get; set; } 
     }
 }

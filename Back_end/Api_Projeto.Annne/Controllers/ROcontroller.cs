@@ -18,32 +18,32 @@ namespace Api_Projeto.Annne.Controllers
         }
 
         // POST: api/RO
-        [HttpPost]
-        public async Task<IActionResult> Registrar([FromBody] RegistroOcorrenciaDTOs dto)
-        {
-            var nova = new RegistroOcorrencia
-            {
-                Tipo = dto.Tipo,
-                Motivo = dto.Motivo,
-                DataHora = dto.DataHora,
-                Encerramento = dto.Encerramento,
-                Curso = dto.Curso,
-                Turma = dto.Turma,
-                Observacao = dto.Observacao,
+       [HttpPost]
+public async Task<IActionResult> Registrar([FromBody] RegistroOcorrenciaDTOs dto)
+{
+    if (!ModelState.IsValid)
+        return BadRequest(ModelState);
 
-                // No futuro, esses IDs devem vir do token (usuário logado)
-                ProfessorId = 1,
-                AlunoId = 10,
-                CoordenadorId = 2,
-                ResponsavelId = 3
-            };
+    var nova = new RegistroOcorrencia
+    {
+        Tipo = dto.Tipo,
+        Motivo = dto.Motivo,
+        DataHora = DateTime.Now,
+        Encerramento = dto.Encerramento == 1,
+        Curso = dto.Curso,
+        Turma = dto.Turma,
+        Observacao = dto.Observacao,
+        ProfessorId = dto.ProfessorId,
+        AlunoId = dto.AlunoId,
+        CoordenadorId = dto.CoordenadorId,
+        ResponsavelId = dto.ResponsavelId
+    };
 
-            _context.RegistroOcorrencia.Add(nova);
-            await _context.SaveChangesAsync();
+    _context.RegistroOcorrencia.Add(nova);
+    await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(ObterPorAluno), new { alunoId = nova.AlunoId }, nova);
-        }
-
+    return CreatedAtAction(nameof(ObterPorAluno), new { alunoId = nova.AlunoId }, nova);
+}
         // GET: api/RO
         [HttpGet]
         public async Task<IActionResult> ObterTodos()

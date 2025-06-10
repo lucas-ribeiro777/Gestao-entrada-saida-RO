@@ -1,0 +1,70 @@
+.container-ocorrencias {
+  display: flex;
+  flex-direction: row;
+  padding: 40px;
+  gap: 40px;
+  background-color: #f2f2f2;
+  min-height: calc(50vh - 100px);
+}
+
+.perfil-aluno-ocorrencias {
+  width: 30%;
+  border-radius: 20px;
+  padding: 30px 20px;
+  color: #1F5592;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.perfil-aluno-ocorrencias img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.nome-aluno-ocorrencias {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.tabela-ocorrencias {
+  width: 50%;
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-tabela-ocorrencias {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #c0392b;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+thead {
+  background-color: #1F5592;
+  color: white;
+  border-radius: 25px;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f0f0f0;
+}

@@ -12,9 +12,8 @@ namespace Api_Projeto.Annne.DTOs
         [EmailAddress(ErrorMessage = "E-mail inválido.")]
         public required string Email { get; set; }
 
-        [Required(ErrorMessage = "O telefone é obrigatório.")]
-        [RegularExpression(@"^\(\d{2}\) \d{4,5}-\d{4}$", ErrorMessage = "O telefone deve estar no formato (XX) XXXXX-XXXX.")]
-        public required string Telefone { get; set; }
+          [RegularExpression(@"^\(?\d{2}\)?[\s\-]?\d{4,5}[\s\-]?\d{4}$", ErrorMessage = "Telefone inválido. Ex: (11) 91234-5678")]
+        public string? Telefone { get; set; }
 
         [Required(ErrorMessage = "A senha é obrigatória.")]
         [MinLength(6, ErrorMessage = "A senha deve ter no mínimo 6 caracteres.")]

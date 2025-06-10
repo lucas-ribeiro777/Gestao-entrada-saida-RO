@@ -41,7 +41,7 @@
       "nome": "Lucas Morales Ribeiro",
       "email": "lucasmoraribeiro@gmail.com",
       "telefone": "14998492576",
-      "data_nasc": "2007-10-29",
+      "data_nasc": "29/10/2007",
       "senha": "SENHATESTE",
       "confirmarSenha": "SENHATESTE"
     },
@@ -50,7 +50,7 @@
       "nome": "CLAUDINEI RIBEIRO",
       "email": "lucasmoraribeiro@gmail.com",
       "telefone": "+5514998492576",
-      "data_nasc": "2007-10-29",
+      "data_nasc": "29/10/2007",
       "senha": "TESTEPINTO",
       "confirmarSenha": "TESTEPINTO",
       "foto": {}
@@ -59,7 +59,7 @@
       "id": "8abd",
       "nome": "teste",
       "email": "teste@gmail.com",
-      "data_nasc": "2007-10-29",
+      "data_nasc": "29/10/2007",
       "telefone": "14998492576",
       "senha": "teste",
       "confirmarSenha": "teste",
@@ -69,7 +69,7 @@
       "id": "fe19",
       "nome": "teteetetetettet",
       "email": "tetetetetetettte@gmail.com",
-      "data_nasc": "2007-10-29",
+      "data_nasc": "29/10/2007",
       "telefone": "14998492576",
       "senha": "teste",
       "confirmarSenha": "teste",
@@ -80,7 +80,7 @@
       "nome": "CLAUDINEI RIBEIRO",
       "email": "lucasmoraribeiro@gmail.com",
       "telefone": "+5514998492576",
-      "data_nasc": "2007-10-29",
+      "data_nasc": "29/10/2007",
       "senha": "123123",
       "confirmarSenha": "123123",
       "foto": "Captura de tela 2024-12-05 091519.png"
@@ -89,7 +89,7 @@
       "id": "b391",
       "nome": "teste",
       "email": "teste@gmail.com",
-      "data_nasc": "2007-10-29",
+      "data_nasc": "29/10/2007",
       "telefone": "14998492576",
       "senha": "resre",
       "confirmarSenha": "resre",
@@ -100,10 +100,79 @@
       "nome": "Lucas Morales Ribeiro",
       "email": "lucasmoraribeiro@gmail.com",
       "telefone": "14998492576",
-      "data_nasc": "2007-10-29",
+      "data_nasc": "29/10/2007",
       "senha": "1213121",
       "confirmarSenha": "12123",
       "foto": null
+    },
+    {
+      "id": "13f8"
+    },
+    {
+      "id": "bc6e"
+    },
+    {
+      "id": "0d1c"
+    },
+    {
+      "id": "1f25"
+    },
+    {
+      "id": "20ab"
+    },
+    {
+      "id": "1fad"
+    },
+    {
+      "id": "2bbc"
+    },
+    {
+      "id": "9b1c"
+    },
+    {
+      "id": "8eaa"
+    },
+    {
+      "id": "72c3"
+    },
+    {
+      "id": "41ad"
+    },
+    {
+      "id": "7870"
+    },
+    {
+      "id": "978e"
+    },
+    {
+      "id": "2fa2",
+      "nome": "",
+      "email": "",
+      "dataNascimento": "",
+      "telefone": "",
+      "senha": "",
+      "foto": "Captura de tela 2024-12-05 091519.png",
+      "assinatura": "assinatura_1749574909665.png"
+    },
+    {
+      "id": "e096",
+      "nome": "Lucas Morales testetetete",
+      "email": "lucasmoraribeiro@gmail.com",
+      "dataNascimento": "29/69/2990",
+      "telefone": "14998492576",
+      "senha": "1234124",
+      "foto": "Captura de tela 2024-12-05 091316.png",
+      "assinatura": "assinatura_1749575128821.png"
+    },
+    {
+      "id": "7dc9",
+      "nome": "Lucas Morales Ribeiro",
+      "email": "lucasmoraribeiro@gmail.com",
+      "dataNascimento": "29/10/2007",
+      "telefone": "14998492576",
+      "senha": "123123",
+      "foto": "Captura de tela 2024-12-05 091316.png",
+      "assinatura": "assinatura_1749575177411.png"
     }
   ],
   "autorizacao": [

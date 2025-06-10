@@ -11,8 +11,8 @@ public class ResponsavelUploadDTO
     [EmailAddress(ErrorMessage = "O email não é válido.")]
     public string? Email { get; set; }
 
-    [RegularExpression(@"^\(?\d{2}\)?[\s\-]?\d{4,5}[\s\-]?\d{4}$", ErrorMessage = "O telefone não é válido.")]
-    public string? Telefone { get; set; }
+    [RegularExpression(@"^\(?\d{2}\)?[\s\-]?\d{4,5}[\s\-]?\d{4}$", ErrorMessage = "Telefone inválido. Ex: (11) 91234-5678")]
+        public string? Telefone { get; set; }
 
     [DataType(DataType.Date)]
     [CustomValidation(typeof(ResponsavelUploadDTO), nameof(ValidarDataNascimento))]

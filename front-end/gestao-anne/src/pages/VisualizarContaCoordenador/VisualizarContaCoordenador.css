@@ -1,0 +1,91 @@
+.conta-container-coordenador {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .topo-nav-coordenador {
+    background-color: #004f9e;
+    display: flex;
+    justify-content: center;
+    padding: 12px 0;
+  }
+  
+  .nav-btn-coordenador {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    margin: 0 20px;
+    cursor: pointer;
+  }
+  
+  .nav-btn.active-coordenador {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .conteudo-conta-coordenador {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .dados-box-coordenador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0; /* Botões colados */
+    padding: 0;
+    width: 100%;
+    max-width: 430px;
+  }
+  
+  /* Estilo comum aos botões */
+  .dado-linha-coordenador,
+  .dado-linha--coordenador {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 25px;
+    padding: 14px 20px;
+    width: 100%;
+    font-size: 15px;
+    color: white;
+    box-shadow: none;
+  }
+  
+  .dado-linha-coordenador:nth-child(odd),
+  .dado-linha-coordenador:nth-child(odd) {
+    background-color: #1F5592; /* Azul escuro */
+  }
+  
+  .dado-linha-coordenador:nth-child(even),
+  .dado-linha-coordenador:nth-child(even) {
+    background-color: #87ADD8; /* Azul claro */
+  }
+  
+  .dado-linha-coordenador span,
+  .dado-linha-coordenador span {
+    flex: 1;
+    text-align: left;
+    font-weight: 500;
+    margin-right: 12px;
+  }
+  
+  .editar-coordenador {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .editar-coordenador:hover {
+    transform: scale(1.15);
+    color: #cce7ff;
+  }

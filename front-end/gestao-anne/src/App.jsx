@@ -9,6 +9,7 @@ import VisualizarContaAluno from './pages/VisualizarContaAluno/VisualizarContaAl
 import CadastroCoordenador from './pages/CadastroCoordenador/CadastroCoordenador';
 import VisualizacaoResponsavel from './pages/VisualizacaoResponsavel/VisualizacaoResponsavel';
 import InicialResponsavel from './pages/InicialResponsavel/InicialResponsavel';
+import VisualizarContaCoordenador from './pages/VisualizarContaCoordenador/VisualizarContaCoordenador';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/visualizarcontaaluno" element={<VisualizarContaAluno />} />
         <Route path="/VisualizacaoResponsavel" element={<VisualizacaoResponsavel />} />
         <Route path="/InicialResponsavel" element={<InicialResponsavel />} />
+        <Route path="/VisualizarContaCoordenador" element={<VisualizarContaCoordenador />} />
       </Routes>
     </Router>
   );

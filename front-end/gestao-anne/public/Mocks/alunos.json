@@ -143,6 +143,36 @@
     },
     {
       "id": "978e"
+    },
+    {
+      "id": "2fa2",
+      "nome": "",
+      "email": "",
+      "dataNascimento": "",
+      "telefone": "",
+      "senha": "",
+      "foto": "Captura de tela 2024-12-05 091519.png",
+      "assinatura": "assinatura_1749574909665.png"
+    },
+    {
+      "id": "e096",
+      "nome": "Lucas Morales testetetete",
+      "email": "lucasmoraribeiro@gmail.com",
+      "dataNascimento": "29/69/2990",
+      "telefone": "14998492576",
+      "senha": "1234124",
+      "foto": "Captura de tela 2024-12-05 091316.png",
+      "assinatura": "assinatura_1749575128821.png"
+    },
+    {
+      "id": "7dc9",
+      "nome": "Lucas Morales Ribeiro",
+      "email": "lucasmoraribeiro@gmail.com",
+      "dataNascimento": "29/10/2007",
+      "telefone": "14998492576",
+      "senha": "123123",
+      "foto": "Captura de tela 2024-12-05 091316.png",
+      "assinatura": "assinatura_1749575177411.png"
     }
   ],
   "autorizacao": [

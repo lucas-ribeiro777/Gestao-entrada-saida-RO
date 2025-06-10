@@ -1,7 +1,20 @@
 {
-    "Coordenadores": [
-      {
-
-      }
+  "Coordenadores": [
+    {
+      "id": "be32",
+      "nome": "Lucas Morales Ribeiro",
+      "email": "lucasmoraribeiro@gmail.com",
+      "telefone": "14998492576",
+      "senha": "123123",
+      "assinatura": "assinatura_1749578618526.png"
+    },
+    {
+      "id": "2b26",
+      "nome": "Lucas Morales Ribeiro",
+      "email": "lucasmoraribeiro@gmail.com",
+      "telefone": "14998492576",
+      "senha": "123123",
+      "assinatura": "assinatura_1749578678572.png"
+    }
   ]
-  }
+}

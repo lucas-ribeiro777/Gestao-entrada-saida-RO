@@ -2,7 +2,7 @@ import React from 'react';
 import './CadastroCoordenador.css';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 import Rodape from '../../components/Rodape/Rodape';
-import FormCadastro from '../../components/FormCadastro/FormCadastro';
+import FormCadastroCoordenador from '../../components/FormCadastroCoordenador/FormCadastroCoordenador';
 
 function CadastroCoordenador() {
   const camposCoordenador = [
@@ -38,7 +38,7 @@ function CadastroCoordenador() {
     <>
       <MenuCadastro />
       <div className='centro-coordenador'>
-        <FormCadastro tipo="coordenador" campos={camposCoordenador} onSubmit={handleSubmit} />
+        <FormCadastroCoordenador tipo="coordenador" campos={camposCoordenador} onSubmit={handleSubmit} />
       </div>
       <Rodape />
     </>

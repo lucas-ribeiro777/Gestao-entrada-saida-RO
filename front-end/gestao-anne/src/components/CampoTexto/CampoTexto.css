@@ -1,0 +1,18 @@
+.campo-texto input{
+    width: 100%;
+    height: 45px;
+    border-radius: 25px;
+    border: none;
+    padding-left: 10px;
+}
+
+.campo-texto{
+    display: grid;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.campo-texto label{
+    margin-left: 0%;
+    
+}

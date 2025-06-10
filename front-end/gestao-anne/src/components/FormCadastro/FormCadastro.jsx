@@ -33,6 +33,7 @@ function FormCadastro({ tipo, campos, fotoSelecionada }) {
     e.preventDefault();
 
     try {
+      
       const formDataToSend = new FormData();
 
       // adiciona os dados do formulário

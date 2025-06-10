@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Api_Projeto.Annne.Models;
+using Api_Projeto.Annne.DTOs;
+using Microsoft.EntityFrameworkCore;
+using Api_Projeto.Annne.Repository;
 
 namespace Api_Projeto.Annne.Controllers
 {
@@ -10,42 +10,64 @@ namespace Api_Projeto.Annne.Controllers
     [Route("api/[controller]")]
     public class ROController : ControllerBase
     {
-        private static List<RegistroOcorrencia> _ocorrencias = new();
-        private static int _nextId = 1;
+        private readonly DbGestaoAnneContext _context;
 
-       
-        // Professor registra uma nova ocorrência.
-        [HttpPost]
-        public IActionResult Registrar([FromBody] RegistroOcorrencia nova)
+        public ROController(DbGestaoAnneContext context)
         {
-            nova.Id = _nextId++;
-            nova.DataHora = DateTime.Now;
-            _ocorrencias.Add(nova);
+            _context = context;
+        }
+
+        // POST: api/RO
+        [HttpPost]
+        public async Task<IActionResult> Registrar([FromBody] RegistroOcorrenciaDTOs dto)
+        {
+            var nova = new RegistroOcorrencia
+            {
+                Tipo = dto.Tipo,
+                Motivo = dto.Motivo,
+                DataHora = dto.DataHora,
+                Encerramento = dto.Encerramento,
+                Curso = dto.Curso,
+                Turma = dto.Turma,
+                Observacao = dto.Observacao,
+
+                // No futuro, esses IDs devem vir do token (usuário logado)
+                ProfessorId = 1,
+                AlunoId = 10,
+                CoordenadorId = 2,
+                ResponsavelId = 3
+            };
+
+            _context.RegistroOcorrencia.Add(nova);
+            await _context.SaveChangesAsync();
+
             return CreatedAtAction(nameof(ObterPorAluno), new { alunoId = nova.AlunoId }, nova);
         }
 
-        
-        // Coordenador vê o histórico de todas as ocorrências.
+        // GET: api/RO
         [HttpGet]
-        public IActionResult ObterTodos()
+        public async Task<IActionResult> ObterTodos()
         {
-            return Ok(_ocorrencias.OrderByDescending(o => o.DataHora));
+            var lista = await _context.RegistroOcorrencia
+                .OrderByDescending(o => o.DataHora)
+                .ToListAsync();
+
+            return Ok(lista);
         }
 
-        
-        // Responsável vê as ocorrências do filho por ID do aluno.
+        // GET: api/RO/aluno/{alunoId}
         [HttpGet("aluno/{alunoId}")]
-        public IActionResult ObterPorAluno(int alunoId)
+        public async Task<IActionResult> ObterPorAluno(int alunoId)
         {
-            var ocorrencias = _ocorrencias
+            var lista = await _context.RegistroOcorrencia
                 .Where(o => o.AlunoId == alunoId)
                 .OrderByDescending(o => o.DataHora)
-                .ToList();
+                .ToListAsync();
 
-            if (!ocorrencias.Any())
+            if (!lista.Any())
                 return NotFound("Nenhuma ocorrência encontrada para esse aluno.");
 
-            return Ok(ocorrencias);
+            return Ok(lista);
         }
     }
 }

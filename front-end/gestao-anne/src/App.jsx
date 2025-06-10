@@ -7,6 +7,8 @@ import EsqueciMinhaSenha from './pages/EsqueciMinhaSenha/EsqueciMinhaSenha';
 import VisualizarOcorrenciasAluno from './pages/VisualizarOcorrenciasAluno/VisualizarOcorrenciasAluno';
 import VisualizarContaAluno from './pages/VisualizarContaAluno/VisualizarContaAluno';
 import CadastroCoordenador from './pages/CadastroCoordenador/CadastroCoordenador';
+import InicialResponsavel from './pages/InicialResponsavel/InicialResponsavel';
+
 
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
         <Route path="/coordenacao" element={<CadastroCoordenador />} />
         <Route path="/visualizarocorrenciasaluno" element={<VisualizarOcorrenciasAluno />} />
         <Route path="/visualizarcontaaluno" element={<VisualizarContaAluno />} />
+        <Route path="/inicialresponsavel" element={<InicialResponsavel />} />
       </Routes>
     </Router>
   );

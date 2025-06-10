@@ -86,57 +86,7 @@ body, html {
   background-color: black;
 }
 
-/* MAIN */
 main {
   flex: 1;
   padding: 20px;
-}
-
-/* RODAPE */
-footer {
-  background-color: #1f5592;
-  color: white;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 115px;
-  flex-wrap: wrap;
-}
-
-.footer-coluna {
-  text-align: center;
-  width: 50%;
-}
-
-.titulo-duvidas {
-  font-weight: 700;
-  font-style: italic;
-  font-size: 20px;
-  margin-bottom: 8px;
-}
-
-.infos {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  font-weight: 700;
-  font-size: 17px;
-}
-
-.contato {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.venha {
-  font-weight: 700;
-  font-style: italic;
-  margin-bottom: 8px;
-}
-
-.icone-contato {
-  width: 22px;
-  height: 22px;
 }

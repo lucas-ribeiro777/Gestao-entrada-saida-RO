@@ -16,6 +16,8 @@ const VisualizarContaAluno = () => {
     responsavel: 'José Antônio Silva',
   });
 
+
+
   const handleEditar = (campo) => {
     const valorAtual = dados[campo];
     const novoValor = prompt(`Editar ${campo}:`, valorAtual);

@@ -1,12 +1,40 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_077ef5e2-4ae0-4bc6-85df-28da329c9eec.jfif",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_077ef5e2-4ae0-4bc6-85df-28da329c9eec.jfif"
+    },
+    {
       "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_0dc54824-2fb9-436a-879e-5c7e63c349b5.png",
       "PackagePath": "staticwebassets\\assinaturas\\assinatura_0dc54824-2fb9-436a-879e-5c7e63c349b5.png"
     },
     {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_33694b72-e5ac-438b-bee6-f2da30967537.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_33694b72-e5ac-438b-bee6-f2da30967537.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_3bafd807-6120-4848-84f5-c160a209ced9.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_3bafd807-6120-4848-84f5-c160a209ced9.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_61f4e62b-1938-49f9-b09d-a1347f112e8f.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_61f4e62b-1938-49f9-b09d-a1347f112e8f.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_6eb68dff-beda-44a4-9721-9b97b8c81943.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_6eb68dff-beda-44a4-9721-9b97b8c81943.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_71afcc26-8614-4c20-acfa-849b405ca564.jfif",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_71afcc26-8614-4c20-acfa-849b405ca564.jfif"
+    },
+    {
       "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_7f06af3f-9f55-4028-9300-9879c3476613.png",
       "PackagePath": "staticwebassets\\assinaturas\\assinatura_7f06af3f-9f55-4028-9300-9879c3476613.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_8fbdbb2d-d43b-4870-9242-80b9da365946.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_8fbdbb2d-d43b-4870-9242-80b9da365946.png"
     },
     {
       "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_a5c6db0a-5015-4821-9634-238f9d8c7f84.png",
@@ -21,8 +49,24 @@
       "PackagePath": "staticwebassets\\assinaturas\\assinatura_ab5ea615-deb8-408f-9864-6812f4c21948.png"
     },
     {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_ab81ef70-42a9-4f09-8060-0c4f2c0f18c9.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_ab81ef70-42a9-4f09-8060-0c4f2c0f18c9.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_ac47b971-b569-4f49-a4ee-06f2fa71425b.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_ac47b971-b569-4f49-a4ee-06f2fa71425b.png"
+    },
+    {
       "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_c62ef55d-a266-4fa3-b6ed-9da82739502f.png",
       "PackagePath": "staticwebassets\\assinaturas\\assinatura_c62ef55d-a266-4fa3-b6ed-9da82739502f.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_ccf5d058-e4bb-4a40-aaa1-044d04cec394.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_ccf5d058-e4bb-4a40-aaa1-044d04cec394.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_fcfd2c19-ec1d-428e-be07-e234b35703c1.png",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_fcfd2c19-ec1d-428e-be07-e234b35703c1.png"
     },
     {
       "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_professor_70716724-4b1a-4af1-a26a-b6fc96dd9490.png",
@@ -31,6 +75,10 @@
     {
       "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_professor_ae7d8ecc-9870-4bcc-88af-a1dc76e2f785.png",
       "PackagePath": "staticwebassets\\assinaturas\\assinatura_professor_ae7d8ecc-9870-4bcc-88af-a1dc76e2f785.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_professor_b822060d-ef29-4ac0-af32-f6e5393a1dad.jfif",
+      "PackagePath": "staticwebassets\\assinaturas\\assinatura_professor_b822060d-ef29-4ac0-af32-f6e5393a1dad.jfif"
     },
     {
       "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\assinaturas\\assinatura_professor_e9fb359c-6d2a-42eb-b3d4-88e37e139d0e.png",
@@ -49,8 +97,36 @@
       "PackagePath": "staticwebassets\\images\\imagem_3e566369-0bb3-4f9c-8752-c0c7aff5aa70.png"
     },
     {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_600d417f-78fd-45f8-b137-8f8590ccee70.jpg",
+      "PackagePath": "staticwebassets\\images\\imagem_600d417f-78fd-45f8-b137-8f8590ccee70.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_7e3a10e7-1fc6-4b45-ab7a-45ae0afd38f3.png",
+      "PackagePath": "staticwebassets\\images\\imagem_7e3a10e7-1fc6-4b45-ab7a-45ae0afd38f3.png"
+    },
+    {
       "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_8d0e9ce9-0528-45ec-9595-c7c567e8cc22.png",
       "PackagePath": "staticwebassets\\images\\imagem_8d0e9ce9-0528-45ec-9595-c7c567e8cc22.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_b70e631f-e402-47b3-80a6-7c404a440444.jpg",
+      "PackagePath": "staticwebassets\\images\\imagem_b70e631f-e402-47b3-80a6-7c404a440444.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_c7b9a50c-549d-4aeb-b086-1eb531f5c926.png",
+      "PackagePath": "staticwebassets\\images\\imagem_c7b9a50c-549d-4aeb-b086-1eb531f5c926.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_d5ed28d8-48ed-4e4a-955c-483b0b671523.jpg",
+      "PackagePath": "staticwebassets\\images\\imagem_d5ed28d8-48ed-4e4a-955c-483b0b671523.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_efba9c3a-a28a-4025-bb23-cad6e01ecafd.png",
+      "PackagePath": "staticwebassets\\images\\imagem_efba9c3a-a28a-4025-bb23-cad6e01ecafd.png"
+    },
+    {
+      "Id": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\wwwroot\\images\\imagem_f8e64c51-a254-493b-a986-263e94183f84.jpg",
+      "PackagePath": "staticwebassets\\images\\imagem_f8e64c51-a254-493b-a986-263e94183f84.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Api_Projeto.Annne.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -1,20 +1,31 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Api_Projeto.Annne.DTOs
 {
     public class RegistroOcorrenciaDTOs
     {
-  
-    public string Tipo { get; set; } = string.Empty;
-    public string Motivo { get; set; } = string.Empty;
-    public DateTime DataHora { get; set; } = DateTime.Now;
-    public DateTime? Encerramento { get; set; }
-    public string Curso { get; set; } = string.Empty;
-    public string Turma { get; set; } = string.Empty;
-    public string Observacao { get; set; } = string.Empty;
-}
+        [Required]
+        [Range(1, 2, ErrorMessage = "Tipo inválido. Use 1 para Advertência ou 2 para Suspensão.")]
+        public int Tipo { get; set; }
 
+        [Required]
+        public required string Motivo { get; set; }
+
+        [Required]
+        [Range(0, 1, ErrorMessage = "Encerramento inválido. Use 0 para Incompleto ou 1 para Completo.")]
+        public int Encerramento { get; set; }
+
+        public required string Curso { get; set; }
+        public required string Turma { get; set; }
+        public required string Observacao { get; set; }
+
+        [Required]
+        public int ProfessorId { get; set; }
+
+        [Required]
+        public int AlunoId { get; set; }
+
+        public int? CoordenadorId { get; set; }
+        public int? ResponsavelId { get; set; }
+    }
 }

@@ -8,3 +8,4 @@ function CabecalhoPages() {
         </header>
     );
 }
+export default CabecalhoPages;

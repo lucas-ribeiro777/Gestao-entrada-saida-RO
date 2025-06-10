@@ -97,3 +97,11 @@
   width: 97%;
   align-items: center;
 }
+
+.mensagem-feedback {
+  color: #e74c3c;
+  font-size: 20px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 800;
+}

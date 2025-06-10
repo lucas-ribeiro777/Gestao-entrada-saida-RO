@@ -1,5 +1,6 @@
 import React from 'react';
 import './InicialAluno.css';
+import Rodape from '../../components/Rodape/Rodape';
 
 function InicialAluno() {
   return (
@@ -33,28 +34,8 @@ function InicialAluno() {
 
       <main></main>
 
-      <footer>
-        <div className="footer-coluna">
-          <p className="titulo-duvidas">DÚVIDAS? ENTRE EM CONTATO!</p>
-          <div className="infos">
-            <div className="contato">
-              <img src="./images/whatsapp.png" alt="WhatsApp" className="icone-contato" />
-              (11) 4002-8922
-            </div>
-            <div className="contato">
-              <img src="./images/telefone.png" alt="Telefone" className="icone-contato" />
-              (XX) XXXX-XXXX
-            </div>
-          </div>
-        </div>
-
-        <div className="footer-coluna">
-          <p className="venha">VENHA NOS VISITAR!</p>
-          <p><strong>R. Aristeu Rodrigues Sampaio, 271 - Jardim das</strong></p>
-          <p>Nações, Lençóis Paulista - SP, 18685-730</p>
-        </div>
-      </footer>
-    </div>
+<Rodape />
+</div>
   );
 }
 

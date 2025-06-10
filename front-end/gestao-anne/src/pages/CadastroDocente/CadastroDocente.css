@@ -1,14 +1,28 @@
-.linha-inteira {
-  width: 100%;
+.campo-centralizado input {
+  margin: 0 auto;
+  display: block;
+  max-width: 300px;
+}
+
+/* Para as linhas dos checkboxes */
+.checkbox-linha {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 1rem;
+  color: white;
+  font-weight: 600;
 }
 
-.linha-inteira label {
-  margin-bottom: 0.5rem;
+/* Deixa o link laranja e sublinhado */
+.link-laranja {
+  color: #ff6600;
+  text-decoration: underline;
 }
 
-.linha-inteira input {
-  width: 100%;
+/* Aumenta o tamanho da checkbox */
+.checkbox-linha input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #ff6600;
 }

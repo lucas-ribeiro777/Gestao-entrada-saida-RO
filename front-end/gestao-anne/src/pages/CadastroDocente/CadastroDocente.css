@@ -1,28 +1,33 @@
+.linha-inteira {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.linha-inteira label {
+  margin-bottom: 0.5rem;
+}
+
+.linha-inteira input {
+  width: 100%;
+}
+
+.campo-centralizado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .campo-centralizado input {
   margin: 0 auto;
-  display: block;
-  max-width: 300px;
-}
+  max-width: 300px; /* opcional: limita largura */
+} 
 
-/* Para as linhas dos checkboxes */
-.checkbox-linha {
+.centro {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 1rem;
-  color: white;
-  font-weight: 600;
-}
-
-/* Deixa o link laranja e sublinhado */
-.link-laranja {
-  color: #ff6600;
-  text-decoration: underline;
-}
-
-/* Aumenta o tamanho da checkbox */
-.checkbox-linha input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  accent-color: #ff6600;
+  flex-direction: column; /* Mantém os elementos empilhados */
+  width: 100%;
 }

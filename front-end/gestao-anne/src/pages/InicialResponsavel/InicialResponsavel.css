@@ -1,0 +1,52 @@
+.InicialResponsavel {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+.logo {
+  height: 40px;
+}
+
+h1 {
+  margin-top: 10px;
+}
+
+.container {
+  padding: 20px;
+}
+
+.registro-table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.registro-table th, .registro-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.registro-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.visualizar {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.visualizar:hover {
+  background-color: #0056b3;
+}

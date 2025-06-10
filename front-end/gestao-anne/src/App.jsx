@@ -8,6 +8,7 @@ import VisualizarOcorrenciasAluno from './pages/VisualizarOcorrenciasAluno/Visua
 import VisualizarContaAluno from './pages/VisualizarContaAluno/VisualizarContaAluno';
 import CadastroCoordenador from './pages/CadastroCoordenador/CadastroCoordenador';
 import VisualizacaoResponsavel from './pages/VisualizacaoResponsavel/VisualizacaoResponsavel';
+import InicialResponsavel from './pages/InicialResponsavel/InicialResponsavel';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/visualizarocorrenciasaluno" element={<VisualizarOcorrenciasAluno />} />
         <Route path="/visualizarcontaaluno" element={<VisualizarContaAluno />} />
         <Route path="/VisualizacaoResponsavel" element={<VisualizacaoResponsavel />} />
+        <Route path="/InicialResponsavel" element={<InicialResponsavel />} />
       </Routes>
     </Router>
   );

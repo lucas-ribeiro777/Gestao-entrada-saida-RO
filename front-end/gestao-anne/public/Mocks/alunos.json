@@ -37,6 +37,15 @@
       "senha": "$2b$10$pqrst24680senhaCriptografada"
     },
     {
+      "id": "5",
+      "nome": "Giovanna dos Santos Silva",
+      "email": "giovanna.santos@gmail.com",
+      "data_nasc": "2009-11-11",
+      "id_responsavel": 122,
+      "telefone": "11973243342",
+      "senha": "testesenha123"
+    },
+    {
       "id": "52",
       "nome": "Lucas Morales Ribeiro",
       "email": "lucasmoraribeiro@gmail.com",

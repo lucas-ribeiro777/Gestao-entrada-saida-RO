@@ -6,9 +6,9 @@ import "./VisualizacaoResponsavel.css";
 
 const VisualizacaoResponsavel = () => {
   const [dados, setDados] = useState(null);
-  const [editando, setEditando] = useState(false);
   const [formData, setFormData] = useState({});
   const [responsavelId, setResponsavelId] = useState(null);
+  const [editandoCampo, setEditandoCampo] = useState(null); // <-- NOVO
 
   useEffect(() => {
     fetch("/Mocks/Responsaveis.json")
@@ -17,10 +17,8 @@ const VisualizacaoResponsavel = () => {
         const responsavel = data.responsaveis[0];
         if (responsavel) {
           setResponsavelId(responsavel.id);
-
           const aluno = data.alunos.find((a) => a.id_filho === responsavel.id_filho);
           const nomeAluno = aluno ? aluno.nome : "Filho não encontrado";
-
           const dadosFormatados = {
             nome: responsavel.nome,
             nascimento: formatarData(responsavel.data_nasc),
@@ -28,7 +26,6 @@ const VisualizacaoResponsavel = () => {
             telefone: responsavel.telefone,
             aluno: nomeAluno
           };
-
           setDados(dadosFormatados);
           setFormData(dadosFormatados);
         }
@@ -47,15 +44,23 @@ const VisualizacaoResponsavel = () => {
     });
   };
 
-  const handleEditar = () => setEditando(true);
+  const handleCampoChange = (campo, valor) => {
+    setFormData((prev) => ({ ...prev, [campo]: valor }));
+  };
 
-  const handleSalvar = () => {
-    const dadosParaEnviar = {
-      nome: formData.nome,
-      email: formData.email,
-      telefone: formData.telefone,
-      data_nasc: formData.nascimento.split("/").reverse().join("-"),
-      filho_nome: formData.aluno
+  const handleEditarCampo = (campo) => {
+    setEditandoCampo(campo);
+  };
+
+  const handleSalvarCampo = (campo) => {
+    const valorAtualizado = formData[campo];
+
+    const payload = {
+      ...dados,
+      [campo]:
+        campo === "nascimento"
+          ? valorAtualizado.split("/").reverse().join("-")
+          : valorAtualizado
     };
 
     fetch(`http://localhost:3001/Responsaveis/${responsavelId}`, {
@@ -63,18 +68,14 @@ const VisualizacaoResponsavel = () => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(dadosParaEnviar)
+      body: JSON.stringify(payload)
     })
       .then((res) => res.json())
       .then(() => {
-        setDados(formData);
-        setEditando(false);
+        setDados((prev) => ({ ...prev, [campo]: valorAtualizado }));
+        setEditandoCampo(null);
       })
-      .catch((err) => console.error("Erro ao salvar dados:", err));
-  };
-
-  const handleChange = (campo, valor) => {
-    setFormData((prev) => ({ ...prev, [campo]: valor }));
+      .catch((err) => console.error("Erro ao salvar campo:", err));
   };
 
   if (!dados) return <div className="loading">Carregando dados...</div>;
@@ -82,90 +83,67 @@ const VisualizacaoResponsavel = () => {
   return (
     <div className="container">
       <CabecalhoPages>
-  <li>
-    <NavLink
-      to="/InicialResponsavel"
-      className={({ isActive }) => (isActive ? "ativo" : "nativo")}
-    >
-      INÍCIO
-    </NavLink>
-    <li>|</li>
-  </li>
-  <li>
-    <NavLink
-      to="/autorizarEntradaSaida"
-      className={({ isActive }) => (isActive ? "ativo" : "nativo")}
-    >
-      AUTORIZAR ENTRADA/SAÍDA
-    </NavLink>
-    <li>|</li>
-    
-  </li>
-  <li>
-    <NavLink
-      to="/VisualizacaoResponsavel"
-      className={({ isActive }) => (isActive ? "ativo" : "nativo")}
-    >
-      CONTA
-    </NavLink> 
-  </li>
-</CabecalhoPages>
+        <li>
+          <NavLink to="/InicialResponsavel" className={({ isActive }) => (isActive ? "ativo" : "nativo")}>INÍCIO</NavLink>
+        </li>
+        <li>
+          <NavLink to="/autorizarEntradaSaida" className={({ isActive }) => (isActive ? "ativo" : "nativo")}>AUTORIZAR ENTRADA/SAÍDA</NavLink>
+        </li>
+        <li>
+          <NavLink to="/VisualizacaoResponsavel" className={({ isActive }) => (isActive ? "ativo" : "nativo")}>CONTA</NavLink>
+        </li>
+      </CabecalhoPages>
 
       <main className="content">
         <div className="card">
           <Item
             icone="🧾"
-            valor={formData.nome || ""}
+            valor={formData.nome}
             campo="nome"
-            editando={editando}
-            onChange={handleChange}
+            editando={editandoCampo === "nome"}
+            onEditar={handleEditarCampo}
+            onSalvar={handleSalvarCampo}
+            onChange={handleCampoChange}
             bg="azul"
           />
           <Item
             icone="📅"
-            valor={formData.nascimento || ""}
+            valor={formData.nascimento}
             campo="nascimento"
-            editando={editando}
-            onChange={handleChange}
+            editando={editandoCampo === "nascimento"}
+            onEditar={handleEditarCampo}
+            onSalvar={handleSalvarCampo}
+            onChange={handleCampoChange}
             bg="azul-claro"
           />
           <Item
             icone="📧"
-            valor={formData.email || ""}
+            valor={formData.email}
             campo="email"
-            editando={editando}
-            onChange={handleChange}
+            editando={editandoCampo === "email"}
+            onEditar={handleEditarCampo}
+            onSalvar={handleSalvarCampo}
+            onChange={handleCampoChange}
             bg="azul"
           />
           <Item
             icone="📞"
-            valor={formData.telefone || ""}
+            valor={formData.telefone}
             campo="telefone"
-            editando={editando}
-            onChange={handleChange}
+            editando={editandoCampo === "telefone"}
+            onEditar={handleEditarCampo}
+            onSalvar={handleSalvarCampo}
+            onChange={handleCampoChange}
             bg="azul-claro"
           />
           <Item
             icone="👨‍👧"
-            valor={formData.aluno || ""}
+            valor={formData.aluno}
             campo="aluno"
             editando={false}
-            onChange={handleChange}
             bg="azul"
           />
         </div>
-
-        <button className="botao-editar" onClick={editando ? handleSalvar : handleEditar}>
-          {editando ? (
-            <>
-              💾 <span className="texto-botao">Salvar</span>
-            </>
-          ) : (
-            <>
-              <span className="texto-botao">Editar</span> ✏️
-            </>
-          )}
-        </button>
       </main>
 
       <Rodape />
@@ -173,7 +151,7 @@ const VisualizacaoResponsavel = () => {
   );
 };
 
-const Item = ({ icone, valor, campo, editando, onChange, bg }) => (
+const Item = ({ icone, valor, campo, editando, onEditar, onSalvar, onChange, bg }) => (
   <div className={`item ${bg}`}>
     <span className="icone">{icone}</span>
     {editando ? (
@@ -186,7 +164,16 @@ const Item = ({ icone, valor, campo, editando, onChange, bg }) => (
     ) : (
       <span className="text">{valor}</span>
     )}
+    {campo !== "aluno" && (
+      <span
+        className="icone-editar"
+        onClick={() => (editando ? onSalvar(campo) : onEditar(campo))}
+      >
+        {editando ? "💾" : "✏️"}
+      </span>
+    )}
   </div>
 );
 
 export default VisualizacaoResponsavel;
+  

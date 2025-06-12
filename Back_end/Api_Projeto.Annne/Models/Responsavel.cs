@@ -30,9 +30,6 @@ namespace Api_Projeto.Annne.Models
         [Column("senha")]
         public string Senha { get; set; } = null!;
 
-        [Column("data_nasc", TypeName = "date")]
-        public DateTime? DataNascimento { get; set; }
-
         // Um responsável pode ter vários alunos (relacionamento 1:N)
         [InverseProperty("Responsavel")]
         public List<Aluno> Alunos { get; set; } = new List<Aluno>();

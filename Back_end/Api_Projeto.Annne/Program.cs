@@ -32,7 +32,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
-        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+        // Desativa o ReferenceHandler para evitar $id no JSON
+        options.JsonSerializerOptions.ReferenceHandler = null;
         options.JsonSerializerOptions.MaxDepth = 64;
     });
 

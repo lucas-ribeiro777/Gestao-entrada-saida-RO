@@ -60,7 +60,7 @@ const LoginGeral = () => {
 
 
   const irParaCadastro = () => {
-    navigate('/cadastroaluno');
+    navigate('/');
   };
 
   const irParaEsqueciSenha = () => {

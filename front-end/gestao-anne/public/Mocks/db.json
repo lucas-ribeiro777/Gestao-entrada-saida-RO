@@ -1,0 +1,52 @@
+{
+  "solicitacoes": [
+    {
+      "id_solicitacao": 1,
+      "id_aluno": 123,
+      "id_coordenador": 10,
+      "id_responsavel": 55,
+      "curso": "Informática",
+      "turma": 3,
+      "tipo": "Saída",
+      "datahora": "2025-06-12 09:51",
+      "retorno": 1,
+      "token": "ABC123",
+      "motivo": "Consulta médica"
+    },
+    {
+      "id_solicitacao": 2,
+      "id_aluno": 123,
+      "id_coordenador": 10,
+      "id_responsavel": 55,
+      "curso": "Informática",
+      "turma": 3,
+      "tipo": "Entrada",
+      "datahora": "2025-06-12 07:50",
+      "retorno": 1,
+      "token": "XYZ456",
+      "motivo": "Chegada antecipada"
+    }
+  ],
+  "responsaveis": [
+  {
+    "id": 1,
+    "id_aluno": 123,
+    "nome": "Antônio Carlos Marçal"
+  },
+  {
+    "id": 2,
+    "id_aluno": 123,
+    "nome": "Maria De Lurdes"
+  },
+    {
+        "id": 3,
+        "id_aluno": 123,
+        "nome": "João da Silva"
+    },
+    {
+        "id": 4,
+        "id_aluno": 12,
+        "nome": "Ana Paula Souza"
+    }
+    ]
+}

@@ -7,6 +7,19 @@
   padding: 0;
 }
 
+.container-foto{
+  margin: 20px;
+}
+
+.container-central{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+  margin: 5%;
+}
+
 .topo-nav {
   background-color: #004f9e;
   display: flex;

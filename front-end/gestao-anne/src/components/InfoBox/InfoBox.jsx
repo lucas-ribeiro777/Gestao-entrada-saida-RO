@@ -1,5 +1,5 @@
 import './InfoBox.css';
-import { Pencil } from 'lucide-react'; // ou outro pacote de ícones
+import { Pencil } from 'lucide-react'; 
 import PropTypes from 'prop-types';
 
 const InfoBox = ({ icone, texto, onEditar, editavel = true, cor = 'escuro' }) => {

@@ -51,21 +51,36 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 20px;
-  background-color: #87ADD8;
-  border-radius: 25px;
+  background-color: #87b3de;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
-thead {
-  background-color: #1F5592;
+th {
+  background-color: #1f4e89;
   color: white;
-  border-radius: 25px;
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
 }
 
-th, td {
-  padding: 20px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  border: 25px;
-  border-radius: 25px;
+td {
+  padding: 12px;
+  color: black;
+}
+
+thead th:first-child {
+  border-top-left-radius: 0;
+}
+
+thead th:last-child {
+  border-top-right-radius: 0;
+}
+
+tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 20px;
+}
+
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 20px;
 }

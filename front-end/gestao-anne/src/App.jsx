@@ -11,6 +11,7 @@ import VisualizacaoResponsavel from './pages/VisualizacaoResponsavel/Visualizaca
 import InicialResponsavel from './pages/InicialResponsavel/InicialResponsavel';
 import VisualizarContaCoordenador from './pages/VisualizarContaCoordenador/VisualizarContaCoordenador';
 import InicialAluno from './pages/InicialAluno/InicialAluno';
+import VisualizarSolicitacaoAluno from './pages/VisualizarSolicitacaoAluno/VisualizarSolicitacaoAluno';
 
 
 function App() {
@@ -28,8 +29,8 @@ function App() {
         <Route path="/VisualizacaoResponsavel" element={<VisualizacaoResponsavel />} />
         <Route path="/InicialResponsavel" element={<InicialResponsavel />} />
         <Route path="/VisualizarContaCoordenador" element={<VisualizarContaCoordenador />} />
-        <Route path="/InicialAluno" element={<InicialAluno />} />
-        
+        <Route path="/inicialAluno" element={<InicialAluno />} />
+        <Route path="/visualizarsolicitacaoaluno" element={<VisualizarSolicitacaoAluno />} />
       </Routes>
     </Router>
   );

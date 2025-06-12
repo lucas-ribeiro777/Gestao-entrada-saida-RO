@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Rodape from '../../components/Rodape/Rodape';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import Foto from '../../components/Foto/Foto';
@@ -10,7 +11,6 @@ const VisualizarOcorrenciasAluno = () => {
   const [nomeAluno, setNomeAluno] = useState('');
 
   useEffect(() => {
-
     fetch('http://localhost:3001/ocorrencias')
       .then((res) => res.json())
       .then((data) => setOcorrencias(data))
@@ -18,7 +18,7 @@ const VisualizarOcorrenciasAluno = () => {
 
     fetch('http://localhost:3002/foto')
       .then((res) => res.text())
-      .then((data) => setFotoUrl(data.foto))
+      .then((data) => setFotoUrl(data))
       .catch((err) => console.error('Erro ao carregar foto do aluno:', err));
 
     fetch('http://localhost:3003/alunos')
@@ -38,16 +38,20 @@ const VisualizarOcorrenciasAluno = () => {
         }
       })
       .catch((err) => console.error('Erro ao carregar nome do aluno:', err));
-
   }, []);
 
   return (
     <>
-      <CabecalhoPages />
-  
+      <CabecalhoPages>
+        <li key="inicio"><Link to="/InicialAluno">INÍCIO</Link></li>
+        <li key="ocorrencias"><Link to="/visualizarocorrenciasaluno">OCORRÊNCIAS</Link></li>
+        <li key="solicitacoes"><Link to="/visualizarsolicitacaoaluno">SOLICITAÇÕES</Link></li>
+        <li key="conta"><Link to="/visualizarcontaaluno">CONTA</Link></li>
+      </CabecalhoPages>
+
       <div className="container-ocorrencias">
         <div className="perfil-aluno-ocorrencias">
-          <Foto 
+          <Foto
             imagem={fotoUrl}
             titulo="ALUNO"
             textoBotao={nomeAluno}
@@ -67,8 +71,8 @@ const VisualizarOcorrenciasAluno = () => {
               </tr>
             </thead>
             <tbody>
-              {ocorrencias.map((item, index) => (
-                <tr key={index}>
+              {ocorrencias.map((item) => (
+                <tr key={item.id || `${item.nome}-${item.curso}`}>
                   <td>{item.nome}</td>
                   <td>{item.curso}</td>
                   <td>{item.motivo}</td>

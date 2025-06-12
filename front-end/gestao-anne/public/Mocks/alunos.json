@@ -8,7 +8,8 @@
       "responsavel": "teste",
       "telefone": "11987654321",
       "senha": "12345",
-      "imagem": "/images/meninateste.png"
+      "imagem": "/images/meninateste.png",
+      "tipo": "aluno"
     },
     {
       "id": "2",
@@ -59,6 +60,11 @@
       "id": "8837",
       "email": "lucasmoraribeiro@gmail.com",
       "novaSenha": "696969"
+    },
+    {
+      "id": "0e3f",
+      "email": "lucas.andrade@email.com",
+      "senha": "12345"
     }
   ]
 }

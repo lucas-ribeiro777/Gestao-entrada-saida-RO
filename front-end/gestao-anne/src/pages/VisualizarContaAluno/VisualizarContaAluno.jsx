@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Rodape from '../../components/Rodape/Rodape';
 import Foto from '../../components/Foto/Foto';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
+import { Link } from 'react-router-dom';
 
 import InfoBox from '../../components/InfoBox/InfoBox';
 
@@ -54,10 +55,10 @@ const VisualizarContaAluno = () => {
   return (
     <>
       <CabecalhoPages>
-        <li key="inicio"><a href="/#">Início</a></li>
-        <li key="ocorrencias"><a href="/#">Ocorrências</a></li>
-        <li key="solicitacoes"><a href="/#">Solicitações</a></li>
-        <li key="conta"><a href="/VisualizarContaCoordenador">Conta</a></li>
+        <li key="inicio"><Link to="/InicialAluno">Início</Link></li>
+        <li key="ocorrencias"><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li>
+        <li key="solicitacoes"><Link to="/visualizarsolicitacaoaluno">Solicitações</Link></li>
+        <li key="conta"><Link to="/visualizarcontaaluno">Conta</Link></li>
       </CabecalhoPages>
 
       <div className="container-central">

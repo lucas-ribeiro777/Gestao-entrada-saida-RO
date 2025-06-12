@@ -2,37 +2,19 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './InicialAluno.css';
 import Rodape from '../../components/Rodape/Rodape';
+import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
+import { Link } from 'react-router-dom';
 
 function InicialAluno() {
-  const navigate = useNavigate();
-
-  const irParaOcorrencias = () => {
-    navigate('/visualizarocorrenciasaluno');
-  };
-
-  const irParaSolicitacoes = () => {
-    navigate('/solicitacoesaluno');
-  };
-
-  const irParaConta = () => {
-    navigate('/visualizarcontaaluno');
-  };
 
   return (
-    <div className="pagina-inicial">
-      <div className="logo-container">
-        <img src="./images/LogoSenaiSemAsEscritaDoLado.png" alt="Logo" />
-      </div>
-
-      <div className="novo-container">
-        <p className="inicio">Início</p>
-        <a href="#" onClick={irParaOcorrencias}>Ocorrências</a>
-        <a href="#" onClick={irParaSolicitacoes}>Solicitações</a>
-        <a href="#" onClick={irParaConta}>Conta</a>
-      </div>
-
-      <div className="fundo-azul"></div>
-      <div className="caixas"></div>
+    <>
+      <CabecalhoPages>
+        <li key="inicio"><Link to="/InicialAluno">Início</Link></li>
+        <li key="ocorrencias"><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li>
+        <li key="solicitacoes"><Link to="/visualizarsolicitacaoaluno">Solicitações</Link></li>
+        <li key="conta"><Link to="/VisualizarContaaluno">Conta</Link></li>
+      </CabecalhoPages>
 
       <div className="content-area">
         <div className="caixas">
@@ -55,7 +37,7 @@ function InicialAluno() {
       <main></main>
 
       <Rodape />
-    </div>
+    </>
   );
 }
 

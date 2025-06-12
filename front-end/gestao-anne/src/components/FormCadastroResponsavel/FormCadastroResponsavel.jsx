@@ -67,7 +67,7 @@ function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
         console.log([...formData.entries()]);
 
         try {
-            const response = await fetch('http://10.90.146.27:5121/api/Responsaveis/upload', {
+            const response = await fetch('http://10.90.146.27:5121/api/Responsaveis/cadastro', {
                 method: 'POST',
                 body: formData, // importante: não colocar headers Content-Type
             });

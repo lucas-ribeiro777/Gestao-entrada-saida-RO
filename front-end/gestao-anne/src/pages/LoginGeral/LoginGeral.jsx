@@ -1,38 +1,59 @@
 import './LoginGeral.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa o hook
+import { useNavigate } from 'react-router-dom';
 import Rodape from '../../components/Rodape/Rodape';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
-import EsqueciMinhaSenha from '../EsqueciMinhaSenha/EsqueciMinhaSenha';
+import CampoTexto from '../../components/CampoTexto/CampoTexto'; // import do seu componente
 
 const LoginGeral = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [mensagem, setMensagem] = useState('');
+  const [nomeUsuario, setNomeUsuario] = useState('');
   const navigate = useNavigate();
 
-  const usuarioMock = {
-    email: 'usuario@teste.com',
-    senha: '123456'
-  };
+ const handleLogin = async () => {
+    if (!email || !senha) {
+      setMensagem('Preencha todos os campos.');
+      return;
+    }
 
-  const handleLogin = () => {
-    if (email === usuarioMock.email && senha === usuarioMock.senha) {
+    try {
+      const resposta = await fetch('http://10.90.146.27:5121/api/Usuarios/Login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          senha: senha 
+        })
+      });
+
+      if (!resposta.ok) {
+        throw new Error('Credenciais inválidas');
+      }
+
+      const dados = await resposta.json();
       setMensagem('Login realizado com sucesso!');
-      // navigate('/dashboard');
-    } else {
+      setNomeUsuario(dados.nome ?? 'Usuário');
+
+    } catch (erro) {
+      console.error(erro);
       setMensagem('Email ou senha incorretos.');
+      setNomeUsuario('');
     }
   };
 
+
+
   const irParaCadastro = () => {
-    navigate('/#');
+    navigate('/cadastroaluno');
   };
 
   const irParaEsqueciSenha = () => {
-  navigate('/esqueciminhasenha');
+    navigate('/esqueciminhasenha');
   };
-
 
   return (
     <>
@@ -42,22 +63,35 @@ const LoginGeral = () => {
         <h3 className="login-title">Preencha os dados para fazer login</h3>
 
         <div className="login-container">
-          <div className="login-row">
-            <label htmlFor="email" className="login-label">E-mail</label>
-            <input id="email" type="email" placeholder="Digite seu e-mail..." className="input-full-login" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </div>
+          <CampoTexto
+            id="email"
+            label="E-mail"
+            tipo="email"
+            valor={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Digite seu e-mail..."
+          />
 
-          <div className="login-row">
-            <label htmlFor="senha" className="login-label">Senha</label>
-            <input id="senha" type="password" placeholder="Digite sua senha..." className="input-half-login" value={senha} onChange={(e) => setSenha(e.target.value)} />
-            <div className="link-esqueci-senha">
-              <a href="#" onClick={irParaEsqueciSenha}>Esqueci Minha Senha!</a>
-            </div>
+          <CampoTexto
+            id="senha"
+            label="Senha"
+            tipo="password"
+            valor={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            placeholder="Digite sua senha..."
+          />
+
+          <div className="link-esqueci-senha">
+            <a href="#" onClick={irParaEsqueciSenha}>Esqueci Minha Senha!</a>
           </div>
 
           {mensagem && (
-            <div className="mensagem-login">
-              {mensagem}
+            <div className="mensagem-login">{mensagem}</div>
+          )}
+
+          {nomeUsuario && (
+            <div className="bem-vindo-login">
+              Bem-vindo, <strong>{nomeUsuario}</strong>!
             </div>
           )}
 

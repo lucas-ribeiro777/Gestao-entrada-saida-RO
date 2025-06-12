@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import './ModalCodigoConfirmacao.css';
 import { useNavigate } from 'react-router-dom';
+import Botao from '../Botao/Botao';
 
-function ModalCodigoConfirmacao({ isOpen, onClose, codigoAPI }) {
+function ModalCodigoConfirmacao({ isOpen, onClose, codigoAPI, onCodigoCorreto }) {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState(['', '', '', '', '', '']);
   const [erro, setErro] = useState('');
@@ -28,7 +29,8 @@ function ModalCodigoConfirmacao({ isOpen, onClose, codigoAPI }) {
     const codigoEsperado = codigoAPI.replace('-', '');
 
     if (codigoDigitado === codigoEsperado) {
-      navigate('/login'); // Redireciona para o login
+      onCodigoCorreto(); // chama a função do pai para atualizar a senha
+      onClose();          // fecha o modal
     } else {
       setErro('Código incorreto. Tente novamente.');
     }
@@ -37,7 +39,6 @@ function ModalCodigoConfirmacao({ isOpen, onClose, codigoAPI }) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Confirmação de Código</h2>
         <p>Digite o código enviado por e-mail, caso não receba, verifique a caixa de spam!</p>
         
         <div className="code-inputs">

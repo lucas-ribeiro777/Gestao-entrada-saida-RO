@@ -2,6 +2,7 @@ import './VisualizarContaCoordenador.css';
 import { useState } from 'react';
 import Rodape from '../../components/Rodape/Rodape';
 
+
 const VisualizarContaCoordenador = () => {
   const [dados, setDados] = useState({
     nome: '📝   Anne Karine Lemos Rocha',
@@ -22,14 +23,7 @@ const VisualizarContaCoordenador = () => {
   };
 
   return (
-    <div className="conta-container-coordenador">
-      <div className="topo-nav-coordenador">
-        <button className="nav-btn-coordenador">Início</button>
-        <button className="nav-btn-coordenador">Ocorrências</button>
-        <button className="nav-btn-coordenador">Solicitações</button>
-        <button className="nav-btn active-coordenador">Conta</button>
-      </div>
-
+    <div className="container-conta-coordenador">
       <div className="conteudo-conta-coordenador">
         <div className="dados-box-coordenador">
           <div className="dado-linha-coordenador">

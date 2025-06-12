@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 .esqueci-wrapper {
-  text-align: center;
   padding: 20px;
   font-family: 'Inter', sans-serif;
 }
@@ -12,6 +11,7 @@
   margin-bottom: 30px;
   font-size: 24px;
   font-family: 'Inter', sans-serif;
+  text-align: center;
 }
 
 .esqueci-container {
@@ -34,13 +34,6 @@
   font-family: 'Inter', sans-serif;
 }
 
-.esqueci-label {
-  margin-bottom: 5px;
-  text-align: left;
-  color: #ffffff;
-  font-size: 15px;
-  font-family: 'Inter', sans-serif;
-}
 
 .input-full-esqueci {
   padding: 10px;

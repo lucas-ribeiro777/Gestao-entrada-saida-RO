@@ -10,6 +10,7 @@ import CadastroCoordenador from './pages/CadastroCoordenador/CadastroCoordenador
 import VisualizacaoResponsavel from './pages/VisualizacaoResponsavel/VisualizacaoResponsavel';
 import InicialResponsavel from './pages/InicialResponsavel/InicialResponsavel';
 import VisualizarContaCoordenador from './pages/VisualizarContaCoordenador/VisualizarContaCoordenador';
+import InicialAluno from './pages/InicialAluno/InicialAluno';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/VisualizacaoResponsavel" element={<VisualizacaoResponsavel />} />
         <Route path="/InicialResponsavel" element={<InicialResponsavel />} />
         <Route path="/VisualizarContaCoordenador" element={<VisualizarContaCoordenador />} />
+        <Route path="/InicialAluno" element={<InicialAluno />} />
         
       </Routes>
     </Router>

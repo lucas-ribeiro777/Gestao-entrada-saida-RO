@@ -1,69 +1,96 @@
 import './VisualizarContaCoordenador.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Rodape from '../../components/Rodape/Rodape';
 import InfoBox from '../../components/InfoBox/InfoBox';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 
-
 const VisualizarContaCoordenador = () => {
-  const [dados, setDados] = useState({
-    nome: 'Anne Karine Lemos Rocha',
-    nascimento: '25/01/1989',
-    email: 'anne.rocha@coordenador.senai.br',
-    telefone: '(14) 99700-6543',
-  });
+  const [dados, setDados] = useState(null);
+  const [carregando, setCarregando] = useState(true);
+  const API_URL = 'http://localhost:3000/Coordenadores/be32';
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        setDados(data);
+        setCarregando(false);
+      })
+      .catch((err) => {
+        console.error('Erro ao buscar dados:', err);
+        setCarregando(false);
+      });
+  }, []);
 
   const handleEditar = (campo) => {
     const valorAtual = dados[campo];
     const novoValor = prompt(`Editar ${campo}:`, valorAtual);
     if (novoValor !== null && novoValor.trim() !== '') {
-      setDados((prevDados) => ({
-        ...prevDados,
-        [campo]: novoValor.trim(),
-      }));
+      const novosDados = { ...dados, [campo]: novoValor.trim() };
+      setDados(novosDados);
+
+      fetch(API_URL, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(novosDados),
+      }).catch((err) => {
+        console.error('Erro ao salvar alterações:', err);
+        alert('Erro ao salvar no servidor');
+      });
     }
   };
+
+  if (carregando || !dados) {
+    return <p>Carregando dados...</p>;
+  }
 
   return (
     <>
       <CabecalhoPages>
-        <li><a href="/#">Início</a></li>
-        <li><a href="/#">Ocorrências</a></li>
-        
-        <li><a href="/#">Solicitações</a></li>
-        <li><a href="/VisualizarContaCoordenador">Conta</a></li>
+        <li key="inicio" ><a href="/#">Início</a></li>
+        <li key="ocorrencias" ><a href="/#">Ocorrências</a></li>
+        <li key="pesquisar-aluno">
+          <input
+            className="input-pesquisar-aluno"
+            type="text"
+            placeholder="Pesquise um Aluno"
+          />
+        </li>
+        <li key="solicitacoes"><a href="/#">Solicitações</a></li>
+        <li key="conta"><a href="/VisualizarContaCoordenador">Conta</a></li>
       </CabecalhoPages>
       <div className="dados-box-coordenador">
         <InfoBox
-          icone={<span>📝</span>}
+          icone={<img src="/images/nome.png" alt="Coordenador" />}
           texto={dados.nome}
           onEditar={() => handleEditar('nome')}
           editavel={true}
           cor="escuro"
         />
         <InfoBox
-          icone={<span>📅</span>}
-          texto={dados.nascimento}
-          onEditar={() => handleEditar('nascimento')}
-          editavel={true}
-          cor="escuro"
-        />
-        <InfoBox
-          icone={<span>@</span>}
+          icone={<img src="/images/email.png" alt="Coordenador" />}
           texto={dados.email}
           onEditar={() => handleEditar('email')}
           editavel={true}
-          cor="escuro"
+          cor="claro"
         />
         <InfoBox
-          icone={<span>☎</span>}
+          icone={<img src="/images/telefoneconta.png" alt="Coordenador" />}
           texto={dados.telefone}
           onEditar={() => handleEditar('telefone')}
           editavel={true}
           cor="escuro"
         />
+        <InfoBox
+          icone={<img src="/images/niver.png" alt="Coordenador" />}
+          texto={dados.assinatura}
+          onEditar={() => handleEditar('assinatura')}
+          editavel={true}
+          cor="claro"
+        />
+
       </div>
-      <Rodape/>
+      <Rodape />
     </>
   );
 };

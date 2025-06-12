@@ -4,17 +4,36 @@
 }
 
 .header {
-  background-color: #282c34;
-  padding: 20px;
+  background-color: #1F5592;
+  padding: 10px;
   color: white;
-}
-
-.logo {
-  height: 40px;
+  text-align: center;
 }
 
 h1 {
   margin-top: 10px;
+}
+
+.header-buttons {
+  display: flex;
+  justify-content: center;  /* centraliza horizontalmente */
+  gap: 150px;                /* espaço entre os botões */
+  margin-top: 15px;
+}
+
+.header-btn {
+  background-color: #1F5592;
+  color: #1F5592;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.header-btn:hover {
+  background-color: #ddd;
 }
 
 .container {
@@ -27,7 +46,8 @@ h1 {
   border-collapse: collapse;
 }
 
-.registro-table th, .registro-table td {
+.registro-table th,
+.registro-table td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
@@ -49,4 +69,91 @@ h1 {
 
 .visualizar:hover {
   background-color: #0056b3;
+}
+
+.menu-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.menu-links li {
+  font-weight: bold;
+}
+
+/* Link ativo - com destaque */
+.ativo {
+  color: #e8490f; /* Amarelo ouro ou outro destaque */
+  text-decoration: underline;
+}
+
+/* Link padrão - visível mesmo com fundo branco */
+.nativo {
+  color: #FFFFFF; /* Branco, se o fundo for azul escuro */
+  text-decoration: none;
+}
+
+.aluno-card {
+  background-color: #e0ecf8;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 30px auto;
+  width: 90%;
+  max-width: 600px;
+}
+
+.aluno-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #7fa8d6;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+}
+
+.aluno-foto {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.aluno-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.visualizar-link {
+  color: white;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+.registro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.saida {
+  background-color: #1f4e89;
+}
+
+.entrada {
+  background-color: #a5c8e2;
+  color: #1f4e89;
+}
+
+.ocorrencia {
+  background-color: #e6492d;
 }

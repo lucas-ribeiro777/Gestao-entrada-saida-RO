@@ -1,10 +1,10 @@
 .container-ocorrencias {
   display: flex;
   flex-direction: row;
-  padding: 40px;
+  padding: 100px;
   gap: 40px;
-  background-color: #f2f2f2;
-  min-height: calc(50vh - 100px);
+  background-color: transparent;
+  height: auto;
 }
 
 .perfil-aluno-ocorrencias {
@@ -34,10 +34,10 @@
 
 .tabela-ocorrencias {
   width: 50%;
-  background-color: white;
-  border-radius: 20px;
+  border-radius: 25px;
   padding: 30px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 200px;
+  margin-top: 10px;
 }
 
 .titulo-tabela-ocorrencias {
@@ -45,26 +45,42 @@
   margin-bottom: 20px;
   color: #c0392b;
   text-align: center;
+  border-radius: 25px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 16px;
+  background-color: #87b3de;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
-thead {
-  background-color: #1F5592;
+th {
+  background-color: #1f4e89;
   color: white;
-  border-radius: 25px;
-}
-
-th, td {
-  padding: 15px;
+  padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  font-weight: bold;
 }
 
-tbody tr:hover {
-  background-color: #f0f0f0;
+td {
+  padding: 12px;
+  color: black;
+}
+
+thead th:first-child {
+  border-top-left-radius: 0;
+}
+
+thead th:last-child {
+  border-top-right-radius: 0;
+}
+
+tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 20px;
+}
+
+tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 20px;
 }

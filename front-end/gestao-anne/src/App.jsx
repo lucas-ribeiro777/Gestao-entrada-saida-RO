@@ -11,6 +11,7 @@ import VisualizacaoResponsavel from './pages/VisualizacaoResponsavel/Visualizaca
 import InicialResponsavel from './pages/InicialResponsavel/InicialResponsavel';
 import VisualizarContaCoordenador from './pages/VisualizarContaCoordenador/VisualizarContaCoordenador';
 
+
 function App() {
   return (
     <Router>
@@ -26,6 +27,7 @@ function App() {
         <Route path="/VisualizacaoResponsavel" element={<VisualizacaoResponsavel />} />
         <Route path="/InicialResponsavel" element={<InicialResponsavel />} />
         <Route path="/VisualizarContaCoordenador" element={<VisualizarContaCoordenador />} />
+        
       </Routes>
     </Router>
   );

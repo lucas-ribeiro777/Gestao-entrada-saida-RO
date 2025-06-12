@@ -82,15 +82,34 @@ const VisualizacaoResponsavel = () => {
   return (
     <div className="container">
       <CabecalhoPages>
-        <li>
-          <NavLink
-            to="/VisualizacaoResponsavel"
-            className={({ isActive }) => (isActive ? "ativo" : "nativo")}
-          >
-            CONTA
-          </NavLink>
-        </li>
-      </CabecalhoPages>
+  <li>
+    <NavLink
+      to="/InicialResponsavel"
+      className={({ isActive }) => (isActive ? "ativo" : "nativo")}
+    >
+      INÍCIO
+    </NavLink>
+    <li>|</li>
+  </li>
+  <li>
+    <NavLink
+      to="/autorizarEntradaSaida"
+      className={({ isActive }) => (isActive ? "ativo" : "nativo")}
+    >
+      AUTORIZAR ENTRADA/SAÍDA
+    </NavLink>
+    <li>|</li>
+    
+  </li>
+  <li>
+    <NavLink
+      to="/VisualizacaoResponsavel"
+      className={({ isActive }) => (isActive ? "ativo" : "nativo")}
+    >
+      CONTA
+    </NavLink> 
+  </li>
+</CabecalhoPages>
 
       <main className="content">
         <div className="card">

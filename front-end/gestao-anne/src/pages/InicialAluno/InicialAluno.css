@@ -1,15 +1,8 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: #a0bee3;
-  height: 100%;
-}
-
 .pagina-inicial {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #a0bee3; /* Add your desired background color here */
 }
 
 /* LOGO */
@@ -55,7 +48,7 @@ body, html {
 }
 
 .caixa {
-  background-color: #194885;
+  background-color: #1f5aa8;
   border-radius: 15px;
   width: 500px;
   overflow: hidden;
@@ -89,4 +82,13 @@ body, html {
 main {
   flex: 1;
   padding: 20px;
+}
+
+.novo-container p, .novo-container a {
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
 }

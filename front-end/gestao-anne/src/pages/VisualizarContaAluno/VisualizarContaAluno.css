@@ -36,37 +36,56 @@
 .dados-box {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  gap: 0; /* Botões colados */
+  padding: 0;
+  width: 100%;
+  max-width: 430px;
 }
 
+
+.dado-linha,
 .dado-linha-aluno {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: linear-gradient(to right, #005eb8, #0074cc);
-  border-radius: 12px;
+  border-radius: 25px;
   padding: 14px 20px;
-  width: 430px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  color: white;
-}
-
-.dado-linha span {
-  flex: 1;
-  margin-left: 12px;
+  width: 100%;
   font-size: 15px;
+  color: white;
+  box-shadow: none;
 }
 
-.icon {
-  font-size: 18px;
+.dado-linha:nth-child(odd),
+.dado-linha-aluno:nth-child(odd) {
+  background-color: #1F5592; /* Azul escuro */
+}
+
+.dado-linha:nth-child(even),
+.dado-linha-aluno:nth-child(even) {
+  background-color: #87ADD8; /* Azul claro */
+}
+
+.dado-linha span,
+.dado-linha-aluno span {
+  flex: 1;
+  text-align: left;
+  font-weight: 500;
+  margin-right: 12px;
 }
 
 .editar {
-  font-size: 16px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease;
 }
 
 .editar:hover {
-  transform: scale(1.2);
+  transform: scale(1.15);
+  color: #cce7ff;
 }

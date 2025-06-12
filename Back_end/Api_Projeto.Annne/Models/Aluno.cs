@@ -47,5 +47,8 @@ namespace Api_Projeto.Annne.Models
         // Navigation property para Responsavel
         [ForeignKey("IdResponsavel")]
         public Responsavel? Responsavel { get; set; }
+
+        [NotMapped]
+        public object? ImagemUpload { get; internal set; }
     }
 }

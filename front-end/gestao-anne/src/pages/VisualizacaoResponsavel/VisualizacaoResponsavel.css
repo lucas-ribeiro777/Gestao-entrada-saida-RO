@@ -7,55 +7,78 @@
 .content {
   flex: 1;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background-color: white;
-  padding: 20px;
+  justify-content: center;
+  padding: 40px 20px;
 }
 
 .card {
-  width: 100%;
-  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  font-size: 15px;
 }
 
-.blue {
-  background-color: #1b4e8a;
+.azul {
+  background-color: #204f86;
   color: white;
 }
 
-.light-blue {
-  background-color: #87a9d6;
-  color: white;
+.azul-claro {
+  background-color: #a3c2e4;
+  color: #222;
 }
 
-.icon {
-  font-size: 24px;
+.icone {
+  margin-right: 10px;
+  font-size: 18px;
 }
 
 .text {
-  font-weight: bold;
+  flex: 1;
 }
 
-.edit {
-  background: none;
+.input-edicao {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 6px;
   border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
+  outline: none;
 }
 
-.loading {
-  text-align: center;
+.botao-editar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   margin-top: 20px;
-  color: gray;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #ffa500;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.botao-editar:hover {
+  background-color: #e69500;
+}
+
+.texto-botao {
+  font-weight: 600;
 }

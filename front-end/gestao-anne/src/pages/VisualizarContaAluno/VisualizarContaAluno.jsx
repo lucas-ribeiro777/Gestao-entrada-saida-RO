@@ -1,6 +1,11 @@
 import './VisualizarContaAluno.css';
 import { useState } from 'react';
 import Rodape from '../../components/Rodape/Rodape';
+import Foto from '../../components/Foto/Foto';
+
+import { FaIdBadge, FaPhoneAlt, FaUserFriends, FaEdit } from 'react-icons/fa';
+import { FaBirthdayCake } from 'react-icons/fa';
+import { MdAlternateEmail } from 'react-icons/md';
 
 const VisualizarContaAluno = () => {
   const [dados, setDados] = useState({
@@ -10,6 +15,8 @@ const VisualizarContaAluno = () => {
     telefone: '(14) 99849-2576',
     responsavel: 'José Antônio Silva',
   });
+
+
 
   const handleEditar = (campo) => {
     const valorAtual = dados[campo];
@@ -24,41 +31,48 @@ const VisualizarContaAluno = () => {
 
   return (
     <div className="conta-container-aluno">
-      <div className="topo-nav">
-        <button className="nav-btn">Início</button>
-        <button className="nav-btn">Ocorrências</button>
-        <button className="nav-btn">Solicitações</button>
-        <button className="nav-btn active">Conta</button>
-      </div>
-
       <div className="conteudo-conta-aluno">
         <div className="dados-box">
+
           <div className="dado-linha">
-            <span>{dados.nome}</span>
-            <button className="editar" onClick={() => handleEditar('nome')}>Editar</button>
+            <span><FaIdBadge />{dados.nome}</span>
+            <button className="editar" onClick={() => handleEditar('nome')}>
+              <FaEdit />
+            </button>
           </div>
 
           <div className="dado-linha-aluno">
-            <span>{dados.nascimento}</span>
-            <button className="editar" onClick={() => handleEditar('nascimento')}>Editar</button>
+            <span><FaBirthdayCake /> {dados.nascimento}</span>
+            <button className="editar" onClick={() => handleEditar('nascimento')}>
+              <FaEdit />
+            </button>
+          </div>
+
+
+          <div className="dado-linha">
+            <span><MdAlternateEmail />{dados.email}</span>
+            <button className="editar" onClick={() => handleEditar('email')}>
+              <FaEdit />
+            </button>
           </div>
 
           <div className="dado-linha">
-            <span>{dados.email}</span>
-            <button className="editar" onClick={() => handleEditar('email')}>Editar</button>
+            <span><FaPhoneAlt />{dados.telefone}</span>
+            <button className="editar" onClick={() => handleEditar('telefone')}>
+              <FaEdit />
+            </button>
           </div>
 
           <div className="dado-linha">
-            <span>{dados.telefone}</span>
-            <button className="editar" onClick={() => handleEditar('telefone')}>Editar</button>
+            <span><FaUserFriends />{dados.responsavel}</span>
+            <button className="editar" onClick={() => handleEditar('responsavel')}>
+              <FaEdit />
+            </button>
           </div>
 
-          <div className="dado-linha">
-            <span>{dados.responsavel}</span>
-            <button className="editar" onClick={() => handleEditar('responsavel')}>Editar</button>
-          </div>
         </div>
       </div>
+      <Foto />
       <Rodape />
     </div>
   );

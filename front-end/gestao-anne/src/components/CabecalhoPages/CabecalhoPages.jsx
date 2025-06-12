@@ -1,11 +1,16 @@
 import './CabecalhoPages.css';
 
-function CabecalhoPages() {
-    return (
-        <header className="cabecalho-pages">
-        <h1>Cadastro de Alunos</h1>
-        <p>Preencha os dados abaixo para cadastrar um novo aluno.</p>
-        </header>
-    );
+function CabecalhoPages({ children }) {
+  return (
+    <>
+      <div className="topo-pages">
+        <img src="./images/LogoSenaiSemAsEscritaDoLado.png" alt="SENAI" />
+      </div>
+      <div className="menu-pages">
+        <ul>{children}</ul>
+      </div>
+    </>
+  );
 }
+
 export default CabecalhoPages;

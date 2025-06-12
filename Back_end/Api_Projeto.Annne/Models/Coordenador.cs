@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
 namespace Api_Projeto.Annne.Models
 {
     [Table("coordenadores")]
@@ -21,11 +20,9 @@ namespace Api_Projeto.Annne.Models
         [Column("email")]
         public string Email { get; set; } = null!;
 
-        [Required(ErrorMessage = "O telefone é obrigatório.")]
-        [RegularExpression(@"^\(\d{2}\) \d{4,5}-\d{4}$", ErrorMessage = "O telefone deve estar no formato (XX) XXXXX-XXXX.")]
-        [StringLength(20, ErrorMessage = "O telefone pode ter no máximo 20 caracteres.")]
+        [RegularExpression(@"^\(?\d{2}\)?[\s\-]?\d{4,5}[\s\-]?\d{4}$", ErrorMessage = "Telefone inválido. Ex: (11) 91234-5678")]
         [Column("telefone")]
-        public string Telefone { get; set; } = null!;
+        public string? Telefone { get; set; }
 
         [Required(ErrorMessage = "A senha é obrigatória.")]
         [StringLength(255, MinimumLength = 6, ErrorMessage = "A senha deve ter no mínimo 6 caracteres.")]
@@ -34,6 +31,6 @@ namespace Api_Projeto.Annne.Models
 
         [StringLength(255)]
         [Column("assinatura")]
-        public string? Assinatura { get; set; } 
+        public string? Assinatura { get; set; }
     }
 }

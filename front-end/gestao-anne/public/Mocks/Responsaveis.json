@@ -1,3 +1,17 @@
- {
-  "responsaveis": []
+{
+  "responsaveis": [
+    {
+      "nome": "João Antônio da Silva",
+      "email": "jose.tonhao@gmail.com",
+      "telefone": "(14) 99898-9564",
+      "data_nasc": "1992-05-20",
+      "id_filho": "1"
+    }
+  ],
+  "alunos": [
+    {
+      "id_filho": "1",
+      "nome": "Giovana Santos Silva"
+    }
+  ]
 }

@@ -17,7 +17,7 @@ const VisualizarOcorrenciasAluno = () => {
       .catch((err) => console.error('Erro ao carregar ocorrências:', err));
 
     fetch('http://localhost:3002/foto')
-      .then((res) => res.json())
+      .then((res) => res.text())
       .then((data) => setFotoUrl(data.foto))
       .catch((err) => console.error('Erro ao carregar foto do aluno:', err));
 
@@ -44,6 +44,7 @@ const VisualizarOcorrenciasAluno = () => {
   return (
     <>
       <CabecalhoPages />
+  
       <div className="container-ocorrencias">
         <div className="perfil-aluno-ocorrencias">
           <Foto 

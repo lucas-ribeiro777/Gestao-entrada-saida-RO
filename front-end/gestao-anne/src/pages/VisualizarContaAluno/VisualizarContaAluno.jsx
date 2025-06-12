@@ -36,51 +36,50 @@ const VisualizarContaAluno = () => {
       <CabecalhoPages>
         <li key="inicio" ><a href="/#">Início</a></li>
         <li key="ocorrencias" ><a href="/#">Ocorrências</a></li>
-        <li key="pesquisar-aluno">
-          <input
-            className="input-pesquisar-aluno"
-            type="text"
-            placeholder="Pesquise um Aluno"
-          />
-        </li>
         <li key="solicitacoes"><a href="/#">Solicitações</a></li>
         <li key="conta"><a href="/VisualizarContaCoordenador">Conta</a></li>
       </CabecalhoPages>
 
-      <div className="conteudo-conta-aluno">
+      <div className="container-central">
+      <Foto />  
         <div className="dados-box">
-        <InfoBox
-          icone={<img src="/images/nome.png" alt="Coordenador" />}
-          texto={dados.nome}
-          onEditar={() => handleEditar('nome')}
-          editavel={true}
-          cor="escuro"
-        />
-        <InfoBox
-          icone={<img src="/images/email.png" alt="Coordenador" />}
-          texto={dados.email}
-          onEditar={() => handleEditar('email')}
-          editavel={true}
-          cor="claro"
-        />
-        <InfoBox
-          icone={<img src="/images/telefoneconta.png" alt="Coordenador" />}
-          texto={dados.telefone}
-          onEditar={() => handleEditar('telefone')}
-          editavel={true}
-          cor="escuro"
-        />
-        <InfoBox
-          icone={<img src="/images/niver.png" alt="Coordenador" />}
-          texto={dados.assinatura}
-          onEditar={() => handleEditar('assinatura')}
-          editavel={true}
-          cor="claro"
-        />
-
+          <InfoBox
+            icone={<img src="/images/nome.png" alt="Aluno" />}
+            texto={dados.nome}
+            onEditar={() => handleEditar('nome')}
+            editavel={true}
+            cor="escuro"
+          />
+          <InfoBox
+            icone={<img src="/images/niver.png" alt="Aluno" />}
+            texto={dados.nascimento}
+            onEditar={() => handleEditar('email')}
+            editavel={false}
+            cor="claro"
+          />
+          <InfoBox
+            icone={<img src="/images/email.png" alt="Aluno" />}
+            texto={dados.email}
+            onEditar={() => handleEditar('email')}
+            editavel={true}
+            cor="escuro"
+          />
+          <InfoBox
+            icone={<img src="/images/telefoneconta.png" alt="Aluno" />}
+            texto={dados.telefone}
+            onEditar={() => handleEditar('telefone')}
+            editavel={true}
+            cor="claro"
+          />
+          <InfoBox
+            icone={<img src="/images/family.png" alt="Aluno" />}
+            texto={dados.responsavel}
+            onEditar={() => handleEditar('responsavel')}
+            editavel={false}
+            cor="escuro"
+          />
         </div>
       </div>
-      <Foto />
       <Rodape />
     </>
   );

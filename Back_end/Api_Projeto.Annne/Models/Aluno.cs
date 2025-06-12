@@ -49,6 +49,6 @@ namespace Api_Projeto.Annne.Models
         public Responsavel? Responsavel { get; set; }
 
         [NotMapped]
-        public object? ImagemUpload { get; internal set; }
+        public  IFormFile? ImagemUpload { get; internal set; }
     }
 }

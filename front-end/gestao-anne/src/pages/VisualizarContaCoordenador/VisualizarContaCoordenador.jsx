@@ -1,13 +1,16 @@
 import './VisualizarContaCoordenador.css';
 import { useState } from 'react';
 import Rodape from '../../components/Rodape/Rodape';
+import InfoBox from '../../components/InfoBox/InfoBox';
+import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
+
 
 const VisualizarContaCoordenador = () => {
   const [dados, setDados] = useState({
-    nome: '📝   Anne Karine Lemos Rocha',
-    nascimento: '📅    25/01/1989',
-    email: '@   anne.rocha@coordenador.senai.br',
-    telefone: '☎   (14) 99700-6543',
+    nome: 'Anne Karine Lemos Rocha',
+    nascimento: '25/01/1989',
+    email: 'anne.rocha@coordenador.senai.br',
+    telefone: '(14) 99700-6543',
   });
 
   const handleEditar = (campo) => {
@@ -22,39 +25,46 @@ const VisualizarContaCoordenador = () => {
   };
 
   return (
-    <div className="conta-container-coordenador">
-      <div className="topo-nav-coordenador">
-        <button className="nav-btn-coordenador">Início</button>
-        <button className="nav-btn-coordenador">Ocorrências</button>
-        <button className="nav-btn-coordenador">Solicitações</button>
-        <button className="nav-btn active-coordenador">Conta</button>
+    <>
+      <CabecalhoPages>
+        <li><a href="/#">Início</a></li>
+        <li><a href="/#">Ocorrências</a></li>
+        
+        <li><a href="/#">Solicitações</a></li>
+        <li><a href="/VisualizarContaCoordenador">Conta</a></li>
+      </CabecalhoPages>
+      <div className="dados-box-coordenador">
+        <InfoBox
+          icone={<span>📝</span>}
+          texto={dados.nome}
+          onEditar={() => handleEditar('nome')}
+          editavel={true}
+          cor="escuro"
+        />
+        <InfoBox
+          icone={<span>📅</span>}
+          texto={dados.nascimento}
+          onEditar={() => handleEditar('nascimento')}
+          editavel={true}
+          cor="escuro"
+        />
+        <InfoBox
+          icone={<span>@</span>}
+          texto={dados.email}
+          onEditar={() => handleEditar('email')}
+          editavel={true}
+          cor="escuro"
+        />
+        <InfoBox
+          icone={<span>☎</span>}
+          texto={dados.telefone}
+          onEditar={() => handleEditar('telefone')}
+          editavel={true}
+          cor="escuro"
+        />
       </div>
-
-      <div className="conteudo-conta-coordenador">
-        <div className="dados-box-coordenador">
-          <div className="dado-linha-coordenador">
-            <span>{dados.nome}</span>
-            <button className="editar-coordenador" onClick={() => handleEditar('nome')}>✎</button>
-          </div>
-
-          <div className="dado-linha-coordenador">
-            <span>{dados.nascimento}</span>
-            <button className="editar-coordenador" onClick={() => handleEditar('nascimento')}>✎</button>
-          </div>
-
-          <div className="dado-linha-coordenador">
-            <span>{dados.email}</span>
-            <button className="editar-coordenador" onClick={() => handleEditar('email')}>✎</button>
-          </div>
-
-          <div className="dado-linha-coordenador">
-            <span>{dados.telefone}</span>
-            <button className="editar-coordenador" onClick={() => handleEditar('telefone')}>✎</button>
-          </div>
-        </div>
-      </div>
-      <Rodape />
-    </div>
+      <Rodape/>
+    </>
   );
 };
 

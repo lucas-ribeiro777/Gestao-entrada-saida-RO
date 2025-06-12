@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6); /* fundo escuro translúcido */
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,10 +12,11 @@
 }
 
 .modal-content {
-  background-color: white;
+  background-color: #E6E6E6;
   padding: 30px 25px;
   border-radius: 20px;
-  width: 420px;
+  width: 500px;
+  height: auto;
   text-align: center;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   font-family: 'Segoe UI', sans-serif;
@@ -28,9 +29,10 @@
 }
 
 .modal-content p {
-  font-size: 14px;
+  font-size: 18px;
   color: #d94125;
   margin-bottom: 20px;
+  font-weight: 700;
 }
 
 .code-inputs {
@@ -41,12 +43,12 @@
 }
 
 .code-inputs input {
-  width: 40px;
-  height: 50px;
+  width: 65px;
+  height: 65px;
   font-size: 24px;
   text-align: center;
-  border: 2px solid #ccc;
-  border-radius: 10px;
+  border: none;
+  border-radius: 25px;
   outline: none;
   transition: border-color 0.2s;
 }
@@ -60,7 +62,8 @@
   font-size: 13px;
   cursor: pointer;
   text-decoration: underline;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  font-weight: 700;
 }
 
 .modal-actions {
@@ -71,7 +74,10 @@
 .modal-actions button {
   background-color: #d94125;
   color: white;
-  font-weight: bold;
+  font-weight: "inter", sans-serif;
   border: none;
   border-radius: 30px;
+  width: 100%;
+  height: 30px;
+  margin-top: 20px;
 }

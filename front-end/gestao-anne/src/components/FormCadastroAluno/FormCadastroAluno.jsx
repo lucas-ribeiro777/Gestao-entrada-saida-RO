@@ -21,11 +21,28 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
 
     const nomeArquivoFoto = fotoSelecionada ? fotoSelecionada.name : null;
 
+    const dataFormatada = datanasc.replaceAll('/', '-');
+
     function aoSalvarAssinatura(base64Img) {
         setAssinaturaImg(base64Img);
         const nomeArquivo = `assinatura_${Date.now()}.png`;
         setNomeArquivoAssinatura(nomeArquivo);
         setModalAberto(false);
+    }
+
+    // Função para converter base64 em File
+    function dataURLtoFile(dataurl, filename) {
+        const arr = dataurl.split(',');
+        const mime = arr[0].match(/:(.*?);/)[1];
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+
+        return new File([u8arr], filename, { type: mime });
     }
 
     async function handleSubmit(event) {
@@ -36,7 +53,7 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
             return;
         }
 
-        if (!nomeArquivoAssinatura) {
+        if (!nomeArquivoAssinatura || !assinaturaImg) {
             alert('Por favor, crie a assinatura.');
             return;
         }
@@ -51,29 +68,30 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
             return;
         }
 
-        const aluno = {
-            nome,
-            email,
-            dataNascimento: datanasc,
-            telefone,
-            senha,
-            foto: nomeArquivoFoto,
-            assinatura: nomeArquivoAssinatura,
-        };
+        // Constrói o FormData para envio multipart/form-data
+        const formData = new FormData();
+        formData.append('Nome', nome);
+        formData.append('Email', email);
+        formData.append('DataNascimento', dataFormatada);
+        formData.append('Telefone', telefone);
+        formData.append('Senha', senha);
+        formData.append('Imagem', fotoSelecionada); // File vindo do input
+        formData.append('Assinatura', dataURLtoFile(assinaturaImg, nomeArquivoAssinatura));
 
         try {
-            const response = await fetch('http://localhost:3000/alunos', {
+            const response = await fetch('http://10.90.146.27:5121/api/Alunos', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(aluno),
+                body: formData,
             });
 
             if (!response.ok) {
-                throw new Error('Erro ao cadastrar aluno');
+                const erro = await response.text();
+                throw new Error('Erro ao cadastrar aluno:\n' + erro);
             }
 
             const data = await response.json();
-            alert('Cadastro realizado com sucesso!');
+            alert('Cadastro realizado com sucesso!'); //mandar para a inicial
+            
             console.log('Resposta da API:', data);
 
             // Limpar campos
@@ -89,6 +107,7 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
             alert(error.message);
         }
     }
+
 
     return (
         <>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj": {}
+    "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\APIDevolutivaRO\\APIDevolutivaRO.csproj": {}
   },
   "projects": {
-    "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj": {
+    "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\APIDevolutivaRO\\APIDevolutivaRO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
-        "projectName": "API_ProjetoAnne",
-        "projectPath": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\API_ProjetoAnne.csproj",
+        "projectUniqueName": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\APIDevolutivaRO\\APIDevolutivaRO.csproj",
+        "projectName": "APIDevolutivaRO",
+        "projectPath": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\APIDevolutivaRO\\APIDevolutivaRO.csproj",
         "packagesPath": "C:\\Users\\Caique\\.nuget\\packages\\",
-        "outputPath": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\API_ProjetoAnne\\obj\\",
+        "outputPath": "C:\\RepositorioFestaJunina\\Gestao-entrada-saida-RO\\Back_end\\APIDevolutivaRO\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Caique\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -49,7 +49,7 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[8.1.4, )"
+              "version": "[6.6.2, )"
             }
           },
           "imports": [

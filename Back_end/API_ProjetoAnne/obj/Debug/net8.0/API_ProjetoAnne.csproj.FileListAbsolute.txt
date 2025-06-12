@@ -66,3 +66,14 @@ C:\Users\Gabriel Tamborim\Desktop\Gestao-entrada-saida-RO\Back_end\Api_ProjetoAn
 C:\Users\Gabriel Tamborim\Desktop\Gestao-entrada-saida-RO\Back_end\Api_ProjetoAnne\obj\Debug\net8.0\API_ProjetoAnne.pdb
 C:\Users\Gabriel Tamborim\Desktop\Gestao-entrada-saida-RO\Back_end\Api_ProjetoAnne\obj\Debug\net8.0\API_ProjetoAnne.genruntimeconfig.cache
 C:\Users\Gabriel Tamborim\Desktop\Gestao-entrada-saida-RO\Back_end\Api_ProjetoAnne\obj\Debug\net8.0\ref\API_ProjetoAnne.dll
+C:\RepositorioFestaJunina\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\obj\Debug\net8.0\API_ProjetoAnne.csproj.AssemblyReference.cache
+C:\RepositorioFestaJunina\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\obj\Debug\net8.0\API_ProjetoAnne.GeneratedMSBuildEditorConfig.editorconfig
+C:\RepositorioFestaJunina\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\obj\Debug\net8.0\API_ProjetoAnne.AssemblyInfoInputs.cache
+C:\RepositorioFestaJunina\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\obj\Debug\net8.0\API_ProjetoAnne.AssemblyInfo.cs
+C:\RepositorioFestaJunina\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\obj\Debug\net8.0\API_ProjetoAnne.csproj.CoreCompileInputs.cache
+C:\RepositorioFestaJunina\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\obj\Debug\net8.0\API_ProjetoAnne.MvcApplicationPartsAssemblyInfo.cs
+C:\RepositorioFestaJunina\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\obj\Debug\net8.0\API_ProjetoAnne.MvcApplicationPartsAssemblyInfo.cache
+C:\RepositorioFestaJunina\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\obj\Debug\net8.0\API_ProjetoAnne.sourcelink.json
+C:\RepositorioFestaJunina\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\obj\Debug\net8.0\API_ProjetoAnne.dll
+C:\RepositorioFestaJunina\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\obj\Debug\net8.0\refint\API_ProjetoAnne.dll
+C:\RepositorioFestaJunina\Gestao-entrada-saida-RO\Back_end\API_ProjetoAnne\obj\Debug\net8.0\API_ProjetoAnne.pdb

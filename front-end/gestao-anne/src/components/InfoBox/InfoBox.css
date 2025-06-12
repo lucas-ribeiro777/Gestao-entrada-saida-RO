@@ -1,0 +1,34 @@
+.info-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px;
+  padding: 12px 20px;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.info-box.escuro {
+  background-color: #1e4c84;
+  color: #fff;
+}
+
+.info-box.claro {
+  background-color: #84a9d1;
+  color: #fff;
+}
+
+.info-icone {
+  margin-right: 16px;
+}
+
+.info-texto {
+  flex: 1;
+  font-weight: 500;
+}
+
+.info-editar {
+  background: none;
+  border: none;
+  cursor: pointer;
+}

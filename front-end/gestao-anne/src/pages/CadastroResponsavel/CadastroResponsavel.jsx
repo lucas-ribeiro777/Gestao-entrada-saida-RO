@@ -1,11 +1,9 @@
 import React from 'react';
 import './CadastroResponsavel.css';
-import { Link } from 'react-router-dom'; // Adicionado para navegação
+import { Link } from 'react-router-dom'; // Link usado para navegação sem recarregar a página
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 import Rodape from '../../components/Rodape/Rodape';
 import FormCadastroResponsavel from '../../components/FormCadastroResponsavel/FormCadastroResponsavel';
-
-
 
 function CadastroResponsavel() {
   const camposResponsavel = [
@@ -24,6 +22,13 @@ function CadastroResponsavel() {
       <div className="form-wrapper-responsavel">
         <div className="centro-responsavel">
           <FormCadastroResponsavel tipo="responsavel" campos={camposResponsavel} />
+
+          {/* Botão de navegação para Visualização */}
+          <div className="botao-ir-visualizacao" style={{ textAlign: 'center', marginTop: '1rem' }}>
+            <Link to="/visualizacaoResponsavel">
+              <button className="botao-laranja">Ir para Visualização</button>
+            </Link>
+          </div>
         </div>
       </div>
 

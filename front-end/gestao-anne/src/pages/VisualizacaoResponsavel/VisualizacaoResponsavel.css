@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 .container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  background-color: white;
 }
 
 .content {
@@ -16,69 +20,80 @@
 .card {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .item {
   display: flex;
   align-items: center;
-  padding: 12px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 320px;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-radius: 25px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
+  width: 380px;
   font-size: 15px;
+  font-weight: 400;
 }
 
 .azul {
-  background-color: #204f86;
+  background-color: #1F5592;
   color: white;
 }
 
 .azul-claro {
-  background-color: #a3c2e4;
-  color: #222;
+  background-color: #87ADD8;
+  color: #1a1a1a;
 }
 
 .icone {
-  margin-right: 10px;
-  font-size: 18px;
+  font-size: 20px;
+  margin-right: 12px;
 }
 
 .text {
   flex: 1;
+  text-align: center;
 }
 
 .input-edicao {
   flex: 1;
-  padding: 8px;
-  font-size: 14px;
-  border-radius: 6px;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 12px;
   border: none;
   outline: none;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
 }
 
 .botao-editar {
+  margin-top: 24px;
+  background-color: #E8490F;
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 500;
-  background-color: #ffa500;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  gap: 10px;
 }
 
 .botao-editar:hover {
-  background-color: #e69500;
+  background-color: #cc3e0d;
 }
 
 .texto-botao {
   font-weight: 600;
+  font-size: 15px;
+}
+
+.icone-editar {
+  font-size: 18px;
+  margin-left: 10px;
+  cursor: pointer;
 }

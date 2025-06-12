@@ -1,40 +1,40 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import Rodape from "../../components/Rodape/Rodape";
-import "./VisualizacaoResponsavel.css";
 import CabecalhoPages from "../../components/CabecalhoPages/CabecalhoPages";
+import "./VisualizacaoResponsavel.css";
 
 const VisualizacaoResponsavel = () => {
   const [dados, setDados] = useState(null);
   const [editando, setEditando] = useState(false);
   const [formData, setFormData] = useState({});
-  const [responsavelId, setResponsavelId] = useState(null); // para o PUT
+  const [responsavelId, setResponsavelId] = useState(null);
 
   useEffect(() => {
-  fetch("/Mocks/Responsaveis.json")
-    .then((res) => res.json())
-    .then((data) => {
-      const responsavel = data.responsaveis[0];
-      if (responsavel) {
-        setResponsavelId(responsavel.id);
+    fetch("/Mocks/Responsaveis.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const responsavel = data.responsaveis[0];
+        if (responsavel) {
+          setResponsavelId(responsavel.id);
 
-        const aluno = data.alunos.find((a) => a.id_filho === responsavel.id_filho);
-        const nomeAluno = aluno ? aluno.nome : "Filho não encontrado";
+          const aluno = data.alunos.find((a) => a.id_filho === responsavel.id_filho);
+          const nomeAluno = aluno ? aluno.nome : "Filho não encontrado";
 
-        const dadosFormatados = {
-          nome: responsavel.nome,
-          nascimento: formatarData(responsavel.data_nasc),
-          email: responsavel.email,
-          telefone: responsavel.telefone,
-          aluno: nomeAluno
-        };
+          const dadosFormatados = {
+            nome: responsavel.nome,
+            nascimento: formatarData(responsavel.data_nasc),
+            email: responsavel.email,
+            telefone: responsavel.telefone,
+            aluno: nomeAluno
+          };
 
-        setDados(dadosFormatados);
-        setFormData(dadosFormatados);
-      }
-    })
-    .catch((err) => console.error("Erro ao buscar dados:", err));
-}, []);
-
+          setDados(dadosFormatados);
+          setFormData(dadosFormatados);
+        }
+      })
+      .catch((err) => console.error("Erro ao buscar dados:", err));
+  }, []);
 
   const formatarData = (dataStr) => {
     if (!dataStr) return "";
@@ -80,14 +80,42 @@ const VisualizacaoResponsavel = () => {
   if (!dados) return <div className="loading">Carregando dados...</div>;
 
   return (
-    
     <div className="container">
-      < CabecalhoPages />
+      <CabecalhoPages>
+  <li>
+    <NavLink
+      to="/InicialResponsavel"
+      className={({ isActive }) => (isActive ? "ativo" : "nativo")}
+    >
+      INÍCIO
+    </NavLink>
+    <li>|</li>
+  </li>
+  <li>
+    <NavLink
+      to="/autorizarEntradaSaida"
+      className={({ isActive }) => (isActive ? "ativo" : "nativo")}
+    >
+      AUTORIZAR ENTRADA/SAÍDA
+    </NavLink>
+    <li>|</li>
+    
+  </li>
+  <li>
+    <NavLink
+      to="/VisualizacaoResponsavel"
+      className={({ isActive }) => (isActive ? "ativo" : "nativo")}
+    >
+      CONTA
+    </NavLink> 
+  </li>
+</CabecalhoPages>
+
       <main className="content">
         <div className="card">
           <Item
             icone="🧾"
-            valor={formData.nome}
+            valor={formData.nome || ""}
             campo="nome"
             editando={editando}
             onChange={handleChange}
@@ -95,7 +123,7 @@ const VisualizacaoResponsavel = () => {
           />
           <Item
             icone="📅"
-            valor={formData.nascimento}
+            valor={formData.nascimento || ""}
             campo="nascimento"
             editando={editando}
             onChange={handleChange}
@@ -103,7 +131,7 @@ const VisualizacaoResponsavel = () => {
           />
           <Item
             icone="📧"
-            valor={formData.email}
+            valor={formData.email || ""}
             campo="email"
             editando={editando}
             onChange={handleChange}
@@ -111,7 +139,7 @@ const VisualizacaoResponsavel = () => {
           />
           <Item
             icone="📞"
-            valor={formData.telefone}
+            valor={formData.telefone || ""}
             campo="telefone"
             editando={editando}
             onChange={handleChange}
@@ -119,7 +147,7 @@ const VisualizacaoResponsavel = () => {
           />
           <Item
             icone="👨‍👧"
-            valor={formData.aluno}
+            valor={formData.aluno || ""}
             campo="aluno"
             editando={false}
             onChange={handleChange}
@@ -139,6 +167,7 @@ const VisualizacaoResponsavel = () => {
           )}
         </button>
       </main>
+
       <Rodape />
     </div>
   );
@@ -151,7 +180,7 @@ const Item = ({ icone, valor, campo, editando, onChange, bg }) => (
       <input
         className="input-edicao"
         type="text"
-        value={valor}
+        value={valor || ""}
         onChange={(e) => onChange(campo, e.target.value)}
       />
     ) : (

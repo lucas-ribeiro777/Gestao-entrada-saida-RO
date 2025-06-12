@@ -49,21 +49,21 @@ function FormCadastroCoordenador({ tipo, campos, fotoSelecionada }) {
 
         const nomeArquivoAssinatura = `assinatura_${Date.now()}.png`;
 
-        const coordenador = {
-            nome,
-            email,
-            telefone,
-            senha,
-            assinatura: nomeArquivoAssinatura
-        };
+        // Converte a imagem da assinatura para um arquivo
+        const arquivoAssinatura = dataURLtoFile(assinaturaImg, nomeArquivoAssinatura);
+
+        // Monta o FormData com os dados
+        const formData = new FormData();
+        formData.append("Nome", nome);
+        formData.append("Email", email);
+        formData.append("Telefone", telefone);
+        formData.append("Senha", senha);
+        formData.append("Assinatura", arquivoAssinatura); 
 
         try {
-            const response = await fetch('http://localhost:3000/Coordenadores', {
+            const response = await fetch('http://10.90.146.27:5121/api/Coordenadores/criar', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(coordenador),
+                body: formData, // FormData automaticamente define o Content-Type como multipart/form-data
             });
 
             if (response.ok) {

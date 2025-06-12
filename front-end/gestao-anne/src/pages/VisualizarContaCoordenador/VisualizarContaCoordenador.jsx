@@ -2,6 +2,7 @@ import './VisualizarContaCoordenador.css';
 import { useState } from 'react';
 import Rodape from '../../components/Rodape/Rodape';
 import InfoBox from '../../components/InfoBox/InfoBox';
+import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 
 
 const VisualizarContaCoordenador = () => {
@@ -25,6 +26,13 @@ const VisualizarContaCoordenador = () => {
 
   return (
     <>
+      <CabecalhoPages>
+        <li><a href="/#">Início</a></li>
+        <li><a href="/#">Ocorrências</a></li>
+        
+        <li><a href="/#">Solicitações</a></li>
+        <li><a href="/VisualizarContaCoordenador">Conta</a></li>
+      </CabecalhoPages>
       <div className="dados-box-coordenador">
         <InfoBox
           icone={<span>📝</span>}

@@ -10,19 +10,17 @@ const VisualizarOcorrenciasAluno = () => {
   const [nomeAluno, setNomeAluno] = useState('');
 
   useEffect(() => {
-    // Ocorrências
+
     fetch('http://localhost:3001/ocorrencias')
       .then((res) => res.json())
       .then((data) => setOcorrencias(data))
       .catch((err) => console.error('Erro ao carregar ocorrências:', err));
 
-    // Foto do aluno
     fetch('http://localhost:3002/foto')
       .then((res) => res.json())
       .then((data) => setFotoUrl(data.foto))
       .catch((err) => console.error('Erro ao carregar foto do aluno:', err));
 
-    // Nome do aluno
     fetch('http://localhost:3003/alunos')
       .then((res) => res.json())
       .then((data) => {

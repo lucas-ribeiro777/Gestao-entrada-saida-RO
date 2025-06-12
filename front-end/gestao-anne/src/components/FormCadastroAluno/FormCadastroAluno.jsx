@@ -30,7 +30,6 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
         setModalAberto(false);
     }
 
-    // Função para converter base64 em File
     function dataURLtoFile(dataurl, filename) {
         const arr = dataurl.split(',');
         const mime = arr[0].match(/:(.*?);/)[1];
@@ -68,14 +67,13 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
             return;
         }
 
-        // Constrói o FormData para envio multipart/form-data
         const formData = new FormData();
         formData.append('Nome', nome);
         formData.append('Email', email);
         formData.append('DataNascimento', dataFormatada);
         formData.append('Telefone', telefone);
         formData.append('Senha', senha);
-        formData.append('Imagem', fotoSelecionada); // File vindo do input
+        formData.append('Imagem', fotoSelecionada); 
         formData.append('Assinatura', dataURLtoFile(assinaturaImg, nomeArquivoAssinatura));
 
         try {
@@ -90,11 +88,10 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
             }
 
             const data = await response.json();
-            alert('Cadastro realizado com sucesso!'); //mandar para a inicial
+            alert('Cadastro realizado com sucesso!'); 
             
             console.log('Resposta da API:', data);
 
-            // Limpar campos
             setNome('');
             setEmail('');
             setDataNasc('');
@@ -115,15 +112,50 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
                 <h2 className="titulo">Preencha os dados para se cadastrar - ALUNO</h2>
 
                 <div className="campos">
-                    <CampoTexto valor={nome} label="Nome" placeholder="Digite Algo..." aoAlterar={e => setNome(e.target.value)} />
-                    <CampoTexto valor={email} label="E-mail" placeholder="Digite Algo..." aoAlterar={e => setEmail(e.target.value)} />
+                    <CampoTexto 
+                    valor={nome} 
+                    label="Nome" 
+                    placeholder="Digite Algo..." 
+                    onChange={e => setNome(e.target.value)} 
+                    />
+                    <CampoTexto 
+                    valor={email} 
+                    label="E-mail" 
+                    placeholder="Digite Algo..." 
+                    onChange={e => setEmail(e.target.value)} 
+                    />
                     <div className="linha1">
-                        <CampoTexto valor={datanasc} label="Data de Nascimento" placeholder="__/__/____" aoAlterar={e => setDataNasc(e.target.value)} />
-                        <CampoTexto valor={telefone} label="Telefone" placeholder="+55 ()" aoAlterar={e => setTelefone(e.target.value)} />
+                        <CampoTexto 
+                            valor={datanasc} 
+                            label="Data de Nascimento" 
+                            placeholder="__/__/____" 
+                            onChange={e => setDataNasc(e.target.value)} 
+                        />
+                        <CampoTexto 
+                            valor={telefone} 
+                            label="Telefone" 
+                            placeholder="+55 ()" 
+                            onChange={e => setTelefone(e.target.value)} 
+                        />
                     </div>
                     <div className="linha2">
-                        <CampoTexto valor={senha} label="Senha" placeholder="Digite Sua Senha..." aoAlterar={e => setSenha(e.target.value)} />
-                        <CampoTexto valor={confirmarSenha} label="Confirmar Senha" placeholder="Confirme Sua Senha..." aoAlterar={e => setConfirmarSenha(e.target.value)} />
+                        <CampoTexto 
+                            id="senha" 
+                            label="Senha" 
+                            valor={senha} 
+                            onChange={e => setSenha(e.target.value)} 
+                            placeholder="Digite Sua Senha..." 
+                            senha={true} 
+                        />
+
+                        <CampoTexto 
+                            id="confirmarSenha" 
+                            label="Confirmar Senha" 
+                            valor={confirmarSenha} 
+                            onChange={e => setConfirmarSenha(e.target.value)} 
+                            placeholder="Confirme Sua Senha..." 
+                            senha={true} 
+                        />
                     </div>
                 </div>
 

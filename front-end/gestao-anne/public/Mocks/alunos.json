@@ -4,10 +4,11 @@
       "id": "1",
       "nome": "Lucas Andrade",
       "email": "lucas.andrade@email.com",
-      "data_nasc": "2007-04-15",
-      "id_responsavel": 101,
+      "nascimento": "2007-04-15",
+      "responsavel": "teste",
       "telefone": "11987654321",
-      "senha": "12345"
+      "senha": "12345",
+      "imagem": "/images/meninateste.png"
     },
     {
       "id": "2",

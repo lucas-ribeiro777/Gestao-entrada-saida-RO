@@ -91,39 +91,44 @@ function FormCadastroCoordenador({ tipo, campos, fotoSelecionada }) {
             <div className="campos">
                 <CampoTexto
                     valor={nome}
-                    aoAlterar={e => setNome(e.target.value)}
+                    onChange={e => setNome(e.target.value)}
                     label="Nome"
                     placeholder="Digite Algo..."
                 />
                 <CampoTexto
                     valor={email}
-                    aoAlterar={e => setEmail(e.target.value)}
+                    onChange={e => setEmail(e.target.value)}
                     label="E-mail"
                     placeholder="Digite Algo..."
                 />
-                <div className="linha2">
-                    <CampoTexto
-                        valor={senha}
-                        aoAlterar={e => setSenha(e.target.value)}
-                        label="Senha"
-                        placeholder="Digite Sua Senha..."
-                    />
-                    <CampoTexto
-                        valor={confirmarSenha}
-                        aoAlterar={e => setConfirmarSenha(e.target.value)}
-                        label="Confirmar Senha"
-                        placeholder="Confirme Sua Senha..."
-                    />
-                </div>
-                <div className="linha1-docente">
-                    <CampoTexto
-                        valor={telefone}
-                        aoAlterar={e => setTelefone(e.target.value)}
-                        label="Telefone"
-                        placeholder="+55 ()"
-                    />
-                </div>
+            <div className="linha2">
+                <CampoTexto 
+                id="senha" 
+                label="Senha" 
+                valor={senha} 
+                onChange={e => setSenha(e.target.value)} 
+                placeholder="Digite Sua Senha..." 
+                senha={true} 
+                />
+                <CampoTexto 
+                id="confirmarSenha" 
+                label="Confirmar Senha" 
+                valor={confirmarSenha} 
+                onChange={e => setConfirmarSenha(e.target.value)} 
+                placeholder="Confirme Sua Senha..." 
+                senha={true} 
+                />
             </div>
+            <div className="linha1-docente">
+                <CampoTexto
+                valor={telefone}
+                onChange={e => setTelefone(e.target.value)}
+                label="Telefone"
+                placeholder="+55 ()"
+                />
+            </div>
+            </div>
+
 
             <div className="container-botao-assinar">
                 <button type="button" onClick={() => setModalAberto(true)} className='botao-assinar'>

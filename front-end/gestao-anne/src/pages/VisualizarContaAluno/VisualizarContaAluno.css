@@ -7,10 +7,6 @@
   padding: 0;
 }
 
-.container-foto{
-  margin: 20px;
-}
-
 .container-central{
   display: flex;
   flex-direction: row;

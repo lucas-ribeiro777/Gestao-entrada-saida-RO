@@ -26,7 +26,7 @@ namespace Api_Projeto.Annne.Controllers
         }
 
         // POST api/responsaveis/upload
-        [HttpPost("upload")]
+        [HttpPost("cadastro")]
         public async Task<ActionResult<Responsavel>> PostResponsavel([FromForm] ResponsavelUploadDTO dto)
         {
             if (!ModelState.IsValid)
@@ -37,7 +37,6 @@ namespace Api_Projeto.Annne.Controllers
                 Nome = dto.Nome,
                 Email = dto.Email,
                 Telefone = dto.Telefone,
-                DataNascimento = dto.DataNascimento,
                 Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha)
             };
 
@@ -69,7 +68,7 @@ namespace Api_Projeto.Annne.Controllers
         public async Task<ActionResult<Responsavel>> GetResponsavel(int id)
         {
             var responsavel = await _context.Responsaveis
-                .Include(r => r.Alunos) // inclui alunos associados
+                .Include(r => r.Alunos)
                 .FirstOrDefaultAsync(r => r.Id == id);
 
             if (responsavel == null)
@@ -88,7 +87,7 @@ namespace Api_Projeto.Annne.Controllers
             var responsavel = new Responsavel
             {
                 Nome = dto.Nome ?? throw new ArgumentNullException(nameof(dto.Nome)),
-                Telefone = dto.Telefone
+                Telefone = dto.Telefone,
             };
 
             _context.Responsaveis.Add(responsavel);

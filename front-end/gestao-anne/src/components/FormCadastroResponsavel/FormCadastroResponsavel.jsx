@@ -36,58 +36,62 @@ function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
         event.preventDefault();
 
         if (senha !== confirmarSenha) {
-        alert("Senhas não conferem!");
-        return;
+            alert("Senhas não conferem!");
+            return;
         }
 
         if (!assinaturaImg) {
-        alert("Por favor, crie sua assinatura.");
-        return;
+            alert("Por favor, crie sua assinatura.");
+            return;
         }
 
         if (!termosValidos) {
-        alert('Você precisa aceitar todos os termos obrigatórios para continuar.');
-        return;
+            alert('Você precisa aceitar todos os termos obrigatórios para continuar.');
+            return;
         }
 
         const nomeArquivoAssinatura = `assinatura_${Date.now()}.png`;
 
+        // Converte dataURL em arquivo
+        const arquivoAssinatura = dataURLtoFile(assinaturaImg, nomeArquivoAssinatura);
 
-        const docente = {
-        nome,
-        email,
-        nomeDependente,
-        telefone,
-        senha,
-        assinatura: nomeArquivoAssinatura,
-        };
+        // Cria FormData e adiciona os campos
+        const formData = new FormData();
+        formData.append('nome', nome);
+        formData.append('email', email);
+        formData.append('nomeDependente', nomeDependente);
+        formData.append('telefone', telefone);
+        formData.append('senha', senha);
+        formData.append('assinatura', arquivoAssinatura);
+
+        console.log([...formData.entries()]);
 
         try {
-        const response = await fetch('http://localhost:3000/Docente', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(docente),
-        });
+            const response = await fetch('http://10.90.146.27:5121/api/Responsaveis/cadastro', {
+                method: 'POST',
+                body: formData, // importante: não colocar headers Content-Type
+            });
 
-        if (response.ok) {
-            alert("Cadastro realizado com sucesso!");
-            setNome('');
-            setEmail('');
-            setTelefone('');
-            setSenha('');
-            setConfimarSenha('');
-            setAssinaturaImg(null);
-            setModalAberto(false);
-        } else {
-            alert("Erro no cadastro.");
-        }
+            if (response.ok) {
+                alert("Cadastro realizado com sucesso!");
+                setNome('');
+                setEmail('');
+                setnomeDependente('');
+                setTelefone('');
+                setSenha('');
+                setConfimarSenha('');
+                setAssinaturaImg(null);
+                setModalAberto(false);
+            } else {
+                alert("Erro no cadastro.");
+            }
         } catch (error) {
-        alert("Erro na comunicação com a API.");
-        console.error(error);
+            alert("Erro na comunicação com a API.");
+            console.error(error);
         }
     }
+
+
 
     return (
         <>

@@ -16,6 +16,19 @@ function FormCadastroDocente({ tipo, campos, fotoSelecionada }) {
 
   const [termosValidos, setTermosValidos] = useState(false);
 
+
+  function dataURLtoFile(dataurl, filename) {
+    const arr = dataurl.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while(n--){
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, {type:mime});
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -36,22 +49,21 @@ function FormCadastroDocente({ tipo, campos, fotoSelecionada }) {
 
     const nomeArquivoAssinatura = `assinatura_${Date.now()}.png`;
 
+    // Converte a imagem DataURL para arquivo
+    const arquivoAssinatura = dataURLtoFile(assinaturaImg, nomeArquivoAssinatura);
 
-    const docente = {
-      nome,
-      email,
-      telefone,
-      senha,
-      assinatura: nomeArquivoAssinatura,
-    };
+    // Cria FormData e adiciona campos
+    const formData = new FormData();
+    formData.append("nome", nome);
+    formData.append("email", email);
+    formData.append("telefone", telefone);
+    formData.append("senha", senha);
+    formData.append("assinatura", arquivoAssinatura); // arquivo real da assinatura
 
     try {
-      const response = await fetch('http://localhost:3000/Docente', {
+      const response = await fetch('http://10.90.146.27:5121/api/Professor', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(docente),
+        body: formData,  // Atenção: não usar headers Content-Type aqui!
       });
 
       if (response.ok) {
@@ -71,6 +83,7 @@ function FormCadastroDocente({ tipo, campos, fotoSelecionada }) {
       console.error(error);
     }
   }
+
 
   return (
     <>

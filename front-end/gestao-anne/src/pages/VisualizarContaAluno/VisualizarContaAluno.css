@@ -43,7 +43,7 @@
   max-width: 430px;
 }
 
-/* Estilo comum aos botões */
+
 .dado-linha,
 .dado-linha-aluno {
   display: flex;
@@ -57,7 +57,6 @@
   box-shadow: none;
 }
 
-/* Cores intercaladas */
 .dado-linha:nth-child(odd),
 .dado-linha-aluno:nth-child(odd) {
   background-color: #1F5592; /* Azul escuro */

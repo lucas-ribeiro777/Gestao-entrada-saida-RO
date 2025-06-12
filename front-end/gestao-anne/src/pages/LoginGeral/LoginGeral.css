@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 .login-wrapper {
-  text-align: center;
   padding: 20px;
   font-family: 'Inter', sans-serif;
+  margin-top: 8%;
 }
 
 .login-wrapper .login-title {
@@ -12,10 +12,11 @@
   margin-bottom: 30px;
   font-size: 24px;
   font-family: 'Inter', sans-serif;
+  text-align: center;
 }
 
 .login-container {
-  background-color: #144e8c;
+  background-color: #1F5592;
   padding: 30px;
   border-radius: 25px;
   max-width: 800px;
@@ -60,7 +61,7 @@
 }
 
 .link-esqueci-senha {
-  text-align: left;
+  text-align: center;
   margin-top: 5px;
   color: #ED9170;
   font-family: 'Inter', sans-serif;

@@ -3,18 +3,21 @@ import { useState, useEffect } from 'react';
 import Rodape from '../../components/Rodape/Rodape';
 import InfoBox from '../../components/InfoBox/InfoBox';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
+import { useNavigate } from 'react-router-dom';
 
 const VisualizarContaCoordenador = () => {
   const [dados, setDados] = useState(null);
   const [carregando, setCarregando] = useState(true);
   const API_URL = 'http://localhost:3000/Coordenadores/be32';
 
+
+
   useEffect(() => {
     fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
         setDados(data);
-        setCarregando(false);
+        setCarregando(false); 
       })
       .catch((err) => {
         console.error('Erro ao buscar dados:', err);
@@ -44,6 +47,10 @@ const VisualizarContaCoordenador = () => {
     return <p>Carregando dados...</p>;
   }
 
+  function irCadastros() {
+    navigate('/cadastros');
+  }
+
   return (
     <>
       <CabecalhoPages>
@@ -58,6 +65,7 @@ const VisualizarContaCoordenador = () => {
         </li>
         <li key="solicitacoes"><a href="/#">Solicitações</a></li>
         <li key="conta"><a href="/VisualizarContaCoordenador">Conta</a></li>
+        <li><button id='btn-engrenagem' onClick={irCadastros}><img src="/images/engrenagem.png" alt="" /></button></li>
       </CabecalhoPages>
       <div className="dados-box-coordenador">
         <InfoBox

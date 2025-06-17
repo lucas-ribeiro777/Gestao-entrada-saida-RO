@@ -34,7 +34,7 @@ app.MapGet("/weatherforecast", () =>
         .ToArray();
     return forecast;
 })
-.WithName("GetWeatherForecast")
+.WithName("GraficoAPI")
 .WithOpenApi();
 
 app.Run();

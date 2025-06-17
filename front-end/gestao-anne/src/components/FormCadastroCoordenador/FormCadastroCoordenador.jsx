@@ -86,7 +86,7 @@ function FormCadastroCoordenador({ tipo, campos, fotoSelecionada }) {
 
     return (
         <form className="formulario" onSubmit={handleSubmit}>
-            <h2 className="titulo">Preencha os dados para se cadastrar COORDE</h2>
+            <h2 className="titulo">Preencha os dados para cadastrar um COORDENADOR</h2>
 
             <div className="campos">
                 <CampoTexto

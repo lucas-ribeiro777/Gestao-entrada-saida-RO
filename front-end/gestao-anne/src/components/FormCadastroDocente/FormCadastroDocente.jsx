@@ -88,7 +88,7 @@ function FormCadastroDocente({ tipo, campos, fotoSelecionada }) {
   return (
     <>
       <form className="formulario" onSubmit={handleSubmit}>
-        <h2 className="titulo">Preencha os dados para se cadastrar DOCENTE</h2>
+        <h2 className="titulo">Preencha os dados para cadastrar um DOCENTE</h2>
 
         <div className="campos">
           <CampoTexto

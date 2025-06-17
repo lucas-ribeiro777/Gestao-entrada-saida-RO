@@ -97,7 +97,7 @@ function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
         <>
 
             <form className="formulario" onSubmit={handleSubmit}>
-                <h2 className="titulo">Preencha os dados para se cadastrar RESP</h2>
+                <h2 className="titulo">Preencha os dados para cadastrar um RESPONSÁVEL</h2>
 
                 <div className="campos">
                     <CampoTexto 

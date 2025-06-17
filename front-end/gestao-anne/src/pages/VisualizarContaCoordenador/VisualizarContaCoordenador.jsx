@@ -4,12 +4,14 @@ import Rodape from '../../components/Rodape/Rodape';
 import InfoBox from '../../components/InfoBox/InfoBox';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 const VisualizarContaCoordenador = () => {
   const [dados, setDados] = useState(null);
   const [carregando, setCarregando] = useState(true);
   const API_URL = 'http://localhost:3000/Coordenadores/be32';
-
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -47,25 +49,26 @@ const VisualizarContaCoordenador = () => {
     return <p>Carregando dados...</p>;
   }
 
-  function irCadastros() {
-    navigate('/cadastros');
-  }
-
   return (
     <>
-      <CabecalhoPages>
-        <li key="inicio" ><a href="/#">Início</a></li>
-        <li key="ocorrencias" ><a href="/#">Ocorrências</a></li>
-        <li key="pesquisar-aluno">
+      <CabecalhoPages rotaAtual={location.pathname}>
+        <li><Link to="/#">Início</Link></li>
+        <li><Link to="/#">Ocorrências</Link></li>
+        <li>
           <input
             className="input-pesquisar-aluno"
             type="text"
             placeholder="Pesquise um Aluno"
+            onClick={() => navigate('/PesquisarAluno')}
           />
         </li>
-        <li key="solicitacoes"><a href="/#">Solicitações</a></li>
-        <li key="conta"><a href="/VisualizarContaCoordenador">Conta</a></li>
-        <li><button id='btn-engrenagem' onClick={irCadastros}><img src="/images/engrenagem.png" alt="" /></button></li>
+        <li><Link to="/#">Solicitações</Link></li>
+        <li><Link to="/VisualizarContaCoordenador">Conta</Link></li>
+        <li>
+          <Link to="/docente">
+            <img src="/images/engrenagem.png" alt="" />
+          </Link>
+        </li>
       </CabecalhoPages>
       <div className="dados-box-coordenador">
         <InfoBox

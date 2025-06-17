@@ -19,7 +19,7 @@ const LoginGeral = () => {
     }
 
     try {
-      const resposta = await fetch('http://10.90.146.27:5121/api/Usuarios/Login', {
+      const resposta = await fetch('http://localhost:3000/alunos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -30,8 +30,20 @@ const LoginGeral = () => {
         })
       });
 
-      if (!resposta.ok) {
-        throw new Error('Credenciais inválidas');
+      if (resposta.ok) {
+        const dados = await resposta.json();
+        const tipo = dados.tipo;
+
+        // Redireciona de acordo com o tipo
+        if (tipo === 'aluno') {
+          navigate('/inicialaluno');
+        } else if (tipo === 'docente') {
+          navigate('/inicialdocente');
+        } else if (tipo === 'responsavel') {
+          navigate('/inicialresponsavel');
+        } else if (tipo === 'coordenador') {
+          navigate('/inicialcoordenador');
+        }
       }
 
       const dados = await resposta.json();

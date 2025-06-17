@@ -18,13 +18,15 @@ function Foto({
       onFotoSelecionada(file);
     }
   };
-
+  
+console.log('Imagem recebida no componente Foto:', imagem);
   return (
     <div className="container-foto">
       <h2 id="h2">{titulo}</h2>
 
       <div className="imagem">
         <img src={imagemPreview} alt="Foto de Perfil" />
+        
       </div>
 
       {!desativarUpload ? (

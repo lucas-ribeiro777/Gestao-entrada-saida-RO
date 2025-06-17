@@ -43,10 +43,10 @@ const VisualizarOcorrenciasAluno = () => {
   return (
     <>
       <CabecalhoPages>
-        <li key="inicio"><Link to="/InicialAluno">INÍCIO</Link></li>
-        <li key="ocorrencias"><Link to="/visualizarocorrenciasaluno">OCORRÊNCIAS</Link></li>
-        <li key="solicitacoes"><Link to="/visualizarsolicitacaoaluno">SOLICITAÇÕES</Link></li>
-        <li key="conta"><Link to="/visualizarcontaaluno">CONTA</Link></li>
+        <li key="inicio"><Link to="/InicialAluno">Início</Link></li>
+        <li key="ocorrencias"><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li>
+        <li key="solicitacoes"><Link to="/visualizarsolicitacaoaluno">Solicitações</Link></li>
+        <li key="conta"><Link to="/visualizarcontaaluno">Conta</Link></li>
       </CabecalhoPages>
 
       <div className="container-ocorrencias">

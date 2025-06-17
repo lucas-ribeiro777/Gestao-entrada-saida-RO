@@ -48,12 +48,47 @@ function FormCadastroCoordenador({ tipo, campos, fotoSelecionada }) {
     const nomeArquivoAssinatura = `assinatura_${Date.now()}.png`;
     const arquivoAssinatura = dataURLtoFile(assinaturaImg, nomeArquivoAssinatura);
 
-    const formData = new FormData();
-    formData.append("Nome", nome);
-    formData.append("Email", email);
-    formData.append("Telefone", telefone);
-    formData.append("Senha", senha);
-    formData.append("Assinatura", arquivoAssinatura);
+            <div className="campos">
+                <CampoTexto
+                    valor={nome}
+                    onChange={e => setNome(e.target.value)}
+                    label="Nome"
+                    placeholder="Digite Algo..."
+                />
+                <CampoTexto
+                    valor={email}
+                    onChange={e => setEmail(e.target.value)}
+                    label="E-mail"
+                    placeholder="Digite Algo..."
+                />
+            <div className="linha2">
+                <CampoTexto 
+                id="senha" 
+                label="Senha" 
+                valor={senha} 
+                onChange={e => setSenha(e.target.value)} 
+                placeholder="Digite Sua Senha..." 
+                senha={true} 
+                />
+                <CampoTexto 
+                id="confirmarSenha" 
+                label="Confirmar Senha" 
+                valor={confirmarSenha} 
+                onChange={e => setConfirmarSenha(e.target.value)} 
+                placeholder="Confirme Sua Senha..." 
+                senha={true} 
+                />
+            </div>
+            <div className="linha1-docente">
+                <CampoTexto
+                valor={telefone}
+                onChange={e => setTelefone(e.target.value)}
+                label="Telefone"
+                placeholder="+55 ()"
+                />
+            </div>
+            </div>
+
 
     try {
       const response = await fetch('http://10.90.146.27:5121/api/Coordenadores/criar', {

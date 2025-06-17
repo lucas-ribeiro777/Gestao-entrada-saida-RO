@@ -7,10 +7,6 @@
   padding: 0;
 }
 
-.container-foto{
-  margin: 20px;
-}
-
 .container-central{
   display: flex;
   flex-direction: row;
@@ -81,7 +77,7 @@
 
 .dado-linha:nth-child(even),
 .dado-linha-aluno:nth-child(even) {
-  background-color: #87ADD8; /* Azul claro */
+  background-color: #ffffff; /* Azul claro */
 }
 
 .dado-linha span,

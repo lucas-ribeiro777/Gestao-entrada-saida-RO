@@ -1,40 +1,56 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './InicialAluno.css';
+import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
+import CaixaInfos from "../../components/CaixaInfos/CaixaInfos";
 import Rodape from '../../components/Rodape/Rodape';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
-import { Link } from 'react-router-dom';
 
 function InicialAluno() {
+  const [historico, setHistorico] = useState([]);
+  const [responsaveis, setResponsaveis] = useState([]);
+
+  const idAluno = 123; 
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/solicitacoes?id_aluno=${idAluno}`)
+      .then(res => res.json())
+      .then(data => {
+        const hoje = new Date().toISOString().split("T")[0];
+        const historicoDoDia = data.filter((s) => s.datahora.startsWith(hoje));
+
+        const textosFormatados = historicoDoDia.map(s => {
+          const hora = s.datahora.slice(11, 16); 
+          return `${hora} - ${s.tipo} Autorizada`;
+        });
+
+        setHistorico(textosFormatados);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/responsaveis?id_aluno=${idAluno}`)
+      .then(res => res.json())
+      .then(data => {
+        const nomes = data.map(r => r.nome);
+        setResponsaveis(nomes);
+      });
+  }, []);
 
   return (
     <>
       <CabecalhoPages>
-        <li key="inicio"><Link to="/InicialAluno">Início</Link></li>
-        <li key="ocorrencias"><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li>
-        <li key="solicitacoes"><Link to="/visualizarsolicitacaoaluno">Solicitações</Link></li>
-        <li key="conta"><Link to="/VisualizarContaaluno">Conta</Link></li>
+        <li><Link to="/InicialAluno">Início</Link></li>
+        <li><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li>
+        <li><Link to="/visualizarsolicitacaoaluno">Solicitações</Link></li>
+        <li><Link to="/VisualizarContaaluno">Conta</Link></li>
       </CabecalhoPages>
 
       <div className="content-area">
         <div className="caixas">
-          <div className="caixa">
-            <div className="titulo-caixa">HISTÓRICO DO DIA</div>
-            <div className="item">07:50 - Entrada Autorizada</div>
-            <div className="linha"></div>
-            <div className="item">09:51 - Saída Autorizada</div>
-          </div>
-
-          <div className="caixa">
-            <div className="titulo-caixa">RESPONSÁVEIS DO ALUNO</div>
-            <div className="item">Antônio Carlos Marçal</div>
-            <div className="linha"></div>
-            <div className="item">Maria De Lurdes</div>
-          </div>
+          <CaixaInfos titulo="HISTÓRICO DO DIA" itens={historico} />
+          <CaixaInfos titulo="RESPONSÁVEIS DO ALUNO" itens={responsaveis} />
         </div>
       </div>
-
-      <main></main>
 
       <Rodape />
     </>

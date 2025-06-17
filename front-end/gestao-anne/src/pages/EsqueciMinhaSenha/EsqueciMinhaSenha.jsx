@@ -89,7 +89,7 @@ const EsqueciMinhaSenha = () => {
             label="E-mail"
             placeholder="Digite seu e-mail..."
             valor={email}
-            aoAlterar={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
           />
 
@@ -97,7 +97,7 @@ const EsqueciMinhaSenha = () => {
             label="Senha"
             placeholder="Digite sua senha..."
             valor={senha}
-            aoAlterar={(e) => setSenha(e.target.value)}
+            onChange={(e) => setSenha(e.target.value)}
             type="password"
           />
 
@@ -105,7 +105,7 @@ const EsqueciMinhaSenha = () => {
             label="Confirmar Senha"
             placeholder="Confirme sua senha..."
             valor={confirmar}
-            aoAlterar={(e) => setConfirmar(e.target.value)}
+            onChange={(e) => setConfirmar(e.target.value)}
             type="password"
           />
 

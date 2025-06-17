@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "UY18G54zfE7ggdBVbpbd8lwMJUFCnY1MmCGI17GWNbU=",
+  "Source": "Api",
+  "BasePath": "_content/Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Api\\wwwroot",
+      "Source": "Api",
+      "ContentRoot": "C:\\Users\\Marcela Munhoz\\Documents\\Carlos\\projetoanne\\Api\\wwwroot\\",
+      "BasePath": "_content/Api",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

@@ -1,0 +1,51 @@
+.filtro{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.filtro select{
+    width: 250px;
+    height: 50px;
+    border-radius: 20px;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #E8490F;
+    color: #ffffff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filtro select:hover {
+    background-color: #1F5592;
+    color: #E8490F;
+}
+
+#pesquisar-aluno{
+    color: black !important;
+}
+
+.container-botao{
+    width: 20%;
+}
+
+.nenhum-resultado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  margin-top: 70px;
+  height: 500px;
+  font-size: 20px;
+}
+
+.nenhum-resultado img {
+  width: 90px;
+  opacity: 0.5;
+  margin-bottom: 26px;
+}

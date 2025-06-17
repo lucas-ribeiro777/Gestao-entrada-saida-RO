@@ -14,3 +14,11 @@
 .botao-principal:hover {
   background-color: #e03d00;
 }
+
+.icone-botao {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+  

@@ -1,7 +1,7 @@
 import './MenuCadastro.css';
 import { NavLink } from 'react-router-dom';
 import CabecalhoPages from '../CabecalhoPages/CabecalhoPages';
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
   function irCadastros() {
@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom';
   }
 
 function MenuCadastro() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="container-menu-cadastro">
@@ -20,6 +21,7 @@ function MenuCadastro() {
               className="input-pesquisar-aluno"
               type="text"
               placeholder="Pesquise um Aluno"
+              onClick={() => navigate("/PesquisarAluno")}
             />
           </li>
           <li key="solicitacoes"><a href="/#">Solicitações</a></li>

@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 const VisualizarContaCoordenador = () => {
   const [dados, setDados] = useState(null);
   const [carregando, setCarregando] = useState(true);
-  const API_URL = 'http://localhost:3000/Coordenadores/be32';
+  const API_URL = 'http://localhost:3001/Coordenadores/be32';
   const navigate = useNavigate();
 
 
@@ -59,7 +59,7 @@ const VisualizarContaCoordenador = () => {
             className="input-pesquisar-aluno"
             type="text"
             placeholder="Pesquise um Aluno"
-            onClick={() => navigate('/PesquisarAluno')}
+            onClick={() => navigate("/PesquisarAluno")}
           />
         </li>
         <li><Link to="/#">Solicitações</Link></li>

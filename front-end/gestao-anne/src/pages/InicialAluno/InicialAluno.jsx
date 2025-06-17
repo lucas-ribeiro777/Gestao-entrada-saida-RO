@@ -9,7 +9,7 @@ function InicialAluno() {
   const [historico, setHistorico] = useState([]);
   const [responsaveis, setResponsaveis] = useState([]);
 
-  const idAluno = 123; 
+  const idAluno = 1; 
 
   useEffect(() => {
     fetch(`http://localhost:3000/solicitacoes?id_aluno=${idAluno}`)

@@ -1,52 +1,205 @@
 {
+  "alunos": [
+    {
+      "id": 1,
+      "nome": "Lucas Ribeiro",
+      "curso": "Informática",
+      "imagem": "/images/meninateste.png"
+    },
+    {
+      "id": 2,
+      "nome": "Maria Silva",
+      "curso": "Administração",
+      "imagem": "/images/perfil.png"
+    },
+    {
+      "id": 3,
+      "nome": "João Pereira",
+      "curso": "Informática",
+      "imagem": "/images/perfil.png"
+    },
+    {
+      "id": 4,
+      "nome": "Ana Souza",
+      "curso": "Enfermagem",
+      "imagem": "/images/perfil.png"
+    },
+    {
+      "id": 5,
+      "nome": "Carlos Lima",
+      "curso": "Administração",
+      "imagem": "/images/perfil.png"
+    }
+  ],
   "solicitacoes": [
     {
       "id_solicitacao": 1,
-      "id_aluno": 123,
-      "id_coordenador": 10,
-      "id_responsavel": 55,
+      "id_aluno": 1,
+      "id_coordenador": 1,
+      "id_responsavel": 2,
       "curso": "Informática",
-      "turma": 3,
-      "tipo": "Saída",
-      "datahora": "2025-06-12 09:51",
+      "turma": 301,
+      "tipo": "saída",
+      "datahora": "2025-06-17 10:30",
       "retorno": 1,
-      "token": "ABC123",
+      "token": "A1B2C3",
       "motivo": "Consulta médica"
     },
     {
       "id_solicitacao": 2,
-      "id_aluno": 123,
-      "id_coordenador": 10,
-      "id_responsavel": 55,
+      "id_aluno": 1,
+      "id_coordenador": 1,
+      "id_responsavel": 2,
       "curso": "Informática",
-      "turma": 3,
-      "tipo": "Entrada",
-      "datahora": "2025-06-12 07:50",
+      "turma": 301,
+      "tipo": "entrada",
+      "datahora": "2025-06-10 08:15",
+      "retorno": 0,
+      "token": "D4E5F6",
+      "motivo": "Retorno após ausência"
+    },
+    {
+      "id_solicitacao": 3,
+      "id_aluno": 3,
+      "id_coordenador": 1,
+      "id_responsavel": 2,
+      "curso": "Informática",
+      "turma": 302,
+      "tipo": "saída",
+      "datahora": "2025-06-15 11:00",
+      "retorno": 0,
+      "token": "G7H8I9",
+      "motivo": "Problemas pessoais"
+    },
+    {
+      "id_solicitacao": 4,
+      "id_aluno": 2,
+      "id_coordenador": 1,
+      "id_responsavel": 2,
+      "curso": "Administração",
+      "turma": 101,
+      "tipo": "entrada",
+      "datahora": "2025-06-13 07:40",
       "retorno": 1,
-      "token": "XYZ456",
-      "motivo": "Chegada antecipada"
+      "token": "J1K2L3",
+      "motivo": "Chegada autorizada"
+    },
+    {
+      "id_solicitacao": 5,
+      "id_aluno": 4,
+      "id_coordenador": 1,
+      "id_responsavel": 2,
+      "curso": "Enfermagem",
+      "turma": 201,
+      "tipo": "saída",
+      "datahora": "2025-06-12 12:30",
+      "retorno": 1,
+      "token": "M4N5O6",
+      "motivo": "Compromisso familiar"
+    }
+  ],
+  "ocorrencias": [
+    {
+      "id_ocorrencias": 1,
+      "id_professor": 3,
+      "id_aluno": 1,
+      "id_coordenador": 1,
+      "id_responsavel": 2,
+      "tipo": 0,
+      "motivo": "Desrespeito em sala",
+      "datahora": "2025-06-01 09:45",
+      "encerramento": 1,
+      "curso": "Informática",
+      "turma": 301
+    },
+    {
+      "id_ocorrencias": 2,
+      "id_professor": 3,
+      "id_aluno": 2,
+      "id_coordenador": 1,
+      "id_responsavel": 2,
+      "tipo": 1,
+      "motivo": "Chegada atrasada",
+      "datahora": "2025-05-28 07:00",
+      "encerramento": 0,
+      "curso": "Administração",
+      "turma": 101
+    },
+    {
+      "id_ocorrencias": 3,
+      "id_professor": 4,
+      "id_aluno": 3,
+      "id_coordenador": 1,
+      "id_responsavel": 2,
+      "tipo": 0,
+      "motivo": "Uso indevido do celular",
+      "datahora": "2025-06-05 10:20",
+      "encerramento": 1,
+      "curso": "Informática",
+      "turma": 302
+    },
+    {
+      "id_ocorrencias": 4,
+      "id_professor": 5,
+      "id_aluno": 5,
+      "id_coordenador": 1,
+      "id_responsavel": 2,
+      "tipo": 1,
+      "motivo": "Discussão com colega",
+      "datahora": "2025-06-04 08:00",
+      "encerramento": 0,
+      "curso": "Administração",
+      "turma": 102
+    },
+    {
+      "id_ocorrencias": 5,
+      "id_professor": 6,
+      "id_aluno": 4,
+      "id_coordenador": 1,
+      "id_responsavel": 2,
+      "tipo": 0,
+      "motivo": "Falta sem justificativa",
+      "datahora": "2025-06-03 13:15",
+      "encerramento": 0,
+      "curso": "Enfermagem",
+      "turma": 201
     }
   ],
   "responsaveis": [
   {
     "id": 1,
-    "id_aluno": 123,
-    "nome": "Antônio Carlos Marçal"
+    "id_aluno": 1,
+    "nome": "Fernanda Ribeiro",
+    "telefone": "(14) 99999-1234",
+    "email": "fernanda.ribeiro@email.com"
   },
   {
     "id": 2,
-    "id_aluno": 123,
-    "nome": "Maria De Lurdes"
+    "id_aluno": 2,
+    "nome": "Carlos Silva",
+    "telefone": "(14) 98888-5678",
+    "email": "carlos.silva@email.com"
   },
-    {
-        "id": 3,
-        "id_aluno": 123,
-        "nome": "João da Silva"
-    },
-    {
-        "id": 4,
-        "id_aluno": 12,
-        "nome": "Ana Paula Souza"
-    }
-    ]
+  {
+    "id": 3,
+    "id_aluno": 3,
+    "nome": "Patrícia Pereira",
+    "telefone": "(14) 97777-9012",
+    "email": "patricia.pereira@email.com"
+  },
+  {
+    "id": 4,
+    "id_aluno": 4,
+    "nome": "João Souza",
+    "telefone": "(14) 96666-3456",
+    "email": "joao.souza@email.com"
+  },
+  {
+    "id": 5,
+    "id_aluno": 5,
+    "nome": "Luciana Lima",
+    "telefone": "(14) 95555-7890",
+    "email": "luciana.lima@email.com"
+  }
+]
 }

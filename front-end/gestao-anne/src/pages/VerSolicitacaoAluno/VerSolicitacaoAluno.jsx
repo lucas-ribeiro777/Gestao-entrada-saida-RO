@@ -20,13 +20,10 @@ const VerSolicitacaoAluno = () => {
     <div className="pagina-solicitacao">
       <CabecalhoPages />
 
-      <div className="container-solicitacao">
-        <div className="cabecalho-escola">
-          <img src="/logo-senai.png" alt="Logo SENAI" className="logo-senai" />
+      <div className="container-solicitacao1">
           <div>
             <h2>Escola SENAI - Lençóis Paulista</h2>
             <p>Controle de entradas e saídas fora do horário - CT 7.92</p>
-          </div>
         </div>
 
         <FormSolicitacao dados={dados} />

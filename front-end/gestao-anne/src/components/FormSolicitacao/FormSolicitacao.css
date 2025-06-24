@@ -1,44 +1,94 @@
 .form-solicitacao {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #f4f4f4;
+  border-radius: 25px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  font-family: 'Inter', sans-serif;
 }
 
 .form-solicitacao label {
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 15px;
+  display: block;
+  color: #333;
 }
 
 .form-solicitacao input[type="text"],
 .form-solicitacao input[type="date"],
 .form-solicitacao input[type="time"] {
-  padding: 8px;
-  border-radius: 6px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 15px;
   border: 1px solid #ccc;
+  border-radius: 25px;
   font-size: 14px;
 }
 
-.radio-group,
-.motivos {
+.radio-group-solicitacao,
+.motivos-solicitacao {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 5px;
+  gap: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 25px;
 }
 
-.termo {
-  margin-top: 20px;
+.radio-group-solicitacao label,
+.motivos-solicitacao label {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.form-solicitacao input[type="radio"],
+.form-solicitacao input[type="radio-solicitacao"] {
+  transform: scale(1.1);
+  accent-color: #e64a19;
+}
+
+.termo-solicitacao {
   font-size: 14px;
-  font-style: italic;
+  color: #444;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #eaeaea;
+  padding: 10px;
+  border-radius: 6px;
 }
 
 .botao-solicitar {
-  margin-top: 20px;
-  padding: 12px;
-  border: none;
-  background-color: #b3b3b3;
+  width: 100%;
+  background-color: #f04e23;
   color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.botao-solicitar:hover {
+  background-color: #d84315;
+}
+
+.container-solicitacao .logo-senai {
+  width: 80px;
+  height: auto;
+}
+
+.container-solicitacao h2 {
+  margin: 0;
+  color: #003366;
+}
+
+.container-solicitacao p {
+  margin: 4px 0 0 0;
+  color: #666;
 }

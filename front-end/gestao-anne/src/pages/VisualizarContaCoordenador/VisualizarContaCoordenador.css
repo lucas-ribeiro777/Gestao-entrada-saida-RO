@@ -54,3 +54,12 @@ li input{
   padding-left: 10px;
 }
 
+#btn-engrenagem{
+  background-color: transparent ;
+  border: none;
+  cursor: pointer;
+}
+
+.ativo img {
+  width: 100px;
+}

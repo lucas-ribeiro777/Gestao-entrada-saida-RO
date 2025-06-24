@@ -3,18 +3,23 @@ import { useState, useEffect } from 'react';
 import Rodape from '../../components/Rodape/Rodape';
 import InfoBox from '../../components/InfoBox/InfoBox';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 const VisualizarContaCoordenador = () => {
   const [dados, setDados] = useState(null);
   const [carregando, setCarregando] = useState(true);
-  const API_URL = 'http://localhost:3000/Coordenadores/be32';
+  const API_URL = 'http://localhost:3001/Coordenadores/be32';
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
         setDados(data);
-        setCarregando(false);
+        setCarregando(false); 
       })
       .catch((err) => {
         console.error('Erro ao buscar dados:', err);
@@ -46,18 +51,24 @@ const VisualizarContaCoordenador = () => {
 
   return (
     <>
-      <CabecalhoPages>
-        <li key="inicio" ><a href="/#">Início</a></li>
-        <li key="ocorrencias" ><a href="/#">Ocorrências</a></li>
-        <li key="pesquisar-aluno">
+      <CabecalhoPages rotaAtual={location.pathname}>
+        <li><Link to="/#">Início</Link></li>
+        <li><Link to="/#">Ocorrências</Link></li>
+        <li>
           <input
             className="input-pesquisar-aluno"
             type="text"
             placeholder="Pesquise um Aluno"
+            onClick={() => navigate("/PesquisarAluno")}
           />
         </li>
-        <li key="solicitacoes"><a href="/#">Solicitações</a></li>
-        <li key="conta"><a href="/VisualizarContaCoordenador">Conta</a></li>
+        <li><Link to="/#">Solicitações</Link></li>
+        <li><Link to="/VisualizarContaCoordenador">Conta</Link></li>
+        <li>
+          <Link to="/docente">
+            <img src="/images/engrenagem.png" alt="" />
+          </Link>
+        </li>
       </CabecalhoPages>
       <div className="dados-box-coordenador">
         <InfoBox

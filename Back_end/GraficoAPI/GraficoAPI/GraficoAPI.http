@@ -1,0 +1,6 @@
+@GraficoAPI_HostAddress = http://localhost:5243
+
+GET {{GraficoAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

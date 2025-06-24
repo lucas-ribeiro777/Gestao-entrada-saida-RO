@@ -1,12 +1,14 @@
 import './CabecalhoPages.css';
 import { useLocation } from 'react-router-dom';
-import { cloneElement } from 'react';
+import { cloneElement, isValidElement } from 'react';
+
 
 function CabecalhoPages({ children }) {
   const location = useLocation();
 
   const childrenComClasses = Array.isArray(children)
     ? children.map((child) => {
+        if (!isValidElement(child)) return child;
         return cloneElement(child, {
           children: cloneElement(child.props.children, {
             className:

@@ -3,7 +3,8 @@
 .login-wrapper {
   padding: 20px;
   font-family: 'Inter', sans-serif;
-  margin-top: 8%;
+  margin-top: 5%;
+  margin-bottom: -5%;
 }
 
 .login-wrapper .login-title {

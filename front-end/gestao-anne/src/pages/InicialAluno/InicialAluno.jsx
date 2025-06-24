@@ -1,61 +1,59 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './InicialAluno.css';
+import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
+import CaixaInfos from "../../components/CaixaInfos/CaixaInfos";
 import Rodape from '../../components/Rodape/Rodape';
+import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 
 function InicialAluno() {
-  const navigate = useNavigate();
+  const [historico, setHistorico] = useState([]);
+  const [responsaveis, setResponsaveis] = useState([]);
 
-  const irParaOcorrencias = () => {
-    navigate('/visualizarocorrenciasaluno');
-  };
+  const idAluno = 1; 
 
-  const irParaSolicitacoes = () => {
-    navigate('/solicitacoesaluno');
-  };
+  useEffect(() => {
+    fetch(`http://localhost:3000/solicitacoes?id_aluno=${idAluno}`)
+      .then(res => res.json())
+      .then(data => {
+        const hoje = new Date().toISOString().split("T")[0];
+        const historicoDoDia = data.filter((s) => s.datahora.startsWith(hoje));
 
-  const irParaConta = () => {
-    navigate('/visualizarcontaaluno');
-  };
+        const textosFormatados = historicoDoDia.map(s => {
+          const hora = s.datahora.slice(11, 16); 
+          return `${hora} - ${s.tipo} Autorizada`;
+        });
+
+        setHistorico(textosFormatados);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/responsaveis?id_aluno=${idAluno}`)
+      .then(res => res.json())
+      .then(data => {
+        const nomes = data.map(r => r.nome);
+        setResponsaveis(nomes);
+      });
+  }, []);
 
   return (
-    <div className="pagina-inicial">
-      <div className="logo-container">
-        <img src="./images/LogoSenaiSemAsEscritaDoLado.png" alt="Logo" />
-      </div>
-
-      <div className="novo-container">
-        <p className="inicio">Início</p>
-        <a href="#" onClick={irParaOcorrencias}>Ocorrências</a>
-        <a href="#" onClick={irParaSolicitacoes}>Solicitações</a>
-        <a href="#" onClick={irParaConta}>Conta</a>
-      </div>
-
-      <div className="fundo-azul"></div>
-      <div className="caixas"></div>
+    <>
+      <CabecalhoPages>
+        <li><Link to="/InicialAluno">Início</Link></li>
+        <li><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li>
+        <li><Link to="/visualizarsolicitacaoaluno">Solicitações</Link></li>
+        <li><Link to="/VisualizarContaaluno">Conta</Link></li>
+      </CabecalhoPages>
 
       <div className="content-area">
         <div className="caixas">
-          <div className="caixa">
-            <div className="titulo-caixa">HISTÓRICO DO DIA</div>
-            <div className="item">07:50 - Entrada Autorizada</div>
-            <div className="linha"></div>
-            <div className="item">09:51 - Saída Autorizada</div>
-          </div>
-
-          <div className="caixa">
-            <div className="titulo-caixa">RESPONSÁVEIS DO ALUNO</div>
-            <div className="item">Antônio Carlos Marçal</div>
-            <div className="linha"></div>
-            <div className="item">Maria De Lurdes</div>
-          </div>
+          <CaixaInfos titulo="HISTÓRICO DO DIA" itens={historico} />
+          <CaixaInfos titulo="RESPONSÁVEIS DO ALUNO" itens={responsaveis} />
         </div>
       </div>
 
-      <main></main>
-
       <Rodape />
-    </div>
+    </>
   );
 }
 

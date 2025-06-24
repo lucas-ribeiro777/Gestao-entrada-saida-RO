@@ -5,7 +5,6 @@
   background-color: #a0bee3; /* Add your desired background color here */
 }
 
-/* LOGO */
 .logo-container {
   background-color: #fcfcfd;
   padding: 10px 0;
@@ -16,7 +15,6 @@
   height: 100px;
 }
 
-/* NEGOCIO COISADO */
 .novo-container {
   background-color: #1e4f91;
   display: flex;
@@ -38,10 +36,11 @@
   color: orangered;
 }
 
-/* CAIXAS */
 .caixas {
   display: flex;
   justify-content: center;
+  flex-direction: row;
+  align-items: flex-start;
   gap: 60px;
   margin: 40px auto;
   flex-wrap: wrap;

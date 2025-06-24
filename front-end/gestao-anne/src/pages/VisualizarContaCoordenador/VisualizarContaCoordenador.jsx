@@ -52,7 +52,7 @@ const VisualizarContaCoordenador = () => {
   return (
     <>
       <CabecalhoPages rotaAtual={location.pathname}>
-        <li><Link to="/#">Início</Link></li>
+        <li><Link to="/InicialCoordenador">Início</Link></li>
         <li><Link to="/#">Ocorrências</Link></li>
         <li>
           <input

@@ -1,4 +1,4 @@
-import './VisualizarContaCoordenador.css';
+import './VisualizarContaProfessor.css';
 import { useState, useEffect } from 'react';
 import Rodape from '../../components/Rodape/Rodape';
 import InfoBox from '../../components/InfoBox/InfoBox';
@@ -6,20 +6,18 @@ import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-
-const VisualizarContaCoordenador = () => {
+const VisualizarContaProfessor = () => {
   const [dados, setDados] = useState(null);
   const [carregando, setCarregando] = useState(true);
-  const API_URL = 'http://localhost:3000/coordenadores/1';
+  const API_URL = 'http://localhost:3001/Docente/1p1';
   const navigate = useNavigate();
-
 
   useEffect(() => {
     fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
         setDados(data);
-        setCarregando(false); 
+        setCarregando(false);
       })
       .catch((err) => {
         console.error('Erro ao buscar dados:', err);
@@ -52,59 +50,51 @@ const VisualizarContaCoordenador = () => {
   return (
     <>
       <CabecalhoPages rotaAtual={location.pathname}>
-        <li><Link to="/#">Início</Link></li>
-        <li><Link to="/#">Ocorrências</Link></li>
-        <li>
-          <input
-            className="input-pesquisar-aluno"
-            type="text"
-            placeholder="Pesquise um Aluno"
-            onClick={() => navigate("/PesquisarAluno")}
-          />
-        </li>
-        <li><Link to="/VisualizarSolicitacoes">Solicitações</Link></li>
-        <li><Link to="/VisualizarContaCoordenador">Conta</Link></li>
+        <li><Link to="/InicialProfessor">Início</Link></li>
+        <li><Link to="/VisualizarOcoorrenciaProfessor">Ocorrências</Link></li>
+        <li><Link to="/#">Solicitações</Link></li>
+        <li><Link to="/VisualizarContaProfessor">Conta</Link></li>
         <li>
           <Link to="/docente">
             <img src="/images/engrenagem.png" alt="" />
           </Link>
         </li>
       </CabecalhoPages>
-      <div className="dados-box-coordenador">
+
+      <div className="dados-box-professor">
         <InfoBox
-          icone={<img src="/images/nome.png" alt="Coordenador" />}
+          icone={<img src="/images/nome.png" alt="Professor" />}
           texto={dados.nome}
           onEditar={() => handleEditar('nome')}
           editavel={true}
           cor="escuro"
         />
         <InfoBox
-          icone={<img src="/images/email.png" alt="Coordenador" />}
+          icone={<img src="/images/email.png" alt="Professor" />}
           texto={dados.email}
           onEditar={() => handleEditar('email')}
           editavel={true}
           cor="claro"
         />
         <InfoBox
-          icone={<img src="/images/telefoneconta.png" alt="Coordenador" />}
+          icone={<img src="/images/telefoneconta.png" alt="Professor" />}
           texto={dados.telefone}
           onEditar={() => handleEditar('telefone')}
           editavel={true}
           cor="escuro"
         />
         <InfoBox
-          icone={<img src="/images/niver.png" alt="Coordenador" />}
+          icone={<img src="/images/niver.png" alt="Professor" />}
           texto={dados.assinatura}
           onEditar={() => handleEditar('assinatura')}
           editavel={true}
           cor="claro"
         />
-
       </div>
+
       <Rodape />
     </>
   );
 };
 
-export default VisualizarContaCoordenador;
-
+export default VisualizarContaProfessor;

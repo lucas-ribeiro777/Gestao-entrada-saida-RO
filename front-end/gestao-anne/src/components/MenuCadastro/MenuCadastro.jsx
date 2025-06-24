@@ -24,7 +24,7 @@ function MenuCadastro() {
               onClick={() => navigate("/PesquisarAluno")}
             />
           </li>
-          <li key="solicitacoes"><a href="/#">Solicitações</a></li>
+          <li key="solicitacoes"><a href="/VisualizarSolicitacoes">Solicitações</a></li>
           <li key="conta"><a href="/VisualizarContaCoordenador">Conta</a></li>
           <li key="engrenagem"><img src="/images/engrenagem.png" alt="" /></li>
         </CabecalhoPages>

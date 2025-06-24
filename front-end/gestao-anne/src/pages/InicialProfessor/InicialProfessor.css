@@ -1,0 +1,148 @@
+.pagina-inicial-professor {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #ffffff;
+  }
+  
+  .content-area-professor {
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+  }
+  
+  .secao-solicitacoes-professor,
+  .secao-ocorrencias-professor {
+    width: 90%;
+    max-width: 800px;
+  }
+  
+  .secao-solicitacoes-professor h2,
+  .secao-ocorrencias-professor h2 {
+    color: orangered;
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .tabela-professor {
+    background-color: #233985;
+    border-radius: 15px;
+    overflow: hidden;
+    color: white;
+  }
+  
+  .linha-professor {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    align-items: center;
+    background-color: #87ADD8;
+    border: 1px solid #000000;
+  }
+  
+  .linha-professor.header-professor {
+    background-color: #233985;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .linha-professor span {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .linha-professor.vazio-professor span {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    background-color: #87ADD8;
+    padding: 12px 0;
+  }
+  
+  .switch-professor {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+  }
+  
+  .switch-professor input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider-professor {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  
+  .slider-professor:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider-professor {
+    background-color: #233985;
+  }
+  
+  input:checked + .slider-professor:before {
+    transform: translateX(18px);
+  }
+
+  .switch-orange-professor .slider-professor {
+    background-color: #ccc;
+  }
+  
+  .switch-orange-professor input:checked + .slider-professor {
+    background-color: orangered;
+  }
+  
+  .btn-adicionar-ocorrencia-professor {
+    background-color: #1f5aa8;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 20px 30px;
+    border: none;
+    border-radius: 15px;
+    margin: 141px auto 0;
+    display: block;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .btn-adicionar-ocorrencia-professor:hover {
+    background-color: #233985;
+  }
+
+  @media (max-width: 768px) {
+    .linha-professor span {
+      font-size: 14px;
+    }
+  
+    .btn-adicionar-ocorrencia-professor {
+      width: 100%;
+    }
+  }
+  

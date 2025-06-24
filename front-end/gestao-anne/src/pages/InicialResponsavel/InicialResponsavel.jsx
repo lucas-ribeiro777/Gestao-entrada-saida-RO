@@ -3,6 +3,9 @@ import './InicialResponsavel.css';
 import { NavLink } from 'react-router-dom';
 import Rodape from '../../components/Rodape/Rodape';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
+import homemImg from './imagens/homen.jpg';
+import mulherImg from './imagens/mulher.jpg';
+
 
 const InicialResponsavel = () => {
   return (
@@ -26,7 +29,7 @@ const InicialResponsavel = () => {
           {[{
             nome: "Pedro Rocha Carvalho",
             curso: ["Banco de Dados", "Lógica de Programação"],
-            imagem: "/caminho/para/foto.jpg",
+            imagem: homemImg,
             registros: [
               { tipo: "saida", data: "25/05/2025", hora: "09:43", detalhe: "Banco de Dados" },
               { tipo: "saida", data: "28/05/2025", hora: "09:59", detalhe: "Lógica de Programação" },
@@ -37,7 +40,7 @@ const InicialResponsavel = () => {
           }, {
             nome: "Bruna Rocha Carvalho",
             curso: ["Técnico em Administração"],
-            imagem: "/caminho/para/foto-bruna.jpg",
+            imagem: mulherImg,
             registros: [
               { tipo: "saida", data: "25/05/2025", hora: "09:43", detalhe: "Técnico em Administração" },
               { tipo: "saida", data: "28/05/2025", hora: "09:59", detalhe: "Técnico em Administração" },

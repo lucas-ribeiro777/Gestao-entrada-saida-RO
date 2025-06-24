@@ -5,6 +5,15 @@
   padding: 40px 0;
 }
 
+/* Título fora da caixa cinza */
+.titulo-fora {
+  color: #d13c0f;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
 .grafico-box {
   width: 700px;
   background: #D9D9D9;
@@ -15,17 +24,15 @@
   box-shadow: 0 0 10px #ccc;
 }
 
-.grafico-box h2 {
-  color: #d13c0f;
-  font-size: 20px;
-  margin-bottom: 25px;
-  font-weight: bold;
-}
-
 .conteudo {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 30px;
+}
+
+svg {
+  transform: rotate(-90deg);
 }
 
 .legenda {
@@ -47,4 +54,15 @@
   display: inline-block;
   margin-right: 10px;
   border-radius: 3px;
+}
+
+/* Para inverter legenda e gráfico no segundo box */
+.invertido {
+  flex-direction: row-reverse;
+}
+
+.legenda-esquerda {
+  padding-left: 0;
+  padding-right: 20px;
+  text-align: right;
 }

@@ -27,7 +27,6 @@ const renderPizza = (data) => {
     const dashOffset = circumference - offset;
     offset += dash;
     return (
-
       <circle
         key={index}
         r={radius}
@@ -45,47 +44,46 @@ const renderPizza = (data) => {
 
 const InicialCoordenador = () => {
   return (
-
     <>
+      <CabecalhoPages />
 
-    <CabecalhoPages />
-    
-    <div className="graficos-container">
-      <div className="grafico-box">
-        <h2>CONTROLE DE SAÍDA</h2>
-        <div className="conteudo">
-          <svg width="200" height="200" viewBox="0 0 200 200">
-            {renderPizza(controleSaidaData)}
-          </svg>
-          <ul className="legenda">
-            {controleSaidaData.map((item, index) => (
-              <li key={index}>
-                <span className="cor" style={{ backgroundColor: item.color }}></span>
-                {item.label}
-              </li>
-            ))}
-          </ul>
+      <div className="graficos-container">
+        <h2 className="titulo-fora">CONTROLE DE SAÍDA</h2>
+        <div className="grafico-box">
+          <div className="conteudo">
+            <svg width="200" height="200" viewBox="0 0 200 200">
+              {renderPizza(controleSaidaData)}
+            </svg>
+            <ul className="legenda">
+              {controleSaidaData.map((item, index) => (
+                <li key={index}>
+                  <span className="cor" style={{ backgroundColor: item.color }}></span>
+                  {item.label}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <h2 className="titulo-fora">MOTIVO DE SAÍDA</h2>
+        <div className="grafico-box">
+          <div className="conteudo invertido">
+            <ul className="legenda legenda-esquerda">
+              {motivoSaidaData.map((item, index) => (
+                <li key={index}>
+                  <span className="cor" style={{ backgroundColor: item.color }}></span>
+                  {item.label}
+                </li>
+              ))}
+            </ul>
+            <svg width="200" height="200" viewBox="0 0 200 200">
+              {renderPizza(motivoSaidaData)}
+            </svg>
+          </div>
         </div>
       </div>
 
-      <div className="grafico-box">
-        <h2>MOTIVO DE SAÍDA</h2>
-        <div className="conteudo">
-          <svg width="200" height="200" viewBox="0 0 200 200">
-            {renderPizza(motivoSaidaData)}
-          </svg>
-          <ul className="legenda">
-            {motivoSaidaData.map((item, index) => (
-              <li key={index}>
-                <span className="cor" style={{ backgroundColor: item.color }}></span>
-                {item.label}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
       <Rodape />
-    </div>
     </>
   );
 };

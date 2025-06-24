@@ -143,5 +143,3 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
   );
 }
 export default FormCadastroAluno;
-
-

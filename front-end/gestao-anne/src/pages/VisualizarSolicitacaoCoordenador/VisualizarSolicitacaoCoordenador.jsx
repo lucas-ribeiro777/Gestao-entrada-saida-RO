@@ -53,7 +53,7 @@ function VisualizarSolicitacaoCoordenador() {
   return (
     <>
       <CabecalhoPages rotaAtual={location.pathname}>
-        <li key="inicio"><Link to="/#">Início</Link></li>
+        <li key="inicio"><Link to="/InicialCoordenador">Início</Link></li>
         <li key="ocorrencias"><Link to="/#">Ocorrências</Link></li>
         <li key="pesquisar">
           <input

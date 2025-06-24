@@ -14,6 +14,7 @@ import InicialAluno from './pages/InicialAluno/InicialAluno';
 import InicialProfessor from './pages/InicialProfessor/inicialProfessor';
 import VisualizarSolicitacaoAluno from './pages/VisualizarSolicitacaoAluno/VisualizarSolicitacaoAluno';
 import PesquisarAluno from './pages/PesquisarAlunos/PesquisarAlunos';
+import VerSolicitacaoAluno from './pages/VerSolicitacaoAluno/VerSolicitacaoAluno';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path="/InicialProfessor" element={<InicialProfessor />} />
         <Route path="/visualizarsolicitacaoaluno" element={<VisualizarSolicitacaoAluno />} />
         <Route path="/PesquisarAluno" element={<PesquisarAluno />} />
+        <Route path="/VerSolicitacaoAluno" element={<VerSolicitacaoAluno />} />
       </Routes>
     </Router>
   );

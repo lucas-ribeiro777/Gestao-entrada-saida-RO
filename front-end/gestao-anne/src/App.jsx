@@ -13,6 +13,7 @@ import VisualizarContaCoordenador from './pages/VisualizarContaCoordenador/Visua
 import InicialAluno from './pages/InicialAluno/InicialAluno';
 import VisualizarSolicitacaoAluno from './pages/VisualizarSolicitacaoAluno/VisualizarSolicitacaoAluno';
 import PesquisarAluno from './pages/PesquisarAlunos/PesquisarAlunos';
+import VisualizarSolicitacaoCoordenador from './pages/VisualizarSolicitacaoCoordenador/VisualizarSolicitacaoCoordenador';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/inicialAluno" element={<InicialAluno />} />
         <Route path="/visualizarsolicitacaoaluno" element={<VisualizarSolicitacaoAluno />} />
         <Route path="/PesquisarAluno" element={<PesquisarAluno />} />
+        <Route path="/VisualizarSolicitacoes" element={<VisualizarSolicitacaoCoordenador />} />
       </Routes>
     </Router>
   );

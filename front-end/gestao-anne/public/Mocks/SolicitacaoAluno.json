@@ -1,13 +1,7 @@
 {
   "aluno": "João da Silva",
   "curso": "Técnico em Mecânica",
-  "autorizacao": "Saída",
-  "motivo": "Saúde",
   "outroMotivo": "",
   "horaRetorno": "15:30",
-  "data": "2025-06-24",
-  "assinaturaDocente": "Prof. Carlos Andrade",
-  "coordenacao": "João Coordenador",
-  "nomeAluno": "João da Silva",
-  "responsavel": "Maria Silva"
+  "data": "2025-06-24"
 }

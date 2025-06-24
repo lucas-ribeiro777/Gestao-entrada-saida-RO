@@ -170,4 +170,3 @@ function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
 }
 
 export default FormCadastroResponsavel;
-

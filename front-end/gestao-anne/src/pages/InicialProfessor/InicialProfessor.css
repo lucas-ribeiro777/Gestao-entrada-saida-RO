@@ -119,14 +119,14 @@
   }
   
   .btn-adicionar-ocorrencia-professor {
-    background-color: #1f5aa8;
+    background-color: #1F5592;
     color: white;
     font-weight: bold;
     font-size: 16px;
-    padding: 20px 30px;
+    padding: 25px 50px;
     border: none;
     border-radius: 15px;
-    margin: 141px auto 0;
+    margin: 131px auto 0;
     display: block;
     cursor: pointer;
     transition: 0.3s;
@@ -145,4 +145,3 @@
       width: 100%;
     }
   }
-  

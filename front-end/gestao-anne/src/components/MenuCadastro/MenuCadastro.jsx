@@ -14,7 +14,7 @@ function MenuCadastro() {
     <>
       <div className="container-menu-cadastro">
         <CabecalhoPages rotaAtual={location.pathname}>
-          <li key="inicio" ><a href="/#">Início</a></li>
+          <li key="inicio" ><a href="/InicialCoordenador">Início</a></li>
           <li key="ocorrencias" ><a href="/#">Ocorrências</a></li>
           <li key="pesquisar-aluno">
             <input

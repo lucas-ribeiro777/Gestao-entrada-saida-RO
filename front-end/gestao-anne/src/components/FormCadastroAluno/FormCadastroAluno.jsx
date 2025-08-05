@@ -142,5 +142,8 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
     </>
   );
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> a4c53fa822ad84b18858b845b515d19965de0342
 export default FormCadastroAluno;

@@ -67,20 +67,19 @@
 }
 .botao-solicitar:hover { opacity:0.8; }
 
-/* Espaçamento entre labels e campos */
+
 label {
   display: block;
   margin-bottom: 8px;
 }
 
-/* Gaps nos grupos de radio */
+
 .radio-group-solicitacao,
 .motivos-solicitacao {
   display: flex;
   gap: 20px;
 }
 
-/* Exemplo de padding extra em labels de rádio/seletor */
 .radio-group-solicitacao label,
 .motivos-solicitacao label {
   padding: 4px 8px;

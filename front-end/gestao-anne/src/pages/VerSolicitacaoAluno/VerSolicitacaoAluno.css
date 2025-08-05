@@ -1,5 +1,34 @@
 .container-solicitacao1 {
+    max-width: 100%;
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    box-sizing: border-box;
     text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
+  }
+  
+  .container-solicitacao1 h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .container-solicitacao1 p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  /* Responsividade para telas menores */
+  @media (max-width: 768px) {
+    .container-solicitacao1 {
+      padding: 1rem;
+    }
+  
+    .container-solicitacao1 h2 {
+      font-size: 1.5rem;
+    }
+  
+    .container-solicitacao1 p {
+      font-size: 1rem;
+    }
+  }
+  
+

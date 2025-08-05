@@ -21,11 +21,6 @@ const VerSolicitacaoAluno = () => {
       <CabecalhoPages />
 
       <div className="container-solicitacao1">
-          <div>
-            <h2>Escola SENAI - Lençóis Paulista</h2>
-            <p>Controle de entradas e saídas fora do horário - CT 7.92</p>
-        </div>
-
         <FormSolicitacao dados={dados} />
       </div>
 

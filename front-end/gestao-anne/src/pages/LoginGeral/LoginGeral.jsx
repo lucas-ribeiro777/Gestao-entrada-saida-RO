@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Rodape from '../../components/Rodape/Rodape';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 import CampoTexto from '../../components/CampoTexto/CampoTexto'; // import do seu componente
+import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 
 const LoginGeral = () => {
   const [email, setEmail] = useState('');
@@ -69,8 +70,7 @@ const LoginGeral = () => {
 
   return (
     <>
-      <MenuCadastro />
-
+      <CabecalhoPages/>
       <div className="login-wrapper">
         <h3 className="login-title">Preencha os dados para fazer login</h3>
 

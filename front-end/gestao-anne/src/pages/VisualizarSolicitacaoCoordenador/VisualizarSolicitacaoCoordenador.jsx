@@ -34,7 +34,7 @@ function VisualizarSolicitacaoCoordenador() {
         const solicitacoesComAluno = solicitacoes
           .filter(s => !s.coordenadorId)
           .map(s => {
-            const aluno = alunos.find(a => Number(a.id) === Number(s.alunoId));
+            const aluno = alunos.find(a => Number(a.id) === Number(s.id_aluno));
             return {
               ...s,
               aluno: aluno || { nome: 'Desconhecido', curso: 'N/A', imagem: '/images/default.png' }

@@ -22,9 +22,8 @@
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 150px;
-  color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: #e74c3c
+  color: #e74c3c;
 }
 
 .esqueci-row {
@@ -34,25 +33,8 @@
   font-family: 'Inter', sans-serif;
 }
 
-
-.input-full-esqueci {
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
-  font-size: 16px;
-  width: 97%;
-  align-items: center;
-}
-
-.input-half-esqueci {
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
-  font-size: 16px;
-  width: 97%;
-  align-items: center;
-}
-
+.input-full-esqueci,
+.input-half-esqueci,
 .input-head-esqueci {
   padding: 10px;
   border-radius: 20px;
@@ -78,17 +60,8 @@
   margin-top: -100px;
 }
 
-.btn-submit:hover {
+.btn-submit-esqueci:hover {
   background-color: #c0392b;
-}
-
-.input-head-esqueci {
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
-  font-size: 16px;
-  width: 97%;
-  align-items: center;
 }
 
 .mensagem-feedback {
@@ -97,4 +70,35 @@
   margin-top: 10px;
   text-align: center;
   font-weight: 800;
+}
+
+/* RESPONSIVIDADE PARA TELAS MENORES */
+@media (max-width: 768px) {
+  .esqueci-container {
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    border-radius: 20px;
+  }
+
+  .input-full-esqueci,
+  .input-half-esqueci,
+  .input-head-esqueci {
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .btn-submit-esqueci {
+    width: 100%;
+    max-width: none;
+    margin-top: 20px;
+  }
+
+  .esqueci-wrapper .esqueci-title {
+    font-size: 20px;
+  }
+
+  .mensagem-feedback {
+    font-size: 16px;
+  }
 }

@@ -8,6 +8,8 @@
   background-color: transparent;
   height: auto;
   font-family: 'Inter', sans-serif;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .perfil-aluno-ocorrencias {
@@ -19,7 +21,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Inter', sans-serif;
 }
 
 .perfil-aluno-ocorrencias img {
@@ -34,14 +35,13 @@
   font-size: 20px;
   font-weight: bold;
   margin-top: 10px;
-  font-family: 'Inter', sans-serif;
 }
 
 .tabela-ocorrencias {
   width: 60%;
   border-radius: 25px;
   padding: 30px;
-  height: 200px;
+  height: auto;
   margin-top: 10px;
 }
 
@@ -52,7 +52,6 @@
   text-align: center;
   border-radius: 25px;
   margin-top: 90px;
-  font-family: 'Inter', sans-serif;
 }
 
 table {
@@ -66,32 +65,74 @@ table {
 th {
   background-color: #1f4e89;
   color: white;
-  padding: 30px;
+  padding: 20px;
   text-align: center;
   font-weight: bold;
-  font-size: 20px;
-  font-family: 'Inter', sans-serif;
+  font-size: 18px;
 }
 
 td {
-  padding: 30px;
+  padding: 20px;
   color: black;
-  font-size: 20px;
-  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  text-align: center;
 }
 
-thead th:first-child {
-  border-top-left-radius: 0;
+/* Responsividade */
+@media (max-width: 1024px) {
+  .container-ocorrencias {
+    flex-direction: column;
+    padding: 50px 20px;
+  }
+
+  .perfil-aluno-ocorrencias, .tabela-ocorrencias {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .titulo-tabela-ocorrencias {
+    margin-top: 30px;
+    font-size: 22px;
+  }
+
+  th, td {
+    padding: 15px;
+    font-size: 16px;
+  }
 }
 
-thead th:last-child {
-  border-top-right-radius: 0;
+@media (max-width: 768px) {
+  .container-ocorrencias {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  .perfil-aluno-ocorrencias {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .perfil-aluno-ocorrencias img {
+    margin: 0 auto 20px auto;
+  }
+
+  .tabela-ocorrencias {
+    width: 100%;
+    padding: 20px;
+    overflow-x: auto;
+  }
+
+  .titulo-tabela-ocorrencias {
+    font-size: 20px;
+    margin-top: 40px;
+  }
+
+  th, td {
+    font-size: 16px;
+    padding: 15px;
+  }
 }
 
-tbody tr:last-child td:first-child {
-  border-bottom-left-radius: 20px;
-}
-
-tbody tr:last-child td:last-child {
-  border-bottom-right-radius: 20px;
-}

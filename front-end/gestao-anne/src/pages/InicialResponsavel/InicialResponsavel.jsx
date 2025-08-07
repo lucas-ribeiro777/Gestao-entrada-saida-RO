@@ -65,20 +65,6 @@ function InicialResponsavel() {
   const InicialResponsavel = () => {
     return (
       <div className="InicialResponsavel">
-        <CabecalhoPages>
-          <ul className="menu-links">
-            <li>
-              <NavLink to="/InicialResponsavel" className={({ isActive }) => (isActive ? "ativo" : "nativo")}>INÍCIO</NavLink>
-            </li>
-            <li>
-              <NavLink to="/autorizarEntradaSaida" className={({ isActive }) => (isActive ? "ativo" : "nativo")}>AUTORIZAR ENTRADA/SAÍDA</NavLink>
-            </li>
-            <li>
-              <NavLink to="/VisualizacaoResponsavel" className={({ isActive }) => (isActive ? "ativo" : "nativo")}>CONTA</NavLink>
-            </li>
-          </ul>
-        </CabecalhoPages>
-
         <main>
           <div className="container">
             {[{
@@ -139,16 +125,13 @@ function InicialResponsavel() {
     <>
       <CabecalhoPages rotaAtual={location.pathname}>
         <li key="inicio">
-          <Link to="/#">Início</Link>
-        </li>
-        <li key="ocorrencias">
-          <Link to="/#">Ocorrências</Link>
+          <Link to="/InicialResponsavel">Início</Link>
         </li>
         <li key="solicitacoes">
           <Link to="/#">Solicitações</Link>
         </li>
         <li key="conta">
-          <Link to="/VisualizarContaResponsavel">Conta</Link>
+          <Link to="/VisualizacaoResponsavel">Conta</Link>
         </li>
       </CabecalhoPages>
       <div className="space"></div>

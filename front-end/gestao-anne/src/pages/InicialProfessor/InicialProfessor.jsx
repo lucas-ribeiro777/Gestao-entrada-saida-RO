@@ -79,9 +79,8 @@ function InicialProfessor() {
   return (
     <>
       <CabecalhoPages>
-        <li key="1"><Link to="/visualizarocorrenciasprofessor">Ocorrências</Link></li>
         <li key="2"><Link to="/InicialProfessor">Início</Link></li>
-        <li key="3"><Link to="/visualizarsolicitacoesprofessor">Solicitações</Link></li>
+        <li key="3"><Link to="/solicitacaoprofessor">Solicitações</Link></li>
         <li key="4"><Link to="/VisualizarContaprofessor">Conta</Link></li>
       </CabecalhoPages>
 
@@ -92,7 +91,6 @@ function InicialProfessor() {
             <div className="linha-professor header-professor">
               <span>ALUNO</span>
               <span>CURSO</span>
-              <span>AUTORIZAR</span>
             </div>
             {solicitacoes.length === 0 ? (
               <div className="linha-professor vazio-professor">
@@ -103,12 +101,7 @@ function InicialProfessor() {
                 <div className="linha-professor" key={i}>
                   <span>{s.nomeAluno}</span>
                   <span>{s.curso}</span>
-                  <span>
-                    <label className="switch-professor">
-                      <input type="checkbox" />
-                      <span className="slider-professor round-professor"></span>
-                    </label>
-                  </span>
+
                 </div>
               ))
             )}
@@ -121,7 +114,6 @@ function InicialProfessor() {
             <div className="linha-professor header-professor">
               <span>ALUNO</span>
               <span>CURSO</span>
-              <span>DEVOLUTIVA</span>
             </div>
             {ocorrencias.length === 0 ? (
               <div className="linha-professor vazio-professor">
@@ -144,12 +136,12 @@ function InicialProfessor() {
 
           </div>
 
-          <button
+          {/* <button
             className="btn-adicionar-ocorrencia-professor"
             onClick={handleAddOcorrencia}
           >
             ADICIONAR NOVA OCORRÊNCIA
-          </button>
+          </button> */}
         </section>
       </div>
 

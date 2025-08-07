@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import './ModalCodigoConfirmacao.css';
-import { useNavigate } from 'react-router-dom';
-import Botao from '../Botao/Botao';
 
-function ModalCodigoConfirmacao({ isOpen, onClose, codigoAPI, onCodigoCorreto }) {
-  const navigate = useNavigate();
+function ModalCodigoConfirmacao({ isOpen, onClose, onCodigoCorreto }) {
   const [inputs, setInputs] = useState(['', '', '', '', '', '']);
   const [erro, setErro] = useState('');
 
@@ -17,7 +14,6 @@ function ModalCodigoConfirmacao({ isOpen, onClose, codigoAPI, onCodigoCorreto })
     newInputs[index] = value;
     setInputs(newInputs);
 
-    // Passa automaticamente para o próximo input
     const nextInput = document.getElementById(`input-${index + 1}`);
     if (value && nextInput) {
       nextInput.focus();
@@ -26,14 +22,12 @@ function ModalCodigoConfirmacao({ isOpen, onClose, codigoAPI, onCodigoCorreto })
 
   const handleConfirm = () => {
     const codigoDigitado = inputs.join('');
-    const codigoEsperado = codigoAPI.replace('-', '');
-
-    if (codigoDigitado === codigoEsperado) {
-      onCodigoCorreto(); // chama a função do pai para atualizar a senha
-      onClose();          // fecha o modal
-    } else {
-      setErro('Código incorreto. Tente novamente.');
+    if (codigoDigitado.length < 6) {
+      setErro('Por favor, preencha todos os dígitos do código.');
+      return;
     }
+    setErro('');
+    onCodigoCorreto(codigoDigitado); // envia o código para o backend validar
   };
 
   return (
@@ -49,15 +43,18 @@ function ModalCodigoConfirmacao({ isOpen, onClose, codigoAPI, onCodigoCorreto })
               maxLength={1}
               value={val}
               onChange={(e) => handleInputChange(i, e.target.value)}
+              autoFocus={i === 0}
             />
           ))}
         </div>
 
         {erro && <p style={{ color: 'red', marginTop: '8px' }}>{erro}</p>}
 
-        <div className="resend">Enviar novamente</div>
+        <div className="resend" /* aqui pode implementar reenvio */>Enviar novamente</div>
+        
         <div className="modal-actions">
           <button onClick={handleConfirm}>FINALIZAR</button>
+          <button onClick={onClose}>CANCELAR</button>
         </div>
       </div>
     </div>
@@ -65,4 +62,3 @@ function ModalCodigoConfirmacao({ isOpen, onClose, codigoAPI, onCodigoCorreto })
 }
 
 export default ModalCodigoConfirmacao;
-

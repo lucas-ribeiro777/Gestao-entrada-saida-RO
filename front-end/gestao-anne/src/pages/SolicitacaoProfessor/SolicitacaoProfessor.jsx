@@ -1,62 +1,76 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SolicitacaoProfessor.css';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import Rodape from '../../components/Rodape/Rodape';
+import { Link } from 'react-router-dom';
+import CardSolicitacao from '../../components/CardSolicitacao/CardSolicitacao';
 
 const SolicitacaoProfessor = () => {
-  const [solicitacoes, setSolicitacoes] = useState([
-    { id: 1, aluno: 'Giovanna Santos', curso: 'Desenvolvimento de Sistemas', autorizado: false },
-    { id: 2, aluno: 'Luan Gabriel Lemes', curso: 'Desenvolvimento de Sistemas', autorizado: true },
-    { id: 3, aluno: 'Lorena Gabrielly Mendes', curso: 'Desenvolvimento de Sistemas', autorizado: true },
-    { id: 4, aluno: 'Milena Miriam Correia', curso: 'Desenvolvimento de Sistemas', autorizado: false },
-  ]);
+  const [solicitacoes, setSolicitacoes] = useState([]);
 
-  const toggleAutorizacao = (id) => {
-    const atualizadas = solicitacoes.map((s) =>
-      s.id === id ? { ...s, autorizado: !s.autorizado } : s
+  useEffect(() => {
+    fetch('http://localhost:3000/solicitacoes')
+      .then(res => res.json())
+      .then(data => {
+        const solicitacoesOrdenadas = data
+          .filter(s => s.datahora) // (opcional) só pra garantir que datahora existe
+          .sort((a, b) => b.datahora.localeCompare(a.datahora)); // mais recente em cima
+        setSolicitacoes(solicitacoesOrdenadas);
+      })
+      .catch(err => console.error('Erro ao buscar solicitações:', err));
+  }, []);
+
+  const autorizarSolicitacao = (id) => {
+    const novasSolicitacoes = solicitacoes.map(s =>
+      s.id === id ? { ...s, professorAutorizou: true } : s
     );
-    setSolicitacoes(atualizadas);
+    setSolicitacoes(novasSolicitacoes);
+
+    fetch(`http://localhost:3000/solicitacoes/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ professorAutorizou: true }),
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Erro ao autorizar solicitação');
+        }
+      })
+      .catch(err => console.error(err));
   };
 
   return (
     <div className="tabela-container">
-      <CabecalhoPages />
+      <CabecalhoPages>
+        <li><Link to="/InicialProfessor">Início</Link></li>
+        <li><Link to="/solicitacaoprofessor">Solicitações</Link></li>
+        <li><Link to="/VisualizarContaprofessor">Conta</Link></li>
+      </CabecalhoPages>
 
       <h2>SOLICITAÇÕES</h2>
 
-      <div className="painel-grid">
-        <div className="painel-item tabela">
-          <table>
-            <thead>
-              <tr>
-                <th>ALUNO</th>
-                <th>CURSO</th>
-                <th>AUTORIZAR</th>
-              </tr>
-            </thead>
-            <tbody>
-              {solicitacoes.map((s) => (
-                <tr key={s.id}>
-                  <td>{s.aluno}</td>
-                  <td>{s.curso}</td>
-                  <td>
-                    <label className="switch">
-                      <input
-                        type="checkbox"
-                        checked={s.autorizado}
-                        onChange={() => toggleAutorizacao(s.id)}
-                      />
-                      <span className="slider"></span>
-                    </label>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {solicitacoes.length === 0 ? (
+        <div className="sem-solicitacoes">
+          <div className="imagens-busca">
+            <img src="/images/lupa.png" alt="Sem solicitações" />
+            <img src="/images/joia-baixa.png" alt="Sem solicitações" />
+          </div>
+          <p>Nenhuma solicitação no momento.</p>
         </div>
-        {/* Aqui você pode adicionar mais painéis no futuro */}
-        {/* <div className="painel-item outro">Outro conteúdo</div> */}
-      </div>
+
+      ) : (
+        <div className="painel-grid">
+          {solicitacoes.map((solicitacao) => (
+            <CardSolicitacao
+              key={solicitacao.id}
+              aluno={solicitacao}
+              onAutorizar={autorizarSolicitacao}
+            />
+          ))}
+        </div>
+      )}
 
       <Rodape />
     </div>

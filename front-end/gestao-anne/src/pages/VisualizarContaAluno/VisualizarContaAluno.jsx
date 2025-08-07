@@ -65,7 +65,7 @@ const VisualizarContaAluno = () => {
     <>
       <CabecalhoPages>
         <li key="inicio"><Link to="/InicialAluno">Início</Link></li>
-        <li key="ocorrencias"><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li>
+        {/* <li key="ocorrencias"><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li> */}
         <li key="solicitacoes"><Link to="/visualizarsolicitacaoaluno">Solicitações</Link></li>
         <li key="conta"><Link to="/visualizarcontaaluno">Conta</Link></li>
       </CabecalhoPages>

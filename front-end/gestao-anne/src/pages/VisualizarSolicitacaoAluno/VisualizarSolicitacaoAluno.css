@@ -1,16 +1,25 @@
 .container-solicitacoes-aluno {
-  max-width: 800px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, auto));
+  gap: 20px;
+  justify-content: center;
+  place-items: center;
   margin: 40px auto;
+  padding: 0 20px;
+  max-width: 1000px;
   font-family: sans-serif;
 }
 
+
+
 .card-solicitacao {
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  width: 100%;
+  max-width: 400px; /* 👈 controla até onde o card pode crescer */
+  border-radius: 25px;
   padding: 16px;
-  margin-bottom: 20px;
-  background-color: #1F5592 ;
+  background-color: #1F5592;
   color: white;
+  box-sizing: border-box;
 }
 
 .status-aprovacoes p {
@@ -32,6 +41,7 @@
 .botao-criar-nova-solicitacao{
     width: 200px;
     margin: 0 auto;
+    margin-bottom: 50px;
 }
 
 .icone-status {
@@ -46,4 +56,13 @@
   height: 25px;
   margin-right: 8px;
   vertical-align: middle;
+}
+
+.titulo-sol-alunos{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.card-solicitacao h2{
+  color: #ffffff;
 }

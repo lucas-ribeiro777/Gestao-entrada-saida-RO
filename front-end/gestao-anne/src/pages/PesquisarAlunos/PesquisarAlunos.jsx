@@ -35,24 +35,22 @@ function PesquisarAlunos() {
 
   return (
     <>
-      <CabecalhoPages rotaAtual={location.pathname}>
-        <li key="inicio"><Link to="/#">Início</Link></li>
-        <li key="ocorrencias"><Link to="/#">Ocorrências</Link></li>
-        <li key="pesquisar">
+<CabecalhoPages rotaAtual={location.pathname}>
+        <li><Link to="/InicialCoordenador">Início</Link></li>
+        <li><Link to="/VisualizarSolicitacoes">Solicitações</Link></li>
+        <li>
           <input
-            id="pesquisar-aluno"
             className="input-pesquisar-aluno"
             type="text"
             placeholder="Pesquise um Aluno"
-            value={termoBusca}
-            onChange={(e) => setTermoBusca(e.target.value)}
+            onClick={() => navigate("/PesquisarAluno")}
           />
         </li>
-        <li key="solicitacoes"><Link to="/#">Solicitações</Link></li>
-        <li key="conta"><Link to="/VisualizarContaCoordenador">Conta</Link></li>
-        <li key="egrenagem">
+        
+        <li><Link to="/VisualizarContaCoordenador">Conta</Link></li>
+        <li>
           <Link to="/docente">
-            <img src="/images/engrenagem.png" alt="Engrenagem" />
+            <img src="/images/engrenagem.png" alt="" />
           </Link>
         </li>
       </CabecalhoPages>

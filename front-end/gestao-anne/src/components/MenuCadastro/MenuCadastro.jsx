@@ -14,8 +14,10 @@ function MenuCadastro() {
     <>
       <div className="container-menu-cadastro">
         <CabecalhoPages rotaAtual={location.pathname}>
+
+          
           <li key="inicio" ><a href="/InicialCoordenador">Início</a></li>
-          <li key="ocorrencias" ><a href="/#">Ocorrências</a></li>
+          <li key="solicitacoes"><a href="/VisualizarSolicitacoes">Solicitações</a></li>
           <li key="pesquisar-aluno">
             <input
               className="input-pesquisar-aluno"
@@ -23,8 +25,7 @@ function MenuCadastro() {
               placeholder="Pesquise um Aluno"
               onClick={() => navigate("/PesquisarAluno")}
             />
-          </li>
-          <li key="solicitacoes"><a href="/VisualizarSolicitacoes">Solicitações</a></li>
+          </li>          
           <li key="conta"><a href="/VisualizarContaCoordenador">Conta</a></li>
           <li key="engrenagem"><img src="/images/engrenagem.png" alt="" /></li>
         </CabecalhoPages>

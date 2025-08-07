@@ -36,10 +36,12 @@ function App() {
         <Route path="/visualizarcontaaluno" element={<VisualizarContaAluno />} /> 
         <Route path="/inicialAluno" element={<InicialAluno />} />
         <Route path="/visualizarsolicitacaoaluno" element={<VisualizarSolicitacaoAluno />} />
+
         <Route path="/VerSolicitacaoAluno" element={<VerSolicitacaoAluno />} />
 
         // Professores
         <Route path="/InicialProfessor" element={<InicialProfessor />} />
+        <Route path="/SolicitacaoProfessor" element={<SolicitacaoProfessor />} />
         <Route path="/visualizarContaProfessor" element={<VisualizarContaProfessor />} />
 
         // Responsavel

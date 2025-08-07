@@ -7,14 +7,16 @@
   padding: 0;
 }
 
-.container-central{
+.container-central {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  gap: 200px;
+  align-items: flex-start;
+  gap: 40px;
   margin: 5%;
+  flex-wrap: wrap;
 }
+
 
 .topo-nav {
   background-color: #004f9e;
@@ -101,4 +103,37 @@
 .editar:hover {
   transform: scale(1.15);
   color: #cce7ff;
+}
+
+@media screen and (max-width: 768px) {
+  .container-central {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    gap: 20px;
+  }
+
+  .dados-box {
+    width: 100%;
+    max-width: 350px;
+    padding: 0 10px;
+  }
+
+  .dado-linha,
+  .dado-linha-aluno {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 15px;
+    font-size: 14px;
+  }
+
+  .editar {
+    font-size: 14px;
+  }
+
+  .foto-perfil {
+    display: none;
+  }
 }

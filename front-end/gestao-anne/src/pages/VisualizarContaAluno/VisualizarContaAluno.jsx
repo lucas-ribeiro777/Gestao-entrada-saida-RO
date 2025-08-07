@@ -4,7 +4,6 @@ import Rodape from '../../components/Rodape/Rodape';
 import Foto from '../../components/Foto/Foto';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import { Link } from 'react-router-dom';
-
 import InfoBox from '../../components/InfoBox/InfoBox';
 
 const VisualizarContaAluno = () => {
@@ -18,10 +17,13 @@ const VisualizarContaAluno = () => {
 
   const [imagemPerfil, setImagemPerfil] = useState('');
 
+  // 👇 Hook para detectar tamanho da tela
+  const [larguraTela, setLarguraTela] = useState(window.innerWidth);
+
   useEffect(() => {
     const buscarDadosDoAluno = async () => {
       try {
-        const resposta = await fetch('http://localhost:3000/alunos/1'); // Ajuste conforme sua API/JSON
+        const resposta = await fetch('http://localhost:3000/alunos/1'); // Ajuste conforme sua API
         const aluno = await resposta.json();
 
         setDados({
@@ -32,13 +34,20 @@ const VisualizarContaAluno = () => {
           responsavel: aluno.responsavel,
         });
 
-        setImagemPerfil(aluno.imagem); // Exemplo: "/images/giovanna.png" ou uma URL
+        setImagemPerfil(aluno.imagem);
       } catch (erro) {
         console.error('Erro ao buscar dados do aluno:', erro);
       }
     };
 
     buscarDadosDoAluno();
+  }, []);
+
+  // 👇 Atualiza largura da tela ao redimensionar
+  useEffect(() => {
+    const handleResize = () => setLarguraTela(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const handleEditar = (campo) => {
@@ -62,10 +71,13 @@ const VisualizarContaAluno = () => {
       </CabecalhoPages>
 
       <div className="container-central">
-        <Foto 
-          titulo="Foto de Perfil"
-          imagem={imagemPerfil}
-        />
+        {/* 👇 Só renderiza a foto se a largura for maior que 768px */}
+        {larguraTela > 768 && (
+          <Foto 
+            titulo="Foto de Perfil"
+            imagem={imagemPerfil}
+          />
+        )}
 
         <div className="dados-box">
           <InfoBox

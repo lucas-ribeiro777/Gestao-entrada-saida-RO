@@ -1,5 +1,7 @@
 {
   "alunos": [
+<<<<<<< HEAD
+=======
     { "id": 1, "nome": "Lucas Ribeiro", "curso": "Informática", "imagem": "/images/meninateste.png" },
     { "id": 2, "nome": "Maria Silva", "curso": "Administração", "imagem": "/images/perfil.png" },
     { "id": 3, "nome": "João Pereira", "curso": "Informática", "imagem": "/images/perfil.png" },
@@ -7,7 +9,8 @@
     { "id": 5, "nome": "Carlos Lima", "curso": "Administração", "imagem": "/images/perfil.png" },
     { "id": 6, "nome": "Fernanda Nunes", "curso": "Informática", "imagem": "/images/perfil.png" },
     { "id": 7, "nome": "Gabriel Martins", "curso": "Eletroeletrônica", "imagem": "/images/perfil.png" },
-    { "id": 8, "nome": "Juliana Melo", "curso": "Eletroeletrônica", "imagem": "/images/perfil.png" }
+    { "id": 8, "nome": "Juliana Melo", "curso": "Eletroeletrônica", "imagem": "/images/perfil.png" },
+>>>>>>> 9b5dd26b089bbcca6cb501ed0189cc132a161f92
     {
       "id": "1",
       "nome": "Lucas Ribeiro",

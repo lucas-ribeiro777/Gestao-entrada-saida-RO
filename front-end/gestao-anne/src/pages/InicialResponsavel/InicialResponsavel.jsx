@@ -6,10 +6,7 @@
   import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
   import homemImg from './imagens/homen.jpg';
   import mulherImg from './imagens/mulher.jpg';
-
 import { useEffect, useState } from "react";
-import CabecalhoPages from "../../components/CabecalhoPages/CabecalhoPages";
-import Rodape from "../../components/Rodape/Rodape";
 import BoxAluno from "../../components/BoxAluno/BoxAluno";
 import DetalhesAluno from "../../components/DetalhesAluno/DetalhesAluno";
 import { Link, useLocation } from "react-router-dom";

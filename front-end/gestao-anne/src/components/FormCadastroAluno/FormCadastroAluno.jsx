@@ -14,7 +14,7 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
   const [nomeArquivoAssinatura, setNomeArquivoAssinatura] = useState(null);
 
   const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(''); 
   const [datanasc, setDataNasc] = useState('');
   const [telefone, setTelefone] = useState('');
   const [senha, setSenha] = useState('');
@@ -97,15 +97,15 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
       <form className="formulario" onSubmit={handleSubmit}>
         <h2 className="titulo">Preencha os dados para se cadastrar - ALUNO</h2>
         <div className="campos">
-          <CampoTexto valor={nome} label="Nome" placeholder="Digite Algo..." aoAlterar={e => setNome(e.target.value)} />
-          <CampoTexto valor={email} label="E-mail" placeholder="Digite Algo..." aoAlterar={e => setEmail(e.target.value)} />
+          <CampoTexto valor={nome} label="Nome" placeholder="Digite Algo..." onChange={e => setNome(e.target.value)} />
+          <CampoTexto valor={email} label="E-mail" placeholder="Digite Algo..." onChange={e => setEmail(e.target.value)} />
           <div className="linha1">
-            <CampoTexto valor={datanasc} label="Data de Nascimento" placeholder="__/__/____" aoAlterar={e => setDataNasc(e.target.value)} />
-            <CampoTexto valor={telefone} label="Telefone" placeholder="+55 ()" aoAlterar={e => setTelefone(e.target.value)} />
+            <CampoTexto valor={datanasc} label="Data de Nascimento" placeholder="__/__/____" onChange={e => setDataNasc(e.target.value)} />
+            <CampoTexto valor={telefone} label="Telefone" placeholder="+55 ()" onChange={e => setTelefone(e.target.value)} />
           </div>
           <div className="linha2">
-            <CampoTexto valor={senha} label="Senha" placeholder="Digite Sua Senha..." aoAlterar={e => setSenha(e.target.value)} />
-            <CampoTexto valor={confirmarSenha} label="Confirmar Senha" placeholder="Confirme Sua Senha..." aoAlterar={e => setConfirmarSenha(e.target.value)} />
+            <CampoTexto valor={senha} label="Senha" placeholder="Digite Sua Senha..." onChange={e => setSenha(e.target.value)} />
+            <CampoTexto valor={confirmarSenha} label="Confirmar Senha" placeholder="Confirme Sua Senha..." onChange={e => setConfirmarSenha(e.target.value)} />
           </div>
         </div>
 
@@ -142,4 +142,8 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
     </>
   );
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> a4c53fa822ad84b18858b845b515d19965de0342
 export default FormCadastroAluno;

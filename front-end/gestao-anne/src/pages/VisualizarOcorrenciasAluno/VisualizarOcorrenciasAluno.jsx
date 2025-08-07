@@ -11,17 +11,17 @@ const VisualizarOcorrenciasAluno = () => {
   const [nomeAluno, setNomeAluno] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3001/ocorrencias')
+    fetch('http://localhost:3000/ocorrencias')
       .then((res) => res.json())
       .then((data) => setOcorrencias(data))
       .catch((err) => console.error('Erro ao carregar ocorrências:', err));
 
-    fetch('http://localhost:3002/foto')
+    fetch('http://localhost:3000foto')
       .then((res) => res.text())
       .then((data) => setFotoUrl(data))
       .catch((err) => console.error('Erro ao carregar foto do aluno:', err));
 
-    fetch('http://localhost:3003/alunos')
+    fetch('http://localhost:3000/alunos')
       .then((res) => res.json())
       .then((data) => {
         const alunosArray = Array.isArray(data) ? data : data.alunos;
@@ -50,15 +50,11 @@ const VisualizarOcorrenciasAluno = () => {
       </CabecalhoPages>
 
       <div className="container-ocorrencias">
-        <div className="perfil-aluno-ocorrencias">
-          <Foto
-            imagem={fotoUrl}
-            titulo="ALUNO"
-            textoBotao={nomeAluno}
-            onFotoSelecionada={() => {}}
-            desativarUpload={true}
-          />
-        </div>
+        <Foto 
+          titulo="Aluno" 
+          textoBotao={nomeAluno} 
+          onFotoSelecionada={(arquivo) => console.log(arquivo)} 
+        />
 
         <div className="tabela-ocorrencias">
           <h3 className="titulo-tabela-ocorrencias">Notificações de Registro de Ocorrências</h3>

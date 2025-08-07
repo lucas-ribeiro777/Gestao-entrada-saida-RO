@@ -31,18 +31,25 @@ function App() {
         <Route path="/docente" element={<CadastroDocente />} />
         <Route path="/responsavel" element={<CadastroResponsavel />} />
         <Route path="/coordenacao" element={<CadastroCoordenador />} />
+        // Alunos
         <Route path="/visualizarocorrenciasaluno" element={<VisualizarOcorrenciasAluno />} />
         <Route path="/visualizarcontaaluno" element={<VisualizarContaAluno />} /> 
+        <Route path="/inicialAluno" element={<InicialAluno />} />
+        <Route path="/visualizarsolicitacaoaluno" element={<VisualizarSolicitacaoAluno />} />
+        <Route path="/VerSolicitacaoAluno" element={<VerSolicitacaoAluno />} />
+
+        // Professores
+        <Route path="/InicialProfessor" element={<InicialProfessor />} />
         <Route path="/visualizarContaProfessor" element={<VisualizarContaProfessor />} />
+
+        // Responsavel
         <Route path="/VisualizacaoResponsavel" element={<VisualizacaoResponsavel />} />
         <Route path="/InicialResponsavel" element={<InicialResponsavel />} />
+
+        // Coordenador
         <Route path="/VisualizarContaCoordenador" element={<VisualizarContaCoordenador />} />
-        <Route path="/inicialAluno" element={<InicialAluno />} />
-        <Route path="/InicialProfessor" element={<InicialProfessor />} />
-        <Route path="/visualizarsolicitacaoaluno" element={<VisualizarSolicitacaoAluno />} />
         <Route path="/PesquisarAluno" element={<PesquisarAluno />} />
         <Route path="/VisualizarSolicitacoes" element={<VisualizarSolicitacaoCoordenador />} />
-        <Route path="/VerSolicitacaoAluno" element={<VerSolicitacaoAluno />} />
         <Route path="/InicialCoordenador" element={<InicialCoordenador />} />
         <Route path="/SolicitacaoProfessor" element={<SolicitacaoProfessor />} />
       </Routes>

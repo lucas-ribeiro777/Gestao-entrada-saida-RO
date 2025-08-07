@@ -54,8 +54,6 @@ const SolicitacaoProfessor = () => {
             </tbody>
           </table>
         </div>
-        {/* Aqui você pode adicionar mais painéis no futuro */}
-        {/* <div className="painel-item outro">Outro conteúdo</div> */}
       </div>
 
       <Rodape />

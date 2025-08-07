@@ -1,38 +1,106 @@
-/* Container geral */
+.tabela-container {
+  background-color: #f4f6fa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #d62828;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
 .painel-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    background-color: #e6eefc;
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  /* Cada item dentro do painel */
-  .painel-item {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-  }
-  
-  /* Deixa a tabela estilizada dentro da grade */
-  .painel-item.tabela table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .painel-item.tabela th,
-  .painel-item.tabela td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* Ajustes para o visual geral */
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #d62828;
-  }
-  
-  
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  background-color: #f4f6fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 0 40px;
+}
+
+.painel-item {
+  background-color: #f4f6fa;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.painel-item.tabela table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  border: 2px solid black;
+}
+
+.painel-item.tabela th,
+.painel-item.tabela td {
+  padding: 15px 12px;
+  border: 1px solid black;
+  text-align: left;
+  font-size: 15px;
+  color: white; 
+}
+
+.painel-item.tabela th {
+  background-color: #1e4e79;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #5c88c4;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 3px;
+  background-color: #233985;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+  background-color: #E8490F;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.switch input:not(:checked) + .slider {
+  background-color: #D9D9D9;
+}
+
+.switch input:not(:checked) + .slider:before {
+  transform: translateX(0);
+}

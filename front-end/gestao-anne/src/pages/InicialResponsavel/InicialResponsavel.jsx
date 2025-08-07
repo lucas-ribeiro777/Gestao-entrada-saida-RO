@@ -5,7 +5,6 @@
   import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
   import homemImg from './imagens/homen.jpg';
   import mulherImg from './imagens/mulher.jpg';
-
 import { useEffect, useState } from "react";
 import Rodape from "../../components/Rodape/Rodape";
 import BoxAluno from "../../components/BoxAluno/BoxAluno";

@@ -17,7 +17,6 @@
   padding: 20px;
   margin: 30px auto;
   font-size: 1.2rem;
-  background-color: #7fa8d6;
   border-radius: 15px;
   width: 90%;
   max-width: 800px;
@@ -104,19 +103,24 @@
 
 .registro {
   display: flex;
+  flex-direction: row; /* garante que fique lado a lado */
   justify-content: space-between;
   align-items: center;
-  color: white;
+  gap: 10px;
+  flex-wrap: wrap; /* permite quebra se necessário no mobile */
   padding: 15px;
   font-weight: bold;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: none;
+  color: white;
 }
+
 
 .registro span {
   flex: 1;
   text-align: center;
+  white-space: nowrap;
 }
 
 .saida {
@@ -131,4 +135,98 @@
 .ocorrencia {
   background-color: #e6492d;
   color: white;
+}
+
+@media (max-width: 768px) {
+  .menu-links {
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .aluno-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .visualizar-link {
+    position: static;
+    transform: none;
+    margin-top: 10px;
+  }
+
+  .aluno-foto {
+    width: 60px;
+    height: 60px;
+  }
+
+   .registro {
+    gap: 5px;
+    padding: 10px;
+  }
+
+  .registro span {
+    text-align: center;
+  }
+
+  .registros {
+    margin: 0 10px 20px 10px;
+  }
+
+  .container {
+    padding: 20px 10px;
+  }
+}
+
+.pagina-responsavel {
+  padding: 20px;
+}
+
+.titulo {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.box-aluno {
+  background: #f5f5f5;
+  padding: 20px;
+  margin-bottom: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.grafico-container {
+  margin-bottom: 20px;
+}
+
+.grafico-titulo {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.dados-aluno ul {
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+.box-aluno.claro img{
+  width: 120px;
+  height: 120px;
+}
+
+.box-aluno.escuro img{
+  width: 120px;
+  height: 120px;
+}
+.container-aluno-responsavel{
+  margin-bottom: 20vh;
+}
+
+.space{
+  height: 80px;
 }

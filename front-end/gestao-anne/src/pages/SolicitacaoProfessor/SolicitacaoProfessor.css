@@ -1,0 +1,38 @@
+/* Container geral */
+.painel-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    background-color: #e6eefc;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  /* Cada item dentro do painel */
+  .painel-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Deixa a tabela estilizada dentro da grade */
+  .painel-item.tabela table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .painel-item.tabela th,
+  .painel-item.tabela td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Ajustes para o visual geral */
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #d62828;
+  }
+  
+  

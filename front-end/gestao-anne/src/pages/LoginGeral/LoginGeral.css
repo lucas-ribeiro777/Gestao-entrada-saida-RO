@@ -115,3 +115,55 @@
   font-weight: bold;
   color: #f1c40f;
 }
+@media (max-width: 600px) {
+  .login-wrapper {
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding: 10px;
+  }
+
+  .login-title {
+    font-size: 18px;
+    padding: 0 10px;
+  }
+
+  .login-container {
+    padding: 20px 15px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-top: 20px;
+  }
+
+  .input-full-login,
+  .input-half-login {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .btn-submit-login {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 40px;
+  }
+
+  .form-cadastro span {
+    font-size: 14px;
+  }
+
+  .link-esqueci-senha {
+    font-size: 13px;
+  }
+
+  .mensagem-login {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .bem-vindo-login {
+    font-size: 15px;
+    text-align: center;
+  }
+}

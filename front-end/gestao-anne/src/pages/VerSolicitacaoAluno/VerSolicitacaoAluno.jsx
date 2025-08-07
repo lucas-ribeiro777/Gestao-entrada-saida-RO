@@ -7,22 +7,24 @@ import FormSolicitacao from '../../components/FormSolicitacao/FormSolicitacao';
 const VerSolicitacaoAluno = () => {
   const [dados, setDados] = useState(null);
 
-    useEffect(() => {
-    fetch('/Mocks/SolicitacaoAluno.json')
-      .then(response => response.json())
-      .then(data => setDados(data))
-      .catch(error => console.error('Erro ao carregar dados:', error));
+  useEffect(() => {
+    fetch('/Mocks/SolicitacaoAluno.json', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(json => setDados(json))
+    .catch(err => console.error('Erro ao carregar dados mock:', err));
   }, []);
 
-  if (!dados) return <p>Carregando...</p>;
+  if (!dados) return <p>Carregando dados...</p>;
 
   return (
     <div className="pagina-solicitacao">
       <CabecalhoPages />
-
-      <div className="container-solicitacao1">
-        <FormSolicitacao dados={dados} />
-      </div>
+      <FormSolicitacao dados={dados} />
 
       <Rodape />
     </div>

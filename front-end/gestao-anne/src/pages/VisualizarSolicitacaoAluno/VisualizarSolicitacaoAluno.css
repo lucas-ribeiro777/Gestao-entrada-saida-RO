@@ -1,0 +1,49 @@
+.container-solicitacoes-aluno {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: sans-serif;
+}
+
+.card-solicitacao {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background-color: #1F5592 ;
+  color: white;
+}
+
+.status-aprovacoes p {
+  margin: 6px 0;
+}
+
+.status-final {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 19px;
+  color: white;
+}
+
+.container-solicitacoes-aluno h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.botao-criar-nova-solicitacao{
+    width: 200px;
+    margin: 0 auto;
+}
+
+.icone-status {
+  width: 18px;
+  height: 18px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.icone-status-final {
+  width: 25px;
+  height: 25px;
+  margin-right: 8px;
+  vertical-align: middle;
+}

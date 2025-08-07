@@ -88,7 +88,7 @@ function PesquisarAlunos() {
                   cor={index % 2 === 0 ? "claro" : "escuro"}
                 />
                 {alunoExpandido === aluno.id && (
-                  <DetalhesAluno idAluno={aluno.id} curso={aluno.curso} />
+                  <DetalhesAluno idAluno={Number(aluno.id)} curso={aluno.curso} />
                 )}
               </div>
             ))

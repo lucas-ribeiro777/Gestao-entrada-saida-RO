@@ -1,12 +1,13 @@
+// Botao.jsx
 import './Botao.css';
 
-function Botao(props, imagem) {
-    return(
-        <button className='botao-principal'>
+function Botao(props) {
+    return (
+        <button className='botao-principal' onClick={props.onClick}>
             {props.descricao}
-            {imagem && <img src={imagem} alt="ícone" className="icone-botao" />}
+            {props.imagem && <img src={props.imagem} alt="ícone" className="icone-botao" />}
         </button>
-    )
+    );
 }
 
 export default Botao;

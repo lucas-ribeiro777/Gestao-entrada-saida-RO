@@ -7,7 +7,7 @@
     { "id": 5, "nome": "Carlos Lima", "curso": "Administração", "imagem": "/images/perfil.png" },
     { "id": 6, "nome": "Fernanda Nunes", "curso": "Informática", "imagem": "/images/perfil.png" },
     { "id": 7, "nome": "Gabriel Martins", "curso": "Eletroeletrônica", "imagem": "/images/perfil.png" },
-    { "id": 8, "nome": "Juliana Melo", "curso": "Eletroeletrônica", "imagem": "/images/perfil.png" }
+    { "id": 8, "nome": "Juliana Melo", "curso": "Eletroeletrônica", "imagem": "/images/perfil.png" },
     {
       "id": "1",
       "nome": "Lucas Ribeiro",

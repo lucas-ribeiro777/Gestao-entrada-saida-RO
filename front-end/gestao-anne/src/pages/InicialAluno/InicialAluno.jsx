@@ -45,12 +45,15 @@ function InicialAluno() {
         <li><Link to="/VisualizarContaaluno">Conta</Link></li>
       </CabecalhoPages>
 
-      <div className="content-area">
-        <div className="caixas">
-          <CaixaInfos titulo="HISTÓRICO DO DIA" itens={historico} />
-          <CaixaInfos titulo="RESPONSÁVEIS DO ALUNO" itens={responsaveis} />
-        </div>
+       <div className="pagina-inicial"> {/* <- ADICIONE ISSO AQUI */}
+    <main className="content-area">
+      <div className="caixas">
+        <CaixaInfos titulo="HISTÓRICO DO DIA" itens={historico} />
+        <CaixaInfos titulo="RESPONSÁVEIS DO ALUNO" itens={responsaveis} />
       </div>
+    </main>
+
+  </div>
 
       <Rodape />
     </>

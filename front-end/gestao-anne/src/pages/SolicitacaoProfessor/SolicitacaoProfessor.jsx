@@ -59,9 +59,6 @@ const SolicitacaoProfessor = () => {
           </div>
           <p>Nenhuma solicitação no momento.</p>
         </div>
-<<<<<<< HEAD
-      </div>
-=======
 
       ) : (
         <div className="painel-grid">
@@ -74,7 +71,6 @@ const SolicitacaoProfessor = () => {
           ))}
         </div>
       )}
->>>>>>> 3bdbeb0d1a9ece898e6426be19fcbd67a0b2c5aa
 
       <Rodape />
     </div>

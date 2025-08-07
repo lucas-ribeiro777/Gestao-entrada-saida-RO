@@ -19,6 +19,7 @@ import VerSolicitacaoAluno from './pages/VerSolicitacaoAluno/VerSolicitacaoAluno
 import InicialCoordenador from './pages/InicialCoordenador/InicialCoordenador';
 import VisualizarContaProfessor from './pages/VisualizarContaProfessor/VisualizarContaProfessor';
 import SolicitacaoProfessor from './pages/SolicitacaoProfessor/SolicitacaoProfessor';
+import VerSolicitacaoResponsavel from './pages/VerSolicitacaoResponsavel/VerSolicitacaoResponsavel';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         // Responsavel
         <Route path="/VisualizacaoResponsavel" element={<VisualizacaoResponsavel />} />
         <Route path="/InicialResponsavel" element={<InicialResponsavel />} />
+        <Route path="/VerSolicitacaoResponsavel" element={<VerSolicitacaoResponsavel />} />
 
         // Coordenador
         <Route path="/VisualizarContaCoordenador" element={<VisualizarContaCoordenador />} />

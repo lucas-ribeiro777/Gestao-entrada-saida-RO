@@ -103,19 +103,24 @@
 
 .registro {
   display: flex;
+  flex-direction: row; /* garante que fique lado a lado */
   justify-content: space-between;
   align-items: center;
-  color: white;
+  gap: 10px;
+  flex-wrap: wrap; /* permite quebra se necessário no mobile */
   padding: 15px;
   font-weight: bold;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: none;
+  color: white;
 }
+
 
 .registro span {
   flex: 1;
   text-align: center;
+  white-space: nowrap;
 }
 
 .saida {
@@ -132,7 +137,49 @@
   color: white;
 }
 
-/*                       */
+@media (max-width: 768px) {
+  .menu-links {
+    flex-direction: column;
+    gap: 15px;
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .aluno-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .visualizar-link {
+    position: static;
+    transform: none;
+    margin-top: 10px;
+  }
+
+  .aluno-foto {
+    width: 60px;
+    height: 60px;
+  }
+
+   .registro {
+    gap: 5px;
+    padding: 10px;
+  }
+
+  .registro span {
+    text-align: center;
+  }
+
+  .registros {
+    margin: 0 10px 20px 10px;
+  }
+
+  .container {
+    padding: 20px 10px;
+  }
+}
 
 .pagina-responsavel {
   padding: 20px;

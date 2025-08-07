@@ -72,7 +72,7 @@ const InicialCoordenador = () => {
     <>
       <CabecalhoPages rotaAtual={location.pathname}>
         <li><Link to="/InicialCoordenador">Início</Link></li>
-        <li><Link to="/#">Ocorrências</Link></li>
+        <li><Link to="/VisualizarSolicitacoes">Solicitações</Link></li>
         <li>
           <input
             className="input-pesquisar-aluno"
@@ -81,7 +81,7 @@ const InicialCoordenador = () => {
             onClick={() => navigate("/PesquisarAluno")}
           />
         </li>
-        <li><Link to="/VisualizarSolicitacoes">Solicitações</Link></li>
+        
         <li><Link to="/VisualizarContaCoordenador">Conta</Link></li>
         <li>
           <Link to="/docente">

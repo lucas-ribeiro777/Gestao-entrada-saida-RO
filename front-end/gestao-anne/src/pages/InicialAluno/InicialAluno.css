@@ -70,6 +70,7 @@
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   font-size: 20px;
+  width: 95,2%;
 }
 
 .item {
@@ -90,6 +91,28 @@ main {
   flex: 1;
   padding: 20px;
 }
+
+.caixa-vazia {
+  background-color: #1f5aa8;
+  border-radius: 25px;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 500px;
+  padding-bottom: 20px;
+}
+
+.caixa-vazia img {
+  width: 120px;
+  height: auto;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.titulo-caixa h2{
+  color: white;
+}
+
 
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {

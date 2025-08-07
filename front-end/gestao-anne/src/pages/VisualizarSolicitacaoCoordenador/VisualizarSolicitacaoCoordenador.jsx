@@ -52,10 +52,10 @@ function VisualizarSolicitacaoCoordenador() {
 
   return (
     <>
-      <CabecalhoPages rotaAtual={location.pathname}>
-        <li key="inicio"><Link to="/InicialCoordenador">Início</Link></li>
-        <li key="ocorrencias"><Link to="/#">Ocorrências</Link></li>
-        <li key="pesquisar">
+<CabecalhoPages rotaAtual={location.pathname}>
+        <li><Link to="/InicialCoordenador">Início</Link></li>
+        <li><Link to="/VisualizarSolicitacoes">Solicitações</Link></li>
+        <li>
           <input
             className="input-pesquisar-aluno"
             type="text"
@@ -63,9 +63,13 @@ function VisualizarSolicitacaoCoordenador() {
             onClick={() => navigate("/PesquisarAluno")}
           />
         </li>
-        <li key="solicitacoes"><Link to="/VisualizarSolicitacoes">Solicitações</Link></li>
-        <li key="conta"><Link to="/VisualizarContaCoordenador">Conta</Link></li>
-        <li key="engrenagem"><Link to="/docente"><img src="/images/engrenagem.png" alt="" /></Link></li>
+        
+        <li><Link to="/VisualizarContaCoordenador">Conta</Link></li>
+        <li>
+          <Link to="/docente">
+            <img src="/images/engrenagem.png" alt="" />
+          </Link>
+        </li>
       </CabecalhoPages>
 
       <div className="details">

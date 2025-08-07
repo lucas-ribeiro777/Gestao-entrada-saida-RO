@@ -13,11 +13,9 @@ const EsqueciMinhaSenha = () => {
   const [confirmar, setConfirmar] = useState('');
   const [mensagem, setMensagem] = useState('');
   const [modalAberto, setModalAberto] = useState(false);
-  const [usuarioParaAtualizar, setUsuarioParaAtualizar] = useState(null);
   const navigate = useNavigate();
 
-  const codigoSimulado = '123456';
-
+  // Envia email + senha + confirmação para solicitar o código de recuperação
   const enviarCodigo = async () => {
     if (!email || !senha || !confirmar) {
       setMensagem('Por favor, preencha todos os campos.');
@@ -30,39 +28,44 @@ const EsqueciMinhaSenha = () => {
     }
 
     try {
-      const resposta = await fetch('http://localhost:3000/alunos');
-      const usuarios = await resposta.json();
+      const resposta = await fetch('http://10.90.146.16:5121/api/Email/solicitar-recuperacao-senha', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          novaSenha: senha,         // Corrigido: usa 'novaSenha'
+          confirmarSenha: confirmar,
+        }),
+      });
 
-      const usuarioEncontrado = usuarios.find((u) => u.email === email);
-
-      if (!usuarioEncontrado) {
-        setMensagem('E-mail não encontrado.');
+      if (!resposta.ok) {
+        const erro = await resposta.json();
+        setMensagem(erro?.mensagem || 'Erro ao enviar código. Verifique os dados.');
         return;
       }
 
-      setUsuarioParaAtualizar(usuarioEncontrado);
-
       setMensagem('Código enviado para seu e-mail!');
-
       setModalAberto(true);
 
     } catch (error) {
       console.error(error);
-      setMensagem('Erro ao verificar os dados.');
+      setMensagem('Erro ao conectar com o servidor.');
     }
   };
 
-  const atualizarSenha = async () => {
-    if (!usuarioParaAtualizar) {
-      setMensagem('Usuário não encontrado para atualizar a senha.');
-      return;
-    }
-
+  // Valida o código digitado no modal para concluir a troca da senha
+  const confirmarCodigo = async (codigoDigitado) => {
     try {
-      const resposta = await fetch(`http://localhost:3000/alunos/${usuarioParaAtualizar.id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ senha }),
+      const resposta = await fetch('http://10.90.146.16:5121/api/Email/validar-token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          token: codigoDigitado
+        }),
       });
 
       if (resposta.ok) {
@@ -70,17 +73,20 @@ const EsqueciMinhaSenha = () => {
         setModalAberto(false);
         navigate('/login');
       } else {
-        setMensagem('Erro ao redefinir a senha.');
+        const erro = await resposta.json();
+        console.log('Erro da API validar-token:', erro);
+        setMensagem(erro?.mensagem || 'Código inválido ou expirado.');
       }
     } catch (error) {
       console.error(error);
-      setMensagem('Erro ao atualizar a senha.');
+      setMensagem('Erro ao confirmar o código.');
     }
   };
 
+
   return (
     <>
-      <CabecalhoPages/>
+      <CabecalhoPages />
       <div className="esqueci-wrapper">
         <h3 className="esqueci-title">Preencha os dados para redefinir sua senha</h3>
 
@@ -94,8 +100,8 @@ const EsqueciMinhaSenha = () => {
           />
 
           <CampoTexto
-            label="Senha"
-            placeholder="Digite sua senha..."
+            label="Nova Senha"
+            placeholder="Digite sua nova senha..."
             valor={senha}
             onChange={(e) => setSenha(e.target.value)}
             type="password"
@@ -103,13 +109,13 @@ const EsqueciMinhaSenha = () => {
 
           <CampoTexto
             label="Confirmar Senha"
-            placeholder="Confirme sua senha..."
+            placeholder="Confirme sua nova senha..."
             valor={confirmar}
             onChange={(e) => setConfirmar(e.target.value)}
             type="password"
           />
 
-          <p>Enviaremos um código de verificação para redefinição de senha ao e-mail cadastrado em sua conta.</p>
+          <p>Enviaremos um código de verificação ao seu e-mail para confirmar a redefinição de senha.</p>
 
           {mensagem && <p className="mensagem-esqueci">{mensagem}</p>}
         </div>
@@ -117,14 +123,12 @@ const EsqueciMinhaSenha = () => {
         <button className="btn-submit-esqueci" onClick={enviarCodigo}>
           ENVIAR CÓDIGO
         </button>
-        
       </div>
 
       <ModalCodigoConfirmacao
         isOpen={modalAberto}
         onClose={() => setModalAberto(false)}
-        codigoAPI={codigoSimulado}
-        onCodigoCorreto={atualizarSenha}
+        onCodigoCorreto={confirmarCodigo}
       />
 
       <Rodape />

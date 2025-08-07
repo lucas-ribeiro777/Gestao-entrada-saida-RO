@@ -13,14 +13,14 @@ const LoginGeral = () => {
   const [nomeUsuario, setNomeUsuario] = useState('');
   const navigate = useNavigate();
 
- const handleLogin = async () => {
+  const handleLogin = async () => {
     if (!email || !senha) {
       setMensagem('Preencha todos os campos.');
       return;
     }
 
     try {
-      const resposta = await fetch('http://localhost:3000/alunos', {
+      const resposta = await fetch('http://10.90.146.16:5121/api/Usuarios/Login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -31,8 +31,9 @@ const LoginGeral = () => {
         })
       });
 
+      const dados = await resposta.json(); // lê o body uma vez
+
       if (resposta.ok) {
-        const dados = await resposta.json();
         const tipo = dados.tipo;
 
         // Redireciona de acordo com o tipo
@@ -45,20 +46,21 @@ const LoginGeral = () => {
         } else if (tipo === 'coordenador') {
           navigate('/inicialcoordenador');
         }
-      }
 
-      const dados = await resposta.json();
-      setMensagem('Login realizado com sucesso!');
-      setNomeUsuario(dados.nome ?? 'Usuário');
+        setMensagem('Login realizado com sucesso!');
+        setNomeUsuario(dados.nome ?? 'Usuário');
+
+      } else {
+        setMensagem(dados.mensagem || 'Email ou senha incorretos.');
+        setNomeUsuario('');
+      }
 
     } catch (erro) {
       console.error(erro);
-      setMensagem('Email ou senha incorretos.');
+      setMensagem('Erro ao conectar com o servidor.');
       setNomeUsuario('');
     }
   };
-
-
 
   const irParaCadastro = () => {
     navigate('/');

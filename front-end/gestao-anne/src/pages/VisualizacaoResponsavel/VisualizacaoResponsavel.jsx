@@ -8,7 +8,7 @@ const VisualizacaoResponsavel = () => {
   const [dados, setDados] = useState(null);
   const [formData, setFormData] = useState({});
   const [responsavelId, setResponsavelId] = useState(null);
-  const [editandoCampo, setEditandoCampo] = useState(null); // <-- NOVO
+  const [editandoCampo, setEditandoCampo] = useState(null);
 
   useEffect(() => {
     fetch("/Mocks/Responsaveis.json")
@@ -57,17 +57,14 @@ const VisualizacaoResponsavel = () => {
 
     const payload = {
       ...dados,
-      [campo]:
-        campo === "nascimento"
-          ? valorAtualizado.split("/").reverse().join("-")
-          : valorAtualizado
+      [campo]: campo === "nascimento"
+        ? valorAtualizado.split("/").reverse().join("-")
+        : valorAtualizado
     };
 
     fetch(`http://localhost:3001/Responsaveis/${responsavelId}`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     })
       .then((res) => res.json())
@@ -81,32 +78,26 @@ const VisualizacaoResponsavel = () => {
   if (!dados) return <div className="loading">Carregando dados...</div>;
 
   return (
-    <div className="container">
+    <div className="pagina-responsavel">
       <CabecalhoPages>
-        <li>
-          <NavLink to="/InicialResponsavel" className={({ isActive }) => (isActive ? "ativo" : "nativo")}>INÍCIO</NavLink>
-        </li>
-        <li>
-          <NavLink to="/autorizarEntradaSaida" className={({ isActive }) => (isActive ? "ativo" : "nativo")}>AUTORIZAR ENTRADA/SAÍDA</NavLink>
-        </li>
-        <li>
-          <NavLink to="/VisualizacaoResponsavel" className={({ isActive }) => (isActive ? "ativo" : "nativo")}>CONTA</NavLink>
-        </li>
+        <li><NavLink to="/InicialResponsavel" className={({ isActive }) => isActive ? "ativo" : "nativo"}>Início</NavLink></li>
+        <li><NavLink to="/autorizarEntradaSaida" className={({ isActive }) => isActive ? "ativo" : "nativo"}>Autorizar Entrada/Saída</NavLink></li>
+        <li><NavLink to="/VisualizacaoResponsavel" className={({ isActive }) => isActive ? "ativo" : "nativo"}>Conta</NavLink></li>
       </CabecalhoPages>
 
-      <main className="content">
-        <div className="card">
-          <Item
-            icone="🧾"
+      <main className="conteudo-principal">
+        <div className="cartao">
+          <Campo
+            icone="🗂️"
             valor={formData.nome}
             campo="nome"
             editando={editandoCampo === "nome"}
             onEditar={handleEditarCampo}
             onSalvar={handleSalvarCampo}
             onChange={handleCampoChange}
-            bg="azul"
+            fundo="azul"
           />
-          <Item
+          <Campo
             icone="📅"
             valor={formData.nascimento}
             campo="nascimento"
@@ -114,9 +105,9 @@ const VisualizacaoResponsavel = () => {
             onEditar={handleEditarCampo}
             onSalvar={handleSalvarCampo}
             onChange={handleCampoChange}
-            bg="azul-claro"
+            fundo="azul-claro"
           />
-          <Item
+          <Campo
             icone="📧"
             valor={formData.email}
             campo="email"
@@ -124,9 +115,9 @@ const VisualizacaoResponsavel = () => {
             onEditar={handleEditarCampo}
             onSalvar={handleSalvarCampo}
             onChange={handleCampoChange}
-            bg="azul"
+            fundo="azul"
           />
-          <Item
+          <Campo
             icone="📞"
             valor={formData.telefone}
             campo="telefone"
@@ -134,14 +125,14 @@ const VisualizacaoResponsavel = () => {
             onEditar={handleEditarCampo}
             onSalvar={handleSalvarCampo}
             onChange={handleCampoChange}
-            bg="azul-claro"
+            fundo="azul-claro"
           />
-          <Item
+          <Campo
             icone="👨‍👧"
             valor={formData.aluno}
             campo="aluno"
             editando={false}
-            bg="azul"
+            fundo="azul"
           />
         </div>
       </main>
@@ -151,8 +142,8 @@ const VisualizacaoResponsavel = () => {
   );
 };
 
-const Item = ({ icone, valor, campo, editando, onEditar, onSalvar, onChange, bg }) => (
-  <div className={`item ${bg}`}>
+const Campo = ({ icone, valor, campo, editando, onEditar, onSalvar, onChange, fundo }) => (
+  <div className={`campo ${fundo}`}>
     <span className="icone">{icone}</span>
     {editando ? (
       <input
@@ -162,12 +153,12 @@ const Item = ({ icone, valor, campo, editando, onEditar, onSalvar, onChange, bg 
         onChange={(e) => onChange(campo, e.target.value)}
       />
     ) : (
-      <span className="text">{valor}</span>
+      <span className="texto">{valor}</span>
     )}
     {campo !== "aluno" && (
       <span
         className="icone-editar"
-        onClick={() => (editando ? onSalvar(campo) : onEditar(campo))}
+        onClick={() => editando ? onSalvar(campo) : onEditar(campo)}
       >
         {editando ? "💾" : "✏️"}
       </span>
@@ -176,4 +167,3 @@ const Item = ({ icone, valor, campo, editando, onEditar, onSalvar, onChange, bg 
 );
 
 export default VisualizacaoResponsavel;
-  

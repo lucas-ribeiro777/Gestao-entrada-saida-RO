@@ -5,6 +5,7 @@ import Rodape from '../../components/Rodape/Rodape';
 import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 import ModalCodigoConfirmacao from '../../components/ModalCodigoConfirmacao/ModalCodigoConfirmacao';
 import CampoTexto from '../../components/CampoTexto/CampoTexto';
+import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 
 const EsqueciMinhaSenha = () => {
   const [email, setEmail] = useState('');
@@ -79,8 +80,7 @@ const EsqueciMinhaSenha = () => {
 
   return (
     <>
-      <MenuCadastro />
-
+      <CabecalhoPages/>
       <div className="esqueci-wrapper">
         <h3 className="esqueci-title">Preencha os dados para redefinir sua senha</h3>
 

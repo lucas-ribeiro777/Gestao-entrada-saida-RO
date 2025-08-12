@@ -1,5 +1,13 @@
 {
   "alunos": [
+    { "id": 1, "nome": "Lucas Ribeiro", "curso": "Informática", "imagem": "/images/meninateste.png" },
+    { "id": 2, "nome": "Maria Silva", "curso": "Administração", "imagem": "/images/perfil.png" },
+    { "id": 3, "nome": "João Pereira", "curso": "Informática", "imagem": "/images/perfil.png" },
+    { "id": 4, "nome": "Ana Souza", "curso": "Enfermagem", "imagem": "/images/perfil.png" },
+    { "id": 5, "nome": "Carlos Lima", "curso": "Administração", "imagem": "/images/perfil.png" },
+    { "id": 6, "nome": "Fernanda Nunes", "curso": "Informática", "imagem": "/images/perfil.png" },
+    { "id": 7, "nome": "Gabriel Martins", "curso": "Eletroeletrônica", "imagem": "/images/perfil.png" },
+    { "id": 8, "nome": "Juliana Melo", "curso": "Eletroeletrônica", "imagem": "/images/perfil.png" }
     {
       "id": "1",
       "nome": "Lucas Ribeiro",
@@ -47,30 +55,45 @@
       "nome": "Juliana Melo",
       "curso": "Eletroeletrônica",
       "imagem": "/images/perfil.png"
+    },
+    {
+      "id": "ed40",
+      "email": "lucasmoraribeiro@gmail.com",
+      "senha": "123456"
+    },
+    {
+      "id": "19c5",
+      "email": "lucasmoraribeiro@gmail.com",
+      "senha": "123456"
+    },
+    {
+      "id": "aaec",
+      "email": "lucasmoraribeiro@gmail.com",
+      "senha": "123456"
     }
   ],
-  "solicitacoes": [
+  "solicitacoess": [
     {
-      "id": "1",
-      "alunoId": 1,
+      "id": 1,
+      "id_aluno": 1,
       "tipo": "saída",
-      "datahora": "2025-06-24 10:30",
+      "datahora": "2025-08-05 10:30",
       "motivo": "Consulta médica",
       "coordenadorId": null,
       "autorizado": true
     },
     {
-      "id": "2",
-      "alunoId": 2,
+      "id": 2,
+      "id_aluno": 1,
       "tipo": "entrada",
-      "datahora": "2025-06-24 08:15",
+      "datahora": "2025-08-05 08:15",
       "motivo": "Retorno após ausência",
       "coordenadorId": null,
       "autorizado": true
     },
     {
-      "id": "3",
-      "alunoId": 3,
+      "id": 3,
+      "id_aluno": 3,
       "tipo": "saída",
       "datahora": "2025-06-24 11:00",
       "motivo": "Problemas pessoais",
@@ -78,72 +101,72 @@
       "autorizado": true
     },
     {
-      "id": "4",
-      "alunoId": 4,
+      "id": 4,
+      "id_aluno": 4,
       "tipo": "entrada",
       "datahora": "2025-06-13 07:40",
       "motivo": "Chegada autorizada",
       "coordenadorId": null
     },
     {
-      "id": "5",
-      "alunoId": 5,
+      "id": 5,
+      "id_aluno": 5,
       "tipo": "saída",
       "datahora": "2025-06-12 12:30",
       "motivo": "Compromisso familiar",
       "coordenadorId": null
     },
     {
-      "id": "6",
-      "alunoId": 6,
+      "id": 6,
+      "id_aluno": 6,
       "tipo": "entrada",
       "datahora": "2025-06-18 09:00",
       "motivo": "Retorno de consulta",
       "coordenadorId": null
     },
     {
-      "id": "7",
-      "alunoId": 7,
+      "id": 7,
+      "id_aluno": 7,
       "tipo": "saída",
       "datahora": "2025-06-19 11:30",
       "motivo": "Consulta médica",
       "coordenadorId": null
     },
     {
-      "id": "8",
-      "alunoId": 8,
+      "id": 8,
+      "id_aluno": 8,
       "tipo": "entrada",
       "datahora": "2025-06-20 07:50",
       "motivo": "Chegada com autorização",
       "coordenadorId": null
     },
     {
-      "id": "9",
-      "alunoId": 1,
+      "id": 9,
+      "id_aluno": 1,
       "tipo": "saída",
       "datahora": "2025-06-21 10:00",
       "motivo": "Atendimento externo",
       "coordenadorId": null
     },
     {
-      "id": "10",
-      "alunoId": 2,
+      "id": 10,
+      "id_aluno": 2,
       "tipo": "entrada",
       "datahora": "2025-06-22 08:10",
       "motivo": "Retorno após reunião",
       "coordenadorId": null
     },
     {
-      "id": "11",
-      "alunoId": 3,
+      "id": 11,
+      "id_aluno": 3,
       "tipo": "saída",
       "datahora": "2025-06-23 12:00",
       "motivo": "Compromisso urgente",
       "coordenadorId": null
     },
     {
-      "id": "12",
-      "alunoId": 4,
+      "id": 12,
+      "id_aluno": 1,
       "tipo": "entrada",
       "datahora": "2025-06-24 07:30",
       "motivo": "Autorização especial",
@@ -160,7 +183,7 @@
       "id_responsavel": 2,
       "tipo": 0,
       "motivo": "Desrespeito em sala",
-      "datahora": "2025-06-01 09:45",
+      "datahora": "2025-08-01 09:45",
       "encerramento": 1,
       "curso": "Informática",
       "turma": 301,
@@ -226,7 +249,10 @@
   "responsaveis": [
     {
       "id": "1",
-      "id_aluno": 1,
+      "id_aluno": [
+        1,
+        2
+      ],
       "nome": "Fernanda Ribeiro",
       "telefone": "(14) 99999-1234",
       "email": "fernanda.ribeiro@email.com"
@@ -276,6 +302,80 @@
       "telefone": "14998492576",
       "senha": "6969",
       "assinatura": "https://i0.wp.com/larmontessori.com/wp-content/uploads/2019/05/Assinatura.png?ssl=1"
+    }
+  ],
+  "controleSaida": [
+    {
+      "label": "12:30",
+      "value": 36,
+      "color": "#E8490F",
+      "id": "264d"
+    },
+    {
+      "label": "15:30",
+      "value": 25,
+      "color": "#ED9170",
+      "id": "f22f"
+    },
+    {
+      "label": "10:50",
+      "value": 30,
+      "color": "#1F5592",
+      "id": "2d2c"
+    },
+    {
+      "label": "17:00",
+      "value": 9,
+      "color": "#87ADD8",
+      "id": "1cc4"
+    }
+  ],
+  "motivoSaida": [
+    {
+      "label": "Perda de hora",
+      "value": 40,
+      "color": "#E8490F",
+      "id": "ecc7"
+    },
+    {
+      "label": "Saúde",
+      "value": 25,
+      "color": "#ED9170",
+      "id": "d8e8"
+    },
+    {
+      "label": "Empresa",
+      "value": 20,
+      "color": "#1F5592",
+      "id": "1be9"
+    },
+    {
+      "label": "Outros",
+      "value": 15,
+      "color": "#87ADD8",
+      "id": "705e"
+    }
+  ],
+  "solicitacoes": [
+    {
+      "id": 1,
+      "alunoId": 1,
+      "tipo": "Saída",
+      "motivo": "Consulta médica",
+      "datahora": "2025-08-05T10:30:00",
+      "professorAutorizou": true,
+      "responsavelAutorizou": true,
+      "coordenadorAutorizou": true
+    },
+        {
+      "id": 1,
+      "alunoId": 1,
+      "tipo": "Saída",
+      "motivo": "Consulta médica",
+      "datahora": "2025-08-05T10:30:00",
+      "professorAutorizou": true,
+      "responsavelAutorizou": false,
+      "coordenadorAutorizou": true
     }
   ]
 }

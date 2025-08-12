@@ -73,3 +73,8 @@ svg {
   height: 28px;
   border-radius: 25px;
 }
+
+.tooltip {
+  opacity: 1;
+  pointer-events: none;
+}

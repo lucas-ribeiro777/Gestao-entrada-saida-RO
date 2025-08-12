@@ -66,3 +66,12 @@
 .card-solicitacao h2{
   color: #ffffff;
 }
+.btn-abrir-qrcode{
+  background-color: #E8490F;
+  border: none;
+  border-radius: 25px;
+  width: 50%;
+  height: 25px;
+  margin-top: 10px;
+  color: white;
+}

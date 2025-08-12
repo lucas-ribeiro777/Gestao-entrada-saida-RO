@@ -4,6 +4,7 @@ import Botao from '../Botao/Botao';
 import CampoTexto from '../CampoTexto/CampoTexto';
 import CriarAssinatura from '../CriarAssinatura/CriarAssinatura';
 import Termos from '../Termos/Termos';
+import ModalRecado from '../ModalRecado/ModalRecado'; // import do modal de recados
 import './FormCadastroAluno.css';
 
 function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
@@ -14,13 +15,22 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
   const [nomeArquivoAssinatura, setNomeArquivoAssinatura] = useState(null);
 
   const [nome, setNome] = useState('');
-  const [email, setEmail] = useState(''); 
+  const [email, setEmail] = useState('');
   const [datanasc, setDataNasc] = useState('');
   const [telefone, setTelefone] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
 
   const [termosValidos, setTermosValidos] = useState(false);
+
+  // Estados para o modal de recado
+  const [modalMensagem, setModalMensagem] = useState('');
+  const [modalRecadoAberto, setModalRecadoAberto] = useState(false);
+
+  function mostrarRecado(msg) {
+    setModalMensagem(msg);
+    setModalRecadoAberto(true);
+  }
 
   function aoSalvarAssinatura(base64Img) {
     setAssinaturaImg(base64Img);
@@ -41,51 +51,112 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
     return new File([u8arr], filename, { type: mime });
   }
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+async function handleSubmit(event) {
+  event.preventDefault();
 
-    if (senha !== confirmarSenha) {
-      alert('As senhas não conferem!');
-      return;
-    }
-    if (!nomeArquivoAssinatura || !assinaturaImg) {
-      alert('Por favor, crie a assinatura.');
-      return;
-    }
-    if (!termosValidos) {
-      alert('Você precisa aceitar os termos obrigatórios.');
-      return;
-    }
-    if (!fotoSelecionada) {
-      alert('Por favor, selecione uma foto de perfil.');
-      return;
-    }
+  // Validação básica de email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    mostrarRecado('Por favor, insira um e-mail válido.');
+    return;
+  }
 
-    const formData = new FormData();
-    formData.append('Nome', nome);
-    formData.append('Email', email);
-    formData.append('DataNascimento', datanasc.replaceAll('/', '-'));
-    formData.append('Telefone', telefone);
-    formData.append('Senha', senha);
-    formData.append('Imagem', fotoSelecionada);
-    formData.append('Assinatura', dataURLtoFile(assinaturaImg, nomeArquivoAssinatura));
-
-    try {
-      const resp = await fetch('http://10.90.146.27:5121/api/Alunos', {
-        method: 'POST',
-        body: formData,
-      });
-      if (!resp.ok) {
-        const erro = await resp.text();
-        throw new Error('Erro ao cadastrar aluno:\n' + erro);
-      }
-      await resp.json();
-      alert('Cadastro realizado com sucesso!');
-      navigate('/login');
-    } catch (error) {
-      alert(error.message);
+  // Validação de data nascimento dd/mm/yyyy
+  const dataRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+  const matchData = datanasc.match(dataRegex);
+  if (!matchData) {
+    mostrarRecado('Data de nascimento inválida. Use o formato dd/mm/aaaa.');
+    return;
+  } else {
+    const dia = parseInt(matchData[1], 10);
+    const mes = parseInt(matchData[2], 10);
+    const ano = parseInt(matchData[3], 10);
+    const hoje = new Date();
+    if (ano < 1900 || ano > hoje.getFullYear()) {
+      mostrarRecado('Ano de nascimento inválido.');
+      return;
+    }
+    if (mes < 1 || mes > 12) {
+      mostrarRecado('Mês de nascimento inválido.');
+      return;
+    }
+    const diasNoMes = new Date(ano, mes, 0).getDate();
+    if (dia < 1 || dia > diasNoMes) {
+      mostrarRecado('Dia de nascimento inválido.');
+      return;
     }
   }
+
+  // Validação telefone - só números, 10 ou 11 dígitos
+  const telNumeros = telefone.replace(/\D/g, '');
+  if (!(telNumeros.length === 10 || telNumeros.length === 11)) {
+    mostrarRecado('Telefone inválido. Use 10 ou 11 dígitos (somente números).');
+    return;
+  }
+
+  // Validação senha - mínimo 6 caracteres, pelo menos 1 número
+  if (senha.length < 6) {
+    mostrarRecado('Senha deve ter no mínimo 6 caracteres.');
+    return;
+  }
+  if (!/\d/.test(senha)) {
+    mostrarRecado('Senha deve conter pelo menos um número.');
+    return;
+  }
+
+  if (senha !== confirmarSenha) {
+    mostrarRecado('As senhas não conferem!');
+    return;
+  }
+
+  if (!termosValidos) {
+    mostrarRecado('Você precisa aceitar os termos obrigatórios.');
+    return;
+  }
+
+  if (!fotoSelecionada) {
+    mostrarRecado('Por favor, selecione uma foto de perfil.');
+    return;
+  }
+
+  // Continua a lógica do envio do form
+  const formData = new FormData();
+  formData.append('Nome', nome);
+  formData.append('Email', email);
+  formData.append('DataNascimento', datanasc.replaceAll('/', '-'));
+  formData.append('Telefone', telefone);
+  formData.append('Senha', senha);
+  formData.append('Imagem', fotoSelecionada);
+
+  if (assinaturaImg && nomeArquivoAssinatura) {
+    formData.append('Assinatura', dataURLtoFile(assinaturaImg, nomeArquivoAssinatura));
+  }
+
+  try {
+    const resp = await fetch('http://10.90.146.16:5121/api/Alunos', {
+      method: 'POST',
+      body: formData,
+    });
+    if (!resp.ok) {
+      const erro = await resp.text();
+      throw new Error('Erro ao cadastrar aluno:\n' + erro);
+    }
+    await resp.json();
+    mostrarRecado('Cadastro realizado com sucesso!');
+    setNome('');
+    setEmail('');
+    setDataNasc('');
+    setTelefone('');
+    setSenha('');
+    setConfirmarSenha('');
+    setAssinaturaImg(null);
+    setNomeArquivoAssinatura(null);
+    navigate('/login');
+  } catch (error) {
+    mostrarRecado(error.message);
+  }
+}
+
 
   function irParaLogin(e) {
     e.preventDefault();
@@ -95,7 +166,7 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
   return (
     <>
       <form className="formulario" onSubmit={handleSubmit}>
-        <h2 className="titulo">Preencha os dados para se cadastrar - ALUNO</h2>
+        <h2 className="titulo">Preencha os dados para se cadastrar como ALUNO</h2>
         <div className="campos">
           <CampoTexto valor={nome} label="Nome" placeholder="Digite Algo..." onChange={e => setNome(e.target.value)} />
           <CampoTexto valor={email} label="E-mail" placeholder="Digite Algo..." onChange={e => setEmail(e.target.value)} />
@@ -121,7 +192,6 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
           </div>
         )}
 
-
         <CriarAssinatura
           aberto={modalAberto}
           aoFechar={() => setModalAberto(false)}
@@ -129,7 +199,7 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
         />
 
         <Termos onValidadeChange={setTermosValidos} />
-        
+
         <div className="form-cadastro">
           <span>
             Já possui uma conta?{' '}
@@ -139,6 +209,12 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
 
         <Botao descricao="Concluir Cadastro" type="submit" />
       </form>
+
+      <ModalRecado
+        aberto={modalRecadoAberto}
+        mensagem={modalMensagem}
+        aoFechar={() => setModalRecadoAberto(false)}
+      />
     </>
   );
 }

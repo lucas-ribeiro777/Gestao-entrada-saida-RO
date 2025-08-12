@@ -2,164 +2,180 @@ import Botao from '../Botao/Botao';
 import CampoTexto from '../CampoTexto/CampoTexto';
 import CriarAssinatura from '../CriarAssinatura/CriarAssinatura';
 import Termos from '../Termos/Termos';
+import ModalRecado from '../ModalRecado/ModalRecado';
 import './FormCadastroResponsavel.css';
 import React, { useState } from 'react';
-
-function dataURLtoFile(dataurl, filename) {
-    const arr = dataurl.split(',');
-    const mime = arr[0].match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-
-    while (n--) {
-        u8arr[n] = bstr.charCodeAt(n);
-    }
-
-    return new File([u8arr], filename, { type: mime });
-}
 
 function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
     const [modalAberto, setModalAberto] = useState(false);
     const [assinaturaImg, setAssinaturaImg] = useState(null);
 
-    const [nome, setNome]= useState ('')
-    const [email, setEmail]= useState ('')
-    const [nomeDependente, setnomeDependente]= useState ('')
-    const [telefone, setTelefone]= useState ('')
-    const [senha, setSenha]= useState ('')
-    const [confirmarSenha, setConfimarSenha]= useState ('')
+    const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
+    const [nomeDependente, setnomeDependente] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [senha, setSenha] = useState('');
+    const [confirmarSenha, setConfirmarSenha] = useState('');
 
     const [termosValidos, setTermosValidos] = useState(false);
+
+    // Controle do ModalRecado
+    const [modalRecadoAberto, setModalRecadoAberto] = useState(false);
+    const [mensagemRecado, setMensagemRecado] = useState("");
+
+    function mostrarRecado(msg) {
+        setMensagemRecado(msg);
+        setModalRecadoAberto(true);
+    }
 
     async function handleSubmit(event) {
         event.preventDefault();
 
-        if (senha !== confirmarSenha) {
-            alert("Senhas não conferem!");
+        // Validação básica do email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            mostrarRecado('Por favor, insira um e-mail válido.');
             return;
         }
 
-        if (!assinaturaImg) {
-            alert("Por favor, crie sua assinatura.");
+        // Validação telefone - apenas números, 10 ou 11 dígitos
+        const telNumeros = telefone.replace(/\D/g, '');
+        if (!(telNumeros.length === 10 || telNumeros.length === 11)) {
+            mostrarRecado('Telefone inválido. Use 10 ou 11 dígitos (somente números).');
+            return;
+        }
+
+        // Validação senha - mínimo 6 caracteres, pelo menos 1 número
+        if (senha.length < 6) {
+            mostrarRecado('Senha deve ter no mínimo 6 caracteres.');
+            return;
+        }
+        if (!/\d/.test(senha)) {
+            mostrarRecado('Senha deve conter pelo menos um número.');
+            return;
+        }
+
+        if (senha !== confirmarSenha) {
+            mostrarRecado("Senhas não conferem!");
             return;
         }
 
         if (!termosValidos) {
-            alert('Você precisa aceitar todos os termos obrigatórios para continuar.');
+            mostrarRecado("Você precisa aceitar todos os termos obrigatórios para continuar.");
             return;
         }
 
-        const nomeArquivoAssinatura = `assinatura_${Date.now()}.png`;
-
-        // Converte dataURL em arquivo
-        const arquivoAssinatura = dataURLtoFile(assinaturaImg, nomeArquivoAssinatura);
-
-        // Cria FormData e adiciona os campos
-        const formData = new FormData();
-        formData.append('nome', nome);
-        formData.append('email', email);
-        formData.append('nomeDependente', nomeDependente);
-        formData.append('telefone', telefone);
-        formData.append('senha', senha);
-        formData.append('assinatura', arquivoAssinatura);
-
-        console.log([...formData.entries()]);
+        // Monta o JSON conforme esperado pela API
+        const body = {
+            nome,
+            email,
+            telefone,
+            senha,
+            alunos: nomeDependente ? [nomeDependente] : [],
+        };
 
         try {
-            const response = await fetch('http://10.90.146.27:5121/api/Responsaveis/cadastro', {
+            const response = await fetch('http://10.90.146.16:5121/api/Responsaveis/cadastro', {
                 method: 'POST',
-                body: formData, // importante: não colocar headers Content-Type
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
             });
 
             if (response.ok) {
-                alert("Cadastro realizado com sucesso!");
+                mostrarRecado("Cadastro realizado com sucesso!");
                 setNome('');
                 setEmail('');
                 setnomeDependente('');
                 setTelefone('');
                 setSenha('');
-                setConfimarSenha('');
+                setConfirmarSenha('');
                 setAssinaturaImg(null);
                 setModalAberto(false);
             } else {
-                alert("Erro no cadastro.");
+                mostrarRecado("Erro no cadastro.");
             }
         } catch (error) {
-            alert("Erro na comunicação com a API.");
+            mostrarRecado("Erro na comunicação com a API.");
             console.error(error);
         }
     }
 
-
-
     return (
         <>
-
             <form className="formulario" onSubmit={handleSubmit}>
                 <h2 className="titulo">Preencha os dados para cadastrar um RESPONSÁVEL</h2>
 
                 <div className="campos">
-                    <CampoTexto 
-                        valor={nome} 
+                    <CampoTexto
+                        valor={nome}
                         onChange={e => setNome(e.target.value)}
                         label="Nome"
                         placeholder="Digite Algo..."
                     />
-                    <CampoTexto 
+                    <CampoTexto
                         valor={email}
-                        onChange={e => setEmail(e.target.value)} 
-                        label="E-mail" 
+                        onChange={e => setEmail(e.target.value)}
+                        label="E-mail"
                         placeholder="Digite Algo..."
                     />
-                <div className="linha1">
-                    <CampoTexto 
-                    valor={nomeDependente}
-                    onChange={e => setnomeDependente(e.target.value)} 
-                    label="Nome do Dependente" 
-                    placeholder="Digite Algo..."
-                    />
-                    <CampoTexto 
-                    valor={telefone}
-                    onChange={e => setTelefone(e.target.value)} 
-                    label="Telefone" 
-                    placeholder="+55 ()"
-                    />
-                </div>
-                <div className="linha2">
-                    <CampoTexto 
-                    id="senha" 
-                    label="Senha" 
-                    valor={senha} 
-                    onChange={e => setSenha(e.target.value)} 
-                    placeholder="Digite Sua Senha..." 
-                    senha={true} 
-                    />
-                    <CampoTexto 
-                    id="confirmarSenha" 
-                    label="Confirmar Senha" 
-                    valor={confirmarSenha} 
-                    onChange={e => setConfirmarSenha(e.target.value)} 
-                    placeholder="Confirme Sua Senha..." 
-                    senha={true} 
-                    />
-                </div>
+                    <div className="linha1">
+                        <CampoTexto
+                            valor={nomeDependente}
+                            onChange={e => setnomeDependente(e.target.value)}
+                            label="Nome do Dependente"
+                            placeholder="Digite Algo..."
+                        />
+                        <CampoTexto
+                            valor={telefone}
+                            onChange={e => setTelefone(e.target.value)}
+                            label="Telefone"
+                            placeholder="+55 ()"
+                        />
+                    </div>
+                    <div className="linha2">
+                        <CampoTexto
+                            id="senha"
+                            label="Senha"
+                            valor={senha}
+                            onChange={e => setSenha(e.target.value)}
+                            placeholder="Digite Sua Senha..."
+                            senha={true}
+                        />
+                        <CampoTexto
+                            id="confirmarSenha"
+                            label="Confirmar Senha"
+                            valor={confirmarSenha}
+                            onChange={e => setConfirmarSenha(e.target.value)}
+                            placeholder="Confirme Sua Senha..."
+                            senha={true}
+                        />
+                    </div>
                 </div>
 
-                
-
+                {/* Se você quiser manter o modal da assinatura, ele pode continuar aqui,
+                    mas o backend não está configurado para receber arquivo nessa rota. */}
                 <div className="container-botao-assinar">
-                    <button type="button" onClick={() => setModalAberto(true)} className='botao-assinar'>
+                    <button
+                        type="button"
+                        onClick={() => setModalAberto(true)}
+                        className="botao-assinar"
+                    >
                         Criar uma assinatura
                     </button>
                 </div>
 
                 <div className="container-assinatura">
                     {assinaturaImg && (
-                        <img src={assinaturaImg} alt="Assinatura" className='img-assinatura' style={{ width: '200px', marginTop: '10px' }} />
+                        <img
+                            src={assinaturaImg}
+                            alt="Assinatura"
+                            className="img-assinatura"
+                            style={{ width: '200px', marginTop: '10px' }}
+                        />
                     )}
                 </div>
-
 
                 <CriarAssinatura
                     aberto={modalAberto}
@@ -168,8 +184,14 @@ function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
                 />
 
                 <Termos onValidadeChange={setTermosValidos} />
-                <Botao descricao= "Concluir Cadastro" type="submit"/>
+                <Botao descricao="Concluir Cadastro" type="submit" />
             </form>
+
+            <ModalRecado
+                aberto={modalRecadoAberto}
+                mensagem={mensagemRecado}
+                aoFechar={() => setModalRecadoAberto(false)}
+            />
         </>
     );
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Rodape from '../../components/Rodape/Rodape';
-import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import Foto from '../../components/Foto/Foto';
 import './VisualizarOcorrenciasAluno.css';
 
@@ -9,6 +8,7 @@ const VisualizarOcorrenciasAluno = () => {
   const [ocorrencias, setOcorrencias] = useState([]);
   const [fotoUrl, setFotoUrl] = useState('');
   const [nomeAluno, setNomeAluno] = useState('');
+  const location = useLocation();
 
   useEffect(() => {
     fetch('http://localhost:3000/ocorrencias')
@@ -40,14 +40,39 @@ const VisualizarOcorrenciasAluno = () => {
       .catch((err) => console.error('Erro ao carregar nome do aluno:', err));
   }, []);
 
+  const children = [
+    <li key="inicio"><Link to="/InicialAluno">Início</Link></li>,
+    <li key="ocorrencias"><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li>,
+    <li key="solicitacoes"><Link to="/visualizarsolicitacaoaluno">Solicitações</Link></li>,
+    <li key="conta"><Link to="/visualizarcontaaluno">Conta</Link></li>,
+  ];
+
+  const childrenComClasses = children.map((child) => {
+    if (!React.isValidElement(child)) return child;
+
+    const innerChild = child.props.children;
+
+    if (React.isValidElement(innerChild) && innerChild.props?.to) {
+      const isAtivo = location.pathname === innerChild.props.to;
+
+      return React.cloneElement(child, {
+        children: React.cloneElement(innerChild, {
+          className: isAtivo ? 'ativo' : 'nativo',
+        }),
+      });
+    }
+
+    return child;
+  });
+
   return (
     <>
-      <CabecalhoPages>
-        <li key="inicio"><Link to="/InicialAluno">Início</Link></li>
-        <li key="ocorrencias"><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li>
-        <li key="solicitacoes"><Link to="/visualizarsolicitacaoaluno">Solicitações</Link></li>
-        <li key="conta"><Link to="/visualizarcontaaluno">Conta</Link></li>
-      </CabecalhoPages>
+      <div className="topo-pages">
+        <img src="/images/LogoSenaiSemAsEscritaDoLado.png" alt="SENAI" />
+      </div>
+      <div className="menu-pages">
+        <ul>{childrenComClasses}</ul>
+      </div>
 
       <div className="container-ocorrencias">
         <Foto 

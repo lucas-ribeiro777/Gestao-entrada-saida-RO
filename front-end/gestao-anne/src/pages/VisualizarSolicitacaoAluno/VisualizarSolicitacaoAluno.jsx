@@ -34,13 +34,14 @@ function VisualizarSolicitacaoAluno() {
     <>
       <CabecalhoPages>
         <li><Link to="/InicialAluno">Início</Link></li>
-        <li><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li>
+        {/* <li><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li> */}
         <li><Link to="/visualizarsolicitacaoaluno">Solicitações</Link></li>
         <li><Link to="/VisualizarContaaluno">Conta</Link></li>
       </CabecalhoPages>
 
+      <h1 className='titulo-sol-alunos'>Status das Minhas Solicitações</h1>
       <div className="container-solicitacoes-aluno">
-        <h1>Status das Minhas Solicitações</h1>
+
 
         {solicitacoes.length === 0 ? (
           <p>Nenhuma solicitação encontrada.</p>
@@ -106,6 +107,8 @@ function VisualizarSolicitacaoAluno() {
           })
         )}
 
+
+      </div>
         <div style={{ marginTop: '30px', textAlign: 'center' }} className='botao-criar-nova-solicitacao'>
           <Botao
             descricao="Criar nova solicitação"
@@ -113,8 +116,6 @@ function VisualizarSolicitacaoAluno() {
             onClick={irParaNovaPagina}
           />
         </div>
-      </div>
-
       <Rodape />
     </>
   );

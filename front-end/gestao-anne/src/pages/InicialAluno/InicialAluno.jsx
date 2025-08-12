@@ -40,17 +40,30 @@ function InicialAluno() {
     <>
       <CabecalhoPages>
         <li><Link to="/InicialAluno">Início</Link></li>
-        <li><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li>
+        {/* <li><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li> */}
         <li><Link to="/visualizarsolicitacaoaluno">Solicitações</Link></li>
         <li><Link to="/VisualizarContaaluno">Conta</Link></li>
       </CabecalhoPages>
 
-      <div className="content-area">
-        <div className="caixas">
-          <CaixaInfos titulo="HISTÓRICO DO DIA" itens={historico} />
-          <CaixaInfos titulo="RESPONSÁVEIS DO ALUNO" itens={responsaveis} />
-        </div>
+       <div className="pagina-inicial"> {/* <- ADICIONE ISSO AQUI */}
+    <main className="content-area">
+      <div className="caixas">
+        {historico.length > 0 ? (
+        <CaixaInfos titulo="HISTÓRICO DO DIA" itens={historico} />
+          ) : (
+          <div className="caixa-vazia">
+            <div className="titulo-caixa"><h2>HISTÓRICO DO DIA</h2></div>
+            <img src="/images/lupa.png" alt="Nenhuma solicitação" />
+            <img src="/images/joia-baixa.png" alt="Nenhuma solicitação" />
+            <p>Nenhuma solicitação registrada hoje.</p>
+          </div>
+    )}
+
+        <CaixaInfos titulo="RESPONSÁVEIS DO ALUNO" itens={responsaveis} />
       </div>
+    </main>
+
+  </div>
 
       <Rodape />
     </>

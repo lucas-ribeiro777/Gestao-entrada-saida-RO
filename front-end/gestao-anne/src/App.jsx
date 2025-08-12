@@ -18,6 +18,8 @@ import VisualizarSolicitacaoCoordenador from './pages/VisualizarSolicitacaoCoord
 import VerSolicitacaoAluno from './pages/VerSolicitacaoAluno/VerSolicitacaoAluno';
 import InicialCoordenador from './pages/InicialCoordenador/InicialCoordenador';
 import VisualizarContaProfessor from './pages/VisualizarContaProfessor/VisualizarContaProfessor';
+import SolicitacaoProfessor from './pages/SolicitacaoProfessor/SolicitacaoProfessor';
+import VerSolicitacaoResponsavel from './pages/VerSolicitacaoResponsavel/VerSolicitacaoResponsavel';
 
 
 function App() {
@@ -35,21 +37,25 @@ function App() {
         <Route path="/visualizarcontaaluno" element={<VisualizarContaAluno />} /> 
         <Route path="/inicialAluno" element={<InicialAluno />} />
         <Route path="/visualizarsolicitacaoaluno" element={<VisualizarSolicitacaoAluno />} />
+
         <Route path="/VerSolicitacaoAluno" element={<VerSolicitacaoAluno />} />
 
         // Professores
         <Route path="/InicialProfessor" element={<InicialProfessor />} />
+        <Route path="/SolicitacaoProfessor" element={<SolicitacaoProfessor />} />
         <Route path="/visualizarContaProfessor" element={<VisualizarContaProfessor />} />
 
         // Responsavel
         <Route path="/VisualizacaoResponsavel" element={<VisualizacaoResponsavel />} />
         <Route path="/InicialResponsavel" element={<InicialResponsavel />} />
+        <Route path="/VerSolicitacaoResponsavel" element={<VerSolicitacaoResponsavel />} />
 
         // Coordenador
         <Route path="/VisualizarContaCoordenador" element={<VisualizarContaCoordenador />} />
         <Route path="/PesquisarAluno" element={<PesquisarAluno />} />
         <Route path="/VisualizarSolicitacoes" element={<VisualizarSolicitacaoCoordenador />} />
         <Route path="/InicialCoordenador" element={<InicialCoordenador />} />
+        <Route path="/SolicitacaoProfessor" element={<SolicitacaoProfessor />} />
       </Routes>
     </Router>
   );

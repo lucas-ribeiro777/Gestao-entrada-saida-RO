@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const VisualizarContaProfessor = () => {
   const [dados, setDados] = useState(null);
   const [carregando, setCarregando] = useState(true);
-  const API_URL = 'http://localhost:3001/Docente/1p1';
+  const API_URL = 'http://localhost:3000/professores/1'; // Ajuste o ID conforme necessário
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,14 +51,9 @@ const VisualizarContaProfessor = () => {
     <>
       <CabecalhoPages rotaAtual={location.pathname}>
         <li><Link to="/InicialProfessor">Início</Link></li>
-        <li><Link to="/VisualizarOcoorrenciaProfessor">Ocorrências</Link></li>
-        <li><Link to="/#">Solicitações</Link></li>
+        {/* <li><Link to="/VisualizarOcoorrenciaProfessor">Ocorrências</Link></li> */}
+        <li><Link to="/solicitacaoprofessor">Solicitações</Link></li>
         <li><Link to="/VisualizarContaProfessor">Conta</Link></li>
-        <li>
-          <Link to="/docente">
-            <img src="/images/engrenagem.png" alt="" />
-          </Link>
-        </li>
       </CabecalhoPages>
 
       <div className="dados-box-professor">
@@ -85,8 +80,8 @@ const VisualizarContaProfessor = () => {
         />
         <InfoBox
           icone={<img src="/images/niver.png" alt="Professor" />}
-          texto={dados.assinatura}
-          onEditar={() => handleEditar('assinatura')}
+          texto={dados.nascimento}
+          onEditar={() => handleEditar('nascimento')}
           editavel={true}
           cor="claro"
         />

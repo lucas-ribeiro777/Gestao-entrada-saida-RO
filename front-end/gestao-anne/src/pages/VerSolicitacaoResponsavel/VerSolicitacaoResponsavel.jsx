@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './VerSolicitacaoAluno.css';
+import './VerSolicitacaoResponsavel.css';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import Rodape from '../../components/Rodape/Rodape';
 import FormSolicitacao from '../../components/FormSolicitacao/FormSolicitacao';
 
-const VerSolicitacaoAluno = () => {
+const VerSolicitacaoResponsavel = () => {
   const [dados, setDados] = useState(null);
 
   useEffect(() => {
@@ -31,4 +31,4 @@ const VerSolicitacaoAluno = () => {
   );
 };
 
-export default VerSolicitacaoAluno;
+export default VerSolicitacaoResponsavel;

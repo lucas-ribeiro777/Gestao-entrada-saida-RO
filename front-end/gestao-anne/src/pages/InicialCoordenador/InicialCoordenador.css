@@ -78,3 +78,45 @@ svg {
   opacity: 1;
   pointer-events: none;
 }
+
+.select-cursos-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.select-cursos {
+  width: 20%;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 2px solid #007BFF;
+  border-radius: 6px;
+  background-color: white;
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+
+}
+
+.select-cursos:hover {
+  border-color: #0056b3;
+}
+
+.select-cursos:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+}
+
+.div-select-cursos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+

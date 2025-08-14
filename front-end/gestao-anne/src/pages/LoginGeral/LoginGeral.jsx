@@ -2,7 +2,6 @@ import './LoginGeral.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Rodape from '../../components/Rodape/Rodape';
-import MenuCadastro from '../../components/MenuCadastro/MenuCadastro';
 import CampoTexto from '../../components/CampoTexto/CampoTexto'; // import do seu componente
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 
@@ -13,54 +12,62 @@ const LoginGeral = () => {
   const [nomeUsuario, setNomeUsuario] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    if (!email || !senha) {
-      setMensagem('Preencha todos os campos.');
-      return;
-    }
+const handleLogin = async () => {
+  if (!email || !senha) {
+    setMensagem('Preencha todos os campos.');
+    return;
+  }
 
-    try {
-      const resposta = await fetch('http://10.90.146.16:5121/api/Usuarios/Login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: email,
-          senha: senha 
-        })
-      });
+  try {
+    const resposta = await fetch('http://10.90.146.16:5121/api/Usuarios/Login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, senha })
+    });
 
-      const dados = await resposta.json(); // lê o body uma vez
+    if (resposta.ok) {
+      const dados = await resposta.json();
+      console.log('Dados recebidos do login:', dados);
 
-      if (resposta.ok) {
-        const tipo = dados.tipo;
+      const tipo = dados.tipo?.toLowerCase();
+      const idUsuario = dados.id;
 
-        // Redireciona de acordo com o tipo
-        if (tipo === 'aluno') {
-          navigate('/inicialaluno');
-        } else if (tipo === 'docente') {
-          navigate('/inicialdocente');
-        } else if (tipo === 'responsavel') {
-          navigate('/inicialresponsavel');
-        } else if (tipo === 'coordenador') {
-          navigate('/inicialcoordenador');
-        }
+      // Armazena o ID e o tipo do usuário
+      localStorage.setItem('usuarioId', idUsuario);
+      localStorage.setItem('usuarioTipo', tipo);
 
-        setMensagem('Login realizado com sucesso!');
-        setNomeUsuario(dados.nome ?? 'Usuário');
-
+      // Navega para a tela correta
+      if (tipo === 'aluno') {
+        navigate('/inicialaluno');
+      } else if (tipo === 'docente') {
+        navigate('/inicialdocente');
+      } else if (tipo === 'responsavel') {
+        navigate('/inicialresponsavel');
+      } else if (tipo === 'coordenador') {
+        navigate('/inicialcoordenador');
       } else {
-        setMensagem(dados.mensagem || 'Email ou senha incorretos.');
-        setNomeUsuario('');
+        console.warn('Tipo de usuário desconhecido:', tipo);
+        setMensagem('Tipo de usuário desconhecido.');
       }
 
-    } catch (erro) {
-      console.error(erro);
-      setMensagem('Erro ao conectar com o servidor.');
+      setMensagem('Login realizado com sucesso!');
+      setNomeUsuario(dados.nome ?? 'Usuário');
+
+    } else {
+      const textoErro = await resposta.text();
+      console.error('Erro da API:', textoErro);
+      setMensagem('Email ou senha incorretos.');
       setNomeUsuario('');
     }
-  };
+
+  } catch (erro) {
+    console.error('Erro na comunicação:', erro);
+    setMensagem('Erro ao conectar com o servidor.');
+    setNomeUsuario('');
+  }
+};
+
+
 
   const irParaCadastro = () => {
     navigate('/');

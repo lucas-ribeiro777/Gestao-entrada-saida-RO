@@ -1,0 +1,49 @@
+.link-termos {
+  background: none;
+  border: none;
+  color: #E8490F;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+
+}
+
+.modal-overlay2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content2 {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  color: black;
+  font-size: 15px;
+  display: flex;
+    flex-direction: column;
+}
+
+.btn-fechar {
+  background-color: #E8490F;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 30px;
+  width: 50%;
+    align-self: center;
+}

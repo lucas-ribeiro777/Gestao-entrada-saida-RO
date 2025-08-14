@@ -1,25 +1,24 @@
-import './VisualizarContaCoordenador.css';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Rodape from '../../components/Rodape/Rodape';
 import InfoBox from '../../components/InfoBox/InfoBox';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+import CriarAssinatura from '../../components/CriarAssinatura/CriarAssinatura'; // importe o modal assinatura
 
 const VisualizarContaCoordenador = () => {
   const [dados, setDados] = useState(null);
   const [carregando, setCarregando] = useState(true);
+  const [modalAberto, setModalAberto] = useState(false); // controle do modal
   const API_URL = 'http://localhost:3000/coordenadores/1';
   const navigate = useNavigate();
-
 
   useEffect(() => {
     fetch(API_URL)
       .then((res) => res.json())
       .then((data) => {
         setDados(data);
-        setCarregando(false); 
+        setCarregando(false);
       })
       .catch((err) => {
         console.error('Erro ao buscar dados:', err);
@@ -45,13 +44,34 @@ const VisualizarContaCoordenador = () => {
     }
   };
 
+  // Funções para abrir e fechar o modal
+  const abrirModalAssinatura = () => setModalAberto(true);
+  const fecharModalAssinatura = () => setModalAberto(false);
+
+  // Salvar assinatura e fechar modal
+  const salvarAssinatura = (assinaturaBase64) => {
+    const novosDados = { ...dados, assinatura: assinaturaBase64 };
+    setDados(novosDados);
+
+    fetch(API_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(novosDados),
+    }).catch((err) => {
+      console.error('Erro ao salvar assinatura:', err);
+      alert('Erro ao salvar assinatura no servidor');
+    });
+
+    fecharModalAssinatura();
+  };
+
   if (carregando || !dados) {
     return <p>Carregando dados...</p>;
   }
 
   return (
     <>
-<CabecalhoPages rotaAtual={location.pathname}>
+      <CabecalhoPages rotaAtual={location.pathname}>
         <li><Link to="/InicialCoordenador">Início</Link></li>
         <li><Link to="/VisualizarSolicitacoes">Solicitações</Link></li>
         <li>
@@ -62,7 +82,6 @@ const VisualizarContaCoordenador = () => {
             onClick={() => navigate("/PesquisarAluno")}
           />
         </li>
-        
         <li><Link to="/VisualizarContaCoordenador">Conta</Link></li>
         <li>
           <Link to="/docente">
@@ -70,6 +89,7 @@ const VisualizarContaCoordenador = () => {
           </Link>
         </li>
       </CabecalhoPages>
+
       <div className="dados-box-coordenador">
         <InfoBox
           icone={<img src="/images/nome.png" alt="Coordenador" />}
@@ -92,19 +112,43 @@ const VisualizarContaCoordenador = () => {
           editavel={true}
           cor="escuro"
         />
-        <InfoBox
-          icone={<img src="/images/niver.png" alt="Coordenador" />}
-          texto={dados.assinatura}
-          onEditar={() => handleEditar('assinatura')}
-          editavel={true}
-          cor="claro"
-        />
 
+        {(!dados.assinatura || dados.assinatura.trim() === "") ? (
+          <div className="assinatura-box">
+            <button
+              className="btn-adicionar-assinatura"
+              onClick={abrirModalAssinatura}
+            >
+              ➕ Adicionar Assinatura
+            </button>
+          </div>
+        ) : (
+          <InfoBox
+            icone={<img src="/images/assinatura.png" alt="Assinatura" />}
+            texto={
+              <img
+                src={dados.assinatura}
+                alt="Assinatura"
+                style={{ maxWidth: '150px', maxHeight: '50px', borderRadius: '70px' }}
+              />
+            }
+            editavel={false}
+            cor="claro"
+          />
+        )}
       </div>
+
+      {modalAberto && (
+        <CriarAssinatura
+          aberto={modalAberto}
+          aoFechar={fecharModalAssinatura}
+          aoSalvar={salvarAssinatura}
+        />
+      )}
+
       <Rodape />
     </>
   );
 };
 
 export default VisualizarContaCoordenador;
-

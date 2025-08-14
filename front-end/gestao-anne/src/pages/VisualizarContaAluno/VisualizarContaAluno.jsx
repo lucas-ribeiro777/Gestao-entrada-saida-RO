@@ -9,39 +9,77 @@ import InfoBox from '../../components/InfoBox/InfoBox';
 const VisualizarContaAluno = () => {
   const [dados, setDados] = useState({
     nome: '',
-    nascimento: '',
+    dataNascimento: '',
     email: '',
     telefone: '',
-    responsavel: '',
+    responsavel: '',  // vai ser só o nome do responsável
   });
 
   const [imagemPerfil, setImagemPerfil] = useState('');
-
-  // 👇 Hook para detectar tamanho da tela
+  const alunoId = localStorage.getItem('usuarioId'); // Pega o ID do aluno do localStorage
   const [larguraTela, setLarguraTela] = useState(window.innerWidth);
 
-  useEffect(() => {
-    const buscarDadosDoAluno = async () => {
-      try {
-        const resposta = await fetch('http://localhost:3000/alunos/1'); // Ajuste conforme sua API
-        const aluno = await resposta.json();
+  // Função para formatar a data ISO para dd/mm/aaaa
+  const formatarData = (dataISO) => {
+    if (!dataISO) return '';
+    const [data] = dataISO.split('T'); // pega só a parte antes do T
+    const partes = data.split('-');
+    if (partes.length !== 3) return dataISO;
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+  };
 
-        setDados({
-          nome: aluno.nome,
-          nascimento: aluno.nascimento,
-          email: aluno.email,
-          telefone: aluno.telefone,
-          responsavel: aluno.responsavel,
-        });
+useEffect(() => {
+  const buscarDadosDoAluno = async () => {
+    if (!alunoId) {
+      console.error('ID do aluno não encontrado no localStorage');
+      return;
+    }
 
-        setImagemPerfil(aluno.imagem);
-      } catch (erro) {
-        console.error('Erro ao buscar dados do aluno:', erro);
+    try {
+      // Busca dados do aluno
+      const respostaAluno = await fetch(`http://10.90.146.16:5121/api/Alunos/${alunoId}`);
+      if (!respostaAluno.ok) throw new Error('Falha na resposta da API do aluno');
+
+      const aluno = await respostaAluno.json();
+
+      // Pega o ID do responsável dentro do array alunosResponsaveis
+      const responsavelId = aluno.alunosResponsaveis && aluno.alunosResponsaveis.length > 0
+        ? aluno.alunosResponsaveis[0].idResponsavel
+        : null;
+
+      let nomeResponsavel = '';
+
+      if (responsavelId) {
+        // Busca dados do responsável usando o ID
+        const respostaResponsavel = await fetch(`http://10.90.146.16:5121/api/Responsaveis/${responsavelId}`);
+        if (!respostaResponsavel.ok) throw new Error('Falha na resposta da API do responsável');
+
+        const responsavel = await respostaResponsavel.json();
+        nomeResponsavel = responsavel.nome || '';
       }
-    };
 
-    buscarDadosDoAluno();
-  }, []);
+      setDados({
+        nome: aluno.nome,
+        dataNascimento: aluno.dataNascimento,
+        email: aluno.email,
+        telefone: aluno.telefone,
+        responsavel: nomeResponsavel,
+      });
+
+      setImagemPerfil(aluno.imagem);
+    } catch (erro) {
+      console.error('Erro ao buscar dados:', erro);
+    }
+  };
+
+  buscarDadosDoAluno();
+}, [alunoId]);
+
+// Log do estado quando mudar
+useEffect(() => {
+  console.log('Dados atualizados:', dados);
+}, [dados]);
+
 
   // 👇 Atualiza largura da tela ao redimensionar
   useEffect(() => {
@@ -71,7 +109,6 @@ const VisualizarContaAluno = () => {
       </CabecalhoPages>
 
       <div className="container-central">
-        {/* 👇 Só renderiza a foto se a largura for maior que 768px */}
         {larguraTela > 768 && (
           <Foto 
             titulo="Foto de Perfil"
@@ -89,8 +126,8 @@ const VisualizarContaAluno = () => {
           />
           <InfoBox
             icone={<img src="/images/niver.png" alt="Nascimento" />}
-            texto={dados.nascimento}
-            onEditar={() => handleEditar('nascimento')}
+            texto={formatarData(dados.dataNascimento)}
+            onEditar={() => handleEditar('dataNascimento')}
             editavel={false}
             cor="claro"
           />

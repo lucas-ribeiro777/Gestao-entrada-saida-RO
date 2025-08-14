@@ -1,132 +1,107 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-html, body {
-  width: 100%;
-  font-family: 'Inter', sans-serif;
-  background-color: white;
-}
+  html, body {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    background-color: white;
+  }
 
-.pagina-responsavel {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+  .pagina-responsavel {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
-.logo-senai {
-  width: 160px;
-  margin: 20px auto;
-}
+  .conteudo-principal {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+  }
 
-.cabecalho-pages ul {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  background-color: #1F5592;
-  padding: 12px 0;
-  list-style: none;
-}
+  .cartao {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
 
-.cabecalho-pages li a {
-  color: white;
-  text-decoration: none;
-  font-weight: 700;
-}
+  .campo {
+    display: flex;
+    align-items: center; /* Alinha ícone, texto e lápis no centro vertical */
+    justify-content: space-between; /* Espaça ícone-texto e lápis */
+    width: 500px;
+    height: 54px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
 
-.cabecalho-pages li a.ativo {
-  color: red;
-}
+  .azul {
+    background-color: #1F5592;
+    color: #fff;
+  }
 
-.conteudo-principal {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-}
+  .cinza {
+    background-color: #DDEAF6;
+    color: #1a1a1a;
+  }
 
-.cartao {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+  .icone {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+  }
 
-.campo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 520px;
-  height: 52px;
-  border-radius: 12px;
-  font-size: 14px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-  padding: 0 16px;
-}
+  .texto {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
 
-.azul {
-  background-color: #1F5592;
-  color: white;
-}
+  .icone-editar {
+    font-size: 16px;
+    margin-left: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
 
-.azul-claro {
-  background-color: #DDEAF6;
-  color: #1a1a1a;
-  border: 1px solid #A6C5E2;
-}
+  .cartao {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+  .texto {
+    flex: 1;
+    padding-left: 14px;
+  }
 
-.icone {
-  font-size: 16px;
-  margin-right: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-}
+  .input-edicao {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 15px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+  }
 
-.texto {
-  flex: 1;
-  text-align: left;
-  font-weight: 400;
-  padding-left: 8px;
-}
-
-.input-edicao {
-  flex: 1;
-  padding: 6px 10px;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  text-align: left;
-  font-family: 'Inter', sans-serif;
-  background-color: #fff;
-  color: #333;
-}
-
-.icone-editar {
-  font-size: 16px;
-  margin-left: 12px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.loading {
-  text-align: center;
-  padding: 50px;
-  font-size: 16px;
-  color: #1a1a1a;
-}
-
-.rodape {
-  background-color: #1F5592;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-}
+  .icone-editar {
+    font-size: 16px;
+    margin-left: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  

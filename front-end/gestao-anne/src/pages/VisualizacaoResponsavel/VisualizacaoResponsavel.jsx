@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Rodape from "../../components/Rodape/Rodape";
 import CabecalhoPages from "../../components/CabecalhoPages/CabecalhoPages";
+import { FaUser, FaBirthdayCake, FaEnvelope, FaPhone, FaUserFriends, FaPen } from "react-icons/fa";
 import "./VisualizacaoResponsavel.css";
 
 const VisualizacaoResponsavel = () => {
@@ -54,7 +55,6 @@ const VisualizacaoResponsavel = () => {
 
   const handleSalvarCampo = (campo) => {
     const valorAtualizado = formData[campo];
-
     const payload = {
       ...dados,
       [campo]: campo === "nascimento"
@@ -87,53 +87,11 @@ const VisualizacaoResponsavel = () => {
 
       <main className="conteudo-principal">
         <div className="cartao">
-          <Campo
-            icone="🗂️"
-            valor={formData.nome}
-            campo="nome"
-            editando={editandoCampo === "nome"}
-            onEditar={handleEditarCampo}
-            onSalvar={handleSalvarCampo}
-            onChange={handleCampoChange}
-            fundo="azul"
-          />
-          <Campo
-            icone="📅"
-            valor={formData.nascimento}
-            campo="nascimento"
-            editando={editandoCampo === "nascimento"}
-            onEditar={handleEditarCampo}
-            onSalvar={handleSalvarCampo}
-            onChange={handleCampoChange}
-            fundo="azul-claro"
-          />
-          <Campo
-            icone="📧"
-            valor={formData.email}
-            campo="email"
-            editando={editandoCampo === "email"}
-            onEditar={handleEditarCampo}
-            onSalvar={handleSalvarCampo}
-            onChange={handleCampoChange}
-            fundo="azul"
-          />
-          <Campo
-            icone="📞"
-            valor={formData.telefone}
-            campo="telefone"
-            editando={editandoCampo === "telefone"}
-            onEditar={handleEditarCampo}
-            onSalvar={handleSalvarCampo}
-            onChange={handleCampoChange}
-            fundo="azul-claro"
-          />
-          <Campo
-            icone="👨‍👧"
-            valor={formData.aluno}
-            campo="aluno"
-            editando={false}
-            fundo="azul"
-          />
+          <Campo icone={<FaUser />} valor={formData.nome} campo="nome" editando={editandoCampo === "nome"} onEditar={handleEditarCampo} onSalvar={handleSalvarCampo} onChange={handleCampoChange} fundo="azul" />
+          <Campo icone={<FaBirthdayCake />} valor={formData.nascimento} campo="nascimento" editando={editandoCampo === "nascimento"} onEditar={handleEditarCampo} onSalvar={handleSalvarCampo} onChange={handleCampoChange} fundo="cinza" />
+          <Campo icone={<FaEnvelope />} valor={formData.email} campo="email" editando={editandoCampo === "email"} onEditar={handleEditarCampo} onSalvar={handleSalvarCampo} onChange={handleCampoChange} fundo="azul" />
+          <Campo icone={<FaPhone />} valor={formData.telefone} campo="telefone" editando={editandoCampo === "telefone"} onEditar={handleEditarCampo} onSalvar={handleSalvarCampo} onChange={handleCampoChange} fundo="cinza" />
+          <Campo icone={<FaUserFriends />} valor={formData.aluno} campo="aluno" editando={false} fundo="azul" />
         </div>
       </main>
 
@@ -160,7 +118,7 @@ const Campo = ({ icone, valor, campo, editando, onEditar, onSalvar, onChange, fu
         className="icone-editar"
         onClick={() => editando ? onSalvar(campo) : onEditar(campo)}
       >
-        {editando ? "💾" : "✏️"}
+        <FaPen />
       </span>
     )}
   </div>

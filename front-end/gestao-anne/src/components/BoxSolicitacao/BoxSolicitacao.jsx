@@ -8,7 +8,7 @@ function BoxSolicitacao({ imagem, nome, curso, data, horario, motivo, tipo, cor 
       <div className="info-solicitacao">    
         <div className="infos1">
             <p className="aluno-nome">{nome}</p>
-            <p className="aluno-curso">{curso}</p>
+            <p className="aluno-curso2">{curso}</p>
         </div>
         <div className="infos2">
             <p>DATA: {data}</p>

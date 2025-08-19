@@ -27,7 +27,6 @@ const handleLogin = async () => {
 
     if (resposta.ok) {
       const dados = await resposta.json();
-      console.log('Dados recebidos do login:', dados);
 
       const tipo = dados.tipo?.toLowerCase();
       const idUsuario = dados.id;

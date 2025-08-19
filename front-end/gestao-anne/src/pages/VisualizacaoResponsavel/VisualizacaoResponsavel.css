@@ -134,3 +134,17 @@
   padding: 20px;
   font-size: 14px;
 }
+
+#assinatura-imagem{
+  width: 100px;
+  height: auto;
+  border-radius: 70px;
+}
+
+@media (max-width: 400px) {
+  #assinatura-imagem{
+    width: 100px;
+    height: auto;
+    border-radius: 35px;
+  }
+}

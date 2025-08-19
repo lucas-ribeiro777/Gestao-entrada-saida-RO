@@ -22,8 +22,8 @@
   font-weight: bold;
 }
 
-.aluno-curso {
-    font-size: 28px !important;
+.aluno-curso2 {
+    font-size: 28px ;
     margin-bottom: 10px;
     margin-top: -7px;
 }
@@ -53,4 +53,34 @@
 
 .laranja {
   background-color: #E9541E;
+}
+
+@media (max-width: 400px) {
+  .box-solicitacao {
+    width: 100%;
+    height: auto;
+    align-items: center;
+  }
+
+  .box-solicitacao img.aluno-foto {
+    width: 120px;
+    height: 120px;
+  }
+
+  .info-solicitacao .aluno-nome {
+    font-size: 24px;
+  }
+
+  .aluno-curso2 {
+    font-size: 20px;
+  }
+
+  .box-solicitacao p {
+    font-size: 16px;
+  }
+
+  .details h1{
+    font-size: 1 8px;
+  }
+  
 }

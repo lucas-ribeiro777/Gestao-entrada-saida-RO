@@ -1,5 +1,5 @@
 import './Foto.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Foto({
   onFotoSelecionada,
@@ -10,6 +10,11 @@ function Foto({
 }) {
   const [imagemPreview, setImagemPreview] = useState(imagem || './images/perfil.png');
 
+  // Sincroniza sempre que o prop imagem mudar
+  useEffect(() => {
+    setImagemPreview(imagem || './images/perfil.png');
+  }, [imagem]);
+
   const handleImagemChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -18,15 +23,13 @@ function Foto({
       onFotoSelecionada(file);
     }
   };
-  
-console.log('Imagem recebida no componente Foto:', imagem);
+
   return (
     <div className="container-foto">
       <h2 id="h2">{titulo}</h2>
 
       <div className="imagem">
         <img src={imagemPreview} alt="Foto de Perfil" />
-        
       </div>
 
       {!desativarUpload ? (

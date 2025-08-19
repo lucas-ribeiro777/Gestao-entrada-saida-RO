@@ -3,6 +3,7 @@ import './VerSolicitacaoAluno.css';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import Rodape from '../../components/Rodape/Rodape';
 import FormSolicitacao from '../../components/FormSolicitacao/FormSolicitacao';
+import { Link, useNavigate } from 'react-router-dom';
 
 const VerSolicitacaoAluno = () => {
   const [dados, setDados] = useState(null);
@@ -23,8 +24,14 @@ const VerSolicitacaoAluno = () => {
 
   return (
     <div className="pagina-solicitacao">
-      <CabecalhoPages />
-      <FormSolicitacao dados={dados} />
+    <CabecalhoPages>
+      <li key="inicio"><Link to="/InicialAluno">Início</Link></li>
+      {/* <li key="ocorrencias"><Link to="/visualizarocorrenciasaluno">Ocorrências</Link></li> */}
+      <li key="solicitacoes"><Link to="/visualizarsolicitacaoaluno">Solicitações</Link></li>
+      <li key="conta"><Link to="/VisualizarContaaluno">Conta</Link></li>
+    </CabecalhoPages>
+
+      <FormSolicitacao dados={dados} tipoUsuario="aluno"/>
 
       <Rodape />
     </div>

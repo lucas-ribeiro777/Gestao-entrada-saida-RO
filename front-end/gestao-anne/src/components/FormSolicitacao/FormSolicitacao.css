@@ -10,24 +10,32 @@
   width: 60%;
   max-width: 800px;
   margin: 100px auto;
-  padding: 30px;
+  padding: 20px;
   background-color: #E6E6E6;
   border-radius: 25px;
   box-shadow: 0 0 8px rgba(0,0,0,0.2);
   font-family: 'Inter', sans-serif;
   font-size: 16px;
+  border: solid 2px black;
+}
+
+.line{
+  height: 2px;
+  width: 100%;
+  background-color: black;
+  margin-top: -30px;
+  margin-bottom: 30px;
 }
 
 .cabecalho-escola {
   display: flex;
   align-items: center;
   gap: 50px;
-  margin-bottom: 25px;
-  margin-left: 100px;
+  margin-left: 50px;
 }
 
 .logo-senai {
-  width: 100px; 
+  width: 200px; 
 }
 
 .info-escola h2 {
@@ -134,4 +142,64 @@
 .botao-solicitar:hover {
   opacity: 0.8;
   border-radius: 10px;
+}
+
+.botao-assinar-aluno{
+  border-radius: 25px;
+  height: 40px;
+  background-color: white;
+  border: solid 1px black;
+  padding: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.assinatura-aluno{
+  background-color: white;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .logo-senai{
+    width: 150px;
+    margin-top: -30px;
+    margin-left: -30px;
+  }
+
+  .info-escola h2{
+    font-size: 14px;
+    margin-top: -15px;
+  }
+
+  .info-escola p{
+    font-size: 12px;
+  }
+
+  .line {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .form-solicitacao{
+    width: 90%;
+  }
+
+  .cabecalho-escola h2{
+    font-size: 12px;
+  }
+
+  .cabecalho-escola{
+    gap: 8px;
+  }
+
+  .logo-senai{
+    margin:0;
+    margin-left: -30px;
+  }
+
+  .botao-assinar-aluno{
+    font-size: 13px;
+  }
 }

@@ -163,3 +163,28 @@ input::placeholder {
   justify-content: space-between;
   gap: 70px;
 }
+
+@media (max-width: 400px) {
+  .formulario {
+    width: 350px !important;
+    padding: 20px !important;
+  }
+  .titulo {
+    font-size: 15px !important;
+    margin-top: -75px !important;
+  }
+
+  .linha1, .linha2 {
+    gap: 20px !important;
+  }
+
+  label{
+    font-size: 13px !important;
+  }
+
+  .botao-assinar {
+    width: 100% !important;
+    padding: 10px !important;
+    font-size: 14px !important;
+  }
+}

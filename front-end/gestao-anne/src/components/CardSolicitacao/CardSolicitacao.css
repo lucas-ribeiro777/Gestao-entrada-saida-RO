@@ -81,3 +81,14 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+  @media (max-width: 400px) {
+    .card-solicitacao1{
+      width: 100%;
+      height: auto;
+    }
+    .card-solicitacao1 img {
+      width: 80px;
+      height: auto;
+    }
+  }

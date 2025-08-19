@@ -107,7 +107,7 @@ const VisualizacaoResponsavel = () => {
           <Link to="/InicialResponsavel">Início</Link>
         </li>
         <li key="solicitacoes">
-          <Link to="/#">Solicitações</Link>
+          <Link to="/VerSolicitacaoResponsavel">Solicitações</Link>
         </li>
         <li key="conta">
           <Link to="/VisualizacaoResponsavel">Conta</Link>
@@ -169,7 +169,7 @@ const VisualizacaoResponsavel = () => {
                 <img
                   src={dados.assinatura}
                   alt="Assinatura"
-                  style={{ maxWidth: '150px', maxHeight: '50px', borderRadius: '70px' }}
+                  id="assinatura-imagem"
                 />
               }
               editavel={false}

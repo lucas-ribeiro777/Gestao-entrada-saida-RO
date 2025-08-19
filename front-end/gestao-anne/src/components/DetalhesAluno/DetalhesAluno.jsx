@@ -20,7 +20,7 @@ function DetalhesAluno({ idAluno, curso }) {
         const doAluno = data.filter(o => o.id_aluno === idAluno);
         setOcorrencias(doAluno);
       });
-  }, [idAluno]);
+  }, [idAluno]); 
 
   const formatarDataHora = (datahora) => {
     const [data, hora] = datahora.split(' ');

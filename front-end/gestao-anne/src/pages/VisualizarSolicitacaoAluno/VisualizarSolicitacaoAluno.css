@@ -11,7 +11,6 @@
 }
 
 
-
 .card-solicitacao {
   width: 100%;
   max-width: 400px; /* 👈 controla até onde o card pode crescer */
@@ -41,7 +40,7 @@
 .botao-criar-nova-solicitacao{
     width: 200px;
     margin: 0 auto;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
 .icone-status {
@@ -74,4 +73,10 @@
   height: 25px;
   margin-top: 10px;
   color: white;
+  margin-bottom: 50px;
+}
+
+.nenhuma-sol{
+  margin-top: 40px;
+  margin-bottom: 40px;
 }

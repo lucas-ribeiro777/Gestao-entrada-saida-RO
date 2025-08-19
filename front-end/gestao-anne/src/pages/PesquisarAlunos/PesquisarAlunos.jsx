@@ -16,7 +16,7 @@ function PesquisarAlunos() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/alunos")
+    fetch("http://10.90.146.16:5121/api/Alunos")
       .then((res) => res.json())
       .then((data) => {
         const alunosValidos = data.filter(aluno => aluno.curso);
@@ -38,7 +38,7 @@ function PesquisarAlunos() {
 <CabecalhoPages rotaAtual={location.pathname}>
         <li><Link to="/InicialCoordenador">Início</Link></li>
         <li><Link to="/VisualizarSolicitacoes">Solicitações</Link></li>
-        <li>
+        {/* <li>
           <input
             className="input-pesquisar-aluno"
             type="text"
@@ -46,7 +46,7 @@ function PesquisarAlunos() {
             onClick={() => navigate("/PesquisarAluno")}
           />
         </li>
-        
+         */}
         <li><Link to="/VisualizarContaCoordenador">Conta</Link></li>
         <li>
           <Link to="/docente">

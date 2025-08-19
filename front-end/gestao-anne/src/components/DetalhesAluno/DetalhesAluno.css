@@ -48,3 +48,12 @@
   height: 70px;
 
 }
+
+@media (max-width: 400px) {
+  .box-ocorrencia{
+    width: 90%;
+  }
+  span{
+    font-size: 12px;
+  }
+}

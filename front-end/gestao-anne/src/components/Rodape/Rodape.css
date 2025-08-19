@@ -78,10 +78,12 @@ p {
   .pt1, .pt2 {
     margin: 0;
     width: 90%;
+    gap: 20px;
   }
 
   .pt1 .titulo-duvidas {
     font-size: 16px;
+    margin-bottom: 20px;
   }
 
   .infos {
@@ -94,5 +96,9 @@ p {
   .pt2 p {
     font-size: 13px;
     line-height: 1.4;
+  }
+
+  .link-contato {
+    margin-bottom: 10px;
   }
 }

@@ -5,6 +5,7 @@ import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import CriarAssinatura from '../../components/CriarAssinatura/CriarAssinatura'; // importe o modal assinatura
+import './VisualizarContaCoordenador.css';
 
 const VisualizarContaCoordenador = () => {
   const [dados, setDados] = useState(null);
@@ -72,20 +73,20 @@ const VisualizarContaCoordenador = () => {
   return (
     <>
       <CabecalhoPages rotaAtual={location.pathname}>
-        <li><Link to="/InicialCoordenador">Início</Link></li>
-        <li><Link to="/VisualizarSolicitacoes">Solicitações</Link></li>
-        <li>
+        <li key="inicio"><Link to="/InicialCoordenador">Início</Link></li>
+        <li key="sol"><Link to="/VisualizarSolicitacoes">Solicitações</Link></li>
+        {/* <li>
           <input
             className="input-pesquisar-aluno"
             type="text"
             placeholder="Pesquise um Aluno"
-            onClick={() => navigate("/PesquisarAluno")}
+            onClick={() => navigate('/PesquisarAluno')}
           />
-        </li>
-        <li><Link to="/VisualizarContaCoordenador">Conta</Link></li>
-        <li>
+        </li> */}
+        <li key="conta"><Link to="/VisualizarContaCoordenador">Conta</Link></li>
+        <li key="config">
           <Link to="/docente">
-            <img src="/images/engrenagem.png" alt="" />
+            <img src="/images/engrenagem.png" alt="Configurações" />
           </Link>
         </li>
       </CabecalhoPages>
@@ -130,6 +131,7 @@ const VisualizarContaCoordenador = () => {
                 src={dados.assinatura}
                 alt="Assinatura"
                 style={{ maxWidth: '150px', maxHeight: '50px', borderRadius: '70px' }}
+                id='assinatura-coordenador'
               />
             }
             editavel={false}

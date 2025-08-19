@@ -81,3 +81,10 @@ h2 {
 .imagens-busca img{
   width: 140px;
 }
+
+@media (max-width: 400px) {
+  .card-solicitacao1{
+    width: 100%;
+  }
+  
+}

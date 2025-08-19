@@ -55,3 +55,14 @@
 .aluno-visualizar:hover {
   color: #dcdcdc;
 }
+
+
+@media (max-width: 400px) {
+  .aluno-nome{
+    font-size: 20px;
+  }
+
+  .aluno-curso{
+    font-size: 17px;
+  }
+}

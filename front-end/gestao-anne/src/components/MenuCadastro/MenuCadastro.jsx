@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 
   function irCadastros() {
-    navigate('/responsavel');
+    navigate('/responsavel'); 
   }
 
 function MenuCadastro() {
@@ -18,14 +18,14 @@ function MenuCadastro() {
           
           <li key="inicio" ><a href="/InicialCoordenador">Início</a></li>
           <li key="solicitacoes"><a href="/VisualizarSolicitacoes">Solicitações</a></li>
-          <li key="pesquisar-aluno">
+          {/* <li key="pesquisar-aluno">
             <input
               className="input-pesquisar-aluno"
               type="text"
               placeholder="Pesquise um Aluno"
               onClick={() => navigate("/PesquisarAluno")}
             />
-          </li>          
+          </li>           */}
           <li key="conta"><a href="/VisualizarContaCoordenador">Conta</a></li>
           <li key="engrenagem"><img src="/images/engrenagem.png" alt="" /></li>
         </CabecalhoPages>

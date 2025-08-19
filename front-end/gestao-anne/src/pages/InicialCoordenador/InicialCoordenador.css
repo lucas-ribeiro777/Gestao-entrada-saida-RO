@@ -120,3 +120,33 @@ svg {
   align-items: center;
 }
 
+@media (max-width: 400px) {
+  .graficos-container {
+    padding: 20px;
+  }
+
+  .grafico-box {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .conteudo {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .legenda {
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .select-cursos{
+    width: 60%;
+  }
+
+  .select-cursos-label{
+    margin-top: 20px;
+  }
+  
+}

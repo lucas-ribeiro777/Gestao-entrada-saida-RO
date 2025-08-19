@@ -57,3 +57,23 @@
   align-items: center;
   padding: 20px 0;
 }
+
+@media (max-width: 768px) {
+  .topo-pages img{
+    width: 150px;
+    height: auto;
+  }
+  .menu-pages {
+    height: 80px;
+  }
+
+  li{
+    font-size: 15px !important;
+    margin: 0 !important;
+  }
+
+  ul{
+    padding: 20px !important;
+    gap: 15px !important;
+  }
+}

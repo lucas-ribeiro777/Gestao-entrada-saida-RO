@@ -38,3 +38,14 @@
 .ativo {
   color: #E8490F;
 }
+
+@media (max-width: 400px) {
+    a{
+        font-size: 12px;
+    }
+
+    .menu{
+        margin-bottom: 50px;
+    }
+    
+}

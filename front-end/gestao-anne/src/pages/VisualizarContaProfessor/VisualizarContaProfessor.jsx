@@ -71,10 +71,10 @@ useEffect(() => {
 
   return (
     <>
-      <CabecalhoPages rotaAtual={location.pathname}>
-        <li><Link to="/InicialProfessor">Início</Link></li>
-        <li><Link to="/solicitacaoprofessor">Solicitações</Link></li>
-        <li><Link to="/VisualizarContaProfessor">Conta</Link></li>
+      <CabecalhoPages>
+        <li key="2"><Link to="/InicialProfessor">Início</Link></li>
+        <li key="3"><Link to="/solicitacaoprofessor">Solicitações</Link></li>
+        <li key="4"><Link to="/VisualizarContaprofessor">Conta</Link></li>
       </CabecalhoPages>
 
       <div className="dados-box-professor">
@@ -117,7 +117,7 @@ useEffect(() => {
         ) : (
           <InfoBox
             icone={<img src="/images/assinatura.png" alt="Assinatura" />}
-            texto={<img src={dados.assinatura} alt="Assinatura" style={{ maxWidth: '150px', maxHeight: '50px', borderRadius: '70px'}} />}
+            texto={<img src={dados.assinatura} alt="Assinatura" id='assinatura-do-professor'/>}
             editavel={false}
             cor="claro"
           />

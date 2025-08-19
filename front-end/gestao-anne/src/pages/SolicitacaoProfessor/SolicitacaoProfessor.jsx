@@ -44,9 +44,9 @@ const SolicitacaoProfessor = () => {
   return (
     <div className="tabela-container">
       <CabecalhoPages>
-        <li><Link to="/InicialProfessor">Início</Link></li>
-        <li><Link to="/solicitacaoprofessor">Solicitações</Link></li>
-        <li><Link to="/VisualizarContaprofessor">Conta</Link></li>
+        <li key="2"><Link to="/InicialProfessor">Início</Link></li>
+        <li key="3"><Link to="/solicitacaoprofessor">Solicitações</Link></li>
+        <li key="4"><Link to="/VisualizarContaprofessor">Conta</Link></li>
       </CabecalhoPages>
 
       <h2>SOLICITAÇÕES</h2>

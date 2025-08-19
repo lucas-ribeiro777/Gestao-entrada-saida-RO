@@ -38,7 +38,7 @@ function CriarAssinatura({ aberto, aoFechar, aoSalvar }) {
     <div className="modal-assinatura">
       <div className="conteudo-modal">
         <h3>Assine abaixo</h3>
-        <canvas ref={canvasRef} width={400} height={200} className="canvas" />
+        <canvas ref={canvasRef} className="canvas" />
         <div className="botoes">
           <button onClick={limpar}>Limpar</button>
           <button onClick={salvar}>Salvar</button>

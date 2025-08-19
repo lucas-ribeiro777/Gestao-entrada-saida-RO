@@ -70,7 +70,7 @@ function InicialResponsavel() {
           <Link to="/InicialResponsavel">Início</Link>
         </li>
         <li key="solicitacoes">
-          <Link to="/#">Solicitações</Link>
+          <Link to="/VerSolicitacaoResponsavel">Solicitações</Link>
         </li>
         <li key="conta">
           <Link to="/VisualizacaoResponsavel">Conta</Link>

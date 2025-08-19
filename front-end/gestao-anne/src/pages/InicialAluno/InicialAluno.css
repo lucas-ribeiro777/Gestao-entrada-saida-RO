@@ -1,8 +1,8 @@
 .pagina-inicial {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  background-color: #a0bee3;
+  height: 60vh;
+  background-color: #ffffff;
 }
 
 
@@ -50,7 +50,7 @@
   align-items: flex-start;
   gap: 60px;
   margin: 40px auto;
-  flex-wrap: wrap;
+
 }
 
 .caixa {
@@ -113,9 +113,27 @@ main {
   color: white;
 }
 
+.infos-inicial-aluno{
+  padding: 10px;
+}
+
+.infos-inicial-aluno h4{
+  margin-bottom: 10px;
+}
+
+.infos-inicial-aluno p{
+  color: #d3d1d1;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
 
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
+  main{
+    height: 100vh;
+  }
   .novo-container {
     flex-direction: column;
     gap: 20px;
@@ -148,5 +166,30 @@ main {
     height: auto;
     width: 80%;
     max-width: 250px;
+  }
+}
+
+@media (max-width: 400px) {
+  .caixa-vazia {
+    width: 50% !important;
+    height: auto !important;
+    
+  }
+
+  .caixa-vazia img {
+    width: 70px !important;
+    height: auto !important;
+  }
+
+  .caixa-vazia h2 {
+    font-size: 16px !important;
+  }
+
+  .caixa-vazia p{
+    font-size: 12px !important;
+  }
+
+  .titulo-caixa {
+    font-size: 17px !important;
   }
 }

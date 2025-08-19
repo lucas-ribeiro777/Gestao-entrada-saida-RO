@@ -131,18 +131,18 @@ const InicialCoordenador = () => {
   return (
     <>
       <CabecalhoPages rotaAtual={location.pathname}>
-        <li><Link to="/InicialCoordenador">Início</Link></li>
-        <li><Link to="/VisualizarSolicitacoes">Solicitações</Link></li>
-        <li>
+        <li key="inicio"><Link to="/InicialCoordenador">Início</Link></li>
+        <li key="sol"><Link to="/VisualizarSolicitacoes">Solicitações</Link></li>
+        {/* <li>
           <input
             className="input-pesquisar-aluno"
             type="text"
             placeholder="Pesquise um Aluno"
             onClick={() => navigate('/PesquisarAluno')}
           />
-        </li>
-        <li><Link to="/VisualizarContaCoordenador">Conta</Link></li>
-        <li>
+        </li> */}
+        <li key="conta"><Link to="/VisualizarContaCoordenador">Conta</Link></li>
+        <li key="config">
           <Link to="/docente">
             <img src="/images/engrenagem.png" alt="Configurações" />
           </Link>

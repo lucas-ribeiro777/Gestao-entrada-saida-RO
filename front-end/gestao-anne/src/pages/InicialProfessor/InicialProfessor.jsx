@@ -107,7 +107,7 @@ function InicialProfessor() {
             )}
           </div>
         </section>
-
+{/*  
         <section className="secao-ocorrencias-professor">
           <h2>OCORRÊNCIAS DE HOJE</h2>
           <div className="tabela-professor">
@@ -141,8 +141,8 @@ function InicialProfessor() {
             onClick={handleAddOcorrencia}
           >
             ADICIONAR NOVA OCORRÊNCIA
-          </button> */}
-        </section>
+          </button> 
+        </section> */}
       </div>
 
       <Rodape />

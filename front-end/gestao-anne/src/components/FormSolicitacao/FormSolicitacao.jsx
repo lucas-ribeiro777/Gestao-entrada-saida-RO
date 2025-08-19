@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './FormSolicitacao.css';
 
-const FormSolicitacao = ({ dados }) => {
+const FormSolicitacao = ({ dados, tipoUsuario }) => {
   const [formData, setFormData] = useState({
     aluno: '',
     curso: '',
@@ -9,24 +9,136 @@ const FormSolicitacao = ({ dados }) => {
     motivo: '',
     horaRetorno: '',
     data: '',
+    assinaturaDocente: 'Assinatura do Docente',
+    coordenacao: 'Assinatura da Coordenação',
+    nomeAluno: 'Aluno', // só texto
+    responsavel: 'Assinatura do Responsável'
   });
+
+  const [assinaturaAlunoImg, setAssinaturaAlunoImg] = useState(''); // novo estado só pra imagem
+
+  const [cursos, setCursos] = useState([]);
+  const [erro, setErro] = useState(null);
+  const [sucesso, setSucesso] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // Buscar cursos
+  useEffect(() => {
+    
+    const fetchCursos = async () => {
+      try {
+        const res = await fetch('http://10.90.146.16:5121/api/Grafico/cursos');
+        if (!res.ok) throw new Error('Erro ao buscar cursos');
+        const data = await res.json();
+        setCursos(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchCursos();
+  }, []);
 
-    const { aluno, curso, autorizacao, motivo, data } = formData;
-    if (!aluno || !curso || !autorizacao || !motivo || !data) {
-      alert('Por favor, preencha todos os campos obrigatórios.');
-      return;
+  useEffect(() => {
+  if (tipoUsuario === "responsavel") {
+    handleAssinarAluno();
+  }
+  }, [tipoUsuario]);
+
+
+  // Função para buscar assinatura do aluno logado
+  const handleAssinarAluno = async () => {
+    try {
+      const alunoId = localStorage.getItem('usuarioId');
+      if (!alunoId) throw new Error('Aluno não está logado');
+
+      const res = await fetch(`http://10.90.146.16:5121/api/Alunos/${alunoId}`);
+      if (!res.ok) throw new Error('Erro ao buscar perfil do aluno');
+
+      const alunoData = await res.json();
+
+      // Pega assinatura e nome do aluno
+      const assinatura = alunoData.assinatura
+        ? `http://10.90.146.16:5121${alunoData.assinatura}`
+        : '';
+      const nome = alunoData.nome || '';
+
+      // Atualiza os estados
+      setAssinaturaAlunoImg(assinatura);
+      setFormData((prev) => ({ ...prev, aluno: nome, nomeAluno: nome }));
+    } catch (err) {
+      console.error(err);
+      setErro('Não foi possível carregar o perfil do aluno.');
     }
+  };
 
-    alert('Solicitação enviada com sucesso!');
-    console.log(formData);
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErro(null);
+    setSucesso(false);
+
+    try {
+      const alunoId = parseInt(localStorage.getItem('usuarioId'));
+      if (!alunoId) throw new Error('Aluno não logado');
+
+      const cursoSelecionado = cursos.find(c => 
+        (c.nome_curso) === formData.curso
+      );
+      if (!cursoSelecionado) throw new Error('Curso inválido');
+
+      const novaSolicitacao = {
+        idSolicitacao: 0, // não é null, API espera número
+        idAluno: alunoId,
+        idCoordenador: 0, // ajuste se houver coordenador
+        idResponsavel: 0, // ajuste se houver responsável
+        turma: cursoSelecionado.turma || 0,
+        tipo: formData.autorizacao,
+        dataHora: new Date(`${formData.data}T${formData.horaRetorno || '00:00'}:00`).toISOString(),
+        retorno: { ticks: 0 },
+        motivo: formData.motivo,
+        idNomeCurso: cursoSelecionado.id,
+        curso: {
+          id: cursoSelecionado.id,
+          nomeCurso: cursoSelecionado.nome_curso,
+          codigo: cursoSelecionado.codigo || '',
+          periodo: cursoSelecionado.periodo || '',
+          diasDeAula: cursoSelecionado.dias_de_aula || ''
+        }
+      };
+
+      console.log('Nova solicitação enviada:', novaSolicitacao);
+
+      const response = await fetch("http://10.90.146.16:5121/api/Solicitacao", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(novaSolicitacao)
+      });
+
+      if (!response.ok) throw new Error(`Erro na requisição: ${response.status}`);
+
+      setSucesso(true);
+      setFormData({
+        aluno: '',
+        curso: '',
+        autorizacao: '',
+        motivo: '',
+        horaRetorno: '',
+        data: '',
+        assinaturaDocente: 'Assinatura do Docente',
+        coordenacao: 'Coordenação',
+        nomeAluno: 'Clique para assinar',
+        responsavel: ''
+      });
+      setAssinaturaAlunoImg('');
+    } catch (error) {
+      console.error(error);
+      setErro(error.message || 'Ocorreu um erro ao enviar a solicitação.');
+    }
   };
 
   return (
@@ -38,38 +150,30 @@ const FormSolicitacao = ({ dados }) => {
           <p>Controle de entradas e saídas fora do horário - CT 7.92</p>
         </div>
       </div>
+      <div className="line"></div>
 
       <div className="campo-single">
         <label className="label-grande">Aluno:</label>
         <input type="text" name="aluno" value={formData.aluno} onChange={handleChange} />
       </div>
 
-      <div className="campo-single">
-        <label className="label-grande">Curso:</label>
-        <select id="curso" name="curso" value={formData.curso} onChange={handleChange} required >
-        <option value="">Selecione o curso</option>
-            <option value="Eletricista de Manutenção Eletroeletrônica - AI3EEM-T6">Eletricista de Manutenção Eletroeletrônica -  Manhã - Segunda a Sexta-feira</option>
-            <option value="Eletricista de Manutenção Eletroeletrônica - AI1EET-T7">Eletricista de Manutenção Eletroeletrônica - Tarde - Segunda a Sexta-feira</option>
-            <option value="Mecânico de Manutenção - AI3MMM-T6">Mecânico de Manutenção - Manhã - Segunda a Sexta-feira</option>
-            <option value="Caldeireiro - A1CALM-T4">Caldeireiro - Manhã - Segunda a Sexta-feira</option>
-            <option value="Caldeireiro - A1CALT-T4">Caldeireiro - Tarde - Segunda a Sexta-feira</option>
-            <option value="Mecânico de Manutenção de Máquinas Agrícolas e Veículos Pesados - A4-MMARV-23">Mecânico de Manutenção de Máquinas Agrícolas e Veículos Pesados - Tarde - Segunda a Sexta-feira</option>
-            <option value="Mecânico de Manutenção de Veículos Pesados Rodoviários - MMVPR-2S-2024">Mecânico de Manutenção de Veículos Pesados Rodoviários - Tarde - Segunda a Sexta-feira</option>
-            <option value="Auxiliar de Mecânico de Veículos Pesados - AUX.MVP2S-2024">Auxiliar de Mecânico de Veículos Pesados - Manhã - Segunda a Sexta-feira</option>
-            <option value="Auxiliar de Linha de Produção - AUXLPROD-2-2024">Auxiliar de Linha de Produção - Tarde -Segunda a Sexta-feira</option>
-            <option value="Operador de Processos Logísticos - AIOPLOG-1S-2025">Operador de Processos Logísticos - Tarde - Segunda a Sexta-feira</option>
-            <option value="Técnico em Eletroeletrônica - T3EEM-T9">Técnico em Eletroeletrônica - Manhã - Segunda a Sexta-feira</option>
-            <option value="Técnico em Manutenção de Máquinas Industriais - T3MMI-DEXCO-24">Técnico em Manutenção de Máquinas Industriais - Manhã - Segunda a Sexta-feira</option>
-            <option value="Técnico em Instrumentação Industrial - T1INSTRUM-T2">Técnico em Instrumentação Industrial - Tarde - Segunda a Sexta-feira</option>
-            <option value="Técnico em Manutenção de Máquinas Industriais - T1MMT-T5">Técnico em Manutenção de Máquinas Industriais - Tarde - Segunda a Sexta-feira</option>
-            <option value="Técnico em Desenvolvimento de Sistemas - TECDVS2S-LP">Técnico em Desenvolvimento de Sistemas - Integral - Terça e Quinta-feira</option>
-            <option value="Técnico em Desenvolvimento de Sistemas - TECDVSS1-LP-2025">Técnico em Desenvolvimento de Sistemas - Integral - Quarta e Sexta-feira</option>
-            <option value="Técnico em Administração - TECADM1-LP-2025">Técnico em Administração - Integral - Quarta e Sexta-feira</option>
-            <option value="Técnico em Manutenção de Máquinas Industriais - T2MMI-SEDUC-24">Técnico em Manutenção de Máquinas Industriais - Integral - Segunda e Terça-feira</option>
-            <option value="Técnico em Eletroeletrônica - TEE-SEDUC-VB-25">Técnico em Eletroeletrônica - Integral - Segunda e Terça-feira</option>
-            <option value="Técnico em Manutenção de Máquinas Industriais - TMM-SEDUC-VC-25">Técnico em Manutenção de Máquinas Industriais - Integral - Segunda e Terça-feira</option>
-            <option value="Técnico em Manutenção de Máquinas Industriais - TMM-SEDUC-RP-25">Técnico em Manutenção de Máquinas Industriais -  Integral - Quinta e Sexta-feira</option>
-          </select>
+      <div className='campo-single'>
+        <label htmlFor="selectCurso" className="label-grande">Selecione o curso:</label>
+        <select
+          id="selectCurso"
+          name="curso"
+          value={formData.curso}
+          onChange={handleChange}
+          className="select-cursos"
+          required
+        >
+          <option value="">-- Escolha um curso --</option>
+          {cursos.map(curso => (
+            <option key={curso.id} value={curso.nomeCurso || curso.nome}>
+              {curso.nomeCurso || curso.nome}
+            </option>
+          ))}
+        </select>
       </div>
 
       <label className="label-grande full">Solicito autorização para:</label>
@@ -110,28 +214,109 @@ const FormSolicitacao = ({ dados }) => {
           <input type="date" name="data" value={formData.data} onChange={handleChange} />
         </div>
       </div>
-
       <div className="assinaturas-pares full spacing-labels">
         <div className="campo-assinatura">
           <label className="label-media">Assinatura do docente:</label>
-          <input type="text" name="assinaturaDocente" value={formData.assinaturaDocente} onChange={handleChange} />
+          <input type="text" name="assinaturaDocente" value={formData.assinaturaDocente} readOnly />
         </div>
         <div className="campo-assinatura">
           <label className="label-media">Coordenação:</label>
-          <input type="text" name="coordenacao" value={formData.coordenacao} onChange={handleChange} />
+          <input type="text" name="coordenacao" value={formData.coordenacao} readOnly />
         </div>
       </div>
 
       <div className="assinaturas-pares full spacing-labels">
+        {/* Assinatura do Aluno */}
         <div className="campo-assinatura">
           <label className="label-media">Aluno:</label>
-          <input type="text" name="nomeAluno" value={formData.nomeAluno} onChange={handleChange} />
+          {assinaturaAlunoImg ? (
+            <img
+              src={assinaturaAlunoImg}
+              alt="Assinatura do aluno"
+              style={{
+                width: '200px',
+                height: '50px',
+                objectFit: 'contain',
+                border: '1px solid #000000ff',
+                borderRadius: '20px'
+              }}
+              className="assinatura-aluno"
+            />
+          ) : (
+            tipoUsuario === "aluno" && (
+              <button
+                type="button"
+                onClick={handleAssinarAluno}
+                className="botao-assinar-aluno"
+              >
+                Clique para assinar
+              </button>
+            )
+          )}
         </div>
+
+        {/* Assinatura do Responsável */}
         <div className="campo-assinatura">
           <label className="label-media">Responsável:</label>
-          <input type="text" name="responsavel" value={formData.responsavel} onChange={handleChange} />
+          {tipoUsuario === "responsavel" ? (
+            formData.responsavel && formData.responsavel !== 'Assinatura do Responsável' ? (
+              <img
+                src={formData.responsavel}
+                alt="Assinatura do responsável"
+                style={{
+                  width: '200px',
+                  height: '50px',
+                  objectFit: 'contain',
+                  border: '1px solid #000000ff',
+                  borderRadius: '20px'
+                }}
+                className="assinatura-responsavel"
+              />
+            ) : (
+              <button
+                type="button"
+                onClick={async () => {
+                  try {
+                    // Aqui você pode trocar para pegar a assinatura do responsável na API
+                    const responsavelId = localStorage.getItem('usuarioId');
+                    if (!responsavelId) throw new Error("Responsável não logado");
+
+                    const res = await fetch(`http://10.90.146.16:5121/api/Responsaveis/${responsavelId}`);
+                    if (!res.ok) throw new Error("Erro ao buscar assinatura do responsável");
+
+                    const respData = await res.json();
+                    const assinaturaResp = respData.assinatura
+                      ? `http://10.90.146.16:5121${respData.assinatura}`
+                      : '';
+
+                    setFormData((prev) => ({
+                      ...prev,
+                      responsavel: assinaturaResp
+                    }));
+                  } catch (err) {
+                    console.error(err);
+                    setErro("Não foi possível carregar a assinatura do responsável.");
+                  }
+                }}
+                className="botao-assinar-aluno"
+              >
+                Assinar como responsável
+              </button>
+            )
+          ) : (
+            <input
+              type="text"
+              name="responsavel"
+              value={formData.responsavel}
+              onChange={handleChange}
+              readOnly
+            />
+          )}
         </div>
       </div>
+
+      {erro && <p style={{ color: 'red' }}>{erro}</p>}
+      {sucesso && <p style={{ color: 'green' }}>Solicitação enviada com sucesso!</p>}
 
       <p className="termo-solicitacao">
         Declaro estar ciente das normas estabelecidas pela escola quanto à entrada com atraso ou saída antecipada.

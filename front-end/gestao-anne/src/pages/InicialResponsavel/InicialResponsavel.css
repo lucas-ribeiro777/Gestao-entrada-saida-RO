@@ -206,6 +206,21 @@
   }
 }
 
+@media (max-width: 400px) {
+  .box-aluno.claro, .box-aluno.escuro{
+    width: 90%;
+    height: 20%;
+  }
+    .box-aluno.claro img, .box-aluno.escuro img{
+    width: 65px;
+    height: auto;
+  }
+  .box-aluno.claro{
+    margin-top: 40px;
+  }
+}
+
+
 * {
   box-sizing: border-box;
 }

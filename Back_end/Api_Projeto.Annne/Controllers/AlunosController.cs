@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using Api_Projeto.Annne.Data;
 using Api_Projeto.Annne.DTOs;
 using Api_Projeto.Annne.Models;
-using Api_Projeto.Annne.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,99 +14,129 @@ namespace Api_Projeto.Annne.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AlunosController : ControllerBase
+    public class AlunoController : ControllerBase
     {
-        private readonly DbGestaoAnneContext _context;
-        private readonly string _imagePath;
+        private readonly GestaoAnneContext _context;
+        private readonly string _imagemPath;
         private readonly string _assinaturaPath;
+        private readonly string[] _extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png" };
 
-        public AlunosController(DbGestaoAnneContext context)
+        public AlunoController(GestaoAnneContext context)
         {
             _context = context;
-            _imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
+            _imagemPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "imagens");
             _assinaturaPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assinaturas");
 
-            if (!Directory.Exists(_imagePath))
-                Directory.CreateDirectory(_imagePath);
-
-            if (!Directory.Exists(_assinaturaPath))
-                Directory.CreateDirectory(_assinaturaPath);
+            if (!Directory.Exists(_imagemPath)) Directory.CreateDirectory(_imagemPath);
+            if (!Directory.Exists(_assinaturaPath)) Directory.CreateDirectory(_assinaturaPath);
         }
 
-        // POST api/alunos
-        [HttpPost]
-        public async Task<ActionResult<Aluno>> PostAluno([FromForm] AlunoUploadDTO dto)
+        [HttpPost("cadastro")]
+        public async Task<ActionResult<AlunoDTO>> PostAluno([FromForm] AlunoUploadDTO dto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var imagemRelativa = await SalvarArquivo(dto.Imagem, _imagemPath, "imagem_aluno");
+            var assinaturaRelativa = await SalvarArquivo(dto.Assinatura, _assinaturaPath, "assinatura_aluno");
 
             var aluno = new Aluno
             {
                 Nome = dto.Nome,
                 Email = dto.Email,
-                Telefone = dto.Telefone,
                 DataNascimento = dto.DataNascimento,
-                Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha)
+                Telefone = dto.Telefone,
+                Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha),
+                Imagem = imagemRelativa,
+                Assinatura = assinaturaRelativa
             };
-
-            // Salvar imagem
-            if (dto.Imagem != null && dto.Imagem.Length > 0)
-            {
-                var extensao = Path.GetExtension(dto.Imagem.FileName).ToLowerInvariant();
-                var extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png" };
-                if (!Array.Exists(extensoesPermitidas, e => e == extensao))
-                    return BadRequest("Extensão de imagem não permitida.");
-
-                var nomeUnico = $"imagem_{Guid.NewGuid()}{extensao}";
-                var caminhoCompleto = Path.Combine(_imagePath, nomeUnico);
-
-                using var stream = new FileStream(caminhoCompleto, FileMode.Create);
-                await dto.Imagem.CopyToAsync(stream);
-
-                aluno.Imagem = $"/images/{nomeUnico}";
-            }
-
-            // Salvar assinatura
-            if (dto.Assinatura != null && dto.Assinatura.Length > 0)
-            {
-                var extensao = Path.GetExtension(dto.Assinatura.FileName).ToLowerInvariant();
-                var extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png" };
-                if (!Array.Exists(extensoesPermitidas, e => e == extensao))
-                    return BadRequest("Extensão de assinatura não permitida.");
-
-                var nomeUnico = $"assinatura_{Guid.NewGuid()}{extensao}";
-                var caminhoCompleto = Path.Combine(_assinaturaPath, nomeUnico);
-
-                using var stream = new FileStream(caminhoCompleto, FileMode.Create);
-                await dto.Assinatura.CopyToAsync(stream);
-
-                aluno.Assinatura = $"/assinaturas/{nomeUnico}";
-            }
 
             _context.Alunos.Add(aluno);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAluno), new { id = aluno.Id }, aluno);
+            if (dto.IdsResponsaveis != null)
+            {
+                foreach (var idResp in dto.IdsResponsaveis)
+                {
+                    _context.AlunosResponsaveis.Add(new AlunoResponsavel
+                    {
+                        IdAlunos = aluno.IdAlunos, 
+                        IdResponsavel = idResp
+                    });
+                }
+                await _context.SaveChangesAsync();
+            }
+
+            var alunoComResp = await _context.Alunos
+                .Include(a => a.AlunosResponsaveis)
+                    .ThenInclude(ar => ar.Responsavel)
+                .FirstOrDefaultAsync(a => a.IdAlunos == aluno.IdAlunos); 
+
+            var alunoDTO = ConverterParaDTO(alunoComResp!);
+
+            return CreatedAtAction(nameof(GetAluno), new { id = alunoDTO.IdAlunos }, alunoDTO); 
         }
 
-        // GET api/alunos/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Aluno>> GetAluno(int id)
+        public async Task<ActionResult<AlunoDTO>> GetAluno(int id)
         {
-            var aluno = await _context.Alunos.FindAsync(id);
+            var aluno = await _context.Alunos
+                .Include(a => a.AlunosResponsaveis)
+                    .ThenInclude(ar => ar.Responsavel)
+                .FirstOrDefaultAsync(a => a.IdAlunos == id); 
 
-            if (aluno == null)
-                return NotFound();
+            if (aluno == null) return NotFound();
 
-            return aluno;
+            return ConverterParaDTO(aluno);
         }
 
-        // GET api/alunos
         [HttpGet]
-        public async Task<ActionResult<List<Aluno>>> GetAlunos()
+        public async Task<ActionResult<List<AlunoDTO>>> GetAlunos()
         {
-            var alunos = await _context.Alunos.ToListAsync();
-            return alunos;
+            var alunos = await _context.Alunos
+                .Include(a => a.AlunosResponsaveis)
+                    .ThenInclude(ar => ar.Responsavel)
+                .ToListAsync();
+
+            var alunosDTO = alunos.Select(a => ConverterParaDTO(a)).ToList();
+
+            return Ok(alunosDTO);
+        }
+
+        [NonAction]
+        private async Task<string> SalvarArquivo(IFormFile arquivo, string pasta, string prefixo)
+        {
+            if (arquivo == null || arquivo.Length == 0)
+                throw new Exception("Arquivo inválido.");
+
+            var ext = Path.GetExtension(arquivo.FileName).ToLowerInvariant();
+            if (!_extensoesPermitidas.Contains(ext))
+                throw new Exception("Formato de arquivo inválido.");
+
+            var nome = $"{prefixo}_{Guid.NewGuid()}{ext}";
+            var caminho = Path.Combine(pasta, nome);
+
+            using var stream = new FileStream(caminho, FileMode.Create);
+            await arquivo.CopyToAsync(stream);
+
+            return $"/{Path.GetFileName(pasta)}/{nome}";
+        }
+
+        [NonAction]
+        private AlunoDTO ConverterParaDTO(Aluno aluno)
+        {
+            return new AlunoDTO
+            {
+                IdAlunos = aluno.IdAlunos, 
+                Nome = aluno.Nome,
+                Email = aluno.Email,
+                Telefone = aluno.Telefone,
+                Imagem = aluno.Imagem,
+                Assinatura = aluno.Assinatura,
+                DataNascimento = aluno.DataNascimento,
+                IdResponsaveis = aluno.AlunosResponsaveis
+                    .Select(ar => ar.Responsavel.Id)
+                    .ToList()
+            };
         }
     }
 }

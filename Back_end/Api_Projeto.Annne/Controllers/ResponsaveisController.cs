@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Api_Projeto.Annne.Models;
+using Api_Projeto.Annne.DTOs;
+using Api_Projeto.Annne.Data;
 using System.IO;
 using System.Threading.Tasks;
-using System.Linq;
 using System;
-using Api_Projeto.Annne.Repository;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Api_Projeto.Annne.Controllers
 {
@@ -13,21 +15,20 @@ namespace Api_Projeto.Annne.Controllers
     [Route("api/[controller]")]
     public class ResponsaveisController : ControllerBase
     {
-        private readonly DbGestaoAnneContext _context;
-        private readonly string _assinaturasPath;
+        private readonly GestaoAnneContext _context;
+        private readonly string _assinaturaPath;
 
-        public ResponsaveisController(DbGestaoAnneContext context)
+        public ResponsaveisController(GestaoAnneContext context)
         {
             _context = context;
-            _assinaturasPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assinaturas");
-
-            if (!Directory.Exists(_assinaturasPath))
-                Directory.CreateDirectory(_assinaturasPath);
+            _assinaturaPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assinaturas");
+            if (!Directory.Exists(_assinaturaPath))
+                Directory.CreateDirectory(_assinaturaPath);
         }
 
-        // POST api/responsaveis/upload
+        
         [HttpPost("cadastro")]
-        public async Task<ActionResult<Responsavel>> PostResponsavel([FromForm] ResponsavelUploadDTO dto)
+        public async Task<ActionResult<ResponsavelDTO>> PostResponsavel([FromBody] ResponsavelUploadDTO dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -37,97 +38,133 @@ namespace Api_Projeto.Annne.Controllers
                 Nome = dto.Nome,
                 Email = dto.Email,
                 Telefone = dto.Telefone,
-                Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha)
+                Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha),
+                Assinatura = null
             };
 
-            if (dto.Assinatura != null && dto.Assinatura.Length > 0)
+            _context.Responsaveis.Add(responsavel);
+            await _context.SaveChangesAsync();
+
+            var idsAlunosAssociados = new List<int>();
+            if (dto.NomesAlunos != null && dto.NomesAlunos.Any())
             {
-                var extensao = Path.GetExtension(dto.Assinatura.FileName).ToLowerInvariant();
-                var extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png" };
+                foreach (var nomeAluno in dto.NomesAlunos.Distinct())
+                {
+                    var aluno = await _context.Alunos
+                        .FirstOrDefaultAsync(a => a.Nome.Trim().ToLower() == nomeAluno.Trim().ToLower());
 
-                if (!extensoesPermitidas.Contains(extensao))
-                    return BadRequest("Extensão de arquivo de assinatura não suportada.");
-
-                var nomeArquivo = $"assinatura_responsavel_{Guid.NewGuid()}{extensao}";
-                var caminhoCompleto = Path.Combine(_assinaturasPath, nomeArquivo);
-
-                using var stream = new FileStream(caminhoCompleto, FileMode.Create);
-                await dto.Assinatura.CopyToAsync(stream);
-
-                responsavel.Assinatura = $"/assinaturas/{nomeArquivo}";
+                    if (aluno != null && !_context.AlunosResponsaveis
+                        .Any(ar => ar.IdAlunos == aluno.IdAlunos && ar.IdResponsavel == responsavel.Id))
+                    {
+                        _context.AlunosResponsaveis.Add(new AlunoResponsavel
+                        {
+                            IdAlunos = aluno.IdAlunos, 
+                            IdResponsavel = responsavel.Id
+                        });
+                        idsAlunosAssociados.Add(aluno.IdAlunos); 
+                    }
+                }
+                await _context.SaveChangesAsync();
             }
 
-            _context.Responsaveis.Add(responsavel);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetResponsavel), new { id = responsavel.Id }, responsavel);
-        }
-
-        // GET api/responsaveis/{id}
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Responsavel>> GetResponsavel(int id)
-        {
-            var responsavel = await _context.Responsaveis
-                .Include(r => r.Alunos)
-                .FirstOrDefaultAsync(r => r.Id == id);
-
-            if (responsavel == null)
-                return NotFound();
-
-            return responsavel;
-        }
-
-        // POST api/responsaveis/simples
-        [HttpPost("simples")]
-        public async Task<ActionResult<Responsavel>> PostResponsavelSimples([FromBody] ResponsavelUploadDTO dto)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var responsavel = new Responsavel
+            var responsavelDTO = new ResponsavelDTO
             {
-                Nome = dto.Nome ?? throw new ArgumentNullException(nameof(dto.Nome)),
-                Telefone = dto.Telefone,
+                Id = responsavel.Id,
+                Nome = responsavel.Nome,
+                Email = responsavel.Email,
+                Telefone = responsavel.Telefone,
+                Assinatura = responsavel.Assinatura,
+                IdsAlunos = idsAlunosAssociados
             };
 
-            _context.Responsaveis.Add(responsavel);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetResponsavel), new { id = responsavel.Id }, responsavel);
+            return CreatedAtAction(nameof(GetResponsavel), new { id = responsavel.Id }, responsavelDTO);
         }
 
-        // PUT api/responsaveis/{id}/aluno/{alunoId}
-        [HttpPut("{id}/aluno/{alunoId}")]
-        public async Task<IActionResult> RelacionarResponsavelAluno(int id, int alunoId)
+       
+        [HttpPost("{id}/assinatura")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> AdicionarAssinatura(int id, [FromForm] UploadAssinaturaDTO dto)
         {
-            var responsavel = await _context.Responsaveis
-                .Include(r => r.Alunos)
-                .FirstOrDefaultAsync(r => r.Id == id);
+            if (dto?.Assinatura == null || dto.Assinatura.Length == 0)
+                return BadRequest("Nenhum arquivo enviado.");
 
+            var extensao = Path.GetExtension(dto.Assinatura.FileName);
+            if (string.IsNullOrEmpty(extensao) ||
+                !(extensao.Equals(".png", StringComparison.OrdinalIgnoreCase) ||
+                  extensao.Equals(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                  extensao.Equals(".jpeg", StringComparison.OrdinalIgnoreCase)))
+            {
+                return BadRequest("Formato de arquivo não permitido. Use PNG ou JPG.");
+            }
+
+            var responsavel = await _context.Responsaveis.FindAsync(id);
             if (responsavel == null)
                 return NotFound("Responsável não encontrado.");
 
-            var aluno = await _context.Alunos.FindAsync(alunoId);
-            if (aluno == null)
-                return NotFound("Aluno não encontrado.");
+            var nomeArquivo = $"assinatura_responsavel_{Guid.NewGuid()}{extensao}";
+            var caminhoArquivo = Path.Combine(_assinaturaPath, nomeArquivo);
 
-            if (!responsavel.Alunos.Any(a => a.Id == alunoId))
-                responsavel.Alunos.Add(aluno);
+            using (var stream = new FileStream(caminhoArquivo, FileMode.Create))
+            {
+                await dto.Assinatura.CopyToAsync(stream);
+            }
 
+            responsavel.Assinatura = $"/assinaturas/{nomeArquivo}";
+            _context.Responsaveis.Update(responsavel);
             await _context.SaveChangesAsync();
 
-            return Ok(responsavel);
+            return Ok(new
+            {
+                Mensagem = "Assinatura adicionada com sucesso!",
+                Caminho = responsavel.Assinatura
+            });
         }
 
-        // GET api/responsaveis
-        [HttpGet]
-        public async Task<IActionResult> GetResponsaveis()
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ResponsavelDTO>> GetResponsavel(int id)
         {
-            var lista = await _context.Responsaveis
-                .Include(r => r.Alunos)
+            var responsavel = await _context.Responsaveis
+                .Include(r => r.AlunosResponsaveis)
+                    .ThenInclude(ar => ar.Aluno)
+                .FirstOrDefaultAsync(r => r.Id == id);
+
+            if (responsavel == null) return NotFound();
+
+            return new ResponsavelDTO
+            {
+                Id = responsavel.Id,
+                Nome = responsavel.Nome,
+                Email = responsavel.Email,
+                Telefone = responsavel.Telefone,
+                Assinatura = responsavel.Assinatura,
+                IdsAlunos = responsavel.AlunosResponsaveis
+                    .Where(ar => ar.Aluno != null)
+                    .Select(ar => ar.Aluno.IdAlunos) 
+                    .ToList()
+            };
+        }
+
+     
+        [HttpGet]
+        public async Task<ActionResult<List<ResponsavelDTO>>> GetResponsaveis()
+        {
+            var responsaveis = await _context.Responsaveis
+                .Include(r => r.AlunosResponsaveis)
+                    .ThenInclude(ar => ar.Aluno)
                 .ToListAsync();
 
-            return Ok(lista);
+            return responsaveis.Select(r => new ResponsavelDTO
+            {
+                Id = r.Id,
+                Nome = r.Nome,
+                Email = r.Email,
+                Telefone = r.Telefone,
+                Assinatura = r.Assinatura,
+                IdsAlunos = r.AlunosResponsaveis
+                    .Where(ar => ar.Aluno != null)
+                    .Select(ar => ar.Aluno.IdAlunos) 
+                    .ToList()
+            }).ToList();
         }
     }
 }

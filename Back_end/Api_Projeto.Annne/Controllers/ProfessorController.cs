@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Api_Projeto.Annne.DTOs;
-using Api_Projeto.Annne.Models;
-using Api_Projeto.Annne.Repository;
+using Api_Projeto.Annne.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Api_Projeto.Annne.Controllers
 {
@@ -13,59 +10,59 @@ namespace Api_Projeto.Annne.Controllers
     [Route("api/[controller]")]
     public class ProfessorController : ControllerBase
     {
-        private readonly DbGestaoAnneContext _context;
-        private readonly string _assinaturaPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assinaturas");
+        private readonly ProfessorService _service;
 
-        public ProfessorController(DbGestaoAnneContext context)
+        public ProfessorController(ProfessorService service)
         {
-            _context = context;
-
-            if (!Directory.Exists(_assinaturaPath))
-                Directory.CreateDirectory(_assinaturaPath);
+            _service = service;
         }
 
         [HttpPost]
-        public async Task<ActionResult<Professor>> PostProfessor([FromForm] ProfessorUploadDTOs dto)
+        public async Task<ActionResult<ProfessorDTO>> PostProfessor([FromBody] ProfessorUploadDTO dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-#pragma warning disable CS8601 // Possible null reference assignment.
-            var prof = new Professor
+            try
             {
-                Nome = dto.Nome,
-                Email = dto.Email,
-                Telefone = dto.Telefone,
-                Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha),
-            };
-#pragma warning restore CS8601 // Possible null reference assignment.
-
-            if (dto.Assinatura != null && dto.Assinatura.Length > 0)
-            {
-                var extensao = Path.GetExtension(dto.Assinatura.FileName);
-                var nomeArquivo = $"assinatura_professor_{Guid.NewGuid()}{extensao}";
-                var caminhoCompleto = Path.Combine(_assinaturaPath, nomeArquivo);
-
-                using var stream = new FileStream(caminhoCompleto, FileMode.Create);
-                await dto.Assinatura.CopyToAsync(stream);
-
-                prof.Assinatura = $"/assinaturas/{nomeArquivo}";
+                var professor = await _service.CriarProfessorAsync(dto);
+                return CreatedAtAction(nameof(GetProfessor), new { id = professor.IdProfessor }, professor);
             }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new { mensagem = ex.Message });
+            }
+        }
 
-            _context.Professores.Add(prof);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetProfessor), new { id = prof.Id }, prof);
+        
+        [HttpPost("{id}/assinatura")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> AdicionarAssinatura(int id, [FromForm] UploadAssinaturaDTO dto)
+        {
+            try
+            {
+                var caminho = await _service.AdicionarAssinaturaAsync(id, dto);
+                return Ok(new { Mensagem = "Assinatura adicionada com sucesso!", Caminho = caminho });
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new { mensagem = ex.Message });
+            }
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Professor>> GetProfessor(int id)
+        public async Task<ActionResult<ProfessorDTO>> GetProfessor(int id)
         {
-            var prof = await _context.Professores.FindAsync(id);
-            if (prof == null)
-                return NotFound();
+            var professor = await _service.ObterProfessorPorIdAsync(id);
+            if (professor == null) return NotFound();
+            return Ok(professor);
+        }
 
-            return prof;
+        [HttpGet]
+        public async Task<ActionResult<List<ProfessorDTO>>> GetProfessores()
+        {
+            var professores = await _service.ObterTodosProfessoresAsync();
+            return Ok(professores);
         }
     }
 }

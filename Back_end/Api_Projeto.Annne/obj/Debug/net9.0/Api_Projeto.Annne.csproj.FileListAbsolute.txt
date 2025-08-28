@@ -1,0 +1,142 @@
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\appsettings.json
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.staticwebassets.runtime.json
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.staticwebassets.endpoints.json
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.exe
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.deps.json
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.runtimeconfig.json
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.pdb
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\HarfBuzzSharp.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\MailKit.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\MimeKit.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\MySqlConnector.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\OxyPlot.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\OxyPlot.SkiaSharp.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\QRCoder.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\ScottPlot.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\SkiaSharp.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\SkiaSharp.HarfBuzz.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\System.Drawing.Common.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\System.Private.Windows.Core.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\zxing.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-arm\native\libHarfBuzzSharp.so
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-arm64\native\libHarfBuzzSharp.so
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-musl-x64\native\libHarfBuzzSharp.so
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-x64\native\libHarfBuzzSharp.so
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\osx\native\libHarfBuzzSharp.dylib
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win-x64\native\libHarfBuzzSharp.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win-x86\native\libHarfBuzzSharp.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win\lib\net9.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-arm\native\libSkiaSharp.so
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-arm64\native\libSkiaSharp.so
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-musl-x64\native\libSkiaSharp.so
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-x64\native\libSkiaSharp.so
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\osx\native\libSkiaSharp.dylib
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win-arm64\native\libSkiaSharp.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win-x64\native\libSkiaSharp.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win-x86\native\libSkiaSharp.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.csproj.AssemblyReference.cache
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.AssemblyInfoInputs.cache
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.AssemblyInfo.cs
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.csproj.CoreCompileInputs.cache
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\scopedcss\bundle\Api_Projeto.Annne.styles.css
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\staticwebassets.build.json.cache
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Proj.D41A8D0B.Up2Date
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\refint\Api_Projeto.Annne.dll
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.pdb
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.genruntimeconfig.cache
+C:\Users\anali\OneDrive\Área de Trabalho\Senai Original\Api_Projeto.Annne\obj\Debug\net9.0\ref\Api_Projeto.Annne.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\appsettings.json
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.staticwebassets.runtime.json
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.staticwebassets.endpoints.json
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.exe
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.deps.json
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.runtimeconfig.json
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Api_Projeto.Annne.pdb
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\HarfBuzzSharp.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\MailKit.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\MimeKit.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\MySqlConnector.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\OxyPlot.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\OxyPlot.SkiaSharp.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\QRCoder.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\ScottPlot.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\SkiaSharp.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\SkiaSharp.HarfBuzz.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\System.Drawing.Common.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\System.Private.Windows.Core.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\zxing.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-arm\native\libHarfBuzzSharp.so
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-arm64\native\libHarfBuzzSharp.so
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-musl-x64\native\libHarfBuzzSharp.so
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-x64\native\libHarfBuzzSharp.so
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\osx\native\libHarfBuzzSharp.dylib
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win-x64\native\libHarfBuzzSharp.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win-x86\native\libHarfBuzzSharp.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win\lib\net9.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-arm\native\libSkiaSharp.so
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-arm64\native\libSkiaSharp.so
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-musl-x64\native\libSkiaSharp.so
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\linux-x64\native\libSkiaSharp.so
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\osx\native\libSkiaSharp.dylib
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win-arm64\native\libSkiaSharp.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win-x64\native\libSkiaSharp.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\bin\Debug\net9.0\runtimes\win-x86\native\libSkiaSharp.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.csproj.AssemblyReference.cache
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.AssemblyInfoInputs.cache
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.AssemblyInfo.cs
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.csproj.CoreCompileInputs.cache
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\scopedcss\bundle\Api_Projeto.Annne.styles.css
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\staticwebassets.build.json.cache
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Proj.D41A8D0B.Up2Date
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\refint\Api_Projeto.Annne.dll
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.pdb
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\Api_Projeto.Annne.genruntimeconfig.cache
+C:\Users\Ana Santos\Desktop\Api original\Api_Projeto.Annne\obj\Debug\net9.0\ref\Api_Projeto.Annne.dll

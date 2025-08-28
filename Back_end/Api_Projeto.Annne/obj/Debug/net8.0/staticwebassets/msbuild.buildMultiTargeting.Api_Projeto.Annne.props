@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\Api_Projeto.Annne.props" />
-</Project>

@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\Api_Projeto.Annne.csproj": {}
+    "C:\\Users\\Ana Santos\\Desktop\\Api original\\Api_Projeto.Annne\\Api_Projeto.Annne.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\Api_Projeto.Annne.csproj": {
+    "C:\\Users\\Ana Santos\\Desktop\\Api original\\Api_Projeto.Annne\\Api_Projeto.Annne.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\Api_Projeto.Annne.csproj",
+        "projectUniqueName": "C:\\Users\\Ana Santos\\Desktop\\Api original\\Api_Projeto.Annne\\Api_Projeto.Annne.csproj",
         "projectName": "Api_Projeto.Annne",
-        "projectPath": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\Api_Projeto.Annne.csproj",
+        "projectPath": "C:\\Users\\Ana Santos\\Desktop\\Api original\\Api_Projeto.Annne\\Api_Projeto.Annne.csproj",
         "packagesPath": "C:\\Users\\Ana Santos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ana Santos\\Desktop\\front-end.carlos\\Gestao-entrada-saida-RO\\Back_end\\Api_Projeto.Annne\\obj\\",
+        "outputPath": "C:\\Users\\Ana Santos\\Desktop\\Api original\\Api_Projeto.Annne\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ana Santos\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net9.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net9.0": {
+            "targetAlias": "net9.0",
             "projectReferences": {}
           }
         },
@@ -37,15 +37,20 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "dependencies": {
             "BCrypt.Net-Next": {
               "target": "Package",
               "version": "[4.0.3, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.13.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
@@ -53,19 +58,43 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
+              "version": "[8.0.13, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.13.0, )"
+            },
+            "OxyPlot.Core": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "OxyPlot.SkiaSharp": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
               "version": "[8.0.3, )"
             },
-            "Mysql.Data": {
+            "QRCoder": {
               "target": "Package",
-              "version": "[8.3.0, )"
+              "version": "[1.5.0, )"
             },
-            "Pomelo.EntityFrameworkCore.Mysql": {
+            "ScottPlot": {
               "target": "Package",
-              "version": "[8.0.2, )"
+              "version": "[5.0.55, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
+            "ZXing.Net": {
+              "target": "Package",
+              "version": "[0.16.10, )"
             }
           },
           "imports": [
@@ -87,7 +116,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

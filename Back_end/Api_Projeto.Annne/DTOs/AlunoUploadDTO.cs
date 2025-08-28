@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 
@@ -30,5 +31,8 @@ namespace Api_Projeto.Annne.DTOs
 
         [Required(ErrorMessage = "A assinatura é obrigatória.")]
         public IFormFile Assinatura { get; set; } = null!;
+
+        // Lista de IDs dos responsáveis para associar ao aluno
+        public List<int>? IdsResponsaveis { get; set; } = new List<int>();
     }
 }

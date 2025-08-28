@@ -1,6 +1,0 @@
-@InicialResponsavel_HostAddress = http://localhost:5256
-
-GET {{InicialResponsavel_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

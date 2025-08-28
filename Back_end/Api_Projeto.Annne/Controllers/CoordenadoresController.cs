@@ -1,104 +1,99 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
-using Api_Projeto.Annne.DTOs;
+using Microsoft.EntityFrameworkCore;
 using Api_Projeto.Annne.Models;
-using Api_Projeto.Annne.Repository; // para DbGestaoAnneContext
-using System;
+using Api_Projeto.Annne.Data;
+using Api_Projeto.Annne.DTOs;
 
 namespace Api_Projeto.Annne.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CoordenadoresController : ControllerBase
+    public class CoordenadorController : ControllerBase
     {
-        private readonly DbGestaoAnneContext _context;
-        private readonly IPasswordHasher<Coordenador> _passwordHasher;
+        private readonly GestaoAnneContext _context;
         private readonly string _assinaturaPath;
 
-        public CoordenadoresController(DbGestaoAnneContext context, IPasswordHasher<Coordenador> passwordHasher)
+        public CoordenadorController(GestaoAnneContext context)
         {
             _context = context;
-            _passwordHasher = passwordHasher;
-
             _assinaturaPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "assinaturas");
 
             if (!Directory.Exists(_assinaturaPath))
                 Directory.CreateDirectory(_assinaturaPath);
         }
 
-        [HttpPost("criar")]
-        public async Task<IActionResult> CriarCoordenador([FromForm] CoordenadorUploadAssinaturaDTO dto)
+        [HttpPost]
+        public async Task<ActionResult<Coordenador>> PostCoordenador([FromForm] CoordenadorUploadDTO dto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (dto.Assinatura == null || dto.Assinatura.Length == 0)
-                return BadRequest("Arquivo de assinatura inválido.");
-
-            var extensao = Path.GetExtension(dto.Assinatura.FileName).ToLowerInvariant();
-            var extensoesPermitidas = new[] { ".jpg", ".jpeg", ".png" };
-            if (!extensoesPermitidas.Contains(extensao))
-                return BadRequest("Formato de arquivo não permitido. Use jpg ou png.");
-
-            var nomeUnico = $"assinatura_{Guid.NewGuid()}{extensao}";
-            var caminhoCompleto = Path.Combine(_assinaturaPath, nomeUnico);
-
-            try
+            
+            if (string.IsNullOrWhiteSpace(dto.Nome) ||
+                string.IsNullOrWhiteSpace(dto.Telefone) ||
+                string.IsNullOrWhiteSpace(dto.Email) ||
+                string.IsNullOrWhiteSpace(dto.Senha))
             {
-                using var stream = new FileStream(caminhoCompleto, FileMode.Create);
-                await dto.Assinatura.CopyToAsync(stream);
+                return BadRequest("Nome, Telefone, Email e Senha são obrigatórios.");
             }
-            catch
-            {
-                return StatusCode(500, "Erro ao salvar o arquivo da assinatura.");
-            }
-
-            var caminhoRelativo = $"/assinaturas/{nomeUnico}";
 
             var coordenador = new Coordenador
             {
-                Nome = dto.Nome,
-                Email = dto.Email,
-                Telefone = dto.Telefone,
-                Assinatura = caminhoRelativo
+                Nome = dto.Nome.Trim(),
+                Telefone = dto.Telefone.Trim(),
+                Email = dto.Email.Trim(),
+                Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha),
+                Assinatura = null 
             };
 
-            coordenador.Senha = _passwordHasher.HashPassword(coordenador, dto.Senha);
+            _context.Coordenadores.Add(coordenador);
+            await _context.SaveChangesAsync();
 
-            try
+            return CreatedAtAction(nameof(GetCoordenador), new { id = coordenador.Id }, coordenador);
+        }
+
+        [HttpPost("{id}/assinatura")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> AdicionarAssinatura(int id, [FromForm] UploadAssinaturaDTO dto)
+        {
+            var coordenador = await _context.Coordenadores.FindAsync(id);
+            if (coordenador == null)
+                return NotFound("Coordenador não encontrado.");
+
+            var extensao = Path.GetExtension(dto.Assinatura.FileName);
+            var nomeArquivo = $"assinatura_coordenador_{Guid.NewGuid()}{extensao}";
+            var caminhoCompleto = Path.Combine(_assinaturaPath, nomeArquivo);
+
+            using (var stream = new FileStream(caminhoCompleto, FileMode.Create))
             {
-                _context.Coordenadores.Add(coordenador);
-                await _context.SaveChangesAsync();
+                await dto.Assinatura.CopyToAsync(stream);
             }
-            catch (Exception ex)
-            {
-                if (System.IO.File.Exists(caminhoCompleto))
-                    System.IO.File.Delete(caminhoCompleto);
 
-                var mensagemErro = ex.Message;
-                if (ex.InnerException != null)
-                    mensagemErro += " | Inner Exception: " + ex.InnerException.Message;
+            coordenador.Assinatura = $"/assinaturas/{nomeArquivo}";
+            await _context.SaveChangesAsync();
 
-                return StatusCode(500, new
-                {
-                    mensagem = "Erro ao salvar o coordenador no banco de dados.",
-                    erro = mensagemErro,
-                    stackTrace = ex.StackTrace
-                });
-            }
+            return Ok(new { Mensagem = "Assinatura adicionada com sucesso!", Caminho = coordenador.Assinatura });
+        }
 
-            return Ok(new
-            {
-                mensagem = "Coordenador criado com sucesso!",
-                dados = new
-                {
-                    coordenador.Id,
-                    coordenador.Nome,
-                    coordenador.Email,
-                    coordenador.Telefone,
-                    AssinaturaUrl = caminhoRelativo
-                }
-            });
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Coordenador>> GetCoordenador(int id)
+        {
+            var c = await _context.Coordenadores
+                .AsNoTracking() 
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (c == null) return NotFound();
+
+            return Ok(c);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Coordenador>>> GetCoordenadores()
+        {
+            var lista = await _context.Coordenadores
+                .AsNoTracking()
+                .ToListAsync();
+
+            return Ok(lista);
         }
     }
 }

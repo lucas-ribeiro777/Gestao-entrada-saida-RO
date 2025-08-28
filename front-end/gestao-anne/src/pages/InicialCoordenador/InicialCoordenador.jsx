@@ -10,7 +10,7 @@ const renderPizzaCheia = (data, onHover) => {
   const total = data.reduce((acc, item) => acc + item.value, 0);
   let startAngle = 0;
 
-  if (total === 0) return null; // evita divisão por zero
+  if (total === 0) return null;
 
   return data.map((item, index) => {
     const sliceAngle = (item.value / total) * 2 * Math.PI;
@@ -33,7 +33,7 @@ const renderPizzaCheia = (data, onHover) => {
 
     return (
       <path
-        key={index}
+        key={`${item.label}-${index}`} // garante unicidade
         d={pathData}
         fill={item.color}
         onMouseEnter={() => onHover(item)}
@@ -56,18 +56,10 @@ const InicialCoordenador = () => {
 
   const navigate = useNavigate();
 
-  // Paleta de azul pastel
   const pastelBlueColors = [
-    '#A9CCE3', // azul claro pastel
-    '#AED6F1',
-    '#85C1E9',
-    '#5DADE2',
-    '#5499C7',
-    '#2980B9',
-    '#2471A3',
-    '#1F618D',
-    '#1A5276',
-    '#154360',
+    '#A9CCE3', '#AED6F1', '#85C1E9', '#5DADE2',
+    '#5499C7', '#2980B9', '#2471A3', '#1F618D',
+    '#1A5276', '#154360',
   ];
 
   const getPastelBlueColor = (index) => pastelBlueColors[index % pastelBlueColors.length];
@@ -87,60 +79,48 @@ const InicialCoordenador = () => {
     fetchCursos();
   }, []);
 
-  useEffect(() => {
-    if (!cursoSelecionado) {
-      setMotivosData([]);
+useEffect(() => {
+  if (!cursoSelecionado) {
+    setMotivosData([]);
+    setHorariosData([]);
+    return;
+  }
+
+  const fetchDados = async () => {
+    try {
+      const res = await fetch(`http://10.90.146.16:5121/api/Grafico/resumo/${cursoSelecionado.idCurso}`);
+      if (!res.ok) throw new Error(`Erro na resposta: ${res.status}`);
+      const data = await res.json();
+
+      const horariosFormatados = data.horariosMaisFrequentes.map((item, idx) => ({
+        label: item.hora,
+        value: item.quantidade,
+        color: getPastelBlueColor(idx),
+      }));
+
+      const motivosFormatados = data.motivosMaisFrequentes.map((item, idx) => ({
+        label: item.motivo,
+        value: item.quantidade,
+        color: getPastelBlueColor(idx + 5),
+      }));
+
+      setHorariosData(horariosFormatados);
+      setMotivosData(motivosFormatados);
+    } catch (err) {
+      console.error('Erro ao buscar dados:', err);
       setHorariosData([]);
-      return;
+      setMotivosData([]);
     }
+  };
 
-    const fetchDados = async () => {
-      try {
-        const res = await fetch(`http://10.90.146.16:5121/api/Grafico/resumo/${cursoSelecionado.id}`);
-
-        if (!res.ok) {
-          throw new Error(`Erro na resposta: ${res.status}`);
-        }
-
-        const data = await res.json();
-
-        const horariosFormatados = data.horariosMaisFrequentes.map((item, idx) => ({
-          label: item.hora,
-          value: item.quantidade,
-          color: getPastelBlueColor(idx),
-        }));
-
-        const motivosFormatados = data.motivosMaisFrequentes.map((item, idx) => ({
-          label: item.motivo,
-          value: item.quantidade,
-          color: getPastelBlueColor(idx + 5), // desloca para cores diferentes das de horários
-        }));
-
-        setHorariosData(horariosFormatados);
-        setMotivosData(motivosFormatados);
-      } catch (err) {
-        console.error('Erro ao buscar dados:', err);
-        setHorariosData([]);
-        setMotivosData([]);
-      }
-    };
-
-    fetchDados();
-  }, [cursoSelecionado]);
+  fetchDados();
+}, [cursoSelecionado]);
 
   return (
     <>
       <CabecalhoPages rotaAtual={location.pathname}>
         <li key="inicio"><Link to="/InicialCoordenador">Início</Link></li>
         <li key="sol"><Link to="/VisualizarSolicitacoes">Solicitações</Link></li>
-        {/* <li>
-          <input
-            className="input-pesquisar-aluno"
-            type="text"
-            placeholder="Pesquise um Aluno"
-            onClick={() => navigate('/PesquisarAluno')}
-          />
-        </li> */}
         <li key="conta"><Link to="/VisualizarContaCoordenador">Conta</Link></li>
         <li key="config">
           <Link to="/docente">
@@ -153,17 +133,18 @@ const InicialCoordenador = () => {
         <label htmlFor="selectCurso" className="select-cursos-label">Selecione o curso:</label>
         <select
           id="selectCurso"
-          value={cursoSelecionado ? cursoSelecionado.id : ''}
+          value={cursoSelecionado ? Number(cursoSelecionado.idCurso) : ''}
           onChange={e => {
-            const curso = cursos.find(c => c.id === Number(e.target.value));
+            const selectedId = Number(e.target.value);
+            const curso = cursos.find(c => c.idCurso === selectedId);
             setCursoSelecionado(curso || null);
           }}
           className="select-cursos"
         >
-          <option value="">-- Escolha um curso --</option>
+          <option key="placeholder" value="">-- Escolha um curso --</option>
           {cursos.map(curso => (
-            <option key={curso.id} value={curso.id}>
-              {curso.nomeCurso || curso.nome}
+            <option key={`curso-${curso.idCurso}`} value={String(curso.idCurso)}>
+              {curso.nomeCurso || 'Curso sem nome'}
             </option>
           ))}
         </select>
@@ -200,8 +181,8 @@ const InicialCoordenador = () => {
                 {renderPizzaCheia(motivosData, setHoveredMotivo)}
               </svg>
               <ul className="legenda legenda-esquerda">
-                {motivosData.map((item, i) => (
-                  <li key={i}>
+                {motivosData.map(item => (
+                  <li key={item.label}>
                     <span className="cor" style={{ backgroundColor: item.color }}></span>
                     {item.label}
                   </li>
@@ -241,8 +222,8 @@ const InicialCoordenador = () => {
                 {renderPizzaCheia(horariosData, setHoveredHorario)}
               </svg>
               <ul className="legenda">
-                {horariosData.map((item, i) => (
-                  <li key={i}>
+                {horariosData.map(item => (
+                  <li key={item.label}>
                     <span className="cor" style={{ backgroundColor: item.color }}></span>
                     {item.label}
                   </li>

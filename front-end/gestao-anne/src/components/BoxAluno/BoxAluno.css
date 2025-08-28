@@ -57,12 +57,25 @@
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 440px) {
   .aluno-nome{
     font-size: 20px;
   }
 
   .aluno-curso{
     font-size: 17px;
+  }
+
+  .box-aluno {
+    width: 90%;
+    height: auto;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .aluno-foto {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
   }
 }

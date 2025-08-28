@@ -88,7 +88,7 @@ async function handleSubmit(event) {
   }
 
   try {
-    const response = await fetch('http://10.90.146.16:5121/api/Coordenadores/criar', {
+    const response = await fetch('http://10.90.146.16:5121/api/Coordenador', {
       method: 'POST',
       body: formData,
     });
@@ -153,38 +153,11 @@ async function handleSubmit(event) {
               valor={telefone}
               onChange={e => setTelefone(e.target.value)}
               label="Telefone"
-              placeholder="+55 ()"
+              placeholder="(14...)"
             />
           </div>
         </div>
-
-        <div className="container-botao-assinar">
-          <button
-            type="button"
-            onClick={() => setModalAberto(true)}
-            className='botao-assinar'
-          >
-            Criar uma assinatura
-          </button>
-        </div>
-
-        <div className="container-assinatura">
-          {assinaturaImg && (
-            <img
-              src={assinaturaImg}
-              alt="Assinatura"
-              className='img-assinatura'
-              style={{ width: '200px', marginTop: '10px' }}
-            />
-          )}
-        </div>
-
-        <CriarAssinatura
-          aberto={modalAberto}
-          aoFechar={() => setModalAberto(false)}
-          aoSalvar={(img) => setAssinaturaImg(img)}
-        />
-
+        
         <Termos onValidadeChange={setTermosValidos} />
 
         <Botao descricao="Concluir Cadastro" type="submit" />

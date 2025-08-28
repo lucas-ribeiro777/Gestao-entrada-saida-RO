@@ -10,28 +10,51 @@ const VisualizacaoResponsavel = () => {
   const [dados, setDados] = useState(null);
   const [carregando, setCarregando] = useState(true);
   const [modalAberto, setModalAberto] = useState(false);
-  const API_URL = "http://localhost:3000/responsaveis/2"; // ajuste o ID
+  const idResponsavelLogado = localStorage.getItem("usuarioId");
+  const API_URL = `http://10.90.146.16:5121/api/Responsaveis/${idResponsavelLogado}`;
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch(API_URL)
-      .then((res) => res.json())
-      .then((data) => {
-        setDados({
-          nome: data.nome,
-          nascimento: formatarData(data.data_nasc),
-          email: data.email,
-          telefone: data.telefone,
-          aluno: data.nome_aluno || "Filho não encontrado",
-          assinatura: data.assinatura || "", // adiciona assinatura aqui
-        });
-        setCarregando(false);
-      })
-      .catch((err) => {
-        console.error("Erro ao buscar dados:", err);
-        setCarregando(false);
+useEffect(() => {
+  const buscarDadosResponsavel = async () => {
+    try {
+      // 1. Buscar dados do responsável
+      const resResponsavel = await fetch(API_URL);
+      if (!resResponsavel.ok) throw new Error("Falha ao buscar responsável");
+      const responsavel = await resResponsavel.json();
+
+      // 2. Pegar o ID do primeiro aluno (ou você pode mapear todos depois)
+      const idAluno = responsavel.idsAlunos?.[0];
+
+      let nomeAluno = "Filho não encontrado";
+
+      if (idAluno) {
+        // 3. Buscar dados do aluno
+        const resAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${idAluno}`);
+        if (resAluno.ok) {
+          const aluno = await resAluno.json();
+          nomeAluno = aluno.nome || nomeAluno;
+        }
+      }
+
+      // 4. Atualizar estado com os dados
+      setDados({
+        nome: responsavel.nome,
+        nascimento: responsavel.data_nasc ? formatarData(responsavel.data_nasc) : "",
+        email: responsavel.email,
+        telefone: responsavel.telefone,
+        aluno: nomeAluno,
+        assinatura: responsavel.assinatura || "",
       });
-  }, []);
+
+      setCarregando(false);
+    } catch (err) {
+      console.error("Erro ao buscar dados:", err);
+      setCarregando(false);
+    }
+  };
+
+  buscarDadosResponsavel();
+}, []);
 
   const formatarData = (dataStr) => {
     if (!dataStr) return "";
@@ -79,22 +102,35 @@ const VisualizacaoResponsavel = () => {
     setModalAberto(false);
   };
 
-  const salvarAssinatura = (assinaturaBase64) => {
-    const novosDados = { ...dados, assinatura: assinaturaBase64 };
-    setDados(novosDados);
+const salvarAssinatura = async (arquivoAssinatura) => {
+  try {
+    const formData = new FormData();
+    formData.append("assinatura", arquivoAssinatura); // arquivo PNG real
 
-    // Atualiza no servidor
-    fetch(API_URL, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...dados, assinatura: assinaturaBase64 }),
-    }).catch((err) => {
-      console.error("Erro ao salvar assinatura:", err);
-      alert("Erro ao salvar assinatura no servidor");
-    });
+    const resposta = await fetch(
+      `http://10.90.146.16:5121/api/Responsaveis/${idResponsavelLogado}/assinatura`,
+      {
+        method: "POST",
+        body: formData, // envia como multipart/form-data automaticamente
+      }
+    );
+
+    if (!resposta.ok) throw new Error("Falha ao salvar assinatura no servidor");
+
+    // Atualiza localmente, se quiser mostrar no front
+    setDados((prev) => ({
+      ...prev,
+      assinatura: URL.createObjectURL(arquivoAssinatura),
+    }));
 
     fecharModalAssinatura();
-  };
+    alert("Assinatura salva com sucesso!");
+  } catch (err) {
+    console.error("Erro ao salvar assinatura:", err);
+    alert("Erro ao salvar assinatura no servidor");
+  }
+};
+
 
   if (carregando || !dados) {
     return <p>Carregando dados...</p>;
@@ -120,35 +156,28 @@ const VisualizacaoResponsavel = () => {
             icone={<img src="/images/nome.png" alt="nome" />}
             texto={dados.nome}
             onEditar={() => handleEditar("nome")}
-            editavel={true}
-            cor="escuro"
-          />
-          <InfoBox
-            icone={<img src="/images/niver.png" alt="nascimento" />}
-            texto={dados.nascimento}
-            onEditar={() => handleEditar("nascimento")}
-            editavel={true}
+            editavel={false}
             cor="claro"
           />
           <InfoBox
             icone={<img src="/images/email.png" alt="email" />}
             texto={dados.email}
             onEditar={() => handleEditar("email")}
-            editavel={true}
+            editavel={false}
             cor="escuro"
           />
           <InfoBox
             icone={<img src="/images/telefoneconta.png" alt="Telefone" />}
             texto={dados.telefone}
             onEditar={() => handleEditar("telefone")}
-            editavel={true}
+            editavel={false}
             cor="claro"
           />
           <InfoBox
             icone={<img src="/images/family.png" alt="filho" />}
             texto={dados.aluno}
             onEditar={() => handleEditar("filho")}
-            editavel={true}
+            editavel={false}
             cor="escuro"
           />
 
@@ -166,11 +195,12 @@ const VisualizacaoResponsavel = () => {
             <InfoBox
               icone={<img src="/images/assinatura.png" alt="Assinatura" />}
               texto={
-                <img
-                  src={dados.assinatura}
-                  alt="Assinatura"
-                  id="assinatura-imagem"
-                />
+              <img
+                src={`http://10.90.146.16:5121${dados.assinatura}`} // <--- concatena IP + caminho da API
+                alt="Assinatura"
+                style={{ maxWidth: '150px', maxHeight: '50px', borderRadius: '70px' }}
+                id='assinatura-coordenador'
+              />
               }
               editavel={false}
               cor="claro"

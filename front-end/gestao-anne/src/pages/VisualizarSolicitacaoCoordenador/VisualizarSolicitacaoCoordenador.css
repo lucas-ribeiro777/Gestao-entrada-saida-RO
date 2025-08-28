@@ -38,7 +38,7 @@
   transition: opacity 0.5s ease;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .details h1{
     font-size: 25px;
   }
@@ -49,5 +49,15 @@
 
   .details h2{
     font-size: 20px;
+  }
+}
+
+@media (max-width: 433px) {
+  .details h1{
+    font-size: 20px !important;
+  }
+
+  .details h2{
+    font-size: 18px !important;
   }
 }

@@ -36,7 +36,7 @@
   margin-bottom: 10px;
 }
 
-.box-saída{
+.box-saida{
   background-color: #19528c;
   color: white;
   padding: 12px;
@@ -46,14 +46,29 @@
   width: 70%;
   align-items: center;
   height: 70px;
-
+  margin-bottom: 5px;
 }
 
-@media (max-width: 400px) {
-  .box-ocorrencia{
+.btn-autorizar-resp {
+  background-color: #E8490F;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 440px) {
+  .box-saida, .box-entrada{
     width: 90%;
   }
   span{
     font-size: 12px;
+  }
+  .btn-autorizar-resp {
+    padding: 6px 10px;
+    font-size: 12px;
+    width: 90px;
   }
 }

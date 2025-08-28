@@ -120,7 +120,7 @@ svg {
   align-items: center;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .graficos-container {
     padding: 20px;
   }

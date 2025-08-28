@@ -75,7 +75,14 @@ li input {
   align-self: center;
 }
 
-@media (max-width: 400px) {
+#assinatura-do-professor{
+  width: 100px;
+  height: auto;
+  border-radius: 90px;
+  margin-top: 0px;
+}
+
+@media (max-width: 510px) {
   .dados-box-professor {
     width: 90%;
     margin: 0 auto;
@@ -87,5 +94,9 @@ li input {
     width: 150px;
     height: 50px;
     border-radius: 70px;
+  }
+
+  .info-box.claro, .info-box.escuro {
+    width: 100%;
   }
 }

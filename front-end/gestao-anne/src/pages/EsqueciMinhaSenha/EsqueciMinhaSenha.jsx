@@ -58,7 +58,7 @@ const EsqueciMinhaSenha = () => {
   // Valida o código digitado no modal para concluir a troca da senha
   const confirmarCodigo = async (codigoDigitado) => {
     try {
-      const resposta = await fetch('http://10.90.146.16:5121/api/Email/validar-token', {
+      const resposta = await fetch('http://10.90.146.16:5121/api/Email/confirmar-token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

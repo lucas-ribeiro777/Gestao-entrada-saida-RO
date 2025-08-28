@@ -10,6 +10,7 @@ const LoginGeral = () => {
   const [senha, setSenha] = useState('');
   const [mensagem, setMensagem] = useState('');
   const [nomeUsuario, setNomeUsuario] = useState('');
+  const [tipoUsuario, setTipoUsuario] = useState('');
   const navigate = useNavigate();
 
 const handleLogin = async () => {
@@ -28,26 +29,27 @@ const handleLogin = async () => {
     if (resposta.ok) {
       const dados = await resposta.json();
 
-      const tipo = dados.tipo?.toLowerCase();
       const idUsuario = dados.id;
+      const tipo = dados.tipo?.toLowerCase(); // 'aluno', 'professor', 'responsavel', 'coordenador'
 
-      // Armazena o ID e o tipo do usuário
+      // Armazena no localStorage
       localStorage.setItem('usuarioId', idUsuario);
       localStorage.setItem('usuarioTipo', tipo);
 
-      // Navega para a tela correta
+      // Navega para a tela correta usando 'tipo', não tipoUsuario
       if (tipo === 'aluno') {
-        navigate('/inicialaluno');
-      } else if (tipo === 'docente') {
-        navigate('/inicialdocente');
+        navigate('/inicialAluno');
+      } else if (tipo === 'professor') {
+        navigate('/InicialProfessor');
       } else if (tipo === 'responsavel') {
-        navigate('/inicialresponsavel');
+        navigate('/InicialResponsavel');
       } else if (tipo === 'coordenador') {
-        navigate('/inicialcoordenador');
+        navigate('/InicialCoordenador');
       } else {
         console.warn('Tipo de usuário desconhecido:', tipo);
         setMensagem('Tipo de usuário desconhecido.');
       }
+
 
       setMensagem('Login realizado com sucesso!');
       setNomeUsuario(dados.nome ?? 'Usuário');
@@ -69,7 +71,7 @@ const handleLogin = async () => {
 
 
   const irParaCadastro = () => {
-    navigate('/');
+    navigate('/cadastroaluno');
   };
 
   const irParaEsqueciSenha = () => {

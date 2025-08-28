@@ -82,9 +82,19 @@ h2 {
   width: 140px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 510px) {
   .card-solicitacao1{
-    width: 100%;
+    width: 90% !important;
+    height: 200px;
+    gap: 10px !important;
+  }
+
+  .card-solicitacao1 strong{
+    font-size: 14px !important;
   }
   
+  .card-solicitacao1 p{
+    font-size: 12px !important;
+  }
+
 }

@@ -1,58 +1,100 @@
 import './DetalhesAluno.css';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import ModalRecado from '../ModalRecado/ModalRecado';
 
 function DetalhesAluno({ idAluno, curso }) {
   const [solicitacoes, setSolicitacoes] = useState([]);
-  const [ocorrencias, setOcorrencias] = useState([]);
+  const [modalAberto, setModalAberto] = useState(false);
+  const [mensagemModal, setMensagemModal] = useState("");
+  const [tituloModal, setTituloModal] = useState("Aviso");
 
   useEffect(() => {
-    fetch('http://localhost:3000/solicitacoes')
-      .then(res => res.json())
-      .then(data => {
-        const doAluno = data.filter(s => s.id_aluno === idAluno);
-        setSolicitacoes(doAluno);
-      });
+    if (!idAluno) return;
 
-    fetch('http://localhost:3000/ocorrencias')
-      .then(res => res.json())
-      .then(data => {
-        const doAluno = data.filter(o => o.id_aluno === idAluno);
-        setOcorrencias(doAluno);
-      });
-  }, [idAluno]); 
+    const fetchSolicitacoes = async () => {
+      try {
+        const res = await fetch(`http://10.90.146.16:5121/api/Solicitacao/aluno/${idAluno}`);
+        if (!res.ok) throw new Error('Erro ao buscar solicitações do aluno');
 
-  const formatarDataHora = (datahora) => {
-    const [data, hora] = datahora.split(' ');
+        const data = await res.json();
+        setSolicitacoes(data);
+      } catch (err) {
+        console.error(err);
+        setTituloModal("Erro");
+        setMensagemModal("Falha ao carregar solicitações do aluno.");
+        setModalAberto(true);
+      }
+    };
+
+    fetchSolicitacoes();
+  }, [idAluno]);
+
+  const formatarDataHora = (isoString) => {
+    const dateObj = new Date(isoString);
+    const data = dateObj.toLocaleDateString('pt-BR');
+    const hora = dateObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
     return { data, hora };
+  };
+
+  const autorizarResponsavel = async (idSolicitacao) => {
+    try {
+      const res = await fetch(
+        `http://10.90.146.16:5121/api/Solicitacao/atualizar-status/${idSolicitacao}?statusResponsavel=Sim`,
+        { method: 'PUT' }
+      );
+
+      if (!res.ok) throw new Error('Erro ao autorizar solicitação');
+
+      setSolicitacoes(prev =>
+        prev.map(s =>
+          s.idSolicitacao === idSolicitacao ? { ...s, statusResponsavel: 'Sim' } : s
+        )
+      );
+
+      setTituloModal("Sucesso");
+      setMensagemModal("Solicitação autorizada com sucesso!");
+      setModalAberto(true);
+    } catch (err) {
+      console.error(err);
+      setTituloModal("Erro");
+      setMensagemModal("Falha ao autorizar solicitação.");
+      setModalAberto(true);
+    }
   };
 
   return (
     <div className="detalhes-aluno">
+      {solicitacoes.length === 0 && <p>Nenhuma solicitação encontrada para este aluno.</p>}
       {solicitacoes.map((s, i) => {
-        const { data, hora } = formatarDataHora(s.datahora);
-        const tipo = s.tipo.toLowerCase();
+        const { data, hora } = formatarDataHora(s.dataHora);
+
+        // Determina a classe correta: entrada ou saida
+        const tipoSolicitacao = s.tipo.toLowerCase() === 'entrada' ? 'entrada' : 'saida';
+        const liberado = s.statusResponsavel === 'Sim';
+
         return (
-          <div className={`box-${tipo}`} key={i}>
-            <strong>{tipo.charAt(0).toUpperCase() + tipo.slice(1)}</strong>
-            <span>{data}</span>
-            <span>{hora}</span>
-            <span>{curso}</span>
+          <div className={`box-${tipoSolicitacao}`} key={i}>
+            <strong>{s.tipo}</strong>
+            <span>Data: {data}</span>
+            <span>Hora: {hora}</span>
+            <span>Autorizado: {s.statusResponsavel}</span>
+
+            {!liberado && (
+              <button onClick={() => autorizarResponsavel(s.idSolicitacao)} className='btn-autorizar-resp'>
+                Autorizar {s.tipo}
+              </button>
+            )}
           </div>
         );
       })}
 
-      {ocorrencias.map((o, i) => {
-        const { data, hora } = formatarDataHora(o.datahora);
-        return (
-          <div className="box-ocorrencia" key={`ocorrencia-${i}`}>
-            <strong>Ocorrência</strong>
-            <span>{data}</span>
-            <span>{hora}</span>
-            <span>{o.motivo}</span>
-          </div>
-        );
-      })}
+      <ModalRecado
+        aberto={modalAberto}
+        titulo={tituloModal}
+        mensagem={mensagemModal}
+        aoFechar={() => setModalAberto(false)}
+      />
     </div>
   );
 }

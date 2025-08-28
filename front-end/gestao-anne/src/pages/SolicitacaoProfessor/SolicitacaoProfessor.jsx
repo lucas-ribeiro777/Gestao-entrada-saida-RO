@@ -9,44 +9,96 @@ const SolicitacaoProfessor = () => {
   const [solicitacoes, setSolicitacoes] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/solicitacoes')
-      .then(res => res.json())
-      .then(data => {
-        const solicitacoesOrdenadas = data
-          .filter(s => s.datahora) // (opcional) só pra garantir que datahora existe
-          .sort((a, b) => b.datahora.localeCompare(a.datahora)); // mais recente em cima
-        setSolicitacoes(solicitacoesOrdenadas);
-      })
-      .catch(err => console.error('Erro ao buscar solicitações:', err));
+    const fetchSolicitacoes = async () => {
+      try {
+        const usuarioId = localStorage.getItem('usuarioId');
+        if (!usuarioId) throw new Error("Professor não logado");
+
+        // 1️⃣ Buscar dados do professor
+        const professorRes = await fetch(`http://10.90.146.16:5121/api/Professor/${usuarioId}`);
+        if (!professorRes.ok) throw new Error("Erro ao buscar dados do professor");
+        const professorData = await professorRes.json();
+
+        const cursosDoProfessor = professorData.cursosIds; // array de ids
+
+        // 2️⃣ Buscar todas as solicitações dos últimos 7 dias
+        const res = await fetch('http://10.90.146.16:5121/api/Solicitacao/periodo/7dias');
+        if (!res.ok) throw new Error('Erro ao buscar solicitações');
+        const data = await res.json();
+
+        // 3️⃣ Filtrar apenas solicitações do professor e pendentes
+        const solicitacoesFiltradas = data.filter(
+          s => s.statusProfessor === "Pendente" && cursosDoProfessor.includes(s.idNomeCurso)
+        );
+
+        // 4️⃣ Buscar dados dos alunos e cursos
+        const solicitacoesComAluno = await Promise.all(
+          solicitacoesFiltradas.map(async (s) => {
+            try {
+              const alunoRes = await fetch(`http://10.90.146.16:5121/api/Aluno/${s.idAlunos}`);
+              if (!alunoRes.ok) throw new Error("Erro ao buscar aluno");
+              const alunoData = await alunoRes.json();
+
+              const cursoRes = await fetch(`http://10.90.146.16:5121/api/Grafico/${s.idNomeCurso}`);
+              if (!cursoRes.ok) throw new Error("Erro ao buscar curso");
+              const cursoData = await cursoRes.json();
+
+              return {
+                ...s,
+                nomeAluno: alunoData.nome,
+                imagemAluno: alunoData.imagem ? `http://10.90.146.16:5121${alunoData.imagem}` : '',
+                nomeCurso: cursoData.nomeCurso
+              };
+            } catch (err) {
+              console.error("Erro ao buscar aluno/curso:", err);
+              return s;
+            }
+          })
+        );
+
+        setSolicitacoes(solicitacoesComAluno);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchSolicitacoes();
   }, []);
 
-  const autorizarSolicitacao = (id) => {
-    const novasSolicitacoes = solicitacoes.map(s =>
-      s.id === id ? { ...s, professorAutorizou: true } : s
-    );
-    setSolicitacoes(novasSolicitacoes);
 
-    fetch(`http://localhost:3000/solicitacoes/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ professorAutorizou: true }),
-    })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Erro ao autorizar solicitação');
-        }
-      })
-      .catch(err => console.error(err));
+  // Autorizar solicitação
+  const autorizarSolicitacao = async (idSolicitacao) => {
+    try {
+      const url = `http://10.90.146.16:5121/api/solicitacao/atualizar-status/${idSolicitacao}?statusProfessor=Sim`;
+      
+      const res = await fetch(url, {
+        method: 'PUT'
+      });
+
+      if (!res.ok) throw new Error('Erro ao autorizar solicitação na API');
+
+      // Atualiza o state local depois do PUT
+      setSolicitacoes(prev =>
+        prev.map(s =>
+          s.idSolicitacao === idSolicitacao
+            ? { ...s, statusProfessor: "Sim" }
+            : s
+        )
+      );
+
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao autorizar solicitação');
+    }
   };
+
 
   return (
     <div className="tabela-container">
       <CabecalhoPages>
-        <li key="2"><Link to="/InicialProfessor">Início</Link></li>
-        <li key="3"><Link to="/solicitacaoprofessor">Solicitações</Link></li>
-        <li key="4"><Link to="/VisualizarContaprofessor">Conta</Link></li>
+        <li key="inicial"><Link to="/InicialProfessor">Início</Link></li>
+        <li key="sol"><Link to="/solicitacaoprofessor">Solicitações</Link></li>
+        <li key="visuconta"><Link to="/VisualizarContaprofessor">Conta</Link></li>
       </CabecalhoPages>
 
       <h2>SOLICITAÇÕES</h2>
@@ -59,16 +111,16 @@ const SolicitacaoProfessor = () => {
           </div>
           <p>Nenhuma solicitação no momento.</p>
         </div>
-
       ) : (
         <div className="painel-grid">
-          {solicitacoes.map((solicitacao) => (
+        {solicitacoes.map((solicitacao, index) => (
             <CardSolicitacao
-              key={solicitacao.id}
+              key={`${solicitacao.idSolicitacao}-${index}`}
               aluno={solicitacao}
               onAutorizar={autorizarSolicitacao}
             />
           ))}
+
         </div>
       )}
 

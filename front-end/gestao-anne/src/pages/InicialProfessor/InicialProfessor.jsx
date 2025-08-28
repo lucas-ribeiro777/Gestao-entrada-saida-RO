@@ -3,39 +3,60 @@ import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import Rodape from '../../components/Rodape/Rodape';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
-import { useNavigate } from "react-router-dom"; 
 
 function InicialProfessor() {
   const [solicitacoes, setSolicitacoes] = useState([]);
-  const [ocorrencias, setOcorrencias] = useState([]);
+  const [alunos, setAlunos] = useState([]);
+  const [cursos, setCursos] = useState([]);
+  const [professorCursos, setProfessorCursos] = useState([]);
 
   useEffect(() => {
     async function fetchDados() {
       try {
-        const [solRes, alunosRes] = await Promise.all([
-          fetch('http://localhost:3000/solicitacoes'),
-          fetch('http://localhost:3000/alunos')
-        ]);
+        const usuarioId = Number(localStorage.getItem("usuarioId"));
 
-        const solicitacoesData = await solRes.json();
-        const alunosData = await alunosRes.json();
+        // Buscar professor logado
+        const resProfessor = await fetch(`http://10.90.146.16:5121/api/Professor/${usuarioId}`);
+        if (!resProfessor.ok) throw new Error("Erro ao buscar professor");
+        const dadosProfessor = await resProfessor.json();
+        setProfessorCursos(dadosProfessor.cursosIds);
 
+        // Buscar solicitações dos últimos 7 dias
+        const resSolicitacoes = await fetch('http://10.90.146.16:5121/api/Solicitacao/periodo/7dias');
+        if (!resSolicitacoes.ok) throw new Error("Erro ao buscar solicitações");
+        const dadosSolicitacoes = await resSolicitacoes.json();
+
+        // Buscar alunos
+        const resAlunos = await fetch('http://10.90.146.16:5121/api/Aluno');
+        if (!resAlunos.ok) throw new Error("Erro ao buscar alunos");
+        const dadosAlunos = await resAlunos.json();
+        setAlunos(dadosAlunos);
+
+        // Buscar cursos
+        const resCursos = await fetch('http://10.90.146.16:5121/api/Grafico/cursos');
+        if (!resCursos.ok) throw new Error("Erro ao buscar cursos");
+        const dadosCursos = await resCursos.json();
+        setCursos(dadosCursos);
+
+        // Filtrar apenas solicitações do dia e do curso do professor
         const hoje = new Date().toISOString().split("T")[0];
+        const solicitacoesHoje = dadosSolicitacoes
+          .filter(s => s.dataHora.startsWith(hoje))
+          .filter(s => dadosProfessor.cursosIds.includes(s.idNomeCurso));
 
-        const solicitacoesDoDia = solicitacoesData.filter(s =>
-          s.datahora.startsWith(hoje)
-        );
-
-        const solicitacoesComDados = solicitacoesDoDia.map(s => {
-          const aluno = alunosData.find(a => String(a.id) === String(s.alunoId));
+        // Mapear nomes de aluno e curso
+        const solicitacoesComNomes = solicitacoesHoje.map(s => {
+          const aluno = dadosAlunos.find(a => Number(a.idAlunos) === Number(s.idAlunos));
+          const curso = dadosCursos.find(c => Number(c.idCurso) === Number(s.idNomeCurso));
           return {
             ...s,
-            nomeAluno: aluno ? aluno.nome : "Desconhecido",
-            curso: aluno ? aluno.curso : "Desconhecido",
+            nome: aluno ? aluno.nome : "Aluno não informado",
+            nomeCurso: curso ? curso.nomeCurso : "Curso não informado"
           };
         });
 
-        setSolicitacoes(solicitacoesComDados);
+        setSolicitacoes(solicitacoesComNomes);
+
       } catch (err) {
         console.error("Erro ao carregar dados:", err);
       }
@@ -44,44 +65,12 @@ function InicialProfessor() {
     fetchDados();
   }, []);
 
-  useEffect(() => {
-    const fetchOcorrencias = async () => {
-      const resOcorrencias = await fetch("http://localhost:3000/ocorrencias");
-      const resAlunos = await fetch("http://localhost:3000/alunos");
-      const ocorrenciasData = await resOcorrencias.json();
-      const alunosData = await resAlunos.json();
-
-      const hoje = new Date().toISOString().split("T")[0];
-      const ocorrenciasHoje = ocorrenciasData
-        .filter(o => o.datahora.startsWith(hoje))
-        .map(o => {
-          const aluno = alunosData.find(a => a.id == o.id_aluno);
-          return {
-            ...o,
-            nomeAluno: aluno?.nome || "Aluno não encontrado",
-            curso: aluno?.curso || "Curso desconhecido",
-          };
-        });
-
-      setOcorrencias(ocorrenciasHoje);
-    };
-
-    fetchOcorrencias();
-  }, []);
-
-
-  const navigate = useNavigate();
-
-  const handleAddOcorrencia = () => {
-    navigate("/adicionarOcorrencia");
-  };
-
   return (
     <>
       <CabecalhoPages>
-        <li key="2"><Link to="/InicialProfessor">Início</Link></li>
-        <li key="3"><Link to="/solicitacaoprofessor">Solicitações</Link></li>
-        <li key="4"><Link to="/VisualizarContaprofessor">Conta</Link></li>
+        <li key="inicio"><Link to="/InicialProfessor">Início</Link></li>
+        <li key="solicitacoes"><Link to="/solicitacaoprofessor">Solicitações</Link></li>
+        <li key="conta"><Link to="/VisualizarContaprofessor">Conta</Link></li>
       </CabecalhoPages>
 
       <div className="content-area-professor">
@@ -99,50 +88,13 @@ function InicialProfessor() {
             ) : (
               solicitacoes.map((s, i) => (
                 <div className="linha-professor" key={i}>
-                  <span>{s.nomeAluno}</span>
-                  <span>{s.curso}</span>
-
+                  <span>{s.nome}</span>
+                  <span>{s.nomeCurso}</span>
                 </div>
               ))
             )}
           </div>
         </section>
-{/*  
-        <section className="secao-ocorrencias-professor">
-          <h2>OCORRÊNCIAS DE HOJE</h2>
-          <div className="tabela-professor">
-            <div className="linha-professor header-professor">
-              <span>ALUNO</span>
-              <span>CURSO</span>
-            </div>
-            {ocorrencias.length === 0 ? (
-              <div className="linha-professor vazio-professor">
-                <span>Ainda não houve ocorrências hoje...</span>
-              </div>
-            ) : (
-              ocorrencias.map((o, i) => (
-                <div className="linha-professor" key={i}>
-                  <span>{o.nomeAluno}</span>
-                  <span>{o.curso}</span>
-                  <span>
-                    <label className="switch-professor switch-orange-professor">
-                      <input type="checkbox" defaultChecked={o.encerramento === 1} />
-                      <span className="slider-professor round-professor"></span>
-                    </label>
-                  </span>
-                </div>
-              ))
-            )}
-
-          </div>
-
-          {/* <button
-            className="btn-adicionar-ocorrencia-professor"
-            onClick={handleAddOcorrencia}
-          >
-            ADICIONAR NOVA OCORRÊNCIA
-          </button> 
-        </section> */}
       </div>
 
       <Rodape />

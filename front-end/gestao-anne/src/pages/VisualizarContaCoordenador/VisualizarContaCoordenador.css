@@ -68,9 +68,9 @@ li input{
   border-radius: 70px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .dados-box-coordenador {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
     margin-top: 100px;
     margin-bottom: 100px;

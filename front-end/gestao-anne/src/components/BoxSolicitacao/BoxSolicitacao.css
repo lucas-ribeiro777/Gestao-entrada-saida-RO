@@ -55,11 +55,12 @@
   background-color: #E9541E;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .box-solicitacao {
     width: 100%;
     height: auto;
     align-items: center;
+    margin: 0;
   }
 
   .box-solicitacao img.aluno-foto {
@@ -80,7 +81,15 @@
   }
 
   .details h1{
-    font-size: 1 8px;
+    font-size: 28px !important;
+  }
+
+  .details h2{
+    font-size: 22px !important;
+  }
+
+  .details{
+    width: 90% !important;
   }
   
 }

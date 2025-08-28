@@ -1,34 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import './FormSolicitacao.css';
+import ModalRecado from '../ModalRecado/ModalRecado';
 
-const FormSolicitacao = ({ dados, tipoUsuario }) => {
+const FormSolicitacao = ({ dados, tipoUsuario, alunoId }) => {
   const [formData, setFormData] = useState({
     aluno: '',
     curso: '',
     autorizacao: '',
     motivo: '',
+    horaSaida: '',
     horaRetorno: '',
     data: '',
     assinaturaDocente: 'Assinatura do Docente',
     coordenacao: 'Assinatura da Coordenação',
-    nomeAluno: 'Aluno', // só texto
+    nomeAluno: 'Aluno', 
     responsavel: 'Assinatura do Responsável'
   });
 
-  const [assinaturaAlunoImg, setAssinaturaAlunoImg] = useState(''); // novo estado só pra imagem
-
+  const [assinaturaAlunoImg, setAssinaturaAlunoImg] = useState('');
   const [cursos, setCursos] = useState([]);
-  const [erro, setErro] = useState(null);
-  const [sucesso, setSucesso] = useState(false);
+  
+  const [modalAberto, setModalAberto] = useState(false);
+  const [mensagemModal, setMensagemModal] = useState('');
+  const [tituloModal, setTituloModal] = useState('Aviso');
+
+  const abrirModal = (titulo, mensagem) => {
+    setTituloModal(titulo);
+    setMensagemModal(mensagem);
+    setModalAberto(true);
+  };
+
+  const fecharModal = () => {
+    setModalAberto(false);
+    setMensagemModal('');
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Buscar cursos
   useEffect(() => {
-    
     const fetchCursos = async () => {
       try {
         const res = await fetch('http://10.90.146.16:5121/api/Grafico/cursos');
@@ -37,81 +49,105 @@ const FormSolicitacao = ({ dados, tipoUsuario }) => {
         setCursos(data);
       } catch (err) {
         console.error(err);
+        abrirModal("Erro", "Não foi possível carregar os cursos.");
       }
     };
     fetchCursos();
   }, []);
 
+  const [alunoVinculadoId, setAlunoVinculadoId] = useState(null);
+
   useEffect(() => {
-  if (tipoUsuario === "responsavel") {
-    handleAssinarAluno();
-  }
+    const fetchAlunoDoResponsavel = async () => {
+      if (tipoUsuario !== "responsavel") return;
+
+      try {
+        const responsavelId = localStorage.getItem('usuarioId');
+        const res = await fetch(`http://10.90.146.16:5121/api/Responsaveis/${responsavelId}`);
+        const respData = await res.json();
+
+        const alunoIdFromApi = Array.isArray(respData.idsAlunos) && respData.idsAlunos.length > 0
+          ? respData.idsAlunos[0]
+          : null;
+
+        if (!alunoIdFromApi) throw new Error("Nenhum aluno vinculado a este responsável");
+
+        setAlunoVinculadoId(alunoIdFromApi); 
+
+        const resAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${alunoIdFromApi}`);
+        const alunoData = await resAluno.json();
+
+        setFormData(prev => ({
+          ...prev,
+          aluno: alunoData.nome || '',
+          nomeAluno: alunoData.nome || ''
+        }));
+        setAssinaturaAlunoImg(alunoData.assinatura ? `http://10.90.146.16:5121${alunoData.assinatura}` : '');
+
+      } catch (err) {
+        console.error(err);
+        abrirModal("Erro", "Não foi possível carregar o aluno vinculado.");
+      }
+    };
+
+    fetchAlunoDoResponsavel();
   }, [tipoUsuario]);
 
-
-  // Função para buscar assinatura do aluno logado
-  const handleAssinarAluno = async () => {
+  const handleAssinarAluno = async (alunoId) => {
     try {
-      const alunoId = localStorage.getItem('usuarioId');
-      if (!alunoId) throw new Error('Aluno não está logado');
+      const res = await fetch(`http://10.90.146.16:5121/api/Aluno/${alunoId}`);
+      if (!res.ok) throw new Error("Erro ao buscar assinatura do aluno");
 
-      const res = await fetch(`http://10.90.146.16:5121/api/Alunos/${alunoId}`);
-      if (!res.ok) throw new Error('Erro ao buscar perfil do aluno');
+      const data = await res.json();
+      const assinaturaUrl = data.assinatura ? `http://10.90.146.16:5121${data.assinatura}` : '';
 
-      const alunoData = await res.json();
-
-      // Pega assinatura e nome do aluno
-      const assinatura = alunoData.assinatura
-        ? `http://10.90.146.16:5121${alunoData.assinatura}`
-        : '';
-      const nome = alunoData.nome || '';
-
-      // Atualiza os estados
-      setAssinaturaAlunoImg(assinatura);
-      setFormData((prev) => ({ ...prev, aluno: nome, nomeAluno: nome }));
+      setAssinaturaAlunoImg(assinaturaUrl);
+      setFormData(prev => ({ 
+        ...prev, 
+        aluno: localStorage.getItem('nomeAluno') || '', 
+        nomeAluno: localStorage.getItem('nomeAluno') || '' 
+      }));
     } catch (err) {
       console.error(err);
-      setErro('Não foi possível carregar o perfil do aluno.');
+      abrirModal("Erro", "Não foi possível carregar a assinatura do aluno.");
     }
   };
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErro(null);
-    setSucesso(false);
 
     try {
-      const alunoId = parseInt(localStorage.getItem('usuarioId'));
-      if (!alunoId) throw new Error('Aluno não logado');
+      const usuarioId = parseInt(localStorage.getItem('usuarioId'));
+      if (!usuarioId) throw new Error(`${tipoUsuario} não logado`);
 
-      const cursoSelecionado = cursos.find(c => 
-        (c.nome_curso) === formData.curso
-      );
+      const idAlunoFinal = tipoUsuario === "aluno" 
+        ? usuarioId 
+        : alunoVinculadoId || alunoId;
+
+      if (!idAlunoFinal) throw new Error('ID do aluno não definido');
+
+      const cursoSelecionado = cursos.find(c => String(c.idCurso) === formData.curso);
       if (!cursoSelecionado) throw new Error('Curso inválido');
 
-      const novaSolicitacao = {
-        idSolicitacao: 0, // não é null, API espera número
-        idAluno: alunoId,
-        idCoordenador: 0, // ajuste se houver coordenador
-        idResponsavel: 0, // ajuste se houver responsável
-        turma: cursoSelecionado.turma || 0,
-        tipo: formData.autorizacao,
-        dataHora: new Date(`${formData.data}T${formData.horaRetorno || '00:00'}:00`).toISOString(),
-        retorno: { ticks: 0 },
-        motivo: formData.motivo,
-        idNomeCurso: cursoSelecionado.id,
-        curso: {
-          id: cursoSelecionado.id,
-          nomeCurso: cursoSelecionado.nome_curso,
-          codigo: cursoSelecionado.codigo || '',
-          periodo: cursoSelecionado.periodo || '',
-          diasDeAula: cursoSelecionado.dias_de_aula || ''
-        }
-      };
+      if (!formData.autorizacao) throw new Error('Selecione a autorização (Entrada/Saída)');
+      if (!formData.motivo) throw new Error('Selecione o motivo da solicitação');
+      if (!formData.data || !formData.horaSaida || !formData.horaRetorno) throw new Error('Preencha data, hora de saída e hora de retorno');
 
-      console.log('Nova solicitação enviada:', novaSolicitacao);
+      const dataHoraSaida = new Date(`${formData.data}T${formData.horaSaida}`);
+      if (isNaN(dataHoraSaida.getTime())) throw new Error("Data ou hora de saída inválida");
+
+      const novaSolicitacao = {
+        idSolicitacao: 0,
+        idAlunos: Number(idAlunoFinal),
+        idNomeCurso: Number(cursoSelecionado.idCurso),
+        tipo: formData.autorizacao,
+        motivo: formData.motivo,
+        dataHora: dataHoraSaida.toISOString(),
+        retorno: formData.horaRetorno,
+        statusProfessor: "Pendente",
+        statusResponsavel: formData.responsavel && formData.responsavel !== 'Assinatura do Responsável' ? "Sim" : "Pendente",
+        statusCoordenador: "Pendente"
+      };
 
       const response = await fetch("http://10.90.146.16:5121/api/Solicitacao", {
         method: "POST",
@@ -121,25 +157,28 @@ const FormSolicitacao = ({ dados, tipoUsuario }) => {
 
       if (!response.ok) throw new Error(`Erro na requisição: ${response.status}`);
 
-      setSucesso(true);
+      abrirModal("Sucesso", "Solicitação enviada com sucesso!");
+
       setFormData({
         aluno: '',
         curso: '',
         autorizacao: '',
         motivo: '',
+        horaSaida: '',
         horaRetorno: '',
         data: '',
         assinaturaDocente: 'Assinatura do Docente',
         coordenacao: 'Coordenação',
         nomeAluno: 'Clique para assinar',
-        responsavel: ''
+        responsavel: 'Assinatura do Responsável'
       });
       setAssinaturaAlunoImg('');
     } catch (error) {
       console.error(error);
-      setErro(error.message || 'Ocorreu um erro ao enviar a solicitação.');
+      abrirModal("Erro", error.message || 'Ocorreu um erro ao enviar a solicitação.');
     }
   };
+
 
   return (
     <form className="form-solicitacao" onSubmit={handleSubmit}>
@@ -152,25 +191,17 @@ const FormSolicitacao = ({ dados, tipoUsuario }) => {
       </div>
       <div className="line"></div>
 
-      <div className="campo-single">
-        <label className="label-grande">Aluno:</label>
-        <input type="text" name="aluno" value={formData.aluno} onChange={handleChange} />
-      </div>
-
       <div className='campo-single'>
         <label htmlFor="selectCurso" className="label-grande">Selecione o curso:</label>
         <select
-          id="selectCurso"
           name="curso"
           value={formData.curso}
           onChange={handleChange}
-          className="select-cursos"
-          required
         >
-          <option value="">-- Escolha um curso --</option>
+          <option value="">Selecione um curso</option>
           {cursos.map(curso => (
-            <option key={curso.id} value={curso.nomeCurso || curso.nome}>
-              {curso.nomeCurso || curso.nome}
+            <option key={curso.idCurso} value={String(curso.idCurso)}>
+              {curso.nomeCurso}
             </option>
           ))}
         </select>
@@ -179,7 +210,7 @@ const FormSolicitacao = ({ dados, tipoUsuario }) => {
       <label className="label-grande full">Solicito autorização para:</label>
       <div className="radio-group-solicitacao full">
         <label>
-          <input type="radio" name="autorizacao" value="Entrar" onChange={handleChange} checked={formData.autorizacao === 'Entrar'} />
+          <input type="radio" name="autorizacao" value="Entrada" onChange={handleChange} checked={formData.autorizacao === 'Entrada'} />
           Entrar
         </label>
         <label>
@@ -206,12 +237,16 @@ const FormSolicitacao = ({ dados, tipoUsuario }) => {
 
       <div className="campo-dual">
         <div className="campo-metade">
+          <label className="label-media">Hora da saida:</label>
+          <input type="time" name="horaSaida" value={formData.horaSaida} onChange={handleChange} />
+        </div>        
+        <div className="campo-metade">
           <label className="label-media">Hora do retorno:</label>
           <input type="time" name="horaRetorno" value={formData.horaRetorno} onChange={handleChange} />
         </div>
         <div className="campo-metade">
           <label className="label-media">Data:</label>
-          <input type="date" name="data" value={formData.data} onChange={handleChange} />
+          <input id="data-arrumar" type="date" name="data" value={formData.data} onChange={handleChange} />
         </div>
       </div>
       <div className="assinaturas-pares full spacing-labels">
@@ -225,37 +260,24 @@ const FormSolicitacao = ({ dados, tipoUsuario }) => {
         </div>
       </div>
 
-      <div className="assinaturas-pares full spacing-labels">
-        {/* Assinatura do Aluno */}
+<div className="assinaturas-pares full spacing-labels">
         <div className="campo-assinatura">
           <label className="label-media">Aluno:</label>
           {assinaturaAlunoImg ? (
             <img
               src={assinaturaAlunoImg}
               alt="Assinatura do aluno"
-              style={{
-                width: '200px',
-                height: '50px',
-                objectFit: 'contain',
-                border: '1px solid #000000ff',
-                borderRadius: '20px'
-              }}
-              className="assinatura-aluno"
+              style={{ width: '200px', height: '50px', objectFit: 'contain', border: '1px solid #000', borderRadius: '70px' }}
             />
+          ) : tipoUsuario === "aluno" ? (
+            <button type="button" onClick={() => handleAssinarAluno(localStorage.getItem('usuarioId'))} className='botao-assinar-aluno'>
+              Clique para assinar
+            </button>
           ) : (
-            tipoUsuario === "aluno" && (
-              <button
-                type="button"
-                onClick={handleAssinarAluno}
-                className="botao-assinar-aluno"
-              >
-                Clique para assinar
-              </button>
-            )
+            <p>{formData.nomeAluno}</p>
           )}
         </div>
 
-        {/* Assinatura do Responsável */}
         <div className="campo-assinatura">
           <label className="label-media">Responsável:</label>
           {tipoUsuario === "responsavel" ? (
@@ -263,21 +285,14 @@ const FormSolicitacao = ({ dados, tipoUsuario }) => {
               <img
                 src={formData.responsavel}
                 alt="Assinatura do responsável"
-                style={{
-                  width: '200px',
-                  height: '50px',
-                  objectFit: 'contain',
-                  border: '1px solid #000000ff',
-                  borderRadius: '20px'
-                }}
-                className="assinatura-responsavel"
+                className='assinatura-responsavel'
               />
             ) : (
               <button
+                className='botao-assinar-responsavel-forms'
                 type="button"
                 onClick={async () => {
                   try {
-                    // Aqui você pode trocar para pegar a assinatura do responsável na API
                     const responsavelId = localStorage.getItem('usuarioId');
                     if (!responsavelId) throw new Error("Responsável não logado");
 
@@ -288,43 +303,40 @@ const FormSolicitacao = ({ dados, tipoUsuario }) => {
                     const assinaturaResp = respData.assinatura
                       ? `http://10.90.146.16:5121${respData.assinatura}`
                       : '';
-
-                    setFormData((prev) => ({
-                      ...prev,
-                      responsavel: assinaturaResp
-                    }));
+                    setFormData(prev => ({ ...prev, responsavel: assinaturaResp }));
                   } catch (err) {
                     console.error(err);
                     setErro("Não foi possível carregar a assinatura do responsável.");
                   }
                 }}
-                className="botao-assinar-aluno"
               >
                 Assinar como responsável
               </button>
             )
           ) : (
-            <input
-              type="text"
-              name="responsavel"
-              value={formData.responsavel}
-              onChange={handleChange}
-              readOnly
-            />
+            <input type="text" name="responsavel" value={formData.responsavel} readOnly />
           )}
         </div>
       </div>
-
-      {erro && <p style={{ color: 'red' }}>{erro}</p>}
-      {sucesso && <p style={{ color: 'green' }}>Solicitação enviada com sucesso!</p>}
 
       <p className="termo-solicitacao">
         Declaro estar ciente das normas estabelecidas pela escola quanto à entrada com atraso ou saída antecipada.
       </p>
 
       <button className="botao-solicitar" type="submit">SOLICITAR</button>
+      
+      <ModalRecado
+        aberto={modalAberto}
+        titulo={tituloModal}
+        mensagem={mensagemModal}
+        aoFechar={fecharModal}
+      />      
     </form>
+
+
   );
 };
 
 export default FormSolicitacao;
+
+console

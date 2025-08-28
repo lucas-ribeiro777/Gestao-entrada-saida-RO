@@ -11,7 +11,7 @@ const VisualizarContaCoordenador = () => {
   const [dados, setDados] = useState(null);
   const [carregando, setCarregando] = useState(true);
   const [modalAberto, setModalAberto] = useState(false); // controle do modal
-  const API_URL = 'http://localhost:3000/coordenadores/1';
+  const API_URL = 'http://10.90.146.16:5121/api/Coordenador/' + localStorage.getItem('usuarioId');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,27 +44,31 @@ const VisualizarContaCoordenador = () => {
       });
     }
   };
-
-  // Funções para abrir e fechar o modal
+  
   const abrirModalAssinatura = () => setModalAberto(true);
   const fecharModalAssinatura = () => setModalAberto(false);
 
-  // Salvar assinatura e fechar modal
-  const salvarAssinatura = (assinaturaBase64) => {
-    const novosDados = { ...dados, assinatura: assinaturaBase64 };
-    setDados(novosDados);
+  const salvarAssinatura = (arquivo) => {
+    const API_URL_ASSINATURA = `http://10.90.146.16:5121/api/Coordenador/${dados.id}/assinatura`;
 
-    fetch(API_URL, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(novosDados),
-    }).catch((err) => {
-      console.error('Erro ao salvar assinatura:', err);
-      alert('Erro ao salvar assinatura no servidor');
-    });
+    const formData = new FormData();
+    formData.append('assinatura', arquivo); // 'assinatura' é o nome do campo que a API espera
 
-    fecharModalAssinatura();
+    fetch(API_URL_ASSINATURA, {
+      method: 'POST',
+      body: formData, // multipart/form-data é detectado automaticamente pelo fetch
+    })
+      .then(res => {
+        if (!res.ok) throw new Error('Erro ao salvar assinatura');
+        return res.json(); // ou text(), depende do que a API retorna
+      })
+      .then(data => {
+        // Atualiza o estado com o caminho retornado pela API
+        setDados(prev => ({ ...prev, assinatura: data })); 
+      })
+      .catch(err => console.error(err));
   };
+
 
   if (carregando || !dados) {
     return <p>Carregando dados...</p>;
@@ -96,25 +100,25 @@ const VisualizarContaCoordenador = () => {
           icone={<img src="/images/nome.png" alt="Coordenador" />}
           texto={dados.nome}
           onEditar={() => handleEditar('nome')}
-          editavel={true}
+          editavel={false }
           cor="escuro"
         />
         <InfoBox
           icone={<img src="/images/email.png" alt="Coordenador" />}
           texto={dados.email}
           onEditar={() => handleEditar('email')}
-          editavel={true}
+          editavel={false}
           cor="claro"
         />
         <InfoBox
           icone={<img src="/images/telefoneconta.png" alt="Coordenador" />}
           texto={dados.telefone}
           onEditar={() => handleEditar('telefone')}
-          editavel={true}
+          editavel={false}
           cor="escuro"
         />
 
-        {(!dados.assinatura || dados.assinatura.trim() === "") ? (
+        {(!dados.assinatura || (typeof dados.assinatura === 'string' && dados.assinatura.trim() === "")) ? (
           <div className="assinatura-box">
             <button
               className="btn-adicionar-assinatura"
@@ -127,12 +131,12 @@ const VisualizarContaCoordenador = () => {
           <InfoBox
             icone={<img src="/images/assinatura.png" alt="Assinatura" />}
             texto={
-              <img
-                src={dados.assinatura}
-                alt="Assinatura"
-                style={{ maxWidth: '150px', maxHeight: '50px', borderRadius: '70px' }}
-                id='assinatura-coordenador'
-              />
+            <img
+              src={`http://10.90.146.16:5121${dados.assinatura}`}
+              alt="Assinatura"
+              style={{ maxWidth: '150px', maxHeight: '50px', borderRadius: '70px' }}
+              id='assinatura-coordenador'
+            />
             }
             editavel={false}
             cor="claro"

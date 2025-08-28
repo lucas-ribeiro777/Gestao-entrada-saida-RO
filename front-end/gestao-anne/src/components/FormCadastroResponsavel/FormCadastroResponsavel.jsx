@@ -31,27 +31,21 @@ function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        // Validação básica do email
+        // Validações
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             mostrarRecado('Por favor, insira um e-mail válido.');
             return;
         }
 
-        // Validação telefone - apenas números, 10 ou 11 dígitos
         const telNumeros = telefone.replace(/\D/g, '');
         if (!(telNumeros.length === 10 || telNumeros.length === 11)) {
             mostrarRecado('Telefone inválido. Use 10 ou 11 dígitos (somente números).');
             return;
         }
 
-        // Validação senha - mínimo 6 caracteres, pelo menos 1 número
-        if (senha.length < 6) {
-            mostrarRecado('Senha deve ter no mínimo 6 caracteres.');
-            return;
-        }
-        if (!/\d/.test(senha)) {
-            mostrarRecado('Senha deve conter pelo menos um número.');
+        if (senha.length < 6 || !/\d/.test(senha)) {
+            mostrarRecado('Senha deve ter no mínimo 6 caracteres e conter pelo menos um número.');
             return;
         }
 
@@ -65,13 +59,12 @@ function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
             return;
         }
 
-        // Monta o JSON conforme esperado pela API
         const body = {
             nome,
             email,
             telefone,
             senha,
-            alunos: nomeDependente ? [nomeDependente] : [],
+            nomesAlunos: nomeDependente ? [nomeDependente] : []
         };
 
         try {
@@ -94,7 +87,9 @@ function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
                 setAssinaturaImg(null);
                 setModalAberto(false);
             } else {
-                mostrarRecado("Erro no cadastro.");
+                const errorData = await response.json();
+                mostrarRecado(`Erro no cadastro: ${errorData.message || 'Requisição inválida'}`);
+                console.error('Erro no cadastro:', body);
             }
         } catch (error) {
             mostrarRecado("Erro na comunicação com a API.");
@@ -131,7 +126,7 @@ function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
                             valor={telefone}
                             onChange={e => setTelefone(e.target.value)}
                             label="Telefone"
-                            placeholder="+55 ()"
+                            placeholder="(14...)"
                         />
                     </div>
                     <div className="linha2">
@@ -153,35 +148,6 @@ function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
                         />
                     </div>
                 </div>
-
-                {/* Se você quiser manter o modal da assinatura, ele pode continuar aqui,
-                    mas o backend não está configurado para receber arquivo nessa rota. */}
-                <div className="container-botao-assinar">
-                    <button
-                        type="button"
-                        onClick={() => setModalAberto(true)}
-                        className="botao-assinar"
-                    >
-                        Criar uma assinatura
-                    </button>
-                </div>
-
-                <div className="container-assinatura">
-                    {assinaturaImg && (
-                        <img
-                            src={assinaturaImg}
-                            alt="Assinatura"
-                            className="img-assinatura"
-                            style={{ width: '200px', marginTop: '10px' }}
-                        />
-                    )}
-                </div>
-
-                <CriarAssinatura
-                    aberto={modalAberto}
-                    aoFechar={() => setModalAberto(false)}
-                    aoSalvar={(img) => setAssinaturaImg(img)}
-                />
 
                 <Termos onValidadeChange={setTermosValidos} />
                 <Botao descricao="Concluir Cadastro" type="submit" />

@@ -12,6 +12,7 @@
 }
 
 .modal-recado {
+  display: flex;
   background: white;
   padding: 20px;
   border-radius: 10px;
@@ -19,15 +20,17 @@
   width: 90%;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   text-align: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .botao-fechar {
   margin-top: 15px;
   padding: 8px 15px;
-  background: #007bff;
+  background: #E8490F;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 25px;
   cursor: pointer;
 }
 

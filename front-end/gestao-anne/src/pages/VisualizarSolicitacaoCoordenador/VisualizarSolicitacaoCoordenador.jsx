@@ -11,43 +11,88 @@ function VisualizarSolicitacaoCoordenador() {
   const [solicitacoes, setSolicitacoes] = useState([]);
   const [desaparecendo, setDesaparecendo] = useState([]); // IDs em fade out
 
-    function removerSolicitacao(id) {
-    setDesaparecendo(prev => [...prev, id]);
-    
-    // após 500ms (tempo da animação), remove de fato
-    setTimeout(() => {
-        setSolicitacoes(prev => prev.filter(s => s.id !== id));
-        setDesaparecendo(prev => prev.filter(did => did !== id));
-    }, 500);
+  async function autorizarSolicitacao(idSolicitacao) {
+    setDesaparecendo(prev => [...prev, idSolicitacao]);
+    try {
+      fetch(`http://10.90.146.16:5121/api/Solicitacao/atualizar-status/${idSolicitacao}?statusCoordenador=Sim`, {
+        method: 'PUT'
+      })
+
+      
+      setSolicitacoes(prev => prev.filter(s => s.idSolicitacao !== idSolicitacao));
+      setDesaparecendo(prev => prev.filter(did => did !== idSolicitacao));
+    } catch (err) {
+      console.error('Erro ao autorizar solicitação:', err);
+      setDesaparecendo(prev => prev.filter(did => did !== idSolicitacao));
     }
+  }
+
 
 
   useEffect(() => {
     async function carregarDados() {
       try {
-        const resSolic = await fetch('http://localhost:3000/solicitacoes');
+        // 1️⃣ Buscar as solicitações
+        const resSolic = await fetch('http://10.90.146.16:5121/api/Solicitacao/periodo/7dias');
         const solicitacoes = await resSolic.json();
 
-        const resAlunos = await fetch('http://localhost:3000/alunos');
-        const alunos = await resAlunos.json();
+        // 2️⃣ Filtrar apenas as solicitações que o coordenador ainda não aprovou
+        const solicitacoesPendentes = solicitacoes.filter(s => s.statusCoordenador !== 'Sim');
 
-        const solicitacoesComAluno = solicitacoes
-          .filter(s => !s.coordenadorId)
-          .map(s => {
-            const aluno = alunos.find(a => Number(a.id) === Number(s.id_aluno));
-            return {
-              ...s,
-              aluno: aluno || { nome: 'Desconhecido', curso: 'N/A', imagem: '/images/default.png' }
-            };
-          });
+        // 3️⃣ Buscar dados de cada aluno + curso
+        const solicitacoesComAluno = await Promise.all(
+          solicitacoesPendentes.map(async s => {
+            try {
+              // 🔹 Buscar aluno
+              const resAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${s.idAlunos}`);
+              if (!resAluno.ok) throw new Error('Erro ao buscar aluno');
+              const aluno = await resAluno.json();
+
+              // 🔹 Buscar curso diretamente pelo idCurso que vem na solicitação
+              let nomeCurso = 'N/A';
+              if (s.idNomeCurso) {
+                try {
+                  const resCurso = await fetch(`http://10.90.146.16:5121/api/Grafico/${s.idNomeCurso}`);
+                  if (resCurso.ok) {
+                    const curso = await resCurso.json();
+                    // pode ser nomeCurso ou nome, dependendo do JSON do endpoint
+                    nomeCurso = curso.nomeCurso || curso.nome || 'N/A';
+                  }
+                } catch (err) {
+                  console.error(`Erro ao buscar curso ${s.idNomeCurso}:`, err);
+                }
+              }
+
+              return {
+                ...s,
+                aluno: {
+                  nome: aluno.nome || 'Desconhecido',
+                  curso: nomeCurso,
+                  imagem: aluno.imagem ? `http://10.90.146.16:5121/${aluno.imagem}` : '/images/perfil.png'
+                }
+              };
+            } catch (err) {
+              console.error(`Erro ao buscar aluno ${s.idAlunos}:`, err);
+              return {
+                ...s,
+                aluno: { nome: 'Desconhecido', curso: 'N/A', imagem: '/images/default.png' }
+              };
+            }
+          })
+        );
+
+        console.log('Solicitações carregadas:', solicitacoesComAluno);
 
         setSolicitacoes(solicitacoesComAluno);
       } catch (erro) {
         console.error('Erro ao carregar dados:', erro);
       }
     }
+
     carregarDados();
   }, []);
+
+
 
   return (
     <>
@@ -77,7 +122,7 @@ function VisualizarSolicitacaoCoordenador() {
 
       <div className="solicitacoes-container">
         {solicitacoes.map((s, index) => {
-          const dataHora = new Date(s.datahora);
+          const dataHora = new Date(s.dataHora); // corrigido de s.datahora
           const dataFormatada = dataHora.toLocaleDateString('pt-BR');
           const horaFormatada = dataHora.toLocaleTimeString('pt-BR', {
             hour: '2-digit',
@@ -92,10 +137,10 @@ function VisualizarSolicitacaoCoordenador() {
 
           return (
             <div
-            key={s.id}
-            onClick={() => removerSolicitacao(s.id)}
-            style={{ cursor: 'pointer' }}
-            className={desaparecendo.includes(s.id) ? 'fade-out' : ''}
+              key={s.idSolicitacao} // usar idSolicitacao
+              onClick={() => autorizarSolicitacao(s.idSolicitacao)} // usar idSolicitacao
+              style={{ cursor: 'pointer' }}
+              className={desaparecendo.includes(s.idSolicitacao) ? 'fade-out' : ''}
             >
               <BoxSolicitacao
                 imagem={s.aluno.imagem}
@@ -111,6 +156,7 @@ function VisualizarSolicitacaoCoordenador() {
           );
         })}
       </div>
+
 
       <Rodape />
     </>

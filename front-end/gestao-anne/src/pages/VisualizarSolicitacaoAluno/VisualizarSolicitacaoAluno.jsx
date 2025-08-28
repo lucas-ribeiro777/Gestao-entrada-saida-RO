@@ -10,18 +10,33 @@ function VisualizarSolicitacaoAluno() {
   const [solicitacoes, setSolicitacoes] = useState([]);
   const [modalAberto, setModalAberto] = useState(false);
   const [qrCodeUrl, setQrCodeUrl] = useState('');
-  const alunoId = Number(localStorage.getItem('usuarioId')); // converte pra número
+  const alunoId = Number(localStorage.getItem('usuarioId'));
   const navigate = useNavigate();
 
+  // Buscar solicitações do aluno
   useEffect(() => {
     async function buscarSolicitacoes() {
       try {
-        const res = await fetch('http://10.90.146.16:5121/api/Solicitacao');
+        const res = await fetch(`http://10.90.146.16:5121/api/Solicitacao/aluno/${alunoId}`);
+        if (!res.ok) throw new Error('Erro na requisição');
         const dados = await res.json();
 
-        // Ajuste: campo correto é idAluno
-        const solicitacoesDoAluno = dados.filter(s => s.idAluno === alunoId);
-        setSolicitacoes(solicitacoesDoAluno);
+        // Para cada solicitação, buscar o nome do curso
+        const solicitacoesComCurso = await Promise.all(
+          dados.map(async s => {
+            try {
+              const cursoRes = await fetch(`http://10.90.146.16:5121/api/Grafico/${s.idNomeCurso}`);
+              if (!cursoRes.ok) throw new Error("Erro ao buscar curso");
+              const cursoData = await cursoRes.json();
+              return { ...s, nomeCurso: cursoData.nomeCurso };
+            } catch (err) {
+              console.error("Erro ao buscar curso:", err);
+              return { ...s, nomeCurso: "Curso não encontrado" };
+            }
+          })
+        );
+
+        setSolicitacoes(solicitacoesComCurso);
       } catch (erro) {
         console.error('Erro ao buscar solicitações:', erro);
       }
@@ -30,17 +45,22 @@ function VisualizarSolicitacaoAluno() {
     buscarSolicitacoes();
   }, [alunoId]);
 
+
+  // Abrir modal do QR Code
   async function abrirModalQRCode(solicitacaoId) {
     try {
-      const res = await fetch(`http://localhost:3000/solicitacoes/${solicitacaoId}/qrcode`);
+      const res = await fetch(`http://10.90.146.16:5121/api/QrCode/gerar/${solicitacaoId}`, {
+        method: 'POST' // se a API exigir POST
+      });
       const data = await res.json();
-      setQrCodeUrl(data.qrCodeUrl);
+      setQrCodeUrl(`http://10.90.146.16:5121${data.registro.caminhoArquivo}`);
       setModalAberto(true);
     } catch (erro) {
       console.error('Erro ao buscar QR code:', erro);
       alert('Erro ao carregar QR code.');
     }
   }
+
 
   function fecharModal() {
     setModalAberto(false);
@@ -60,26 +80,30 @@ function VisualizarSolicitacaoAluno() {
       </CabecalhoPages>
 
       <h1 className='titulo-sol-alunos'>Status das Minhas Solicitações</h1>
+
       <div className="container-solicitacoes-aluno">
         {solicitacoes.length === 0 ? (
           <p className='nenhuma-sol'>Nenhuma solicitação encontrada.</p>
         ) : (
           solicitacoes.map(s => {
-            const dataHora = new Date(s.dataHora); // ajuste H maiúsculo
+            const dataHora = new Date(s.dataHora);
             const data = dataHora.toLocaleDateString('pt-BR');
-            const hora = dataHora.toLocaleTimeString('pt-BR', {
-              hour: '2-digit',
-              minute: '2-digit',
-            });
+            const hora = dataHora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 
-            const liberada =
-              s.statusProfessor === 'Aprovado' &&
-              s.statusResponsavel === 'Aprovado' &&
-              s.statusCoordenador === 'Aprovado';
+            const statusProfessor = s.statusProfessor;
+            const statusResponsavel = s.statusResponsavel;
+            const statusCoordenador = s.statusCoordenador;
+
+            const liberada = statusProfessor === 'Sim' &&
+                              statusResponsavel === 'Sim' &&
+                              statusCoordenador === 'Sim';
+
+            const statusFinal = liberada ? 'Autorizada' : 'Pendente';
 
             return (
               <div key={s.idSolicitacao} className="card-solicitacao">
-                <h2>{s.tipo}</h2>
+                <h2>{s.tipo.toUpperCase()}</h2>
+                <p><strong>Curso:</strong> {s.nomeCurso}</p>
                 <p><strong>Motivo:</strong> {s.motivo}</p>
                 <p><strong>Data:</strong> {data} às {hora}</p>
 
@@ -87,31 +111,31 @@ function VisualizarSolicitacaoAluno() {
                   <p>
                     Professor:
                     <img
-                      src={s.statusProfessor === 'Aprovado' ? '/images/check.png' : '/images/time 1.png'}
-                      alt={s.statusProfessor === 'Aprovado' ? 'autorizado' : 'Aguardando'}
+                      src={statusProfessor === 'Sim' ? '/images/check.png' : '/images/time 1.png'}
+                      alt={statusProfessor}
                       className="icone-status"
                     />
-                    {s.statusProfessor === 'Aprovado' ? ' autorizado' : ' Aguardando'}
+                    {statusProfessor === 'Sim' ? ' Autorizado' : ' Aguardando'}
                   </p>
 
                   <p>
                     Responsável:
                     <img
-                      src={s.statusResponsavel === 'Aprovado' ? '/images/check.png' : '/images/time 1.png'}
-                      alt={s.statusResponsavel === 'Aprovado' ? 'Aprovado' : 'Aguardando'}
+                      src={statusResponsavel === 'Sim' ? '/images/check.png' : '/images/time 1.png'}
+                      alt={statusResponsavel}
                       className="icone-status"
                     />
-                    {s.statusResponsavel === 'Aprovado' ? ' Aprovado' : ' Aguardando'}
+                    {statusResponsavel === 'Sim' ? ' Aprovado' : ' Aguardando'}
                   </p>
 
                   <p>
                     Coordenador:
                     <img
-                      src={s.statusCoordenador === 'Aprovado' ? '/images/check.png' : '/images/time 1.png'}
-                      alt={s.statusCoordenador === 'Aprovado' ? 'Aprovado' : 'Aguardando'}
+                      src={statusCoordenador === 'Sim' ? '/images/check.png' : '/images/time 1.png'}
+                      alt={statusCoordenador}
                       className="icone-status"
                     />
-                    {s.statusCoordenador === 'Aprovado' ? ' Aprovado' : ' Aguardando'}
+                    {statusCoordenador === 'Sim' ? ' Aprovado' : ' Aguardando'}
                   </p>
                 </div>
 
@@ -121,9 +145,8 @@ function VisualizarSolicitacaoAluno() {
                     alt={liberada ? 'Liberado' : 'Aguardando'}
                     className="icone-status-final"
                   />
-                  {liberada ? ' Saída Liberada' : ' Aguardando liberações'}
+                  {statusFinal}
                 </p>
-
                 {liberada && (
                   <button
                     className="btn-abrir-qrcode"

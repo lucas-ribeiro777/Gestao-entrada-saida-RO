@@ -3,24 +3,31 @@ import './VerSolicitacaoResponsavel.css';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import Rodape from '../../components/Rodape/Rodape';
 import FormSolicitacao from '../../components/FormSolicitacao/FormSolicitacao';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const VerSolicitacaoResponsavel = () => {
-  const [dados, setDados] = useState(null);
+  const [alunos, setAlunos] = useState([]);
+  const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
-    fetch('/Mocks/SolicitacaoAluno.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    })
-    .then(res => res.json())
-    .then(json => setDados(json))
-    .catch(err => console.error('Erro ao carregar dados mock:', err));
+    const responsavelId = localStorage.getItem("usuarioId");
+
+    fetch(`http://10.90.146.16:5121/api/Responsaveis/${responsavelId}`)
+      .then((res) => res.json())
+      .then(async (data) => {
+        console.log("Responsável:", data);
+
+        const alunosPromises = data.idsAlunos.map(id =>
+          fetch(`http://10.90.146.16:5121/api/Aluno/${id}`).then(res => res.json())
+        );
+        console.log("Promises dos alunos:", data.idsAlunos, alunosPromises);
+        const alunosData = await Promise.all(alunosPromises);
+        setAlunos(alunosData);
+      })
+      .catch((err) => console.error("Erro ao carregar:", err));
+
   }, []);
 
-  if (!dados) return <p>Carregando dados...</p>;
 
   return (
     <div className="pagina-solicitacao">
@@ -35,8 +42,21 @@ const VerSolicitacaoResponsavel = () => {
           <Link to="/VisualizacaoResponsavel">Conta</Link>
         </li>
       </CabecalhoPages>
-      <strong><p className='infos-sol'>Preencha para liberar com antecedência a saída do seu filho(a)</p></strong>
-      <FormSolicitacao dados={dados} tipoUsuario="responsavel"/>
+
+      <strong>
+        <p className='infos-sol'>
+          Preencha para liberar com antecedência a saída do seu filho(a)
+        </p>
+      </strong>
+
+      {alunos.map(aluno => (
+      <FormSolicitacao
+        key={aluno.idAluno} 
+        dados={aluno}
+        tipoUsuario="responsavel"
+        alunoId={aluno.idAluno} 
+      />
+      ))}
 
       <Rodape />
     </div>

@@ -33,14 +33,13 @@ const VisualizarContaAluno = () => {
       if (!alunoId) return;
 
       try {
-        const respostaAluno = await fetch(`http://10.90.146.16:5121/api/Alunos/${alunoId}`);
+        const respostaAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${alunoId}`);
         if (!respostaAluno.ok) throw new Error('Falha na resposta da API do aluno');
 
         const aluno = await respostaAluno.json();
 
-        const responsavelId = aluno.alunosResponsaveis?.[0]?.idResponsavel || null;
+        const responsavelId = aluno.idResponsaveis?.[0] || null;
         let nomeResponsavel = '';
-
         if (responsavelId) {
           const respostaResponsavel = await fetch(`http://10.90.146.16:5121/api/Responsaveis/${responsavelId}`);
           if (!respostaResponsavel.ok) throw new Error('Falha na resposta da API do responsável');
@@ -48,7 +47,6 @@ const VisualizarContaAluno = () => {
           const responsavel = await respostaResponsavel.json();
           nomeResponsavel = responsavel.nome || '';
         }
-
         setDados({
           nome: aluno.nome,
           dataNascimento: aluno.dataNascimento,
@@ -74,7 +72,6 @@ const VisualizarContaAluno = () => {
     }
   };
 
-  // Função chamada pelo componente Foto quando o usuário seleciona uma nova imagem
   const handleFotoSelecionada = async (file) => {
     const formData = new FormData();
     formData.append('imagem', file);
@@ -87,7 +84,6 @@ const VisualizarContaAluno = () => {
 
       if (!resposta.ok) throw new Error('Erro ao enviar imagem');
 
-      // Atualiza o preview automaticamente
       const novaImagem = URL.createObjectURL(file);
       setImagemPerfil(novaImagem);
       setErroFoto('');
@@ -124,7 +120,7 @@ const VisualizarContaAluno = () => {
             icone={<img src="/images/nome.png" alt="Nome" />}
             texto={dados.nome}
             onEditar={() => handleEditar('nome')}
-            editavel
+            editavel={false}
             cor="escuro"
           />
           <InfoBox
@@ -137,14 +133,14 @@ const VisualizarContaAluno = () => {
             icone={<img src="/images/email.png" alt="Email" />}
             texto={dados.email}
             onEditar={() => handleEditar('email')}
-            editavel
+            editavel={false}
             cor="escuro"
           />
           <InfoBox
             icone={<img src="/images/telefoneconta.png" alt="Telefone" />}
             texto={dados.telefone}
             onEditar={() => handleEditar('telefone')}
-            editavel
+            editavel={false}
             cor="claro"
           />
           <InfoBox

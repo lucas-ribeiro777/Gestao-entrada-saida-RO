@@ -11,67 +11,90 @@ function InicialAluno() {
   const navigate = useNavigate();
 
   const idAluno = localStorage.getItem('usuarioId');
+  const tipo = localStorage.getItem('usuarioTipo'); // 'aluno', 'professor', 'coordenador', 'responsavel'
 
-  // --- Buscar histórico do dia ---
   useEffect(() => {
-    // if (!idAluno) {
-    //   navigate('/login');
-    //   return;
-    // }
-
-    async function buscarHistorico() {
-      try {
-        const res = await fetch(`http://localhost:3000/solicitacoes?id_aluno=${idAluno}`);
-        const data = await res.json();
-
-        const hoje = new Date().toISOString().split("T")[0];
-        const historicoDoDia = data.filter(s => s.datahora.startsWith(hoje));
-
-        const textosFormatados = historicoDoDia.map(s => {
-          const hora = s.datahora.slice(11, 16);
-          return `${hora} - ${s.tipo} Autorizada`;
-        });
-
-        setHistorico(textosFormatados);
-      } catch (err) {
-        console.error('Erro ao buscar histórico:', err);
-      }
+    if (!idAluno) {
+      console.warn("ID do aluno não encontrado no localStorage.");
+      return;
     }
 
+  async function buscarHistorico() {
+    try {
+      const res = await fetch(`http://10.90.146.16:5121/api/Solicitacao/aluno/${idAluno}`);
+
+      if (!res.ok) {
+        throw new Error(`Erro na API: ${res.status}`);
+      }
+
+      let data;
+      try {
+        data = await res.json(); // tenta interpretar como JSON
+      } catch {
+        // Se não for JSON, trata como array vazio
+        data = [];
+        console.warn("Resposta não é JSON, retornando array vazio");
+      }
+
+      // garante que data seja array
+      if (!Array.isArray(data)) {
+        console.warn("Data não é array, convertendo para array vazio");
+        data = [];
+      }
+
+      const hoje = new Date().toISOString().split("T")[0];
+
+      const historicoDoDia = data.filter(s => s.dataHora && s.dataHora.startsWith(hoje));
+
+      const textosFormatados = historicoDoDia.map(s => {
+        const hora = s.dataHora.slice(11, 16);
+        const statusFinal =
+          s.statusProfessor === 'Sim' &&
+          s.statusResponsavel === 'Sim' &&
+          s.statusCoordenador === 'Sim'
+            ? 'Autorizada'
+            : 'Pendente';
+        return `${hora} - ${s.tipo} ${statusFinal}`;
+      });
+
+
+      setHistorico(textosFormatados);
+    } catch (err) {
+      console.error('Erro ao buscar histórico:', err);
+      setHistorico([]); // garante que o estado fique válido
+    }
+  }
     buscarHistorico();
   }, [idAluno, navigate]);
 
-  // --- Buscar responsáveis do aluno ---
-  useEffect(() => {
-    if (!idAluno) return;
+useEffect(() => {
+  if (!idAluno) return;
 
-    async function buscarResponsaveis() {
-      try {
-        // 1. Buscar dados do aluno
-        const resAluno = await fetch(`http://10.90.146.16:5121/api/Alunos/${idAluno}`);
-        if (!resAluno.ok) throw new Error('Falha ao buscar aluno');
-        const aluno = await resAluno.json();
+  async function buscarResponsaveis() {
+    try {
+      const resAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${idAluno}`);
+      if (!resAluno.ok) throw new Error('Falha ao buscar aluno');
+      const aluno = await resAluno.json();
 
-        // 2. Pegar IDs dos responsáveis
-        const idsResponsaveis = aluno.alunosResponsaveis?.map(ar => ar.idResponsavel) || [];
+      // CORREÇÃO: já é array de IDs
+      const idsResponsaveis = aluno.idResponsaveis || [];
 
-        // 3. Buscar cada responsável
-        const nomes = [];
-        for (let id of idsResponsaveis) {
-          const res = await fetch(`http://10.90.146.16:5121/api/Responsaveis/${id}`);
-          if (!res.ok) continue;
-          const r = await res.json();
-          if (r.nome) nomes.push(r.nome);
-        }
-
-        setResponsaveis(nomes);
-      } catch (err) {
-        console.error('Erro ao buscar responsáveis:', err);
+      const nomes = [];
+      for (let id of idsResponsaveis) {
+        const res = await fetch(`http://10.90.146.16:5121/api/Responsaveis/${id}`);
+        if (!res.ok) continue;
+        const r = await res.json();
+        if (r.nome) nomes.push(r.nome);
       }
-    }
 
-    buscarResponsaveis();
-  }, [idAluno]);
+      setResponsaveis(nomes);
+    } catch (err) {
+      console.error('Erro ao buscar responsáveis:', err);
+    }
+  }
+
+  buscarResponsaveis();
+}, [idAluno]);
 
   return (
     <>

@@ -163,3 +163,10 @@ input::placeholder {
   justify-content: space-between;
   gap: 70px;
 }
+
+@media (max-width: 500px) {
+  .titulo {
+    font-size: 1rem;
+    margin-top: 30px;
+  }
+}

@@ -32,12 +32,13 @@ function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
     setModalRecadoAberto(true);
   }
 
-  function aoSalvarAssinatura(base64Img) {
-    setAssinaturaImg(base64Img);
-    const nomeArquivo = `assinatura_${Date.now()}.png`;
-    setNomeArquivoAssinatura(nomeArquivo);
-    setModalAberto(false);
-  }
+function aoSalvarAssinatura(arquivo, base64Img) {
+  setAssinaturaImg(base64Img); // para mostrar a imagem no form
+  setNomeArquivoAssinatura(arquivo.name); // para enviar o arquivo pro backend
+  setModalAberto(false);
+}
+
+
 
   function dataURLtoFile(dataurl, filename) {
     const arr = dataurl.split(',');
@@ -133,7 +134,7 @@ async function handleSubmit(event) {
   }
 
   try {
-    const resp = await fetch('http://10.90.146.16:5121/api/Alunos', {
+    const resp = await fetch('http://10.90.146.16:5121/api/Aluno/cadastro', {
       method: 'POST',
       body: formData,
     });
@@ -151,7 +152,7 @@ async function handleSubmit(event) {
     setConfirmarSenha('');
     setAssinaturaImg(null);
     setNomeArquivoAssinatura(null);
-    navigate('/login');
+    navigate('/');
   } catch (error) {
     mostrarRecado(error.message);
   }
@@ -160,7 +161,7 @@ async function handleSubmit(event) {
 
   function irParaLogin(e) {
     e.preventDefault();
-    navigate('/login');
+    navigate('/');
   }
 
   return (
@@ -172,7 +173,7 @@ async function handleSubmit(event) {
           <CampoTexto valor={email} label="E-mail" placeholder="Digite Algo..." onChange={e => setEmail(e.target.value)} />
           <div className="linha1">
             <CampoTexto valor={datanasc} label="Data de Nascimento" placeholder="__/__/____" onChange={e => setDataNasc(e.target.value)} />
-            <CampoTexto valor={telefone} label="Telefone" placeholder="+55 ()" onChange={e => setTelefone(e.target.value)} />
+            <CampoTexto valor={telefone} label="Telefone" placeholder="(14 ...)" onChange={e => setTelefone(e.target.value)} />
           </div>
           <div className="linha2">
             <CampoTexto valor={senha} label="Senha" placeholder="Digite Sua Senha..." onChange={e => setSenha(e.target.value)} />

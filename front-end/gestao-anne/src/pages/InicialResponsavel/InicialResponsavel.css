@@ -136,6 +136,10 @@
   color: white;
 }
 
+.space{
+  height: 15vh;
+}
+
 
 /* ======== RESPONSIVIDADE ======== */
 @media (max-width: 768px) {

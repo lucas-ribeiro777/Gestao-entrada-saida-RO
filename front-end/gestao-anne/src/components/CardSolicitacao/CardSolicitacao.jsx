@@ -6,30 +6,31 @@ function CardSolicitacao({ aluno, onAutorizar }) {
   const [mostrarModal, setMostrarModal] = useState(false);
 
   const confirmarAutorizacao = () => {
-    onAutorizar(aluno.id);
+    onAutorizar(aluno.idSolicitacao);
     setMostrarModal(false);
   };
 
-  const statusProfessor = aluno.professorAutorizou
-    ? '✅ Autorizado'
-    : '⌛ Aguardando';
-
+  const statusProfessor = aluno.professorAutorizou ? '✅ Autorizado' : '⌛ Aguardando';
   return (
     <div className="card-solicitacao1">
-      <img
-        className="foto-aluno"
-        src={aluno.imagem || '/images/user-default.png'}
-        alt={`Foto de ${aluno.aluno}`}
-      />
+    <img
+      src={aluno.imagemAluno.startsWith('http')
+        ? aluno.imagemAluno
+        : `http://10.90.146.16:5121${aluno.imagemAluno}`}
+      alt={aluno.nomeAluno}
+      className="foto-aluno"
+    />
+
 
       <div className="info-aluno">
-        <p><strong>Nome:</strong> {aluno.aluno}</p>
-        <p><strong>Curso:</strong> {aluno.curso}</p>
+        <p><strong>Nome:</strong> {aluno.nomeAluno}</p>
+        <p><strong>Curso:</strong> {aluno.nomeCurso}</p>
         <p><strong>Tipo:</strong> {aluno.tipo}</p>
         <p><strong>Motivo:</strong> {aluno.motivo}</p>
-        <p><strong>Data e Hora:</strong> {new Date(aluno.datahora).toLocaleString('pt-BR')}</p>
+        <p><strong>Data e Hora:</strong> {new Date(aluno.dataHora).toLocaleString('pt-BR')}</p>
         <p><strong>Status do Professor:</strong> {statusProfessor}</p>
       </div>
+
 
       {!aluno.professorAutorizou && (
         <button onClick={() => setMostrarModal(true)} className="btn-autorizar">
@@ -54,13 +55,13 @@ function CardSolicitacao({ aluno, onAutorizar }) {
 
 CardSolicitacao.propTypes = {
   aluno: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    aluno: PropTypes.string.isRequired,
-    curso: PropTypes.string.isRequired,
+    idSolicitacao: PropTypes.number.isRequired,
+    nomeAluno: PropTypes.string.isRequired,
+    nomeCurso: PropTypes.string.isRequired,
     tipo: PropTypes.string,
     motivo: PropTypes.string,
-    datahora: PropTypes.string,
-    imagem: PropTypes.string,
+    dataHora: PropTypes.string,
+    imagemAluno: PropTypes.string,
     professorAutorizou: PropTypes.bool.isRequired
   }).isRequired,
   onAutorizar: PropTypes.func.isRequired,

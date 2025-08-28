@@ -192,4 +192,8 @@ main {
   .titulo-caixa {
     font-size: 17px !important;
   }
+
+  .container-foto{
+    margin-top: 20px !important;
+  }
 }

@@ -1,0 +1,118 @@
+/* VisualizacaoRanking.css */
+
+.ranking-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border-radius: 25px;
+
+}
+
+.ranking-container h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 0px;
+  color: #1e3a8a; /* azul escuro */
+}
+
+.ranking-section {
+  margin-bottom: 40px;
+}
+
+.ranking-section h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #1F5592; /* verde escuro para entradas */
+  text-align: center;
+}
+
+.ranking-section.saidas h3 {
+  color: #1F5592; /* vermelho escuro para saídas */
+}
+
+.ranking-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ranking-list li {
+  background-color: #f3f4f6; /* cinza claro */
+  margin-bottom: 20px !important;
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+  width:60%;
+  margin: 0 auto;
+}
+
+.ranking-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.ranking-list li span {
+  font-weight: bold;
+}
+
+.ranking-empty {
+  font-style: italic;
+  color: #6b7280; /* cinza escuro */
+  text-align: center;
+}
+
+.trofeis{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.trofeu{
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.divisoes{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.ranking-section{
+  background-color: #D9D9D9;
+  box-shadow: 0 0 10px #ccc;
+  padding: 30px;
+  border-radius: 25px;
+  width: 100%;
+  
+}
+
+.ranking-section.saidas{
+  margin-left: 20px;
+}
+
+@media (max-width: 500px) {
+  .divisoes{
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .ranking-section.saidas{
+    margin-left: 0;
+  }
+
+  .ranking-list li{
+    width: 90%;
+  }
+  
+}

@@ -18,7 +18,6 @@ function VisualizarSolicitacaoCoordenador() {
         method: 'PUT'
       })
 
-      
       setSolicitacoes(prev => prev.filter(s => s.idSolicitacao !== idSolicitacao));
       setDesaparecendo(prev => prev.filter(did => did !== idSolicitacao));
     } catch (err) {
@@ -142,16 +141,19 @@ function VisualizarSolicitacaoCoordenador() {
               style={{ cursor: 'pointer' }}
               className={desaparecendo.includes(s.idSolicitacao) ? 'fade-out' : ''}
             >
-              <BoxSolicitacao
-                imagem={s.aluno.imagem}
-                nome={s.aluno.nome}
-                curso={s.aluno.curso}
-                data={dataFormatada}
-                horario={horaFormatada}
-                motivo={s.motivo}
-                tipo={s.tipo}
-                cor={cor}
-              />
+            <BoxSolicitacao
+              imagem={s.aluno.imagem}
+              nome={s.aluno.nome}
+              curso={s.aluno.curso}
+              data={dataFormatada}
+              horario={horaFormatada}
+              motivo={s.motivo}
+              tipo={s.tipo}
+              statusProfessor={s.statusProfessor}
+              statusResponsavel={s.statusResponsavel}
+              statusCoordenador={s.statusCoordenador}
+              cor={cor}
+            />
             </div>
           );
         })}

@@ -55,10 +55,11 @@ const FormSolicitacao = ({ dados, tipoUsuario, alunoId }) => {
     fetchCursos();
   }, []);
 
+  const [alunosVinculados, setAlunosVinculados] = useState([]);
   const [alunoVinculadoId, setAlunoVinculadoId] = useState(null);
 
   useEffect(() => {
-    const fetchAlunoDoResponsavel = async () => {
+    const fetchAlunosDoResponsavel = async () => {
       if (tipoUsuario !== "responsavel") return;
 
       try {
@@ -66,32 +67,45 @@ const FormSolicitacao = ({ dados, tipoUsuario, alunoId }) => {
         const res = await fetch(`http://10.90.146.16:5121/api/Responsaveis/${responsavelId}`);
         const respData = await res.json();
 
-        const alunoIdFromApi = Array.isArray(respData.idsAlunos) && respData.idsAlunos.length > 0
-          ? respData.idsAlunos[0]
-          : null;
+        if (!Array.isArray(respData.idsAlunos) || respData.idsAlunos.length === 0) {
+          throw new Error("Nenhum aluno vinculado a este responsável");
+        }
 
-        if (!alunoIdFromApi) throw new Error("Nenhum aluno vinculado a este responsável");
+        // Buscar todos os alunos do responsável
+        const alunosData = await Promise.all(
+          respData.idsAlunos.map(async (id) => {
+            const resAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${id}`);
+            const aluno = await resAluno.json();
+            return { id, nome: aluno.nome, assinatura: aluno.assinatura };
+          })
+        );
 
-        setAlunoVinculadoId(alunoIdFromApi); 
-
-        const resAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${alunoIdFromApi}`);
-        const alunoData = await resAluno.json();
-
-        setFormData(prev => ({
-          ...prev,
-          aluno: alunoData.nome || '',
-          nomeAluno: alunoData.nome || ''
-        }));
-        setAssinaturaAlunoImg(alunoData.assinatura ? `http://10.90.146.16:5121${alunoData.assinatura}` : '');
+        setAlunosVinculados(alunosData);
+        setAlunoVinculadoId(alunosData[0].id); // seleciona o primeiro como padrão
 
       } catch (err) {
         console.error(err);
-        abrirModal("Erro", "Não foi possível carregar o aluno vinculado.");
+        abrirModal("Erro", "Não foi possível carregar os alunos vinculados.");
       }
     };
 
-    fetchAlunoDoResponsavel();
+    fetchAlunosDoResponsavel();
   }, [tipoUsuario]);
+
+
+// quando muda o aluno selecionado, carrega assinatura
+useEffect(() => {
+  const alunoSelecionado = alunosVinculados.find(a => a.id === alunoVinculadoId);
+  if (alunoSelecionado) {
+    setFormData(prev => ({
+      ...prev,
+      aluno: alunoSelecionado.nome,
+      nomeAluno: alunoSelecionado.nome
+    }));
+    setAssinaturaAlunoImg(alunoSelecionado.assinatura ? `http://10.90.146.16:5121${alunoSelecionado.assinatura}` : '');
+  }
+}, [alunoVinculadoId, alunosVinculados]);
+
 
   const handleAssinarAluno = async (alunoId) => {
     try {
@@ -202,6 +216,7 @@ const FormSolicitacao = ({ dados, tipoUsuario, alunoId }) => {
           {cursos.map(curso => (
             <option key={curso.idCurso} value={String(curso.idCurso)}>
               {curso.nomeCurso}
+              {curso.periodo ? ` - ${curso.periodo}` : ''}
             </option>
           ))}
         </select>
@@ -270,6 +285,7 @@ const FormSolicitacao = ({ dados, tipoUsuario, alunoId }) => {
               style={{ width: '200px', height: '50px', objectFit: 'contain', border: '1px solid #000', borderRadius: '70px' }}
             />
           ) : tipoUsuario === "aluno" ? (
+            
             <button type="button" onClick={() => handleAssinarAluno(localStorage.getItem('usuarioId'))} className='botao-assinar-aluno'>
               Clique para assinar
             </button>
@@ -279,43 +295,23 @@ const FormSolicitacao = ({ dados, tipoUsuario, alunoId }) => {
         </div>
 
         <div className="campo-assinatura">
-          <label className="label-media">Responsável:</label>
-          {tipoUsuario === "responsavel" ? (
-            formData.responsavel && formData.responsavel !== 'Assinatura do Responsável' ? (
-              <img
-                src={formData.responsavel}
-                alt="Assinatura do responsável"
-                className='assinatura-responsavel'
-              />
-            ) : (
-              <button
-                className='botao-assinar-responsavel-forms'
-                type="button"
-                onClick={async () => {
-                  try {
-                    const responsavelId = localStorage.getItem('usuarioId');
-                    if (!responsavelId) throw new Error("Responsável não logado");
-
-                    const res = await fetch(`http://10.90.146.16:5121/api/Responsaveis/${responsavelId}`);
-                    if (!res.ok) throw new Error("Erro ao buscar assinatura do responsável");
-
-                    const respData = await res.json();
-                    const assinaturaResp = respData.assinatura
-                      ? `http://10.90.146.16:5121${respData.assinatura}`
-                      : '';
-                    setFormData(prev => ({ ...prev, responsavel: assinaturaResp }));
-                  } catch (err) {
-                    console.error(err);
-                    setErro("Não foi possível carregar a assinatura do responsável.");
-                  }
-                }}
+          {tipoUsuario === "responsavel" && alunosVinculados.length > 0 && (
+            <div className="campo-single full">
+              <label htmlFor="selectAluno" className="label-media">Selecione o filho:</label>
+              <select
+                id="selectAluno"
+                value={alunoVinculadoId || ''}
+                onChange={(e) => setAlunoVinculadoId(Number(e.target.value))}
               >
-                Assinar como responsável
-              </button>
-            )
-          ) : (
-            <input type="text" name="responsavel" value={formData.responsavel} readOnly />
+                {alunosVinculados.map((aluno) => (
+                  <option key={aluno.id} value={aluno.id}>
+                     {aluno.nome}
+                  </option> 
+                ))}
+              </select>
+            </div>
           )}
+
         </div>
       </div>
 
@@ -338,5 +334,3 @@ const FormSolicitacao = ({ dados, tipoUsuario, alunoId }) => {
 };
 
 export default FormSolicitacao;
-
-console

@@ -49,14 +49,9 @@ const VerSolicitacaoResponsavel = () => {
         </p>
       </strong>
 
-      {alunos.map(aluno => (
       <FormSolicitacao
-        key={aluno.idAluno} 
-        dados={aluno}
         tipoUsuario="responsavel"
-        alunoId={aluno.idAluno} 
       />
-      ))}
 
       <Rodape />
     </div>

@@ -178,6 +178,11 @@
   border-radius: 70px;
 }
 
+#selectAluno{
+  cursor: pointer;
+  margin-top: 15px;
+}
+
 @media (max-width: 768px) {
   .logo-senai{
     width: 150px;

@@ -22,27 +22,31 @@ useEffect(() => {
       if (!resResponsavel.ok) throw new Error("Falha ao buscar responsável");
       const responsavel = await resResponsavel.json();
 
-      // 2. Pegar o ID do primeiro aluno (ou você pode mapear todos depois)
-      const idAluno = responsavel.idsAlunos?.[0];
+      // 2. Buscar dados de todos os alunos
+      let nomesAlunos = "Filho não encontrado";
+      if (responsavel.idsAlunos && responsavel.idsAlunos.length > 0) {
+        const alunosPromises = responsavel.idsAlunos.map(async (idAluno) => {
+          try {
+            const resAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${idAluno}`);
+            if (!resAluno.ok) throw new Error("Erro ao buscar aluno");
+            const aluno = await resAluno.json();
+            return aluno.nome || "Desconhecido";
+          } catch {
+            return "Desconhecido";
+          }
+        });
 
-      let nomeAluno = "Filho não encontrado";
-
-      if (idAluno) {
-        // 3. Buscar dados do aluno
-        const resAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${idAluno}`);
-        if (resAluno.ok) {
-          const aluno = await resAluno.json();
-          nomeAluno = aluno.nome || nomeAluno;
-        }
+        const nomes = await Promise.all(alunosPromises);
+        nomesAlunos = nomes.join(", "); // junta todos separados por vírgula
       }
 
-      // 4. Atualizar estado com os dados
+      // 3. Atualizar estado com os dados
       setDados({
         nome: responsavel.nome,
         nascimento: responsavel.data_nasc ? formatarData(responsavel.data_nasc) : "",
         email: responsavel.email,
         telefone: responsavel.telefone,
-        aluno: nomeAluno,
+        aluno: nomesAlunos, // <- agora todos os alunos
         assinatura: responsavel.assinatura || "",
       });
 

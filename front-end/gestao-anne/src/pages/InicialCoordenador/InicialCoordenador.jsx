@@ -3,6 +3,7 @@ import Rodape from '../../components/Rodape/Rodape';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import { useNavigate, Link } from 'react-router-dom';
 import './InicialCoordenador.css';
+import Ranking from '../../components/Ranking/Ranking';
 
 const renderPizzaCheia = (data, onHover) => {
   const radius = 100;
@@ -128,12 +129,12 @@ useEffect(() => {
           </Link>
         </li>
       </CabecalhoPages>
-
+      <Ranking/>
       <div className='div-select-cursos'>
         <label htmlFor="selectCurso" className="select-cursos-label">Selecione o curso:</label>
         <select
           id="selectCurso"
-          value={cursoSelecionado ? Number(cursoSelecionado.idCurso) : ''}
+          value={cursoSelecionado ? String(cursoSelecionado.idCurso) : ''}
           onChange={e => {
             const selectedId = Number(e.target.value);
             const curso = cursos.find(c => c.idCurso === selectedId);
@@ -141,13 +142,17 @@ useEffect(() => {
           }}
           className="select-cursos"
         >
-          <option key="placeholder" value="">-- Escolha um curso --</option>
+          <option key="placeholder" value="">
+            -- Escolha um curso --
+          </option>
           {cursos.map(curso => (
-            <option key={`curso-${curso.idCurso}`} value={String(curso.idCurso)}>
-              {curso.nomeCurso || 'Curso sem nome'}
+            <option key={curso.idCurso} value={String(curso.idCurso)}>
+              {curso.nomeCurso}
+              {curso.periodo ? ` - ${curso.periodo}` : ''}
             </option>
           ))}
         </select>
+
       </div>
 
       <div className="graficos-container">
@@ -233,6 +238,8 @@ useEffect(() => {
           )}
         </div>
       </div>
+
+      
 
       <Rodape />
     </>

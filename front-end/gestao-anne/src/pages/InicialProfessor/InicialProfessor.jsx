@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import Rodape from '../../components/Rodape/Rodape';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
+import { API_BASE_URL } from '../../constantes';
 
 function InicialProfessor() {
   const [solicitacoes, setSolicitacoes] = useState([]);
@@ -16,24 +17,24 @@ function InicialProfessor() {
         const usuarioId = Number(localStorage.getItem("usuarioId"));
 
         // Buscar professor logado
-        const resProfessor = await fetch(`http://10.90.146.16:5121/api/Professor/${usuarioId}`);
+        const resProfessor = await fetch(`${API_BASE_URL}api/Professor/${usuarioId}`);
         if (!resProfessor.ok) throw new Error("Erro ao buscar professor");
         const dadosProfessor = await resProfessor.json();
         setProfessorCursos(dadosProfessor.cursosIds);
 
         // Buscar solicitações dos últimos 7 dias
-        const resSolicitacoes = await fetch('http://10.90.146.16:5121/api/Solicitacao/periodo/7dias');
+        const resSolicitacoes = await fetch(`${API_BASE_URL}api/Solicitacao/periodo/7dias`);
         if (!resSolicitacoes.ok) throw new Error("Erro ao buscar solicitações");
         const dadosSolicitacoes = await resSolicitacoes.json();
 
         // Buscar alunos
-        const resAlunos = await fetch('http://10.90.146.16:5121/api/Aluno');
+        const resAlunos = await fetch(`${API_BASE_URL}api/Aluno`);
         if (!resAlunos.ok) throw new Error("Erro ao buscar alunos");
         const dadosAlunos = await resAlunos.json();
         setAlunos(dadosAlunos);
 
         // Buscar cursos
-        const resCursos = await fetch('http://10.90.146.16:5121/api/Grafico/cursos');
+        const resCursos = await fetch(`${API_BASE_URL}api/Grafico/cursos`);
         if (!resCursos.ok) throw new Error("Erro ao buscar cursos");
         const dadosCursos = await resCursos.json();
         setCursos(dadosCursos);

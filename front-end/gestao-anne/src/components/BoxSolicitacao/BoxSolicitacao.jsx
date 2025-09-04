@@ -15,7 +15,7 @@ function BoxSolicitacao({ imagem, nome, curso, data, horario, motivo, tipo, stat
         </div>
         <div className="infos2">
             <p>DATA: {data}</p>
-            <p>HORÁRIO: {horario}</p>
+            <p>HORÁRIO: {horario}</p> 
             <p>MOTIVO DA SOLICITAÇÃO: {motivo}</p>
             <p>TIPO DE SOLICITAÇÃO: {tipo}</p>
             <div className="status-aprovacoes-box">

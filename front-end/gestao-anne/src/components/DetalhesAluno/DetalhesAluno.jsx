@@ -2,6 +2,7 @@ import './DetalhesAluno.css';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import ModalRecado from '../ModalRecado/ModalRecado';
+import { API_BASE_URL } from '../../constantes';
 
 function DetalhesAluno({ idAluno, curso }) {
   const [solicitacoes, setSolicitacoes] = useState([]);
@@ -14,7 +15,7 @@ function DetalhesAluno({ idAluno, curso }) {
 
     const fetchSolicitacoes = async () => {
       try {
-        const res = await fetch(`http://10.90.146.16:5121/api/Solicitacao/aluno/${idAluno}`);
+        const res = await fetch(`${API_BASE_URL}api/Solicitacao/aluno/${idAluno}`);
         if (!res.ok) throw new Error('Erro ao buscar solicitações do aluno');
 
         const data = await res.json();
@@ -40,7 +41,7 @@ function DetalhesAluno({ idAluno, curso }) {
   const autorizarResponsavel = async (idSolicitacao) => {
     try {
       const res = await fetch(
-        `http://10.90.146.16:5121/api/Solicitacao/atualizar-status/${idSolicitacao}?statusResponsavel=Sim`,
+        `${API_BASE_URL}api/Solicitacao/atualizar-status/${idSolicitacao}?statusResponsavel=Sim`,
         { method: 'PUT' }
       );
 

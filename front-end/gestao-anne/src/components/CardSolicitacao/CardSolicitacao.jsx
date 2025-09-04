@@ -16,7 +16,7 @@ function CardSolicitacao({ aluno, onAutorizar }) {
     <img
       src={aluno.imagemAluno.startsWith('http')
         ? aluno.imagemAluno
-        : `http://10.90.146.16:5121${aluno.imagemAluno}`}
+        : `http://10.90.154.18:5121/${aluno.imagemAluno}`}
       alt={aluno.nomeAluno}
       className="foto-aluno"
     />

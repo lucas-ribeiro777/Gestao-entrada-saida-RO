@@ -18,23 +18,20 @@ namespace Api_Projeto.Annne.Services
             _context = context;
         }
 
-       
         public async Task<SolicitacaoDTO> CriarSolicitacaoAsync(SolicitacaoCreateDTO solicitacao)
         {
-            // pega o aluno vinculado
+            
             var aluno = await _context.Alunos.FindAsync(solicitacao.IdAlunos);
             if (aluno == null)
                 throw new Exception("Aluno não encontrado.");
 
-           
             var idade = DateTime.Today.Year - aluno.DataNascimento.Year;
             if (aluno.DataNascimento.Date > DateTime.Today.AddYears(-idade))
-                idade--; 
+                idade--;
 
-           
             var statusResponsavel = solicitacao.StatusResponsavel ?? "pendente";
             if (idade >= 18)
-                statusResponsavel = "sim";
+                statusResponsavel = "Sim";
 
             var novaSolicitacao = new Solicitacao
             {
@@ -55,7 +52,6 @@ namespace Api_Projeto.Annne.Services
             return MapToDTO(novaSolicitacao);
         }
 
-      
         public async Task<SolicitacaoDTO> AtualizarStatusAsync(
             int idSolicitacao,
             string? statusProfessor = null,
@@ -70,20 +66,19 @@ namespace Api_Projeto.Annne.Services
             if (solicitacao == null)
                 throw new Exception("Solicitação não encontrada.");
 
+            if (solicitacao.DataHora.AddDays(1) <= DateTime.Now)
+                throw new Exception("Solicitação expirada. Não é possível atualizar o status.");
+
             if (!string.IsNullOrWhiteSpace(statusProfessor))
                 solicitacao.StatusProfessor = statusProfessor;
 
             if (!string.IsNullOrWhiteSpace(statusResponsavel))
             {
-               
                 var idade = DateTime.Today.Year - solicitacao.Aluno.DataNascimento.Year;
                 if (solicitacao.Aluno.DataNascimento.Date > DateTime.Today.AddYears(-idade))
                     idade--;
 
-                if (idade >= 18)
-                    solicitacao.StatusResponsavel = "sim";
-                else
-                    solicitacao.StatusResponsavel = statusResponsavel;
+                solicitacao.StatusResponsavel = idade >= 18 ? "sim" : statusResponsavel;
             }
 
             if (!string.IsNullOrWhiteSpace(statusCoordenador))
@@ -98,11 +93,12 @@ namespace Api_Projeto.Annne.Services
         public async Task<IEnumerable<SolicitacaoDTO>> GetPorPeriodoAsync(int dias)
         {
             var dataLimite = DateTime.Now.AddDays(-dias);
+            var agora = DateTime.Now;
 
             var solicitacoes = await _context.Solicitacoes
                 .Include(s => s.Aluno)
                 .Include(s => s.Curso)
-                .Where(s => s.DataHora >= dataLimite)
+                .Where(s => s.DataHora >= dataLimite && s.DataHora.AddDays(1) > agora) 
                 .ToListAsync();
 
             return solicitacoes.Select(MapToDTO).ToList();
@@ -110,10 +106,12 @@ namespace Api_Projeto.Annne.Services
 
         public async Task<IEnumerable<SolicitacaoDTO>> GetPorAlunoAsync(int idAluno)
         {
+            var agora = DateTime.Now;
+
             var solicitacoes = await _context.Solicitacoes
                 .Include(s => s.Aluno)
                 .Include(s => s.Curso)
-                .Where(s => s.IdAlunos == idAluno)
+                .Where(s => s.IdAlunos == idAluno && s.DataHora.AddDays(1) > agora) 
                 .ToListAsync();
 
             return solicitacoes.Select(MapToDTO).ToList();

@@ -5,6 +5,7 @@ import Termos from '../Termos/Termos';
 import ModalRecado from '../ModalRecado/ModalRecado';
 import './FormCadastroDocente.css';
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../../constantes';
 
 function FormCadastroDocente() {
   const [modalAberto, setModalAberto] = useState(false);
@@ -30,7 +31,7 @@ function FormCadastroDocente() {
   useEffect(() => {
     const fetchCursos = async () => {
       try {
-        const res = await fetch('http://10.90.146.16:5121/api/Grafico/cursos');
+        const res = await fetch(`${API_BASE_URL}api/Grafico/cursos`);
         if (!res.ok) throw new Error('Erro ao buscar cursos');
         const data = await res.json();
         setTodosCursos(data);
@@ -81,7 +82,7 @@ function FormCadastroDocente() {
     console.log("Enviando para API:", body);
 
     try {
-      const response = await fetch("http://10.90.146.16:5121/api/Professor", {
+      const response = await fetch(`${API_BASE_URL}api/Professor`, {
         method: "POST",
         headers: {
           "Accept": "application/json",
@@ -127,7 +128,7 @@ function FormCadastroDocente() {
           </div>
 
           <div className="linha1-docente">
-            <CampoTexto valor={telefone} onChange={e => setTelefone(e.target.value)} label="Telefone" placeholder="(14...)" />
+            <CampoTexto valor={telefone} onChange={e => setTelefone(e.target.value)} label="Telefone" placeholder="14..." />
           </div>
 
           {cursosSelecionados.map((cursoId, i) => (

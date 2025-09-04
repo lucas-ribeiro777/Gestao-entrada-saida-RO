@@ -1,5 +1,6 @@
 import './Ranking.css';
 import React, { useEffect, useState } from "react";
+import { API_BASE_URL } from '../../constantes';
 
 function Ranking() {
   const [ranking, setRanking] = useState({ entradas: [], saidas: [] });
@@ -8,18 +9,18 @@ function Ranking() {
   useEffect(() => {
     async function buscarSolicitacoes() {
       try {
-        const res = await fetch("http://10.90.146.16:5121/api/Solicitacao/periodo/7dias");
+        const res = await fetch(`${API_BASE_URL}api/Solicitacao/periodo/1mes`);
         if (!res.ok) throw new Error("Erro ao buscar solicitações");
         const dados = await res.json();
+        console.log("Dados recebidos:", dados); // <--- Aqui
 
-        // Pegar IDs únicos de alunos para buscar nomes
+
         const idsAlunos = [...new Set(dados.map(s => s.idAlunos))];
 
-        // Buscar nomes de cada aluno
         const mapIdNome = {};
         await Promise.all(idsAlunos.map(async id => {
           try {
-            const resAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${id}`);
+            const resAluno = await fetch(`${API_BASE_URL}api/Aluno/${id}`);
             if (!resAluno.ok) throw new Error("Erro ao buscar aluno");
             const aluno = await resAluno.json();
             mapIdNome[id] = aluno.nome || `Aluno ${id}`;
@@ -34,9 +35,9 @@ function Ranking() {
 
         for (let s of dados) {
           const nomeAluno = mapIdNome[s.idAlunos];
-          if (s.tipo === "entrada") {
+          if (s.tipo === "Entrada") {
             mapEntradas[nomeAluno] = (mapEntradas[nomeAluno] || 0) + 1;
-          } else if (s.tipo === "saida") {
+          } else if (s.tipo === "Saída") {
             mapSaidas[nomeAluno] = (mapSaidas[nomeAluno] || 0) + 1;
           }
         }

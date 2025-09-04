@@ -5,6 +5,7 @@ import CabecalhoPages from "../../components/CabecalhoPages/CabecalhoPages";
 import Rodape from "../../components/Rodape/Rodape";
 import BoxAluno from "../../components/BoxAluno/BoxAluno";
 import DetalhesAluno from "../../components/DetalhesAluno/DetalhesAluno";
+import { API_BASE_URL } from '../../constantes';
 
 function InicialResponsavel() {
   const [responsavel, setResponsavel] = useState(null);
@@ -14,23 +15,19 @@ function InicialResponsavel() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // --- Verifica login ---
   const idResponsavelLogado = localStorage.getItem("usuarioId");
   useEffect(() => {
     if (!idResponsavelLogado) {
-      navigate("/Login"); // redireciona se não estiver logado
+      navigate("/Login");
     }
   }, [idResponsavelLogado, navigate]);
-
-  // --- Buscar dados do responsável e alunos ---
   useEffect(() => {
     if (!idResponsavelLogado) return;
 
     const buscarResponsavel = async () => {
       try {
-        // 1. Buscar responsável
         const res = await fetch(
-          `http://10.90.146.16:5121/api/Responsaveis/${idResponsavelLogado}`
+          `${API_BASE_URL}api/Responsaveis/${idResponsavelLogado}`
         );
         if (!res.ok) throw new Error("Falha ao buscar responsável");
         const resp = await res.json();
@@ -38,7 +35,6 @@ function InicialResponsavel() {
 
         console.log("Dados do responsável:", resp);
 
-        // 2. Pegar IDs dos alunos do responsável
         const idsAlunos = Array.isArray(resp.idsAlunos)
           ? resp.idsAlunos
           : resp.idsAlunos !== undefined
@@ -47,16 +43,14 @@ function InicialResponsavel() {
 
         console.log("IDs dos alunos:", idsAlunos);
 
-        // 3. Buscar dados dos alunos e normalizar objeto
         const dadosAlunos = await Promise.all(
           idsAlunos.map(async (idAluno) => {
             const resAluno = await fetch(
-              `http://10.90.146.16:5121/api/Aluno/${idAluno}`
+              `${API_BASE_URL}api/Aluno/${idAluno}`
             );
             if (!resAluno.ok) throw new Error("Falha ao buscar aluno");
             const alunoData = await resAluno.json();
 
-            // Normaliza sempre para ter aluno.id
             return {
               id: alunoData.id ?? alunoData.idAluno ?? idAluno,
               nome: alunoData.nome,
@@ -100,7 +94,7 @@ function InicialResponsavel() {
               <BoxAluno
                 imagem={
                   aluno.imagem
-                    ? `http://10.90.146.16:5121${aluno.imagem}`
+                    ? `${API_BASE_URL}${aluno.imagem}`
                     : "/images/perfil.png"
                 }
                 nome={aluno.nome}

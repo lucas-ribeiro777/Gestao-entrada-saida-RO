@@ -5,6 +5,7 @@ import Rodape from '../../components/Rodape/Rodape';
 import BoxAluno from '../../components/BoxAluno/BoxAluno';
 import DetalhesAluno from '../../components/DetalhesAluno/DetalhesAluno';
 import './PesquisarAlunos.css';
+import { API_BASE_URL } from "../../constantes";
 
 function PesquisarAlunos() {
   const [alunos, setAlunos] = useState([]);
@@ -16,7 +17,7 @@ function PesquisarAlunos() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://10.90.146.16:5121/api/Alunos")
+    fetch(`${API_BASE_URL}api/Alunos`)
       .then((res) => res.json())
       .then((data) => {
         const alunosValidos = data.filter(aluno => aluno.curso);

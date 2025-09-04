@@ -80,3 +80,19 @@
   margin-top: 40px;
   margin-bottom: 40px;
 }
+
+.finais{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.apagar-solicitacao{
+  border: none;
+  background-color: transparent;
+}
+
+.finais button:hover{
+  cursor: pointer;
+}

@@ -5,6 +5,7 @@ import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import { Link, useNavigate } from 'react-router-dom';
 import Botao from '../../components/Botao/Botao';
 import ModalQRCode from '../../components/ModalQRCode/ModalQRCode';
+import { API_BASE_URL } from '../../constantes';
 
 function VisualizarSolicitacaoAluno() {
   const [solicitacoes, setSolicitacoes] = useState([]);
@@ -13,19 +14,30 @@ function VisualizarSolicitacaoAluno() {
   const alunoId = Number(localStorage.getItem('usuarioId'));
   const navigate = useNavigate();
 
+
   // Buscar solicitações do aluno
   useEffect(() => {
     async function buscarSolicitacoes() {
       try {
-        const res = await fetch(`http://10.90.146.16:5121/api/Solicitacao/aluno/${alunoId}`);
+        const res = await fetch(`${API_BASE_URL}api/Solicitacao/aluno/${alunoId}`);
         if (!res.ok) throw new Error('Erro na requisição');
         const dados = await res.json();
 
-        // Para cada solicitação, buscar o nome do curso
+        const agora = new Date();
+
+        // Filtrar solicitações com até 7 dias de idade
+        const filtradas = dados.filter(s => {
+          const dataCriacao = new Date(s.dataHora);
+          const diffMs = agora - dataCriacao; // diferença em milissegundos
+          const diffDias = diffMs / (1000 * 60 * 60 * 24);
+          return diffDias <= 7;
+        });
+
+        // Para cada solicitação filtrada, buscar o nome do curso
         const solicitacoesComCurso = await Promise.all(
-          dados.map(async s => {
+          filtradas.map(async s => {
             try {
-              const cursoRes = await fetch(`http://10.90.146.16:5121/api/Grafico/${s.idNomeCurso}`);
+              const cursoRes = await fetch(`${API_BASE_URL}api/Grafico/${s.idNomeCurso}`);
               if (!cursoRes.ok) throw new Error("Erro ao buscar curso");
               const cursoData = await cursoRes.json();
               return { ...s, nomeCurso: cursoData.nomeCurso };
@@ -46,14 +58,15 @@ function VisualizarSolicitacaoAluno() {
   }, [alunoId]);
 
 
+
   // Abrir modal do QR Code
   async function abrirModalQRCode(solicitacaoId) {
     try {
-      const res = await fetch(`http://10.90.146.16:5121/api/QrCode/gerar/${solicitacaoId}`, {
+      const res = await fetch(`${API_BASE_URL}api/QrCode/gerar/${solicitacaoId}`, {
         method: 'POST' // se a API exigir POST
       });
       const data = await res.json();
-      setQrCodeUrl(`http://10.90.146.16:5121${data.registro.caminhoArquivo}`);
+      setQrCodeUrl(`${API_BASE_URL}${data.registro.caminhoArquivo}`);
       setModalAberto(true);
     } catch (erro) {
       console.error('Erro ao buscar QR code:', erro);
@@ -148,12 +161,12 @@ function VisualizarSolicitacaoAluno() {
                   {statusFinal}
                 </p>
                 {liberada && (
-                  <button
-                    className="btn-abrir-qrcode"
-                    onClick={() => abrirModalQRCode(s.idSolicitacao)}
-                  >
-                    Abrir QR Code
-                  </button>
+                    <button
+                      className="btn-abrir-qrcode"
+                      onClick={() => abrirModalQRCode(s.idSolicitacao)}
+                    >
+                      Abrir QR Code
+                    </button>
                 )}
               </div>
             );

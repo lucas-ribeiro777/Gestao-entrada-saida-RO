@@ -4,6 +4,7 @@ import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import Rodape from '../../components/Rodape/Rodape';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import './VisualizarSolicitacaoCoordenador.css';
+import { API_BASE_URL } from '../../constantes';
 
 function VisualizarSolicitacaoCoordenador() {
   const location = useLocation();
@@ -14,7 +15,7 @@ function VisualizarSolicitacaoCoordenador() {
   async function autorizarSolicitacao(idSolicitacao) {
     setDesaparecendo(prev => [...prev, idSolicitacao]);
     try {
-      fetch(`http://10.90.146.16:5121/api/Solicitacao/atualizar-status/${idSolicitacao}?statusCoordenador=Sim`, {
+      fetch(`${API_BASE_URL}api/Solicitacao/atualizar-status/${idSolicitacao}?statusCoordenador=Sim`, {
         method: 'PUT'
       })
 
@@ -32,7 +33,7 @@ function VisualizarSolicitacaoCoordenador() {
     async function carregarDados() {
       try {
         // 1️⃣ Buscar as solicitações
-        const resSolic = await fetch('http://10.90.146.16:5121/api/Solicitacao/periodo/7dias');
+        const resSolic = await fetch(`${API_BASE_URL}api/Solicitacao/periodo/7dias`);
         const solicitacoes = await resSolic.json();
 
         // 2️⃣ Filtrar apenas as solicitações que o coordenador ainda não aprovou
@@ -43,7 +44,7 @@ function VisualizarSolicitacaoCoordenador() {
           solicitacoesPendentes.map(async s => {
             try {
               // 🔹 Buscar aluno
-              const resAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${s.idAlunos}`);
+              const resAluno = await fetch(`${API_BASE_URL}api/Aluno/${s.idAlunos}`);
               if (!resAluno.ok) throw new Error('Erro ao buscar aluno');
               const aluno = await resAluno.json();
 
@@ -51,7 +52,7 @@ function VisualizarSolicitacaoCoordenador() {
               let nomeCurso = 'N/A';
               if (s.idNomeCurso) {
                 try {
-                  const resCurso = await fetch(`http://10.90.146.16:5121/api/Grafico/${s.idNomeCurso}`);
+                  const resCurso = await fetch(`${API_BASE_URL}api/Grafico/${s.idNomeCurso}`);
                   if (resCurso.ok) {
                     const curso = await resCurso.json();
                     // pode ser nomeCurso ou nome, dependendo do JSON do endpoint
@@ -67,7 +68,7 @@ function VisualizarSolicitacaoCoordenador() {
                 aluno: {
                   nome: aluno.nome || 'Desconhecido',
                   curso: nomeCurso,
-                  imagem: aluno.imagem ? `http://10.90.146.16:5121/${aluno.imagem}` : '/images/perfil.png'
+                  imagem: aluno.imagem ? `${API_BASE_URL}${aluno.imagem}` : '/images/perfil.png'
                 }
               };
             } catch (err) {
@@ -129,10 +130,9 @@ function VisualizarSolicitacaoCoordenador() {
           });
 
           let cor = '';
-          const posicaoNoCiclo = index % 6;
-          if (posicaoNoCiclo <= 1) cor = 'escuro';
-          else if (posicaoNoCiclo <= 3) cor = 'claro';
-          else cor = 'laranja';
+          const posicaoNoCiclo = index % 4; // ciclo de 4 posições
+          if (posicaoNoCiclo <= 1) cor = 'escuro'; // posições 0 e 1
+          else cor = 'claro'; // posições 2 e 3
 
           return (
             <div

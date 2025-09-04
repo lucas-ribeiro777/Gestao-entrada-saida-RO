@@ -2,8 +2,9 @@ import './LoginGeral.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Rodape from '../../components/Rodape/Rodape';
-import CampoTexto from '../../components/CampoTexto/CampoTexto'; // import do seu componente
+import CampoTexto from '../../components/CampoTexto/CampoTexto';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
+import { API_BASE_URL } from '../../constantes';
 
 const LoginGeral = () => {
   const [email, setEmail] = useState('');
@@ -20,7 +21,7 @@ const handleLogin = async () => {
   }
 
   try {
-    const resposta = await fetch('http://10.90.146.16:5121/api/Usuarios/Login', {
+    const resposta = await fetch(`${API_BASE_URL}api/Usuarios/Login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, senha })
@@ -30,13 +31,10 @@ const handleLogin = async () => {
       const dados = await resposta.json();
 
       const idUsuario = dados.id;
-      const tipo = dados.tipo?.toLowerCase(); // 'aluno', 'professor', 'responsavel', 'coordenador'
+      const tipo = dados.tipo?.toLowerCase(); 
 
-      // Armazena no localStorage
       localStorage.setItem('usuarioId', idUsuario);
       localStorage.setItem('usuarioTipo', tipo);
-
-      // Navega para a tela correta usando 'tipo', não tipoUsuario
       if (tipo === 'aluno') {
         navigate('/inicialAluno');
       } else if (tipo === 'professor') {

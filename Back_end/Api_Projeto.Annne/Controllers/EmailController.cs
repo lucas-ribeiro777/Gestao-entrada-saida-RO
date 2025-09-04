@@ -82,10 +82,156 @@ namespace Api_Projeto.Annne.Controllers
             _memoryCache.Set(token, (email, senhaHash), _tokenExpiracao);
 
             var corpoEmail = $@"
-                <p>Olá,</p>
-                <p>Você solicitou a redefinição de senha. Use o código abaixo para confirmar a troca:</p>
-                <h2>{token}</h2>
-                <p>Esse código expira em {_tokenExpiracao.TotalMinutes} minutos.</p>";
+<!DOCTYPE html>
+<html lang='pt-BR'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Recuperação de Senha - SENAI</title>
+    <style>
+        body, p, h2, span {{
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }}
+        body {{
+            background-color: #f4f6f9;
+            color: #333333;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }}
+        .container {{
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 40px 35px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }}
+        .logo {{
+            text-align: center;
+            margin-bottom: 35px;
+        }}
+        .logo img {{
+            max-width: 180px;
+            height: auto;
+            display: inline-block;
+        }}
+        h2.titulo {{
+            color: #004a99;
+            font-weight: 700;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }}
+        p.mensagem {{
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #444444;
+        }}
+        .token-box {{
+            background: linear-gradient(135deg, #0056A6);
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: 6px;
+            padding: 22px 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 86, 166, 0.5);
+            user-select: all;
+            margin: 40px auto;
+            width: fit-content;
+        }}
+        .expira {{
+            font-size: 15px;
+            color: #666666;
+            text-align: center;
+            margin-bottom: 40px;
+        }}
+        .expira strong {{
+            color: #0056A6; 
+        }}
+        .footer {{
+            border-top: 1px solid #e0e0e0;
+            padding-top: 25px;
+            font-size: 13px;
+            color: #999999;
+            text-align: center;
+            line-height: 1.4;
+        }}
+        .footer a {{
+            color: #0056A6;
+            text-decoration: none;
+            margin: 0 8px;
+            font-weight: 500;
+        }}
+        .footer a:hover {{
+            text-decoration: underline;
+        }}
+        @media screen and (max-width: 640px) {{
+            .container {{
+                margin: 20px 15px;
+                padding: 30px 20px;
+            }}
+            .token-box {{
+                font-size: 28px;
+                padding: 18px 30px;
+                letter-spacing: 4px;
+            }}
+            h2.titulo {{
+                font-size: 24px;
+            }}
+        }}
+    </style>
+</head>
+<body>
+    <div class='container'>
+
+        <!-- Logo -->
+        <div class='logo'>
+            <img 
+                src='https://www.imagemhost.com.br/images/2025/04/14/Logo-novo-SENAI_-sem-slogan_755X325.png' 
+                alt='Logo SENAI' 
+                border='0' 
+            />
+        </div>
+
+        <!-- Título -->
+        <h2 class='titulo'>Recuperação de Senha</h2>
+
+        <!-- Mensagem inicial -->
+        <p class='mensagem'>Olá,</p>
+        <p class='mensagem'>
+            Recebemos sua solicitação de redefinição de senha. Utilize o código abaixo para confirmar a alteração:
+        </p>
+
+        <!-- Token -->
+        <div class='token-box' title='Código de recuperação'>
+            {token}
+        </div>
+
+        <!-- Mensagem de expiração -->
+        <p class='expira'>
+            Este código expira em <strong>{_tokenExpiracao.TotalMinutes} minutos</strong>.<br/>
+            Caso não tenha solicitado essa recuperação, por favor ignore esta mensagem.
+        </p>
+
+        <!-- Rodapé -->
+        <div class='footer'>
+            <p>© {DateTime.Now.Year} SENAI - Serviço Nacional de Aprendizagem Industrial</p>
+            <p>
+                <a href='https://sp.senai.br/unidade/lencoispaulista/' target='_blank' rel='noopener noreferrer'>Site Oficial</a> |
+                <a href='https://www.google.com/search?q=senai+len%C3%A7%C3%B3is+paulista+telefone' target='_blank' rel='noopener noreferrer'>Contato</a> |
+                <a href='https://www.sp.senai.br/termos-de-uso-e-politica-de-privacidade' target='_blank' rel='noopener noreferrer'>Política de Privacidade</a>
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>
+";
 
             try
             {

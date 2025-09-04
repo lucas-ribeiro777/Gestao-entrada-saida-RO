@@ -4,6 +4,7 @@ import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import Rodape from '../../components/Rodape/Rodape';
 import FormSolicitacao from '../../components/FormSolicitacao/FormSolicitacao';
 import { Link } from "react-router-dom";
+import { API_BASE_URL } from '../../constantes';
 
 const VerSolicitacaoResponsavel = () => {
   const [alunos, setAlunos] = useState([]);
@@ -12,13 +13,13 @@ const VerSolicitacaoResponsavel = () => {
   useEffect(() => {
     const responsavelId = localStorage.getItem("usuarioId");
 
-    fetch(`http://10.90.146.16:5121/api/Responsaveis/${responsavelId}`)
+    fetch(`${API_BASE_URL}api/Responsaveis/${responsavelId}`)
       .then((res) => res.json())
       .then(async (data) => {
         console.log("Responsável:", data);
 
         const alunosPromises = data.idsAlunos.map(id =>
-          fetch(`http://10.90.146.16:5121/api/Aluno/${id}`).then(res => res.json())
+          fetch(`${API_BASE_URL}api/Aluno/${id}`).then(res => res.json())
         );
         console.log("Promises dos alunos:", data.idsAlunos, alunosPromises);
         const alunosData = await Promise.all(alunosPromises);

@@ -5,6 +5,7 @@ import CriarAssinatura from '../CriarAssinatura/CriarAssinatura';
 import Termos from '../Termos/Termos';
 import ModalRecado from '../ModalRecado/ModalRecado'; // Importa o modal de recados
 import './FormCadastroCoordenador.css';
+import { API_BASE_URL } from '../../constantes';
 
 function dataURLtoFile(dataurl, filename) {
   const arr = dataurl.split(',');
@@ -88,7 +89,7 @@ async function handleSubmit(event) {
   }
 
   try {
-    const response = await fetch('http://10.90.146.16:5121/api/Coordenador', {
+    const response = await fetch(`${API_BASE_URL}api/Coordenador`, {
       method: 'POST',
       body: formData,
     });
@@ -153,7 +154,7 @@ async function handleSubmit(event) {
               valor={telefone}
               onChange={e => setTelefone(e.target.value)}
               label="Telefone"
-              placeholder="(14...)"
+              placeholder="14..."
             />
           </div>
         </div>

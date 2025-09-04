@@ -5,6 +5,7 @@
   import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
   import { Link, useNavigate } from 'react-router-dom';
   import CriarAssinatura from '../../components/CriarAssinatura/CriarAssinatura';
+  import { API_BASE_URL } from '../../constantes';
 
   const VisualizarContaProfessor = () => {
     const [dados, setDados] = useState(null);
@@ -22,7 +23,7 @@
         return;
       }
 
-      const API_URL = `http://10.90.146.16:5121/api/Professor/${professorLogado}`;
+      const API_URL = `${API_BASE_URL}api/Professor/${professorLogado}`;
 
       fetch(API_URL)
         .then((res) => {
@@ -47,7 +48,7 @@
         const novosDados = { ...dados, [campo]: novoValor.trim() };
         setDados(novosDados);
 
-        const API_URL = `http://10.90.146.16:5121/api/Professores/${professorLogado.id}`;
+        const API_URL = `${API_BASE_URL}api/Professores/${professorLogado.id}`;
         fetch(API_URL, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
@@ -65,7 +66,7 @@ const handleSalvarAssinatura = (assinaturaBlob) => {
   formData.append("assinatura", arquivo);
   formData.append("id", professorLogado.id);
 
-  const API_URL = `http://10.90.146.16:5121/api/Professor/${professorLogado}/assinatura`;
+  const API_URL = `${API_BASE_URL}api/Professor/${professorLogado}/assinatura`;
 
   fetch(API_URL, {
     method: 'POST',
@@ -130,7 +131,7 @@ const handleSalvarAssinatura = (assinaturaBlob) => {
           <InfoBox
             icone={<img src="/images/assinatura.png" alt="Assinatura" />}
             texto={<img 
-                    src={`http://10.90.146.16:5121/${dados.assinatura}`} 
+                    src={`${API_BASE_URL}${dados.assinatura}`} 
                     alt="Assinatura" 
                     id='assinatura-do-professor'
                   />}

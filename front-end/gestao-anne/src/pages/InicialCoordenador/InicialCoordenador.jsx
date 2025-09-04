@@ -4,6 +4,7 @@ import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import { useNavigate, Link } from 'react-router-dom';
 import './InicialCoordenador.css';
 import Ranking from '../../components/Ranking/Ranking';
+import { API_BASE_URL } from '../../constantes';
 
 const renderPizzaCheia = (data, onHover) => {
   const radius = 100;
@@ -68,7 +69,7 @@ const InicialCoordenador = () => {
   useEffect(() => {
     const fetchCursos = async () => {
       try {
-        const res = await fetch('http://10.90.146.16:5121/api/Grafico/cursos');
+        const res = await fetch(`${API_BASE_URL}api/Grafico/cursos`);
         if (!res.ok) throw new Error('Erro ao buscar cursos');
         const data = await res.json();
         console.log('Cursos recebidos:', data);
@@ -89,7 +90,7 @@ useEffect(() => {
 
   const fetchDados = async () => {
     try {
-      const res = await fetch(`http://10.90.146.16:5121/api/Grafico/resumo/${cursoSelecionado.idCurso}`);
+      const res = await fetch(`${API_BASE_URL}api/Grafico/resumo/${cursoSelecionado.idCurso}`);
       if (!res.ok) throw new Error(`Erro na resposta: ${res.status}`);
       const data = await res.json();
 

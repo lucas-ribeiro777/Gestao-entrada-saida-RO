@@ -18,16 +18,17 @@ namespace Api_Projeto.Annne.Services
             _context = context;
         }
 
-                public async Task<List<Grafico>> GetTodosAsync() =>
+        // Retorna todos os gráficos
+        public async Task<List<Grafico>> GetTodosAsync() =>
             await _context.Graficos.ToListAsync();
 
-        
+        // Retorna gráficos de um curso específico
         public async Task<List<Grafico>> GetPorCursoAsync(int idCurso) =>
             await _context.Graficos
                           .Where(g => g.IdNomeCurso == idCurso)
                           .ToListAsync();
 
-       
+        // Cria um novo gráfico
         public async Task<Grafico> CriarGraficoAsync(Grafico grafico)
         {
             _context.Graficos.Add(grafico);
@@ -35,45 +36,42 @@ namespace Api_Projeto.Annne.Services
             return grafico;
         }
 
-       
+        // Salva resumo de horários e motivos para um curso
         public async Task<GraficoResumoDto> SalvarResumoDadosAsync(int idCurso)
         {
-            var horariosFrequentes = _context.QrCodeRegistros
-                .Where(q => q.IdNomeCurso == idCurso)
+            var horariosFrequentes = _context.Solicitacoes
+                .Where(s => s.IdNomeCurso == idCurso)
                 .AsEnumerable()
-                .GroupBy(q => new TimeSpan(q.DataHora.Hour, 0, 0))
-                .Select(g => new { Hora = g.Key, Quantidade = g.Count() })
-                .OrderByDescending(g => g.Quantidade)
+                .GroupBy(s => new TimeSpan(s.DataHora.Hour, 0, 0))
+                .Select(g => new HorarioResumoDto
+                {
+                    Hora = g.Key,
+                    Quantidade = g.Count()
+                })
+                .OrderByDescending(h => h.Quantidade)
                 .Take(4)
                 .ToList();
 
-            var motivosFrequentes = await _context.Solicitacoes
+            var motivosFrequentes = _context.Solicitacoes
                 .Where(s => s.IdNomeCurso == idCurso && !string.IsNullOrEmpty(s.Motivo))
                 .GroupBy(s => s.Motivo)
-                .Select(g => new { Motivo = g.Key, Quantidade = g.Count() })
-                .OrderByDescending(g => g.Quantidade)
+                .Select(g => new MotivoResumoDto
+                {
+                    Motivo = g.Key,
+                    Quantidade = g.Count()
+                })
+                .OrderByDescending(m => m.Quantidade)
                 .Take(4)
-                .ToListAsync();
+                .ToList();
 
             return new GraficoResumoDto
             {
-                Horarios = horariosFrequentes
-                    .Select(h => new HorarioResumoDto
-                    {
-                        Hora = h.Hora,
-                        Quantidade = h.Quantidade
-                    }).ToList(),
-
+                Horarios = horariosFrequentes,
                 Motivos = motivosFrequentes
-                    .Select(m => new MotivoResumoDto
-                    {
-                        Motivo = m.Motivo,
-                        Quantidade = m.Quantidade
-                    }).ToList()
             };
         }
 
-        
+        // Retorna resumo de todos os cursos
         public async Task<List<GraficoCursoResumoDto>> GetResumoTodosCursosAsync()
         {
             var cursos = await _context.Cursos.ToListAsync();
@@ -90,16 +88,8 @@ namespace Api_Projeto.Annne.Services
                     Codigo = curso.Codigo,
                     Periodo = curso.Periodo,
                     DiasDeAula = curso.DiasDeAula,
-                    HorariosMaisFrequentes = resumo.Horarios.Select(h => new
-                    {
-                        hora = h.Hora.ToString(@"hh\:mm"),
-                        quantidade = h.Quantidade
-                    }),
-                    MotivosMaisFrequentes = resumo.Motivos.Select(m => new
-                    {
-                        motivo = m.Motivo,
-                        quantidade = m.Quantidade
-                    })
+                    HorariosMaisFrequentes = resumo.Horarios,
+                    MotivosMaisFrequentes = resumo.Motivos
                 };
 
                 listaResumo.Add(dto);
@@ -108,7 +98,7 @@ namespace Api_Projeto.Annne.Services
             return listaResumo;
         }
 
-        
+        // Busca curso por ID
         public async Task<Curso> GetCursoByIdAsync(int idCurso)
         {
             return await _context.Cursos

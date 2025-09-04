@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './FormSolicitacao.css';
 import ModalRecado from '../ModalRecado/ModalRecado';
+import { API_BASE_URL } from '../../constantes';
 
 const FormSolicitacao = ({ dados, tipoUsuario, alunoId }) => {
   const [formData, setFormData] = useState({
@@ -43,7 +44,7 @@ const FormSolicitacao = ({ dados, tipoUsuario, alunoId }) => {
   useEffect(() => {
     const fetchCursos = async () => {
       try {
-        const res = await fetch('http://10.90.146.16:5121/api/Grafico/cursos');
+        const res = await fetch(`${API_BASE_URL}api/Grafico/cursos`);
         if (!res.ok) throw new Error('Erro ao buscar cursos');
         const data = await res.json();
         setCursos(data);
@@ -64,7 +65,7 @@ const FormSolicitacao = ({ dados, tipoUsuario, alunoId }) => {
 
       try {
         const responsavelId = localStorage.getItem('usuarioId');
-        const res = await fetch(`http://10.90.146.16:5121/api/Responsaveis/${responsavelId}`);
+        const res = await fetch(`${API_BASE_URL}api/Responsaveis/${responsavelId}`);
         const respData = await res.json();
 
         if (!Array.isArray(respData.idsAlunos) || respData.idsAlunos.length === 0) {
@@ -74,7 +75,7 @@ const FormSolicitacao = ({ dados, tipoUsuario, alunoId }) => {
         // Buscar todos os alunos do responsável
         const alunosData = await Promise.all(
           respData.idsAlunos.map(async (id) => {
-            const resAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${id}`);
+            const resAluno = await fetch(`${API_BASE_URL}api/Aluno/${id}`);
             const aluno = await resAluno.json();
             return { id, nome: aluno.nome, assinatura: aluno.assinatura };
           })
@@ -102,18 +103,18 @@ useEffect(() => {
       aluno: alunoSelecionado.nome,
       nomeAluno: alunoSelecionado.nome
     }));
-    setAssinaturaAlunoImg(alunoSelecionado.assinatura ? `http://10.90.146.16:5121${alunoSelecionado.assinatura}` : '');
+    setAssinaturaAlunoImg(alunoSelecionado.assinatura ? `${API_BASE_URL}${alunoSelecionado.assinatura}` : '');
   }
 }, [alunoVinculadoId, alunosVinculados]);
 
 
   const handleAssinarAluno = async (alunoId) => {
     try {
-      const res = await fetch(`http://10.90.146.16:5121/api/Aluno/${alunoId}`);
+      const res = await fetch(`${API_BASE_URL}api/Aluno/${alunoId}`);
       if (!res.ok) throw new Error("Erro ao buscar assinatura do aluno");
 
       const data = await res.json();
-      const assinaturaUrl = data.assinatura ? `http://10.90.146.16:5121${data.assinatura}` : '';
+      const assinaturaUrl = data.assinatura ? `${API_BASE_URL}${data.assinatura}` : '';
 
       setAssinaturaAlunoImg(assinaturaUrl);
       setFormData(prev => ({ 
@@ -150,20 +151,26 @@ useEffect(() => {
       const dataHoraSaida = new Date(`${formData.data}T${formData.horaSaida}`);
       if (isNaN(dataHoraSaida.getTime())) throw new Error("Data ou hora de saída inválida");
 
+      // Pegar o tipo de usuário diretamente do localStorage
+      const tipoUsuarioLocalStorage = localStorage.getItem('usuarioTipo'); // Assumindo que você salva no localStorage como 'tipoUsuario'
+
+      // Definir o statusResponsavel com base no tipo de usuário
+      const statusResponsavel = tipoUsuarioLocalStorage === "responsavel" ? "Sim" : "Pendente";
+
       const novaSolicitacao = {
         idSolicitacao: 0,
         idAlunos: Number(idAlunoFinal),
         idNomeCurso: Number(cursoSelecionado.idCurso),
         tipo: formData.autorizacao,
         motivo: formData.motivo,
-        dataHora: dataHoraSaida.toISOString(),
+        dataHora: `${formData.data}T${formData.horaSaida}:00`,
         retorno: formData.horaRetorno,
         statusProfessor: "Pendente",
-        statusResponsavel: formData.responsavel && formData.responsavel !== 'Assinatura do Responsável' ? "Sim" : "Pendente",
+        statusResponsavel: statusResponsavel, // Usando o valor dinâmico baseado no tipo de usuário
         statusCoordenador: "Pendente"
       };
 
-      const response = await fetch("http://10.90.146.16:5121/api/Solicitacao", {
+      const response = await fetch(`${API_BASE_URL}api/Solicitacao`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(novaSolicitacao)
@@ -192,6 +199,7 @@ useEffect(() => {
       abrirModal("Erro", error.message || 'Ocorreu um erro ao enviar a solicitação.');
     }
   };
+
 
 
   return (

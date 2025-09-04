@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import CaixaInfos from "../../components/CaixaInfos/CaixaInfos";
 import Rodape from '../../components/Rodape/Rodape';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
+import { API_BASE_URL } from '../../constantes';
 
 function InicialAluno() {
   const [historico, setHistorico] = useState([]);
@@ -21,7 +22,7 @@ function InicialAluno() {
 
   async function buscarHistorico() {
     try {
-      const res = await fetch(`http://10.90.146.16:5121/api/Solicitacao/aluno/${idAluno}`);
+      const res = await fetch(`${API_BASE_URL}api/Solicitacao/aluno/${idAluno}`);
 
       if (!res.ok) {
         throw new Error(`Erro na API: ${res.status}`);
@@ -72,7 +73,7 @@ useEffect(() => {
 
   async function buscarResponsaveis() {
     try {
-      const resAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${idAluno}`);
+      const resAluno = await fetch(`${API_BASE_URL}api/Aluno/${idAluno}`);
       if (!resAluno.ok) throw new Error('Falha ao buscar aluno');
       const aluno = await resAluno.json();
 
@@ -81,7 +82,7 @@ useEffect(() => {
 
       const nomes = [];
       for (let id of idsResponsaveis) {
-        const res = await fetch(`http://10.90.146.16:5121/api/Responsaveis/${id}`);
+        const res = await fetch(`${API_BASE_URL}api/Responsaveis/${id}`);
         if (!res.ok) continue;
         const r = await res.json();
         if (r.nome) nomes.push(r.nome);

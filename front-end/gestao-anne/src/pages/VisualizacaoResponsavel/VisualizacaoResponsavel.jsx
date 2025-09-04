@@ -3,31 +3,30 @@ import { Link, useNavigate } from "react-router-dom";
 import Rodape from "../../components/Rodape/Rodape";
 import CabecalhoPages from "../../components/CabecalhoPages/CabecalhoPages";
 import InfoBox from "../../components/InfoBox/InfoBox";
-import CriarAssinatura from "../../components/CriarAssinatura/CriarAssinatura"; // import modal assinatura
+import CriarAssinatura from "../../components/CriarAssinatura/CriarAssinatura"; 
 import "./VisualizacaoResponsavel.css";
+import { API_BASE_URL } from '../../constantes';
 
 const VisualizacaoResponsavel = () => {
   const [dados, setDados] = useState(null);
   const [carregando, setCarregando] = useState(true);
   const [modalAberto, setModalAberto] = useState(false);
   const idResponsavelLogado = localStorage.getItem("usuarioId");
-  const API_URL = `http://10.90.146.16:5121/api/Responsaveis/${idResponsavelLogado}`;
+  const API_URL = `${API_BASE_URL}api/Responsaveis/${idResponsavelLogado}`;
   const navigate = useNavigate();
 
 useEffect(() => {
   const buscarDadosResponsavel = async () => {
     try {
-      // 1. Buscar dados do responsável
-      const resResponsavel = await fetch(API_URL);
+      const resResponsavel = await fetch(`${API_BASE_URL}api/Responsaveis/${idResponsavelLogado}`);
       if (!resResponsavel.ok) throw new Error("Falha ao buscar responsável");
       const responsavel = await resResponsavel.json();
 
-      // 2. Buscar dados de todos os alunos
       let nomesAlunos = "Filho não encontrado";
       if (responsavel.idsAlunos && responsavel.idsAlunos.length > 0) {
         const alunosPromises = responsavel.idsAlunos.map(async (idAluno) => {
           try {
-            const resAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${idAluno}`);
+            const resAluno = await fetch(`${API_BASE_URL}api/Aluno/${idAluno}`);
             if (!resAluno.ok) throw new Error("Erro ao buscar aluno");
             const aluno = await resAluno.json();
             return aluno.nome || "Desconhecido";
@@ -37,16 +36,15 @@ useEffect(() => {
         });
 
         const nomes = await Promise.all(alunosPromises);
-        nomesAlunos = nomes.join(", "); // junta todos separados por vírgula
+        nomesAlunos = nomes.join(", "); 
       }
 
-      // 3. Atualizar estado com os dados
       setDados({
         nome: responsavel.nome,
         nascimento: responsavel.data_nasc ? formatarData(responsavel.data_nasc) : "",
         email: responsavel.email,
         telefone: responsavel.telefone,
-        aluno: nomesAlunos, // <- agora todos os alunos
+        aluno: nomesAlunos, 
         assinatura: responsavel.assinatura || "",
       });
 
@@ -78,7 +76,6 @@ useEffect(() => {
       const novosDados = { ...dados, [campo]: novoValor.trim() };
       setDados(novosDados);
 
-      // Ajusta data para formato yyyy-mm-dd se for campo nascimento
       const payload = {
         ...novosDados,
         data_nasc:
@@ -109,19 +106,18 @@ useEffect(() => {
 const salvarAssinatura = async (arquivoAssinatura) => {
   try {
     const formData = new FormData();
-    formData.append("assinatura", arquivoAssinatura); // arquivo PNG real
+    formData.append("assinatura", arquivoAssinatura); 
 
     const resposta = await fetch(
-      `http://10.90.146.16:5121/api/Responsaveis/${idResponsavelLogado}/assinatura`,
+      `${API_BASE_URL}api/Responsaveis/${idResponsavelLogado}/assinatura`,
       {
         method: "POST",
-        body: formData, // envia como multipart/form-data automaticamente
+        body: formData, 
       }
     );
 
     if (!resposta.ok) throw new Error("Falha ao salvar assinatura no servidor");
 
-    // Atualiza localmente, se quiser mostrar no front
     setDados((prev) => ({
       ...prev,
       assinatura: URL.createObjectURL(arquivoAssinatura),
@@ -200,7 +196,7 @@ const salvarAssinatura = async (arquivoAssinatura) => {
               icone={<img src="/images/assinatura.png" alt="Assinatura" />}
               texto={
               <img
-                src={`http://10.90.146.16:5121${dados.assinatura}`} // <--- concatena IP + caminho da API
+                src={`${API_BASE_URL}${dados.assinatura}`}
                 alt="Assinatura"
                 style={{ maxWidth: '150px', maxHeight: '50px', borderRadius: '70px' }}
                 id='assinatura-coordenador'

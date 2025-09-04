@@ -5,6 +5,7 @@ import Termos from '../Termos/Termos';
 import ModalRecado from '../ModalRecado/ModalRecado';
 import './FormCadastroResponsavel.css';
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../../constantes';
 
 function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
     const [modalAberto, setModalAberto] = useState(false);
@@ -68,7 +69,7 @@ function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
         };
 
         try {
-            const response = await fetch('http://10.90.146.16:5121/api/Responsaveis/cadastro', {
+            const response = await fetch(`${API_BASE_URL}api/Responsaveis/cadastro`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -126,7 +127,7 @@ function FormCadastroResponsavel({ tipo, campos, fotoSelecionada }) {
                             valor={telefone}
                             onChange={e => setTelefone(e.target.value)}
                             label="Telefone"
-                            placeholder="(14...)"
+                            placeholder="14..."
                         />
                     </div>
                     <div className="linha2">

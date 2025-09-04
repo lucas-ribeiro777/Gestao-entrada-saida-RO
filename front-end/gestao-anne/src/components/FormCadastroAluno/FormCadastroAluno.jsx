@@ -6,6 +6,8 @@ import CriarAssinatura from '../CriarAssinatura/CriarAssinatura';
 import Termos from '../Termos/Termos';
 import ModalRecado from '../ModalRecado/ModalRecado'; // import do modal de recados
 import './FormCadastroAluno.css';
+import { API_BASE_URL } from '../../constantes';
+
 
 function FormCadastroAluno({ tipo, campos, fotoSelecionada }) {
   const navigate = useNavigate();
@@ -134,7 +136,7 @@ async function handleSubmit(event) {
   }
 
   try {
-    const resp = await fetch('http://10.90.146.16:5121/api/Aluno/cadastro', {
+    const resp = await fetch(`${API_BASE_URL}api/Aluno/cadastro`, {
       method: 'POST',
       body: formData,
     });
@@ -173,7 +175,7 @@ async function handleSubmit(event) {
           <CampoTexto valor={email} label="E-mail" placeholder="Digite Algo..." onChange={e => setEmail(e.target.value)} />
           <div className="linha1">
             <CampoTexto valor={datanasc} label="Data de Nascimento" placeholder="__/__/____" onChange={e => setDataNasc(e.target.value)} />
-            <CampoTexto valor={telefone} label="Telefone" placeholder="(14 ...)" onChange={e => setTelefone(e.target.value)} />
+            <CampoTexto valor={telefone} label="Telefone" placeholder="14 ..." onChange={e => setTelefone(e.target.value)} />
           </div>
           <div className="linha2">
             <CampoTexto valor={senha} label="Senha" placeholder="Digite Sua Senha..." onChange={e => setSenha(e.target.value)} />

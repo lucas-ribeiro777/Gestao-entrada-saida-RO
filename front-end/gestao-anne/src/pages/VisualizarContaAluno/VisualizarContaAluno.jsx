@@ -5,6 +5,7 @@ import Foto from '../../components/Foto/Foto';
 import CabecalhoPages from '../../components/CabecalhoPages/CabecalhoPages';
 import { Link } from 'react-router-dom';
 import InfoBox from '../../components/InfoBox/InfoBox';
+import { API_BASE_URL } from '../../constantes';
 
 const VisualizarContaAluno = () => {
   const [dados, setDados] = useState({
@@ -33,7 +34,7 @@ const VisualizarContaAluno = () => {
       if (!alunoId) return;
 
       try {
-        const respostaAluno = await fetch(`http://10.90.146.16:5121/api/Aluno/${alunoId}`);
+        const respostaAluno = await fetch(`${API_BASE_URL}api/Aluno/${alunoId}`);
         if (!respostaAluno.ok) throw new Error('Falha na resposta da API do aluno');
 
         const aluno = await respostaAluno.json();
@@ -41,7 +42,7 @@ const VisualizarContaAluno = () => {
         const responsavelId = aluno.idResponsaveis?.[0] || null;
         let nomeResponsavel = '';
         if (responsavelId) {
-          const respostaResponsavel = await fetch(`http://10.90.146.16:5121/api/Responsaveis/${responsavelId}`);
+          const respostaResponsavel = await fetch(`${API_BASE_URL}api/Responsaveis/${responsavelId}`);
           if (!respostaResponsavel.ok) throw new Error('Falha na resposta da API do responsável');
 
           const responsavel = await respostaResponsavel.json();
@@ -55,7 +56,7 @@ const VisualizarContaAluno = () => {
           responsavel: nomeResponsavel,
         });
 
-        setImagemPerfil(aluno.imagem ? `http://10.90.146.16:5121${aluno.imagem}` : '/images/default-profile.png');
+        setImagemPerfil(aluno.imagem ? `${API_BASE_URL}${aluno.imagem}` : '/images/default-profile.png');
       } catch (erro) {
         console.error('Erro ao buscar dados:', erro);
       }
@@ -77,7 +78,7 @@ const VisualizarContaAluno = () => {
     formData.append('imagem', file);
 
     try {
-      const resposta = await fetch(`http://10.90.146.16:5121/api/Alunos/${alunoId}/imagem`, {
+      const resposta = await fetch(`${API_BASE_URL}api/Alunos/${alunoId}/imagem`, {
         method: 'PUT',
         body: formData,
       });

@@ -6,12 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import CriarAssinatura from '../../components/CriarAssinatura/CriarAssinatura'; // importe o modal assinatura
 import './VisualizarContaCoordenador.css';
+import { API_BASE_URL } from '../../constantes';
 
 const VisualizarContaCoordenador = () => {
   const [dados, setDados] = useState(null);
   const [carregando, setCarregando] = useState(true);
   const [modalAberto, setModalAberto] = useState(false); // controle do modal
-  const API_URL = 'http://10.90.146.16:5121/api/Coordenador/' + localStorage.getItem('usuarioId');
+  const API_URL = `${API_BASE_URL}api/Coordenador/` + localStorage.getItem('usuarioId');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const VisualizarContaCoordenador = () => {
   const fecharModalAssinatura = () => setModalAberto(false);
 
   const salvarAssinatura = (arquivo) => {
-    const API_URL_ASSINATURA = `http://10.90.146.16:5121/api/Coordenador/${dados.id}/assinatura`;
+    const API_URL_ASSINATURA = `${API_BASE_URL}api/Coordenador/${dados.id}/assinatura`;
 
     const formData = new FormData();
     formData.append('assinatura', arquivo); // 'assinatura' é o nome do campo que a API espera
@@ -132,7 +133,7 @@ const VisualizarContaCoordenador = () => {
             icone={<img src="/images/assinatura.png" alt="Assinatura" />}
             texto={
             <img
-              src={`http://10.90.146.16:5121${dados.assinatura}`}
+              src={`${API_BASE_URL}${dados.assinatura}`}
               alt="Assinatura"
               style={{ maxWidth: '150px', maxHeight: '50px', borderRadius: '70px' }}
               id='assinatura-coordenador'

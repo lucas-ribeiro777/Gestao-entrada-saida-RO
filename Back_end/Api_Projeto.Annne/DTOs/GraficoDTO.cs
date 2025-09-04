@@ -34,7 +34,7 @@ namespace Api_Projeto.Annne.DTOs
         public string Periodo { get; set; } = string.Empty;
         public string DiasDeAula { get; set; } = string.Empty;
 
-        public IEnumerable<object> HorariosMaisFrequentes { get; set; } = new List<object>();
-        public IEnumerable<object> MotivosMaisFrequentes { get; set; } = new List<object>();
+        public List<HorarioResumoDto> HorariosMaisFrequentes { get; set; } = new();
+    public List<MotivoResumoDto> MotivosMaisFrequentes { get; set; } = new();
     }
 }

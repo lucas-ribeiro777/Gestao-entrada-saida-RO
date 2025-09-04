@@ -28,7 +28,6 @@ function CadastroDocente() {
       return;
     }
 
-    // Salva localmente antes de enviar para a API
     salvarLocalmente(formData);
 
     try {
